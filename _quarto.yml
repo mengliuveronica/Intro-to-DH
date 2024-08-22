@@ -54,6 +54,7 @@ format:
       - notes
       - search
       - zoom
+    output-dir: _site/slides
 
 include-after-body: 
      - file: _footer.html
