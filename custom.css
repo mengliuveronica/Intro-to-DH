@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
 /* Highlighter styles */
 .highlight-yellow {
     background: linear-gradient(104deg, rgba(255,255,224,0) 0.9%, rgba(255,255,224,1) 2.4%, rgba(255,255,224,0.5) 5.8%, rgba(255,255,224,0.1) 93%, rgba(255,255,224,0.7) 96%, rgba(255,255,224,0) 98%), linear-gradient(183deg, rgba(255,255,224,0) 0%, rgba(255,255,224,0.3) 7.9%, rgba(255,255,224,0) 15%);
@@ -62,4 +64,111 @@
     margin-bottom: 1em;
     float: none;
   }
+}
+
+/* css styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.info-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.topic-flow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.topic-box {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.foundations { background-color: #e6e6fa; }
+.core-types { background-color: #ffd6e8; }
+.special-apps { background-color: #ffe4e1; }
+
+.arrow {
+  align-self: center;
+  font-size: 24px;
+  color: #ff7f50;
+}
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.2em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.course-info {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #ddd;
+}
+
+.course-info h2 {
+  color: #444;
+}
+
+.course-info p {
+  margin: 0.2em 0;
+}
+
+.course-info img {
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+
+a {
+  color: #0066cc; /* Changed to a different color */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Footer styles */
+.footer {
+  font-size: 0.8em;
+  padding: 15px 0;
+  margin-top: 40px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+.footer a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer .col-md-8,
+.footer .col-md-4 {
+  text-align: center !important;
+}
+
+.footer .col-md-4 {
+  margin-top: 10px;
 }

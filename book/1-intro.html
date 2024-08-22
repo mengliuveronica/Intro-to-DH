@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../custom.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -145,7 +145,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-digital-humanities" id="toc-introduction-to-digital-humanities" class="nav-link active" data-scroll-target="#introduction-to-digital-humanities">Introduction to Digital Humanities</a>
+  <ul class="collapse">
+  <li><a href="#what-is-digital-humanities" id="toc-what-is-digital-humanities" class="nav-link" data-scroll-target="#what-is-digital-humanities">What is Digital Humanities?</a></li>
+  <li><a href="#the-digital-humanities-workflow" id="toc-the-digital-humanities-workflow" class="nav-link" data-scroll-target="#the-digital-humanities-workflow">The Digital Humanities Workflow</a>
+  <ul class="collapse">
+  <li><a href="#mediationremediation" id="toc-mediationremediation" class="nav-link" data-scroll-target="#mediationremediation">Mediation/Remediation</a></li>
+  <li><a href="#dataficationmodeling" id="toc-dataficationmodeling" class="nav-link" data-scroll-target="#dataficationmodeling">Datafication/Modeling</a></li>
+  <li><a href="#processinganalytics" id="toc-processinganalytics" class="nav-link" data-scroll-target="#processinganalytics">Processing/Analytics</a></li>
+  <li><a href="#presentationdisplay" id="toc-presentationdisplay" class="nav-link" data-scroll-target="#presentationdisplay">Presentation/Display</a></li>
+  <li><a href="#sustainabilitypreservation" id="toc-sustainabilitypreservation" class="nav-link" data-scroll-target="#sustainabilitypreservation">Sustainability/Preservation</a></li>
+  </ul></li>
+  <li><a href="#digital-humanities-analysis-with-r" id="toc-digital-humanities-analysis-with-r" class="nav-link" data-scroll-target="#digital-humanities-analysis-with-r">Digital Humanities Analysis with R</a>
+  <ul class="collapse">
+  <li><a href="#example-1-text-analysis-of-literary-works" id="toc-example-1-text-analysis-of-literary-works" class="nav-link" data-scroll-target="#example-1-text-analysis-of-literary-works">Example 1: Text Analysis of Literary Works</a></li>
+  <li><a href="#example-2-sentiment-analysis-of-jane-austens-novels" id="toc-example-2-sentiment-analysis-of-jane-austens-novels" class="nav-link" data-scroll-target="#example-2-sentiment-analysis-of-jane-austens-novels">Example 2: Sentiment Analysis of Jane Austen’s Novels</a></li>
+  <li><a href="#example-3-network-analysis-of-historical-figures" id="toc-example-3-network-analysis-of-historical-figures" class="nav-link" data-scroll-target="#example-3-network-analysis-of-historical-figures">Example 3: Network Analysis of Historical Figures</a></li>
+  </ul></li>
+  <li><a href="#challenges-and-considerations-in-digital-humanities" id="toc-challenges-and-considerations-in-digital-humanities" class="nav-link" data-scroll-target="#challenges-and-considerations-in-digital-humanities">Challenges and Considerations in Digital Humanities</a>
+  <ul class="collapse">
+  <li><a href="#ethical-considerations" id="toc-ethical-considerations" class="nav-link" data-scroll-target="#ethical-considerations">Ethical Considerations</a></li>
+  <li><a href="#interdisciplinary-collaboration" id="toc-interdisciplinary-collaboration" class="nav-link" data-scroll-target="#interdisciplinary-collaboration">Interdisciplinary Collaboration</a></li>
+  <li><a href="#critical-approaches" id="toc-critical-approaches" class="nav-link" data-scroll-target="#critical-approaches">Critical Approaches</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -525,6 +557,22 @@ Final Reflection (5 minutes)
 </section>
 
 </main> <!-- /main -->
+<footer class="footer">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        Content <i class="fab fa-creative-commons"></i> 2024 by <a href="your_website_url">Meng Liu</a> •
+        All content licensed under a <i class="fab fa-creative-commons"></i>
+        <i class="fab fa-creative-commons-by"></i> <i class="fab fa-creative-commons-nc"></i>
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
+      </div>
+      <div class="col-md-4 text-md-end">
+        Made with <i class="fab fa-r-project"></i> and <a href="https://quarto.org/">Quarto</a> •
+        <a href="https://github.com/mengliuveronica/Intro-to-DH">View source <i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -617,7 +665,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/mengliuveronica\.github\.io\/Intro-to-DH\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
