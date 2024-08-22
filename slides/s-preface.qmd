@@ -4,12 +4,11 @@ subtitle: "Exploring the Intersection of Humanities and Digital Methods"
 author: "Meng Liu"
 format:
   revealjs:
-    theme: dark
     background-color: "#42049E"  # Indigo color
     transition: slide
     slide-number: true
     preview-links: auto
-    css: custom.css
+    css: ../custom.css
     footer: "School of English and International Studies, BFSU"
     incremental: true  # This makes all content incremental by default
 ---
