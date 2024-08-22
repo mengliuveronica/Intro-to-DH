@@ -1,31 +1,59 @@
 [
   {
-    "objectID": "syllabus.html",
-    "href": "syllabus.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
+    "objectID": "slides/s-preface.html#course-overview",
+    "href": "slides/s-preface.html#course-overview",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n\nWelcome to Digital Humanities! 👋\nCourse structure:\n\nWeekly lectures and hands-on workshops\nProject-based assessments\n\nLearning outcomes:\n\nUnderstand key DH concepts and methodologies\nDevelop basic programming skills in R\nApply digital methods to humanities research questions\nCritically evaluate DH projects and their implications"
   },
   {
-    "objectID": "syllabus.html#course-schedule",
-    "href": "syllabus.html#course-schedule",
-    "title": "Syllabus",
-    "section": "",
-    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
+    "objectID": "slides/s-preface.html#what-is-digital-humanities",
+    "href": "slides/s-preface.html#what-is-digital-humanities",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is Digital Humanities?",
+    "text": "What is Digital Humanities?\n\n\n\n\nInterdisciplinary field merging:\n\nHumanities disciplines\nDigital technologies\nComputational methods\n\nEncompasses:\n\nDigital archives and preservation\nText and data mining\nVisualization and mapping\nDigital publishing and pedagogy\n\n\n\n\n\n\n\nDigital Humanities Venn Diagram"
   },
   {
-    "objectID": "syllabus.html#assessment",
-    "href": "syllabus.html#assessment",
-    "title": "Syllabus",
-    "section": "📊 Assessment",
-    "text": "📊 Assessment\nYour final grade will be composed of the following elements:\n\nMonthly Quiz 📝: 40%\n\nRegular assessments to check your understanding of the course material.\n\nClass Participation and Attendance 🙋‍♀️: 20%\n\nYour active involvement in class discussions and activities is crucial!\n\n\n\n\n\n\n\nImportant\n\n\n\n\nAbsence of one-third of class time, excused or unexcused, will disqualify you from earning credits for the course.\n\n\n\nTerm Paper 📄: 40%\n\n\n\n\n\n\n🎯 Term Project\n\n\n\nA digital humanities project of your choice! You should pick your topic for the term project by week 12. More details will be released later when you have learned R basics."
+    "objectID": "slides/s-preface.html#why-digital",
+    "href": "slides/s-preface.html#why-digital",
+    "title": "Introduction to Digital Humanities",
+    "section": "Why Digital?",
+    "text": "Why Digital?\n\nScaleSpeedVisualizationCollaboration\n\n\n\nAnalyze vast amounts of data\nUncover patterns across large corpora\nExample: Google Books Ngram Viewer\n\n\n\n\nRapid processing of information\nQuick iteration of research hypotheses\nExample: Topic modeling on thousands of documents\n\n\n\n\nComplex data representation\nNew insights through visual analysis\nExample: Network analysis of historical figures\n\n\n\n\nGlobal research networks\nInterdisciplinary partnerships\nExample: Crowdsourced transcription projects"
   },
   {
-    "objectID": "syllabus.html#ground-rules",
-    "href": "syllabus.html#ground-rules",
-    "title": "Syllabus",
-    "section": "🚀 Ground Rules",
-    "text": "🚀 Ground Rules\n\n\n\n\n\n\n🫡 Ground Rules\n\n\n\nPlease adhere to these core principles throughout the course:\n\n\n\nBe Open-Minded\n\nApproach new concepts and methods without preconceptions.\nSet aside any stereotypes or misconceptions about digital technologies in humanities.\nRemain receptive to diverse perspectives and unconventional ideas.\n\n\n\nEmbrace Frustration as Progress\n\nUnderstand that frustration is a normal part of the learning process.\nView challenges as opportunities for growth rather than obstacles.\nGive yourself time to work through difficult concepts or technical issues.\n\n\n\nOwn Your Learning\n\nTake responsibility for your learning in this course.\nActively seek out resources and ask questions when you need help.\nSet personal learning goals and work consistently towards achieving them.\n\n\n\nDon’t Fool Yourself\n\nBe honest about your understanding and progress.\nAcknowledge your limitations and areas for improvement.\nCritically examine your assumptions and conclusions.\n\n\n\n\n\n\n\nRemember\n\n\n\nBy following these principles, you’ll create a positive learning experience for yourself and contribute to a supportive classroom environment for everyone."
+    "objectID": "slides/s-preface.html#do-humanities-really-need-digital",
+    "href": "slides/s-preface.html#do-humanities-really-need-digital",
+    "title": "Introduction to Digital Humanities",
+    "section": "Do Humanities Really Need Digital?",
+    "text": "Do Humanities Really Need Digital?\n\nLet’s discuss! 🤔\n\n\nForm small groups and consider:\n\nTraditional humanities research methods\nPotential benefits of digital approaches\nPossible drawbacks or concerns\n\nShare your thoughts with the class (5 minutes for discussion, 5 minutes for sharing)"
+  },
+  {
+    "objectID": "slides/s-preface.html#digital-humanities-in-action",
+    "href": "slides/s-preface.html#digital-humanities-in-action",
+    "title": "Introduction to Digital Humanities",
+    "section": "Digital Humanities in Action",
+    "text": "Digital Humanities in Action\n\nText Analysis\n\nDistant reading of literary corpora\nStylometry and authorship attribution\n\nNetwork Analysis\n\nMapping historical social networks\nVisualizing cultural connections\n\nSpatial Analysis\n\nGIS in archaeology and history\nDigital mapping of literary landscapes"
+  },
+  {
+    "objectID": "slides/s-preface.html#hands-on-experience-text-analysis",
+    "href": "slides/s-preface.html#hands-on-experience-text-analysis",
+    "title": "Introduction to Digital Humanities",
+    "section": "Hands-on Experience: Text Analysis",
+    "text": "Hands-on Experience: Text Analysis\nLet’s try a simple text analysis using R!\n\n\nCode\n# Load required libraries\nlibrary(tidyverse)\nlibrary(tidytext)\n\n# Sample text (first paragraph of \"Pride and Prejudice\")\ntext &lt;- \"It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.\"\n\n# Tokenize the text\nwords &lt;- tibble(text = text) %&gt;%\n  unnest_tokens(word, text)\n\n# Count word frequencies\nword_freq &lt;- words %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  filter(!word %in% stop_words$word)\n\n# Display top 10 words\nhead(word_freq, 10)\n\n\n\n\n# A tibble: 10 × 2\n   word             n\n   &lt;chr&gt;        &lt;int&gt;\n 1 truth            2\n 2 acknowledged     1\n 3 considered       1\n 4 daughters        1\n 5 entering         1\n 6 families         1\n 7 feelings         1\n 8 fixed            1\n 9 fortune          1\n10 minds            1\n\n\nCode\n# Create a simple bar plot\nggplot(head(word_freq, 10), aes(x = reorder(word, n), y = n)) +\n  geom_col() +\n  coord_flip() +\n  labs(title = \"Top 10 Words in Pride and Prejudice Excerpt\",\n       x = \"Word\", y = \"Frequency\")\n\n\n\n\n\n\n\n\n\n\nWhat patterns do you notice in this analysis?"
+  },
+  {
+    "objectID": "slides/s-preface.html#ethics-in-digital-humanities",
+    "href": "slides/s-preface.html#ethics-in-digital-humanities",
+    "title": "Introduction to Digital Humanities",
+    "section": "Ethics in Digital Humanities",
+    "text": "Ethics in Digital Humanities\n\n\nData privacy and consent\n\nHow do we ethically use and share digital archives?\n\nBias in algorithms and datasets\n\nAre our digital tools reinforcing existing biases?\n\nDigital divide and accessibility\n\nWho has access to DH tools and resources?\n\nLong-term preservation of digital artifacts\n\nHow do we ensure the longevity of digital scholarship?\n\n\nHow can we address these ethical concerns in our research?"
+  },
+  {
+    "objectID": "slides/s-preface.html#conclusion-and-next-steps",
+    "href": "slides/s-preface.html#conclusion-and-next-steps",
+    "title": "Introduction to Digital Humanities",
+    "section": "Conclusion and Next Steps",
+    "text": "Conclusion and Next Steps\n\n\nRecap of key concepts:\n\nDH as interdisciplinary field\nBenefits of digital approaches\nEthical considerations\n\nPreview of next class: Introduction to R programming\nQuestions?\n\n\n\n\n\n\nMeng Liu | SEIS BFSU"
   },
   {
     "objectID": "index.html",
@@ -86,52 +114,38 @@
     "href": "book/index.html#slides",
     "title": "Preface",
     "section": "Slides",
-    "text": "Slides\n\n\nReturn to Main Content",
+    "text": "Slides",
     "crumbs": [
       "Book",
       "Preface"
     ]
   },
   {
-    "objectID": "slides/s-preface.html#welcome-to-digital-humanities",
-    "href": "slides/s-preface.html#welcome-to-digital-humanities",
-    "title": "Introduction to Digital Humanities",
-    "section": "Welcome to Digital Humanities! 🌟",
-    "text": "Welcome to Digital Humanities! 🌟\n\nBridging Humanities and Technology\n\n\nIntroduce the course and its significance"
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
   },
   {
-    "objectID": "slides/s-preface.html#course-overview",
-    "href": "slides/s-preface.html#course-overview",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course Overview 🎓",
-    "text": "Course Overview 🎓\n\n\nKey concepts in digital humanities\nModern R programming\nAnalytical methods:\n\nQuantitative text analysis 📊\nTopic modeling 🗂️\nSentiment analysis 😊😐😠\nSocial network analysis 🕸️\n\n\n\n\nBriefly explain each bullet point"
+    "objectID": "syllabus.html#course-schedule",
+    "href": "syllabus.html#course-schedule",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
   },
   {
-    "objectID": "slides/s-preface.html#learning-journey",
-    "href": "slides/s-preface.html#learning-journey",
-    "title": "Introduction to Digital Humanities",
-    "section": "Learning Journey 🚀",
-    "text": "Learning Journey 🚀\n\n\nStart\n\n\nFoundational programming\nBasic digital tools\n\n\n\nFinish\n\n\nAdvanced analytical techniques\nEthics and AI discussions"
+    "objectID": "syllabus.html#assessment",
+    "href": "syllabus.html#assessment",
+    "title": "Syllabus",
+    "section": "📊 Assessment",
+    "text": "📊 Assessment\nYour final grade will be composed of the following elements:\n\nMonthly Quiz 📝: 40%\n\nRegular assessments to check your understanding of the course material.\n\nClass Participation and Attendance 🙋‍♀️: 20%\n\nYour active involvement in class discussions and activities is crucial!\n\n\n\n\n\n\n\nImportant\n\n\n\n\nAbsence of one-third of class time, excused or unexcused, will disqualify you from earning credits for the course.\n\n\n\nTerm Paper 📄: 40%\n\n\n\n\n\n\n🎯 Term Project\n\n\n\nA digital humanities project of your choice! You should pick your topic for the term project by week 12. More details will be released later when you have learned R basics."
   },
   {
-    "objectID": "slides/s-preface.html#hands-on-experience",
-    "href": "slides/s-preface.html#hands-on-experience",
-    "title": "Introduction to Digital Humanities",
-    "section": "Hands-on Experience 💻",
-    "text": "Hands-on Experience 💻\nLearn by doing:\n\n\nApply digital tools to humanities data\nDevelop technical skills\nEnhance critical thinking abilities\n\n\n\n🛠️ Build your digital humanities toolkit!"
-  },
-  {
-    "objectID": "slides/s-preface.html#course-resources",
-    "href": "slides/s-preface.html#course-resources",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course Resources 📚",
-    "text": "Course Resources 📚\nThis course is based on these amazing sources:\n\n\nR for Data Science (2e)\nText Mining with R\n\n\n\nMention that these are highly acclaimed resources"
-  },
-  {
-    "objectID": "slides/s-preface.html#lets-get-started",
-    "href": "slides/s-preface.html#lets-get-started",
-    "title": "Introduction to Digital Humanities",
-    "section": "Let’s Get Started! 🎉",
-    "text": "Let’s Get Started! 🎉\n\nAre you ready to revolutionize your approach to humanities research?\n\n\nLet’s dive in!\n\n\n\n\nSchool of English and International Studies, BFSU"
+    "objectID": "syllabus.html#ground-rules",
+    "href": "syllabus.html#ground-rules",
+    "title": "Syllabus",
+    "section": "🚀 Ground Rules",
+    "text": "🚀 Ground Rules\n\n\n\n\n\n\n🫡 Ground Rules\n\n\n\nPlease adhere to these core principles throughout the course:\n\n\n\nBe Open-Minded\n\nApproach new concepts and methods without preconceptions.\nSet aside any stereotypes or misconceptions about digital technologies in humanities.\nRemain receptive to diverse perspectives and unconventional ideas.\n\n\n\nEmbrace Frustration as Progress\n\nUnderstand that frustration is a normal part of the learning process.\nView challenges as opportunities for growth rather than obstacles.\nGive yourself time to work through difficult concepts or technical issues.\n\n\n\nOwn Your Learning\n\nTake responsibility for your learning in this course.\nActively seek out resources and ask questions when you need help.\nSet personal learning goals and work consistently towards achieving them.\n\n\n\nDon’t Fool Yourself\n\nBe honest about your understanding and progress.\nAcknowledge your limitations and areas for improvement.\nCritically examine your assumptions and conclusions.\n\n\n\n\n\n\n\nRemember\n\n\n\nBy following these principles, you’ll create a positive learning experience for yourself and contribute to a supportive classroom environment for everyone."
   }
 ]
