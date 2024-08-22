@@ -216,7 +216,7 @@ Note
 </div>
 <section id="slides" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="slides">Slides</h2>
-<iframe id="slideFrame" src="../../slides/s-preface.html" width="100%" height="500px" style="border:none;">
+<iframe id="slideFrame" src="../../_site/slides/s-preface.html" width="100%" height="500px" style="border:none;">
 </iframe>
 
 
@@ -366,7 +366,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/mengliuveronica\.github\.io\/Intro-to-DH\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
