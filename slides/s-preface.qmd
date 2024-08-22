@@ -1,0 +1,97 @@
+---
+title: "Introduction to Digital Humanities"
+subtitle: "Exploring the Intersection of Humanities and Digital Methods"
+author: "Meng Liu"
+format:
+  revealjs:
+    background-color: "#42049E"  # Indigo color
+    transition: slide
+    slide-number: true
+    preview-links: auto
+    css: ../custom.css
+    footer: "School of English and International Studies, BFSU"
+    incremental: true  # This makes all content incremental by default
+---
+
+## Welcome to Digital Humanities! 🌟
+
+::: {.r-fit-text}
+Bridging Humanities and Technology
+:::
+
+::: {.notes}
+Introduce the course and its significance
+:::
+
+## Course Overview 🎓
+
+::: {.incremental}
+- Key concepts in digital humanities
+- Modern R programming
+- Analytical methods:
+  - Quantitative text analysis 📊
+  - Topic modeling 🗂️
+  - Sentiment analysis 😊😐😠
+  - Social network analysis 🕸️
+:::
+
+::: {.notes}
+Briefly explain each bullet point
+:::
+
+## Learning Journey 🚀
+
+:::: {.columns}
+::: {.column width="50%"}
+### Start
+::: {.incremental}
+- Foundational programming
+- Basic digital tools
+:::
+:::
+::: {.column width="50%"}
+### Finish
+::: {.incremental}
+- Advanced analytical techniques
+- Ethics and AI discussions
+:::
+:::
+::::
+
+## Hands-on Experience 💻
+
+Learn by doing:
+
+::: {.incremental}
+1. Apply digital tools to humanities data
+2. Develop technical skills
+3. Enhance critical thinking abilities
+:::
+
+::: {.fragment .fade-up}
+🛠️ Build your digital humanities toolkit!
+:::
+
+## Course Resources 📚
+
+This course is based on these amazing sources:
+
+::: {.incremental}
+- [R for Data Science (2e)](https://r4ds.hadley.nz/)
+- [Text Mining with R](https://www.tidytextmining.com/)
+:::
+
+::: {.notes}
+Mention that these are highly acclaimed resources
+:::
+
+## Let's Get Started! 🎉
+
+::: {.r-fit-text}
+Are you ready to revolutionize your approach to humanities research?
+:::
+
+::: {.fragment .fade-in}
+[Let's dive in!]{.highlight-text}
+:::
+
