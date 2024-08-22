@@ -202,35 +202,46 @@ a:hover {
   color: #6c757d;
 }
 
-.slide-embed {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%; /* This creates a 16:9 aspect ratio */
+/*-- scss:defaults --*/
+$body-bg: #f8f9fa;
+$body-color: #212529;
+$link-color: #0056b3;
+$presentation-heading-color: #0056b3;
+
+/*-- scss:rules --*/
+.reveal .slide-number {
+  color: $link-color;
 }
 
-.slide-embed iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
+.reveal .footer {
+  font-size: 0.5em;
+  text-align: right;
+  padding-right: 1em;
 }
 
-.highlight-text {
-  color: #FFD700;  /* Gold color */
+.reveal .slide blockquote {
+  border-left: 5px solid $link-color;
+  padding-left: 0.5em;
+}
+
+.reveal .slide .highlight-text {
+  color: #e63946;
   font-weight: bold;
 }
 
-.slide-number, .footer {
-  color: #FFFFFF !important;
+.reveal h2 {
+  margin-bottom: 1em;
 }
 
-.reveal .slides {
-  font-family: 'Arial', sans-serif;
+.reveal ul {
+  list-style-type: none;
+  padding-left: 1em;
 }
 
-.reveal h1, .reveal h2 {
-  font-family: 'Georgia', serif;
-  color: #FFD700;  /* Gold color for headers */
+.reveal ul li::before {
+  content: "•";
+  color: $link-color;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
 }

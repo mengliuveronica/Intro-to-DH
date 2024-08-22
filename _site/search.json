@@ -86,7 +86,7 @@
     "href": "book/index.html#slides",
     "title": "Preface",
     "section": "Slides",
-    "text": "Slides\n\n\nReturn to Main Content",
+    "text": "Slides",
     "crumbs": [
       "Book",
       "Preface"
@@ -95,43 +95,92 @@
   {
     "objectID": "slides/s-preface.html#welcome-to-digital-humanities",
     "href": "slides/s-preface.html#welcome-to-digital-humanities",
-    "title": "Introduction to Digital Humanities",
+    "title": "Introduction to Digital Humanities 🖥️📚",
     "section": "Welcome to Digital Humanities! 🌟",
-    "text": "Welcome to Digital Humanities! 🌟\n\nBridging Humanities and Technology\n\n\nIntroduce the course and its significance"
+    "text": "Welcome to Digital Humanities! 🌟\n\nBridging Humanities and Computational Methods"
   },
   {
     "objectID": "slides/s-preface.html#course-overview",
     "href": "slides/s-preface.html#course-overview",
     "title": "Introduction to Digital Humanities",
-    "section": "Course Overview 🎓",
-    "text": "Course Overview 🎓\n\n\nKey concepts in digital humanities\nModern R programming\nAnalytical methods:\n\nQuantitative text analysis 📊\nTopic modeling 🗂️\nSentiment analysis 😊😐😠\nSocial network analysis 🕸️\n\n\n\n\nBriefly explain each bullet point"
+    "section": "Course Overview",
+    "text": "Course Overview\n\n\nWelcome to Digital Humanities! 👋\nCourse structure:\n\nWeekly lectures and hands-on workshops\nProject-based assessments\n\nLearning outcomes:\n\nUnderstand key DH concepts and methodologies\nDevelop basic programming skills in R\nApply digital methods to humanities research questions\nCritically evaluate DH projects and their implications"
   },
   {
     "objectID": "slides/s-preface.html#learning-journey",
     "href": "slides/s-preface.html#learning-journey",
-    "title": "Introduction to Digital Humanities",
+    "title": "Introduction to Digital Humanities 🖥️📚",
     "section": "Learning Journey 🚀",
-    "text": "Learning Journey 🚀\n\n\nStart\n\n\nFoundational programming\nBasic digital tools\n\n\n\nFinish\n\n\nAdvanced analytical techniques\nEthics and AI discussions"
+    "text": "Learning Journey 🚀\n\n\nStart 🌱\n\nFoundational programming\nBasic digital tools\n\n\nFinish 🏆\n\nAdvanced analytical techniques\nEthics and AI discussions"
   },
   {
     "objectID": "slides/s-preface.html#hands-on-experience",
     "href": "slides/s-preface.html#hands-on-experience",
-    "title": "Introduction to Digital Humanities",
+    "title": "Introduction to Digital Humanities 🖥️📚",
     "section": "Hands-on Experience 💻",
-    "text": "Hands-on Experience 💻\nLearn by doing:\n\n\nApply digital tools to humanities data\nDevelop technical skills\nEnhance critical thinking abilities\n\n\n\n🛠️ Build your digital humanities toolkit!"
+    "text": "Hands-on Experience 💻\nLearn by doing:\n\nApply digital tools to humanities data 🛠️\nDevelop technical skills 📈\nEnhance critical thinking abilities 🧠\n\n\nBuild your digital humanities toolkit! 🧰"
   },
   {
     "objectID": "slides/s-preface.html#course-resources",
     "href": "slides/s-preface.html#course-resources",
-    "title": "Introduction to Digital Humanities",
+    "title": "Introduction to Digital Humanities 🖥️📚",
     "section": "Course Resources 📚",
-    "text": "Course Resources 📚\nThis course is based on these amazing sources:\n\n\nR for Data Science (2e)\nText Mining with R\n\n\n\nMention that these are highly acclaimed resources"
+    "text": "Course Resources 📚\nThis course is based on these amazing sources:\n\nR for Data Science (2e) 📘\nText Mining with R 📖"
   },
   {
     "objectID": "slides/s-preface.html#lets-get-started",
     "href": "slides/s-preface.html#lets-get-started",
-    "title": "Introduction to Digital Humanities",
+    "title": "Introduction to Digital Humanities 🖥️📚",
     "section": "Let’s Get Started! 🎉",
-    "text": "Let’s Get Started! 🎉\n\nAre you ready to revolutionize your approach to humanities research?\n\n\nLet’s dive in!\n\n\n\n\nSchool of English and International Studies, BFSU"
+    "text": "Let’s Get Started! 🎉\n\nAre you ready to revolutionize your approach to humanities research?\n\n\nLet’s dive in!\n\n\n\n\n\nMeng Liu | SEIS BFSU"
+  },
+  {
+    "objectID": "slides/s-preface.html#what-is-digital-humanities",
+    "href": "slides/s-preface.html#what-is-digital-humanities",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is Digital Humanities?",
+    "text": "What is Digital Humanities?\n\n\n\n\nInterdisciplinary field merging:\n\nHumanities disciplines\nDigital technologies\nComputational methods\n\nEncompasses:\n\nDigital archives and preservation\nText and data mining\nVisualization and mapping\nDigital publishing and pedagogy\n\n\n\n\n\n\n\nDigital Humanities Venn Diagram"
+  },
+  {
+    "objectID": "slides/s-preface.html#why-digital",
+    "href": "slides/s-preface.html#why-digital",
+    "title": "Introduction to Digital Humanities",
+    "section": "Why Digital?",
+    "text": "Why Digital?\n\nScaleSpeedVisualizationCollaboration\n\n\n\nAnalyze vast amounts of data\nUncover patterns across large corpora\nExample: Google Books Ngram Viewer\n\n\n\n\nRapid processing of information\nQuick iteration of research hypotheses\nExample: Topic modeling on thousands of documents\n\n\n\n\nComplex data representation\nNew insights through visual analysis\nExample: Network analysis of historical figures\n\n\n\n\nGlobal research networks\nInterdisciplinary partnerships\nExample: Crowdsourced transcription projects"
+  },
+  {
+    "objectID": "slides/s-preface.html#do-humanities-really-need-digital",
+    "href": "slides/s-preface.html#do-humanities-really-need-digital",
+    "title": "Introduction to Digital Humanities",
+    "section": "Do Humanities Really Need Digital?",
+    "text": "Do Humanities Really Need Digital?\n\nLet’s discuss! 🤔\n\n\nForm small groups and consider:\n\nTraditional humanities research methods\nPotential benefits of digital approaches\nPossible drawbacks or concerns\n\nShare your thoughts with the class (5 minutes for discussion, 5 minutes for sharing)"
+  },
+  {
+    "objectID": "slides/s-preface.html#digital-humanities-in-action",
+    "href": "slides/s-preface.html#digital-humanities-in-action",
+    "title": "Introduction to Digital Humanities",
+    "section": "Digital Humanities in Action",
+    "text": "Digital Humanities in Action\n\nText Analysis\n\nDistant reading of literary corpora\nStylometry and authorship attribution\n\nNetwork Analysis\n\nMapping historical social networks\nVisualizing cultural connections\n\nSpatial Analysis\n\nGIS in archaeology and history\nDigital mapping of literary landscapes"
+  },
+  {
+    "objectID": "slides/s-preface.html#hands-on-experience-text-analysis",
+    "href": "slides/s-preface.html#hands-on-experience-text-analysis",
+    "title": "Introduction to Digital Humanities",
+    "section": "Hands-on Experience: Text Analysis",
+    "text": "Hands-on Experience: Text Analysis\nLet’s try a simple text analysis using R!\n\n\nCode\n# Load required libraries\nlibrary(tidyverse)\nlibrary(tidytext)\n\n# Sample text (first paragraph of \"Pride and Prejudice\")\ntext &lt;- \"It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.\"\n\n# Tokenize the text\nwords &lt;- tibble(text = text) %&gt;%\n  unnest_tokens(word, text)\n\n# Count word frequencies\nword_freq &lt;- words %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  filter(!word %in% stop_words$word)\n\n# Display top 10 words\nhead(word_freq, 10)\n\n\n\n\n# A tibble: 10 × 2\n   word             n\n   &lt;chr&gt;        &lt;int&gt;\n 1 truth            2\n 2 acknowledged     1\n 3 considered       1\n 4 daughters        1\n 5 entering         1\n 6 families         1\n 7 feelings         1\n 8 fixed            1\n 9 fortune          1\n10 minds            1\n\n\nCode\n# Create a simple bar plot\nggplot(head(word_freq, 10), aes(x = reorder(word, n), y = n)) +\n  geom_col() +\n  coord_flip() +\n  labs(title = \"Top 10 Words in Pride and Prejudice Excerpt\",\n       x = \"Word\", y = \"Frequency\")\n\n\n\n\n\n\n\n\n\n\nWhat patterns do you notice in this analysis?"
+  },
+  {
+    "objectID": "slides/s-preface.html#ethics-in-digital-humanities",
+    "href": "slides/s-preface.html#ethics-in-digital-humanities",
+    "title": "Introduction to Digital Humanities",
+    "section": "Ethics in Digital Humanities",
+    "text": "Ethics in Digital Humanities\n\n\nData privacy and consent\n\nHow do we ethically use and share digital archives?\n\nBias in algorithms and datasets\n\nAre our digital tools reinforcing existing biases?\n\nDigital divide and accessibility\n\nWho has access to DH tools and resources?\n\nLong-term preservation of digital artifacts\n\nHow do we ensure the longevity of digital scholarship?\n\n\nHow can we address these ethical concerns in our research?"
+  },
+  {
+    "objectID": "slides/s-preface.html#conclusion-and-next-steps",
+    "href": "slides/s-preface.html#conclusion-and-next-steps",
+    "title": "Introduction to Digital Humanities",
+    "section": "Conclusion and Next Steps",
+    "text": "Conclusion and Next Steps\n\n\nRecap of key concepts:\n\nDH as interdisciplinary field\nBenefits of digital approaches\nEthical considerations\n\nPreview of next class: Introduction to R programming\nQuestions?\n\n\n\n\n\n\nMeng Liu | SEIS BFSU"
   }
 ]

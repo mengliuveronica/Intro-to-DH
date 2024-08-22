@@ -1,97 +1,172 @@
 ---
 title: "Introduction to Digital Humanities"
-subtitle: "Exploring the Intersection of Humanities and Digital Methods"
+subtitle: "Exploring the Intersection of Humanities and Technology"
 author: "Meng Liu"
 format:
   revealjs:
-    background-color: "#42049E"  # Indigo color
-    transition: slide
+    theme: simple
     slide-number: true
-    preview-links: auto
-    css: ../custom.css
-    footer: "School of English and International Studies, BFSU"
-    incremental: true  # This makes all content incremental by default
+    logo: "../book/images/Meng.png"
+    footer: "Meng Liu | SEIS BFSU"
+    transition: slide
+    incremental: true
+    code-fold: true
+    execute:
+      echo: true
 ---
 
-## Welcome to Digital Humanities! 🌟
-
-::: {.r-fit-text}
-Bridging Humanities and Technology
-:::
-
-::: {.notes}
-Introduce the course and its significance
-:::
-
-## Course Overview 🎓
+## Course Overview {.smaller}
 
 ::: {.incremental}
-- Key concepts in digital humanities
-- Modern R programming
-- Analytical methods:
-  - Quantitative text analysis 📊
-  - Topic modeling 🗂️
-  - Sentiment analysis 😊😐😠
-  - Social network analysis 🕸️
+- Welcome to Digital Humanities! 👋
+- Course structure:
+  - Weekly lectures and hands-on workshops
+  - Project-based assessments
+- Learning outcomes:
+  - Understand key DH concepts and methodologies
+  - Develop basic programming skills in R
+  - Apply digital methods to humanities research questions
+  - Critically evaluate DH projects and their implications
 :::
 
-::: {.notes}
-Briefly explain each bullet point
-:::
-
-## Learning Journey 🚀
+## What is Digital Humanities? {.smaller}
 
 :::: {.columns}
 ::: {.column width="50%"}
-### Start
 ::: {.incremental}
-- Foundational programming
-- Basic digital tools
+- Interdisciplinary field merging:
+  - Humanities disciplines
+  - Digital technologies
+  - Computational methods
+- Encompasses:
+  - Digital archives and preservation
+  - Text and data mining
+  - Visualization and mapping
+  - Digital publishing and pedagogy
 :::
 :::
 ::: {.column width="50%"}
-### Finish
-::: {.incremental}
-- Advanced analytical techniques
-- Ethics and AI discussions
-:::
+![Digital Humanities Venn Diagram](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Digital-humanities-venn-diagram.svg/1024px-Digital-humanities-venn-diagram.svg.png)
 :::
 ::::
 
-## Hands-on Experience 💻
+## Why Digital? {.smaller}
 
-Learn by doing:
+::: {.panel-tabset}
+### Scale
+- Analyze vast amounts of data
+- Uncover patterns across large corpora
+- Example: Google Books Ngram Viewer
 
-::: {.incremental}
-1. Apply digital tools to humanities data
-2. Develop technical skills
-3. Enhance critical thinking abilities
+### Speed
+- Rapid processing of information
+- Quick iteration of research hypotheses
+- Example: Topic modeling on thousands of documents
+
+### Visualization
+- Complex data representation
+- New insights through visual analysis
+- Example: Network analysis of historical figures
+
+### Collaboration
+- Global research networks
+- Interdisciplinary partnerships
+- Example: Crowdsourced transcription projects
 :::
 
-::: {.fragment .fade-up}
-🛠️ Build your digital humanities toolkit!
-:::
-
-## Course Resources 📚
-
-This course is based on these amazing sources:
-
-::: {.incremental}
-- [R for Data Science (2e)](https://r4ds.hadley.nz/)
-- [Text Mining with R](https://www.tidytextmining.com/)
-:::
-
-::: {.notes}
-Mention that these are highly acclaimed resources
-:::
-
-## Let's Get Started! 🎉
+## Do Humanities Really Need Digital? {.smaller}
 
 ::: {.r-fit-text}
-Are you ready to revolutionize your approach to humanities research?
+Let's discuss! 🤔
 :::
 
-::: {.fragment .fade-in}
-[Let's dive in!]{.highlight-text}
+::: {.incremental}
+Form small groups and consider:
+
+1. Traditional humanities research methods
+2. Potential benefits of digital approaches
+3. Possible drawbacks or concerns
+
+Share your thoughts with the class (5 minutes for discussion, 5 minutes for sharing)
 :::
 
+## Digital Humanities in Action {.smaller}
+
+::: {.incremental}
+### Text Analysis
+- Distant reading of literary corpora
+- Stylometry and authorship attribution
+
+### Network Analysis
+- Mapping historical social networks
+- Visualizing cultural connections
+
+### Spatial Analysis
+- GIS in archaeology and history
+- Digital mapping of literary landscapes
+:::
+
+## Hands-on Experience: Text Analysis {.smaller}
+
+Let's try a simple text analysis using R!
+
+```{r}
+#| echo: true
+#| output-location: fragment
+
+# Load required libraries
+library(tidyverse)
+library(tidytext)
+
+# Sample text (first paragraph of "Pride and Prejudice")
+text <- "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters."
+
+# Tokenize the text
+words <- tibble(text = text) %>%
+  unnest_tokens(word, text)
+
+# Count word frequencies
+word_freq <- words %>%
+  count(word, sort = TRUE) %>%
+  filter(!word %in% stop_words$word)
+
+# Display top 10 words
+head(word_freq, 10)
+
+# Create a simple bar plot
+ggplot(head(word_freq, 10), aes(x = reorder(word, n), y = n)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Top 10 Words in Pride and Prejudice Excerpt",
+       x = "Word", y = "Frequency")
+```
+
+::: {.fragment .fade-up}
+What patterns do you notice in this analysis?
+:::
+
+## Ethics in Digital Humanities {.smaller}
+
+::: {.incremental}
+1. Data privacy and consent
+   - How do we ethically use and share digital archives?
+2. Bias in algorithms and datasets
+   - Are our digital tools reinforcing existing biases?
+3. Digital divide and accessibility
+   - Who has access to DH tools and resources?
+4. Long-term preservation of digital artifacts
+   - How do we ensure the longevity of digital scholarship?
+
+How can we address these ethical concerns in our research?
+:::
+
+## Conclusion and Next Steps {.smaller}
+
+::: {.incremental}
+- Recap of key concepts:
+  - DH as interdisciplinary field
+  - Benefits of digital approaches
+  - Ethical considerations
+- Preview of next class: Introduction to R programming
+- Questions?
+:::

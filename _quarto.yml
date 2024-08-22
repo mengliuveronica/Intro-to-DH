@@ -3,7 +3,9 @@ project:
   output-dir: _site
   render:
     - "*.qmd"
-    - "slides/*.qmd" 
+    - "!_*.qmd"  # Excludes files starting with underscore
+    - "book/*.qmd"
+    - "slides/*.qmd"
   resources:
     - "book/"
     - "slides/" 
