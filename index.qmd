@@ -4,6 +4,7 @@ subtitle: "Explore the intersection of computational methods and humanities"
 format:
   html:
     page-layout: full
+    toc: false
 ---
 
 ## Course Information {.unnumbered}
@@ -21,21 +22,25 @@ format:
 
 ::: {.panel-tabset .course-updates}
 
-## 📢 Announcements 重要通知 请及时关注
+## 📢 Current Announcements 重要通知 请及时关注
 
 ::: {.callout-note appearance="minimal"}
 - **[2024-09-09]** 📢 欢迎来到数字人文导论！请及时加入微信群+微助教课堂！
-- **[DUE 2024-09-15]** ⏰ 请在第二周前完成R Studio和R的安装
-- **[DUE 2024-09-15]** ⏰ 请携带电脑上课，建议提前充好电，二阶两侧有插座可以临时供电
+- **[2024-09-09]** 📢 本课程涉及R语言实操，请携带电脑上课，建议提前充好电，二阶两侧有插座可以临时供电
+- **[DUE 2024-09-15]** ⏰ 请在第二周前完成R Studio和R的下载和安装，如果遇到问题可以在群内询问，共同问题会集中课上解决
 :::
 
+## 🗃️ Previous Announcements
+::: {.callout-note appearance="minimal"}
+以往消息会在此备份
+:::
 :::
 
 ::: {.grid}
 
 ::: {.g-col-4}
-### 👩🏻‍🏫 Instructor
-Dr Meng Liu
+### 👩🏻‍🏫 Instructor {.unnumbered}
+Dr Meng Liu 刘梦
 
 - 🏢 Office: SEIS 202
 - 📧 Email: [mengliu@bfsu.edu.cn](mailto:mengliu@bfsu.edu.cn)
@@ -43,7 +48,7 @@ Dr Meng Liu
 :::
 
 ::: {.g-col-4}
-### 📚 Course Details
+### 📚 Course Details {.unnumbered}
 
 - 🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05
 - 🏛️ Format: In-person
@@ -51,7 +56,7 @@ Dr Meng Liu
 :::
 
 ::: {.g-col-4}
-### 📞 Contact
+### 📞 Contact {.unnumbered}
 - 💬 Wechat (group) 
 - 📧 Email
 :::
@@ -60,7 +65,7 @@ Dr Meng Liu
 
 ::: {.grid}
 ::: {.g-col-4}
-### 🏠 Course Platforms 
+### 🏠 Course Platforms {.unnumbered}
 
 - 平台1：微信
    - 课堂互动：微助教
@@ -71,7 +76,7 @@ Dr Meng Liu
 :::
 
 ::: {.g-col-4}
-### 🔗 Quick Links 
+### 🔗 Quick Links {.unnumbered}
 
 - [Anonymous Feedback Form]()
 
@@ -83,21 +88,21 @@ Dr Meng Liu
 ::: {.grid}
 
 ::: {.g-col-4}
-### 🌱 Foundations
+### 🌱 Foundations {.unnumbered}
 
 - Digital Humanities Overview
 - Workflow for Digital Humanities 
 :::
 
 ::: {.g-col-4}
-### 🛠️ Core DH Techniques
+### 🛠️ Core DH Techniques {.unnumbered}
 
 - R Programming Basics
 - Quantitative Text Analysis
 :::
 
 ::: {.g-col-4}
-### 🚀 Specialized Topics
+### 🚀 Specialized Topics {.unnumbered}
 
 - Topic Modelling
 - Sentiment Analysis

@@ -19,5 +19,20 @@
   },
   "syllabus.qmd": {
     "syllabus.html": "ce6360f7"
+  },
+  "book/01-introduction.qmd": {
+    "01-introduction.html": "02dbb51c"
+  },
+  "book/02-chapter2.qmd": {
+    "02-chapter2.html": "77d73be9"
+  },
+  "book/slides/00-slides.qmd": {
+    "00-slides.html": "6296b399"
+  },
+  "book/02-R.qmd": {
+    "02-R.html": "bbc394d3"
+  },
+  "slides/s-preface.qmd": {
+    "s-preface.html": "0c0f854f"
   }
 }

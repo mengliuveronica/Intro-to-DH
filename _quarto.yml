@@ -1,6 +1,12 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "slides/*.qmd" 
+  resources:
+    - "book/"
+    - "slides/" 
 
 website:
   title: "Intro to DH"
@@ -10,21 +16,42 @@ website:
         text: Home
       - href: syllabus.qmd
         text: Syllabus
-      - href: book/index.qmd
-        text: Book
+      - text: Book
+        href: book/index.qmd
 
-book:
-  title: "Introduction to Digital Humanities"
-  author: "Meng Liu"
-  date: "8/16/2024"
-  chapters:
-    - book/index.qmd
-    - book/1-intro.qmd
-    - book/references.qmd
+
+  sidebar:
+    - title: "Book"
+      style: "docked"
+      search: true
+      contents:
+        - book/index.qmd
+        - book/01-introduction.qmd
+        - book/02-R.qmd
+
+
+bibliography: book/references.bib
 
 format:
   html:
     theme: cosmo
     css: custom.css
+    toc: true
+    toc-location: right
+    toc-title: "On this page"
+    number-sections: true
+    number-depth: 3
+    code-link: true
+    code-tools: 
+      source: false
+      toggle: true
+    highlight-style: github
+  revealjs:
+    theme: default
+    reveal_plugins:
+      - notes
+      - search
+      - zoom
 
-bibliography: book/references.bib
+include-after-body: 
+     - file: _footer.html
