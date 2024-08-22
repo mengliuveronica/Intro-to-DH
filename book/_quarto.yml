@@ -1,0 +1,18 @@
+project:
+  type: book
+
+book:
+  title: "Introduction to Digital Humanities"
+  author: "Meng Liu"
+  date: "8/16/2024"
+  chapters:
+    - book/index.qmd
+    - book/1-intro.qmd
+    - book/references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    css: custom.css

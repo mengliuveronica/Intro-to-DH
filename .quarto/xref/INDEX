@@ -1,0 +1,23 @@
+{
+  "index.qmd": {
+    "index.html": "3ff93813"
+  },
+  "about.qmd": {
+    "about.html": "dcd69ae9"
+  },
+  "book/1-intro.qmd": {
+    "1-intro.html": "9f543901"
+  },
+  "book/index.qmd": {
+    "index.html": "9936e19d"
+  },
+  "book/0-syllabus.qmd": {
+    "0-syllabus.html": "a473fdfe"
+  },
+  "book/references.qmd": {
+    "references.html": "305196f9"
+  },
+  "syllabus.qmd": {
+    "syllabus.html": "ce6360f7"
+  }
+}

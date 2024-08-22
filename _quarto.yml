@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Intro to DH"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: syllabus.qmd
+        text: Syllabus
+      - href: book/index.qmd
+        text: Book
+
+book:
+  title: "Introduction to Digital Humanities"
+  author: "Meng Liu"
+  date: "8/16/2024"
+  chapters:
+    - book/index.qmd
+    - book/1-intro.qmd
+    - book/references.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: custom.css
+
+bibliography: book/references.bib

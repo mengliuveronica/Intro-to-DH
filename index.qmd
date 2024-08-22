@@ -1,0 +1,107 @@
+---
+title: "Introduction to Digital Humanities"
+subtitle: "Explore the intersection of computational methods and humanities"
+format:
+  html:
+    page-layout: full
+---
+
+## Course Information {.unnumbered}
+
+::: {.grid}
+::: {.g-col-4}
+![](images/dh.png){width=150px fig-align="left"}
+:::
+::: {.g-col-6}
+**Introduction to Digital Humanitites 数字人文导论** • 2024 Fall 秋  
+**SEIS 英语学院** • BFSU 北京外国语大学
+:::
+:::
+
+
+::: {.panel-tabset .course-updates}
+
+## 📢 Announcements 重要通知 请及时关注
+
+::: {.callout-note appearance="minimal"}
+- **[2024-09-09]** 📢 欢迎来到数字人文导论！请及时加入微信群+微助教课堂！
+- **[DUE 2024-09-15]** ⏰ 请在第二周前完成R Studio和R的安装
+- **[DUE 2024-09-15]** ⏰ 请携带电脑上课，建议提前充好电，二阶两侧有插座可以临时供电
+:::
+
+:::
+
+::: {.grid}
+
+::: {.g-col-4}
+### 👩🏻‍🏫 Instructor
+Dr Meng Liu
+
+- 🏢 Office: SEIS 202
+- 📧 Email: [mengliu@bfsu.edu.cn](mailto:mengliu@bfsu.edu.cn)
+- 🌐 Website: [mengliu.info](https://mengliu.info)
+:::
+
+::: {.g-col-4}
+### 📚 Course Details
+
+- 🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05
+- 🏛️ Format: In-person
+- 📍 Location: 逸夫二阶
+:::
+
+::: {.g-col-4}
+### 📞 Contact
+- 💬 Wechat (group) 
+- 📧 Email
+:::
+
+:::
+
+::: {.grid}
+::: {.g-col-4}
+### 🏠 Course Platforms 
+
+- 平台1：微信
+   - 课堂互动：微助教
+   - 课后沟通及消息发布：微信群
+- 平台2：课程网站
+   - 课堂资料信息
+
+:::
+
+::: {.g-col-4}
+### 🔗 Quick Links 
+
+- [Anonymous Feedback Form]()
+
+:::
+:::
+
+## Course Overview {.unnumbered}
+
+::: {.grid}
+
+::: {.g-col-4}
+### 🌱 Foundations
+
+- Digital Humanities Overview
+- Workflow for Digital Humanities 
+:::
+
+::: {.g-col-4}
+### 🛠️ Core DH Techniques
+
+- R Programming Basics
+- Quantitative Text Analysis
+:::
+
+::: {.g-col-4}
+### 🚀 Specialized Topics
+
+- Topic Modelling
+- Sentiment Analysis
+- Social Network Analysis
+:::
+
+:::

@@ -1,0 +1,244 @@
+# Introduction to Digital Humanities
+
+## What is Digital Humanities?
+
+Digital humanities work is done at the intersection of computational methods and humanities materials. Let's break down this definition and explore what it means in practice.
+
+::: {.callout-note}
+## Key Definition
+Digital humanities: The application of computational methods to humanities research questions and materials.
+:::
+
+Digital humanities projects typically involve three main components:
+
+1. Materials (e.g. texts, images, artifacts)
+2. Processing (computational analysis)
+3. Presentation (results display)
+
+::: {.callout-tip collapse="true"}
+## Discussion: DH Components (5 minutes)
+Think about a digital humanities project you've heard of or can imagine:
+
+1. What materials might it use?
+2. What kind of computational processing might be involved?
+3. How might the results be presented?
+
+Share your ideas with a partner or the class.
+:::
+
+## The Digital Humanities Workflow
+
+The fundamental activities in digital humanities projects typically include:
+
+1. Mediation/remediation
+2. Datafication/modeling 
+3. Processing/analytics
+4. Presentation/display
+5. Sustainability/preservation
+
+Let's explore each of these in more detail.
+
+### Mediation/Remediation
+
+This involves converting analog materials into digital formats, or working with born-digital materials.
+
+::: {.callout-important}
+Remember that the process of digitization itself involves decisions that can affect research outcomes.
+:::
+
+### Datafication/Modeling
+
+This is the process of abstracting discrete values from phenomena or artifacts. It involves decisions about what can be measured and how.
+
+### Processing/Analytics
+
+This stage involves using computational methods to analyze the data. Common techniques include:
+
+- Text analysis
+- Network analysis
+- Geospatial analysis
+
+### Presentation/Display
+
+Results are often presented through:
+
+- Visualizations
+- Interactive websites
+- Digital exhibits
+
+### Sustainability/Preservation
+
+Considerations for long-term access and maintenance of digital projects.
+
+## Digital Humanities Analysis with R
+
+Let's explore some fascinating examples of how computational methods can be applied to humanities questions.
+
+### Example 1: Text Analysis of Literary Works
+
+```{r}
+#| label: literary-analysis
+#| warning: false
+#| message: false
+
+library(pacman)
+p_load(tidyverse,tidytext,wordcloud,gutenbergr)
+
+# Function to download and process text
+ gutenberg_works(title == "The Age of Innocence")
+ inno <- gutenberg_download(541)
+
+# Analyze word frequencies
+word_freq <- inno %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) %>%
+  count(word, sort = TRUE) %>%
+  top_n(20, n)
+
+# Create a bar plot of word frequencies
+p <- ggplot(word_freq, aes(x = reorder(word, n), y = n)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = "Word", y = "Frequency", 
+       title = "Top 20 Most Frequent Words in The Age of Innocence",
+       subtitle = "After removing common stop words") +
+  theme_minimal()
+
+# Print the plot
+print(p)
+```
+
+This word cloud visualizes the most frequent words in The Age of Innocence, giving us a quick insight into common themes and vocabulary.
+
+::: {.callout-tip collapse="true"}
+## Discussion: Wharton's Language (5 minutes)
+1. What words stand out to you in this visualization?
+2. How might this kind of analysis complement traditional close reading of literary works?
+3. What limitations might this approach have for understanding the author's language?
+:::
+
+### Example 2: Sentiment Analysis of Jane Austen's Novels
+
+```{r}
+#| label: austen-sentiment
+#| warning: false
+#| message: false
+
+library(janeaustenr)
+
+# Combine Austen's novels
+austen_books <- austen_books() %>%
+  group_by(book) %>%
+  mutate(linenumber = row_number(),
+         chapter = cumsum(str_detect(text, regex("^chapter [\\divxlc]", 
+                                                 ignore_case = TRUE)))) %>%
+  ungroup()
+
+# Perform sentiment analysis
+austen_sentiment <- austen_books %>%
+  unnest_tokens(word, text) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(book, index = linenumber %/% 80, sentiment) %>%
+  pivot_wider(names_from = sentiment, values_from = n, values_fill = 0) %>% 
+  mutate(sentiment = positive - negative)
+
+# Plot sentiment over narrative time
+ggplot(austen_sentiment, aes(index, sentiment, fill = book)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~book, ncol = 2, scales = "free_x") +
+  labs(title = "Sentiment Analysis of Jane Austen's Novels",
+       x = "Narrative Time", y = "Sentiment") +
+  theme_minimal()
+```
+
+This visualization shows the emotional trajectory of Jane Austen's novels over their narrative time.
+
+::: {.callout-tip collapse="true"}
+## Discussion: Narrative Emotions (5 minutes)
+1. What patterns do you notice in the emotional arcs of Austen's novels?
+2. How might this type of analysis enhance our understanding of narrative structure?
+3. What challenges might arise in applying sentiment analysis to historical texts?
+:::
+
+### Example 3: Network Analysis of Historical Figures
+
+```{r}
+#| label: historical-network
+#| warning: false
+#| message: false
+
+library(igraph)
+library(ggraph)
+
+# Create a sample dataset of historical figures and their connections
+historical_figures <- tibble(
+  from = c("Napoleon", "Napoleon", "Wellington", "Nelson", "Wellington", "Nelson"),
+  to = c("Wellington", "Nelson", "Nelson", "Napoleon", "Louis XVIII", "Emma Hamilton")
+)
+
+# Create and plot the network
+set.seed(2023)
+historical_figures %>%
+  graph_from_data_frame() %>%
+  ggraph(layout = "fr") +
+  geom_edge_link(aes(edge_alpha = 0.5)) +
+  geom_node_point(color = "lightblue", size = 10) +
+  geom_node_text(aes(label = name), vjust = 1.5, hjust = 0.5) +
+  theme_void() +
+  labs(title = "Network of Historical Figures")
+```
+
+This network visualization shows connections between some key historical figures of the Napoleonic era.
+
+::: {.callout-tip collapse="true"}
+## Discussion: Historical Networks (5 minutes)
+1. What insights can we gain from visualizing historical relationships in this way?
+2. How might network analysis complement traditional historical research methods?
+3. What are some potential pitfalls or limitations of using network analysis in historical studies?
+:::
+
+## Challenges and Considerations in Digital Humanities
+
+### Ethical Considerations
+
+Digital humanities projects often involve ethical considerations, particularly when working with sensitive or personal data.
+
+::: {.callout-warning}
+Always consider privacy, consent, and potential harm when working with data about individuals or communities.
+:::
+
+### Interdisciplinary Collaboration
+
+Digital humanities often requires collaboration between humanists, computer scientists, librarians, and others.
+
+::: {.callout-tip collapse="true"}
+## Discussion: Collaboration Challenges (10 minutes)
+In small groups, discuss:
+
+1. What challenges might arise in collaborations between humanists and technologists?
+2. How can these challenges be addressed?
+
+Share your group's top insights with the class.
+:::
+
+### Critical Approaches
+
+It's important to maintain critical perspectives on the use of digital tools in humanities research.
+
+::: {.callout-note}
+Remember that computational methods are not neutral. They embed certain assumptions and biases that need to be critically examined.
+:::
+
+## Conclusion
+
+These demonstrations showcase just a few of the exciting possibilities that digital humanities offers for exploring and analyzing humanities data. By combining computational methods with traditional humanities scholarship, we can uncover new patterns, ask novel questions, and gain fresh insights into cultural and historical materials.
+
+::: {.callout-tip collapse="true"}
+## Final Reflection (5 minutes)
+Consider the examples we've explored today:
+
+1. Which technique (word frequency analysis, sentiment analysis, or network analysis) do you find most intriguing? Why?
+2. Can you think of a humanities question or topic from your own interests that might benefit from one of these computational approaches?
+
+Share your thoughts with a partner or the class if time allows.
+:::
