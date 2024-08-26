@@ -195,7 +195,7 @@ a:hover {
 }
 
 .page-footer {
-  margin-top: 2em;
+  margin-top: 1em;
   padding-top: 1em;
   border-top: 1px solid #ddd;
   font-size: 0.8em;
@@ -203,9 +203,47 @@ a:hover {
 }
 
 
+
+
+.centered {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Reveal.js specific styles */
 .reveal .footer {
-  color: black
+  height: auto;
+  padding: 5px 15px;
   font-size: 0.5em;
-  text-align: right;
-  padding-right: 1em;
+  background-color: transparent;
+  border-top: 1px solid #dee2e6;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  color: #333;
+}
+
+.reveal .slide-logo {
+  max-height: 40px;
+  max-width: 80px;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  z-index: 2;
+}
+
+.reveal .slide-number {
+  bottom: 5px !important;
+  left: 5px !important;
+  font-size: 0.6em;
+  z-index: 2;
+}
+
+.reveal .slides section {
+  height: 100%;
+  overflow-y: auto !important;
 }

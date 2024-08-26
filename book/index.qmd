@@ -6,7 +6,7 @@ format:
 ---
 
 ::: {.callout .image-wrap}
-![](images/Meng.png){width=20%}
+![](../images/Meng.png){width=20%}
 This is the textbook for the course *Introduction to Digital Humanities* taught by [Meng Liu](https://mengliu.info), at the School of English and International Studies, Beijing Foreign Studies University. 
 :::
 
@@ -22,6 +22,8 @@ Credit: The content of the book is based on the following (amazing and highly ac
 - [Text Mining with R](https://www.tidytextmining.com/)
 :::
 
-## Slides {.unnumbered}
+
+
+## Introduction and welcome slides {.unnumbered}
 
 <iframe src="/slides/s-preface.html" width="100%" height="500px"></iframe>
