@@ -247,3 +247,63 @@ a:hover {
   height: 100%;
   overflow-y: auto !important;
 }
+
+.cell-output {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 10px;
+}
+.cell-output pre {
+  margin-bottom: 0;
+}
+.plot-output {
+  text-align: center;
+}
+
+.cell-output {
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.cell-output pre {
+  background-color: transparent;
+  border: none;
+  margin-bottom: 0;
+}
+
+.plot-output {
+  text-align: center;
+}
+
+.plot-output img {
+  max-width: 100%;
+  height: auto;
+}
+
+.dataframe {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.dataframe th, .dataframe td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.dataframe th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.dataframe tr:nth-child(even) {
+  background-color: #f9f9f9;
+}

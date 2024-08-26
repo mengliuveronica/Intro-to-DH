@@ -24,7 +24,6 @@ Credit: The content of the book is based on the following (amazing and highly ac
 
 
 
-## Slides {.unnumbered}
+## Introduction and welcome slides {.unnumbered}
 
-<iframe src="/slides/s-preface.html" width="100%" height="500px"></iframe>
-
+<iframe src="../slides/s-preface.html" width="100%" height="500px"></iframe>
