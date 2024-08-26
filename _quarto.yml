@@ -5,7 +5,7 @@ project:
     - "*.qmd"
     - "!_*.qmd"  # Excludes files starting with underscore
     - "book/*.qmd"
-    - "slides/*.qmd"
+    - "book/slides/*.qmd"
   resources:
     - "book/"
     - "slides/" 
@@ -49,12 +49,13 @@ format:
       toggle: true
     highlight-style: github
   revealjs:
-    theme: default
+    theme: simple
     reveal_plugins:
       - notes
       - search
       - zoom
     output-dir: _site/slides
+
 
 include-after-body: 
      - file: _footer.html

@@ -34,5 +34,11 @@
   },
   "slides/s-preface.qmd": {
     "s-preface.html": "0c0f854f"
+  },
+  "book/slides/s-preface.qmd": {
+    "s-preface.html": "9b0a87d0"
+  },
+  "slides/s-intro.qmd": {
+    "s-intro.html": "87a4dcb7"
   }
 }
