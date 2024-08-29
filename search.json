@@ -1,31 +1,100 @@
 [
   {
-    "objectID": "syllabus.html",
-    "href": "syllabus.html",
-    "title": "Syllabus",
+    "objectID": "book/01-introduction.html#digital-humanities-analysis-with-r",
+    "href": "book/01-introduction.html#digital-humanities-analysis-with-r",
+    "title": "Introduction to Digital Humanities",
+    "section": "\n2 Digital Humanities Analysis with R",
+    "text": "2 Digital Humanities Analysis with R\nLet’s explore some fascinating examples of how computational methods can be applied to humanities questions.\n\n2.1 Example 1: Text Analysis of Literary Works\n\nCodelibrary(pacman)\np_load(tidyverse, tidytext, wordcloud, gutenbergr, scales, hrbrthemes)\n\n# Function to download and process text\n# gutenberg_works(title == \"The Age of Innocence\")\ninno &lt;- gutenberg_download(541)\n\n# Analyze word frequencies\nword_freq &lt;- inno %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  anti_join(stop_words) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  top_n(20, n)\n\n# Create a bar plot of word frequencies\np &lt;- ggplot(word_freq, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#69b3a2\", width = 0.7) +\n  geom_text(aes(label = n), hjust = -0.3, size = 3) +\n  coord_flip() +\n  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +\n  labs(x = NULL, y = \"Frequency\", \n       title = \"Top 20 Most Frequent Words in The Age of Innocence\",\n       subtitle = \"After removing common stop words\",\n       caption = \"Source: Project Gutenberg\") +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(size = 16, face = \"bold\", margin = margin(b = 10)),\n    plot.subtitle = element_text(size = 12, color = \"gray50\", margin = margin(b = 20)),\n    plot.caption = element_text(size = 10, color = \"gray50\", margin = margin(t = 10)),\n    axis.text = element_text(size = 10),\n    axis.title = element_text(size = 12),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor = element_blank(),\n    plot.margin = margin(20, 20, 20, 20)\n  )\n\n# Print the plot\nprint(p)\n\n\n\n\n\n\n\nThis word cloud visualizes the most frequent words in The Age of Innocence, giving us a quick insight into common themes and vocabulary.\n\n\n\n\n\n\nDiscussion\n\n\n\n\n\n\nWhat words stand out to you in this visualization?\nHow might this kind of analysis complement traditional close reading of literary works?\nWhat limitations might this approach have for understanding the author’s language?\n\n\n\n\n\n2.2 Example 2: Sentiment Analysis of Jane Austen’s Novels\n\nCodelibrary(janeaustenr)\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(hrbrthemes)\n\n# Combine Austen's novels\nausten_books &lt;- austen_books() %&gt;%\n  group_by(book) %&gt;%\n  mutate(\n    linenumber = row_number(),\n    chapter = cumsum(str_detect(text, regex(\"^chapter [\\\\divxlc]\", ignore_case = TRUE)))\n  ) %&gt;%\n  ungroup()\n\n# Perform sentiment analysis\nausten_sentiment &lt;- austen_books %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  inner_join(get_sentiments(\"bing\"), multiple=\"all\") %&gt;%\n  count(book, index = linenumber %/% 80, sentiment) %&gt;%\n  pivot_wider(names_from = sentiment, values_from = n, values_fill = 0) %&gt;% \n  mutate(sentiment = positive - negative)\n\n# Plot sentiment over narrative time\nggplot(austen_sentiment, aes(index, sentiment, fill = book)) +\n  geom_col(show.legend = FALSE) +\n  facet_wrap(~book, ncol = 2, scales = \"free_x\") +\n  labs(\n    title = \"Sentiment Analysis of Jane Austen's Novels\",\n    subtitle = \"Emotional trajectory throughout the narrative\",\n    x = \"Narrative Time\",\n    y = \"Sentiment Score\",\n    caption = \"Data: janeaustenr package | Analysis: tidytext\"\n  ) +\n  theme_minimal() +\n  theme(\n    text = element_text(size = 12),\n    strip.text = element_text(size = 14, face = \"bold\"),\n    panel.grid.minor = element_blank(),\n    plot.title = element_text(size = 18, face = \"bold\"),\n    plot.subtitle = element_text(size = 14, color = \"gray50\"),\n    plot.caption = element_text(size = 10, color = \"gray50\"),\n    axis.title = element_text(size = 12, face = \"bold\"),\n    plot.margin = margin(20, 20, 20, 20)\n  ) +\n  scale_fill_brewer(palette = \"Set2\") +\n  scale_y_continuous(expand = expansion(mult = c(0.1, 0.1)))\n\n\n\n\n\n\nCode# Display summary statistics\nausten_summary &lt;- austen_sentiment %&gt;%\n  group_by(book) %&gt;%\n  summarize(\n    mean_sentiment = mean(sentiment),\n    max_sentiment = max(sentiment),\n    min_sentiment = min(sentiment)\n  )\n\nknitr::kable(austen_summary, caption = \"Summary Statistics of Sentiment Analysis\", digits = 2)\n\n\nSummary Statistics of Sentiment Analysis\n\nbook\nmean_sentiment\nmax_sentiment\nmin_sentiment\n\n\n\nSense & Sensibility\n7.99\n45\n-22\n\n\nPride & Prejudice\n8.59\n39\n-30\n\n\nMansfield Park\n10.01\n46\n-34\n\n\nEmma\n11.57\n44\n-20\n\n\nNorthanger Abbey\n7.33\n43\n-28\n\n\nPersuasion\n12.11\n51\n-11\n\n\n\n\n\nThis visualization shows the emotional trajectory of Jane Austen’s novels over their narrative time.\n\n\n\n\n\n\nDiscussion: Narrative Emotions\n\n\n\n\n\n\nWhat patterns do you notice in the emotional arcs of Austen’s novels?\nHow might this type of analysis enhance our understanding of narrative structure?\nWhat challenges might arise in applying sentiment analysis to historical texts?\n\n\n\n\n\n2.3 Example 3: Network Analysis of Renaissance Artists\n\nCodelibrary(igraph)\nlibrary(ggraph)\nlibrary(tidyverse)\n\n# Create a dataset of Renaissance artists and their connections\nrenaissance_connections &lt;- tibble(\n  from = c(\"Leonardo da Vinci\", \"Michelangelo\", \"Raphael\", \n           \"Donatello\", \"Verrocchio\", \"Ghirlandaio\", \"Perugino\", \"Botticelli\", \n           \"Lorenzo de' Medici\", \"Lorenzo de' Medici\", \"Lorenzo de' Medici\",\n           \"Michelangelo\", \"Botticelli\", \"Ghirlandaio\"),\n  to = c(\"Verrocchio\", \"Lorenzo de' Medici\", \"Perugino\", \n         \"Lorenzo de' Medici\", \"Botticelli\", \"Michelangelo\", \"Raphael\", \"Ghirlandaio\", \n         \"Leonardo da Vinci\", \"Michelangelo\", \"Botticelli\",\n         \"Leonardo da Vinci\", \"Verrocchio\", \"Botticelli\"),\n  relationship = c(\"Student\", \"Protégé\", \"Student\", \n                   \"Collaborator\", \"Teacher\", \"Teacher\", \"Teacher\", \"Collaborator\", \n                   \"Patron\", \"Patron\", \"Patron\",\n                   \"Rival\", \"Collaborator\", \"Collaborator\")\n)\n\n# Create the graph\nrenaissance_graph &lt;- graph_from_data_frame(renaissance_connections, directed = FALSE)\n\n# Set node attributes\nV(renaissance_graph)$type &lt;- ifelse(V(renaissance_graph)$name == \"Lorenzo de' Medici\", \"Patron\", \"Artist\")\n\n# Plot the network\nset.seed(123)  # for reproducibility\nggraph(renaissance_graph, layout = \"fr\") +\n  geom_edge_link(aes(edge_colour = relationship), \n                 arrow = arrow(length = unit(4, 'mm'), ends = \"both\", type = \"closed\"),\n                 start_cap = circle(4, 'mm'),\n                 end_cap = circle(4, 'mm'),\n                 edge_width = 1) +\n  geom_node_point(aes(color = type, size = type)) +\n  geom_node_text(aes(label = name), vjust = 1.8, hjust = 0.5, size = 4) +\n  scale_edge_colour_manual(values = c(\"Student\" = \"#4ECDC4\", \"Rival\" = \"#FF6B6B\", \n                                      \"Patron\" = \"#45B7D1\", \"Teacher\" = \"#FFA07A\", \n                                      \"Collaborator\" = \"#98D8C8\", \"Protégé\" = \"#C7F464\")) +\n  scale_color_manual(values = c(\"Artist\" = \"#F7B267\", \"Patron\" = \"#7A6563\")) +\n  scale_size_manual(values = c(\"Artist\" = 12, \"Patron\" = 16)) +\n  theme_void() +\n  labs(title = \"Network of Renaissance Artists and Patrons\",\n       subtitle = \"Showing relationships between key figures of the Italian Renaissance\",\n       caption = \"Data: Simplified representation for educational purposes\") +\n  theme(legend.position = \"bottom\",\n        plot.title = element_text(hjust = 0.5, size = 18, face = \"bold\"),\n        plot.subtitle = element_text(hjust = 0.5, size = 14),\n        plot.caption = element_text(hjust = 1, size = 10),\n        legend.text = element_text(size = 12),\n        legend.title = element_text(size = 14, face = \"bold\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\nDiscussion: Renaissance Art Networks\n\n\n\n\n\n\nWhat insights can we gain about the Renaissance art world from this network visualization?\nHow might the different types of relationships (e.g., teacher-student, patronage) have influenced the development of Renaissance art?\nWhat limitations might this network analysis have in representing the complex historical reality of the Renaissance art world?\nHow could this type of analysis complement traditional art historical research methods?",
+    "crumbs": [
+      "Book",
+      "Introduction to Digital Humanities"
+    ]
+  },
+  {
+    "objectID": "book/01-introduction.html#challenges-and-considerations-in-digital-humanities",
+    "href": "book/01-introduction.html#challenges-and-considerations-in-digital-humanities",
+    "title": "Introduction to Digital Humanities",
+    "section": "\n3 Challenges and Considerations in Digital Humanities",
+    "text": "3 Challenges and Considerations in Digital Humanities\n\n3.1 Ethical Considerations\nDigital humanities projects often involve ethical considerations, particularly when working with sensitive or personal data.\n\n\n\n\n\n\nWarning\n\n\n\nAlways consider privacy, consent, and potential harm when working with data about individuals or communities.\n\n\n\n3.2 Interdisciplinary Collaboration\nDigital humanities often requires collaboration between humanists, computer scientists, librarians, and others.\n\n\n\n\n\n\nDiscussion: Collaboration Challenges (10 minutes)\n\n\n\n\n\nIn small groups, discuss:\n\nWhat challenges might arise in collaborations between humanists and technologists?\nHow can these challenges be addressed?\n\nShare your group’s top insights with the class.\n\n\n\n\n3.3 Critical Approaches\nIt’s important to maintain critical perspectives on the use of digital tools in humanities research.\n\n\n\n\n\n\nNote\n\n\n\nRemember that computational methods are not neutral. They embed certain assumptions and biases that need to be critically examined.",
+    "crumbs": [
+      "Book",
+      "Introduction to Digital Humanities"
+    ]
+  },
+  {
+    "objectID": "book/01-introduction.html#conclusion",
+    "href": "book/01-introduction.html#conclusion",
+    "title": "Introduction to Digital Humanities",
+    "section": "\n4 Conclusion",
+    "text": "4 Conclusion\nThese demonstrations showcase just a few of the exciting possibilities that digital humanities offers for exploring and analyzing humanities data. By combining computational methods with traditional humanities scholarship, we can uncover new patterns, ask novel questions, and gain fresh insights into cultural and historical materials.\n\n\n\n\n\n\nFinal Reflection\n\n\n\n\n\nConsider the examples we’ve explored today:\n\nWhich technique (word frequency analysis, sentiment analysis, or network analysis) do you find most intriguing? Why?\nCan you think of a humanities question or topic from your own interests that might benefit from one of these computational approaches?\n\nShare your thoughts with a partner or the class if time allows.",
+    "crumbs": [
+      "Book",
+      "Introduction to Digital Humanities"
+    ]
+  },
+  {
+    "objectID": "slides/s-preface.html#course-overview",
+    "href": "slides/s-preface.html#course-overview",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n🎒 Course design:\n\nWith a more pratical focus on DH methods using R\nLectures followed by practical sessions with R\nBring your laptop 💻\n\n🏠 Course platform:\n\n💬 Wechat: notifications + live chats\n🛜 Course website: course materials/code scripts"
+  },
+  {
+    "objectID": "slides/s-preface.html#why-focus-on-dh-methods",
+    "href": "slides/s-preface.html#why-focus-on-dh-methods",
+    "title": "Introduction to Digital Humanities",
+    "section": "Why Focus on DH Methods?",
+    "text": "Why Focus on DH Methods?\n\n🌉 Common ground: Methods bridge diverse humanities disciplines\n🔧 Transferable skills: Applicable across various research areas\n🚀 Future-proofing: Open the door to coding/programming to prepare for the AI age\n🧠 Critical thinking: Enhance analytical skills for all humanities\n💡 Computational thinking: Develop a sense of data and computational thinking"
+  },
+  {
+    "objectID": "slides/s-preface.html#course-overview-1",
+    "href": "slides/s-preface.html#course-overview-1",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n🎯 Learning outcomes:\n\nUnderstand key DH concepts and methodologies\nDevelop basic programming skills in R\nApply digital methods to humanities research questions\nCritically evaluate DH projects and their implications\n\n\n\n\n\n\nMeng Liu | SEIS BFSU"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Digital Humanities",
     "section": "",
-    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
+    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
   },
   {
-    "objectID": "syllabus.html#course-schedule",
-    "href": "syllabus.html#course-schedule",
-    "title": "Syllabus",
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "Introduction to Digital Humanities",
     "section": "",
-    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
+    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
   },
   {
-    "objectID": "syllabus.html#assessment",
-    "href": "syllabus.html#assessment",
-    "title": "Syllabus",
-    "section": "📊 Assessment",
-    "text": "📊 Assessment\nYour final grade will be composed of the following elements:\n\nMonthly Quiz 📝: 40%\n\nRegular assessments to check your understanding of the course material.\n\nClass Participation and Attendance 🙋‍♀️: 20%\n\nYour active involvement in class discussions and activities is crucial!\n\n\n\n\n\n\n\nImportant\n\n\n\n\nAbsence of one-third of class time, excused or unexcused, will disqualify you from earning credits for the course.\n\n\n\nTerm Paper 📄: 40%\n\n\n\n\n\n\n🎯 Term Project\n\n\n\nA digital humanities project of your choice! You should pick your topic for the term project by week 12. More details will be released later when you have learned R basics."
+    "objectID": "index.html#course-overview",
+    "href": "index.html#course-overview",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n\n🌱 Foundations\n\nDigital Humanities Overview\n\n\n\n🛠️ Core DH Techniques\n\nR Programming Basics\nQuantitative Text Analysis\n\n\n\n🚀 Specialized Topics\n\nTopic Modelling\nSentiment Analysis\nSocial Network Analysis"
   },
   {
-    "objectID": "syllabus.html#ground-rules",
-    "href": "syllabus.html#ground-rules",
-    "title": "Syllabus",
-    "section": "🚀 Ground Rules",
-    "text": "🚀 Ground Rules\n\n\n\n\n\n\n🫡 Ground Rules\n\n\n\nPlease adhere to these core principles throughout the course:\n\n\n\nBe Open-Minded\n\nApproach new concepts and methods without preconceptions.\nSet aside any stereotypes or misconceptions about digital technologies in humanities.\nRemain receptive to diverse perspectives and unconventional ideas.\n\n\n\nEmbrace Frustration as Progress\n\nUnderstand that frustration is a normal part of the learning process.\nView challenges as opportunities for growth rather than obstacles.\nGive yourself time to work through difficult concepts or technical issues.\n\n\n\nOwn Your Learning\n\nTake responsibility for your learning in this course.\nActively seek out resources and ask questions when you need help.\nSet personal learning goals and work consistently towards achieving them.\n\n\n\nDon’t Fool Yourself\n\nBe honest about your understanding and progress.\nAcknowledge your limitations and areas for improvement.\nCritically examine your assumptions and conclusions.\n\n\n\n\n\n\n\nRemember\n\n\n\nBy following these principles, you’ll create a positive learning experience for yourself and contribute to a supportive classroom environment for everyone."
+    "objectID": "book/index.html",
+    "href": "book/index.html",
+    "title": "Preface",
+    "section": "",
+    "text": "This is the textbook for the course Introduction to Digital Humanities taught by Meng Liu, at the School of English and International Studies, Beijing Foreign Studies University.\nIntroduction to Digital Humanities explores the intersection of humanities scholarship and digital methodologies. Students will learn how computational techniques can enhance humanities research, covering key concepts in digital humanities, modern R programming, and various analytical methods including quantitative text analysis, topic modeling, sentiment analysis, and social network analysis. Through hands-on application of digital tools to humanities data, students will develop both technical skills and critical thinking abilities. The course progresses from foundational programming to advanced analytical techniques, concluding with discussions on ethics and AI in humanities scholarship. By the end of the course, students will be equipped with a versatile toolkit for innovative, data-driven humanities research, suitable for those seeking to expand their methodological approach to cultural studies.\nThe content of the book is updated on a regular basis as the course progresses.",
+    "crumbs": [
+      "Book",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "book/index.html#introduction-and-welcome-slides",
+    "href": "book/index.html#introduction-and-welcome-slides",
+    "title": "Preface",
+    "section": "Introduction and welcome slides",
+    "text": "Introduction and welcome slides",
+    "crumbs": [
+      "Book",
+      "Preface"
+    ]
   },
   {
     "objectID": "slides/s-intro.html#what-is-digital-humanities",
@@ -81,7 +150,28 @@
     "href": "slides/s-intro.html#components-of-dh-projects",
     "title": "Introduction to Digital Humanities",
     "section": "Components of DH Projects",
-    "text": "Components of DH Projects\n\n📁 MATERIALS (e.g. texts, images, artifacts)\n⚙️ PROCESSING (computational analysis)\n🎨 PRESENTATION (results display)"
+    "text": "Components of DH Projects\n\n📁 MATERIALS\n⚙️ PROCESSING\n🎨 PRESENTATION\n\n[Can you think of any examples?].{centered}"
+  },
+  {
+    "objectID": "slides/s-intro.html#dh-materials",
+    "href": "slides/s-intro.html#dh-materials",
+    "title": "Introduction to Digital Humanities",
+    "section": "DH Materials",
+    "text": "DH Materials\n\n💾 Digital or digitized humanities sources\n🖼️ Examples: texts, images, audio, video\n📈 Often large-scale datasets"
+  },
+  {
+    "objectID": "slides/s-intro.html#dh-processing",
+    "href": "slides/s-intro.html#dh-processing",
+    "title": "Introduction to Digital Humanities",
+    "section": "DH Processing",
+    "text": "DH Processing\n\n🧮 Computational methods and tools\n📊 Data analysis and modeling\n🤖 Machine learning and AI applications"
+  },
+  {
+    "objectID": "slides/s-intro.html#dh-presentation",
+    "href": "slides/s-intro.html#dh-presentation",
+    "title": "Introduction to Digital Humanities",
+    "section": "DH Presentation",
+    "text": "DH Presentation\n\n📊 Visualizations\n🗄️ Digital archives\n🖱️ Interactive platforms\n🗃️ Databases"
   },
   {
     "objectID": "slides/s-intro.html#example-mapping-the-republic-of-letters",
@@ -123,162 +213,48 @@
     "href": "slides/s-intro.html#example-mapping-the-republic-of-letters-5",
     "title": "Introduction to Digital Humanities",
     "section": "Example: Mapping the Republic of Letters",
-    "text": "Example: Mapping the Republic of Letters\nIf you were the project director, what would the workflow look like? 🧐\nLetters of correspondence between\n\n🔄 Mediation/remediation\n📊 Datafication/modeling\n🧮 Processing/analytics\n📈 Presentation/display\n🔐 Sustainability/preservation"
+    "text": "Example: Mapping the Republic of Letters\n🧐 How is the workflow different from a traditional humanities project? Discuss in pairs to identify key differences between traditional humanities and DH."
   },
   {
-    "objectID": "slides/s-intro.html#discussion-questions",
-    "href": "slides/s-intro.html#discussion-questions",
+    "objectID": "slides/s-intro.html#digital-humanities-vs-traditional-humanities",
+    "href": "slides/s-intro.html#digital-humanities-vs-traditional-humanities",
     "title": "Introduction to Digital Humanities",
-    "section": "Discussion Questions",
-    "text": "Discussion Questions\n💡 Does humanities need computational methods?\n🤖 Can algorithms understand cultural nuances?\n🧑 Are we losing the “human” in digital humanities?\n⚖️ How does DH change humanities research?"
-  },
-  {
-    "objectID": "slides/s-intro.html#traditional-vs-digital-humanities",
-    "href": "slides/s-intro.html#traditional-vs-digital-humanities",
-    "title": "Introduction to Digital Humanities",
-    "section": "Traditional vs Digital Humanities",
-    "text": "Traditional vs Digital Humanities\n\n\nTraditional:\n\n🔎 Limited by human capacity\n🧑‍🏫 Individual research\n📚 Books and articles\n\n\nDigital:\n\n📊 Handles large datasets\n👥 Team-based projects\n🖥️ Diverse digital outputs"
-  },
-  {
-    "objectID": "slides/s-intro.html#dh-materials",
-    "href": "slides/s-intro.html#dh-materials",
-    "title": "Introduction to Digital Humanities",
-    "section": "DH Materials",
-    "text": "DH Materials\n\n\n💾 Digital or digitized humanities sources\n🖼️ Examples: texts, images, audio, video\n📈 Often large-scale datasets"
-  },
-  {
-    "objectID": "slides/s-intro.html#dh-processing",
-    "href": "slides/s-intro.html#dh-processing",
-    "title": "Introduction to Digital Humanities",
-    "section": "DH Processing",
-    "text": "DH Processing\n\n\n🧮 Computational methods and tools\n📊 Data analysis and modeling\n🤖 Machine learning and AI applications"
-  },
-  {
-    "objectID": "slides/s-intro.html#dh-presentation",
-    "href": "slides/s-intro.html#dh-presentation",
-    "title": "Introduction to Digital Humanities",
-    "section": "DH Presentation",
-    "text": "DH Presentation\n\n\n📊 Visualizations\n🗄️ Digital archives\n🖱️ Interactive platforms\n🗃️ Databases"
-  },
-  {
-    "objectID": "slides/s-intro.html#fundamental-dh-activities",
-    "href": "slides/s-intro.html#fundamental-dh-activities",
-    "title": "Introduction to Digital Humanities",
-    "section": "Fundamental DH Activities",
-    "text": "Fundamental DH Activities\n\n\n🔄 Mediation/remediation\n🔢 Datafication/modeling\n🧮 Processing/analytics\n📊 Presentation/display\n💾 Sustainability/preservation"
-  },
-  {
-    "objectID": "slides/s-intro.html#challenges-in-dh-12",
-    "href": "slides/s-intro.html#challenges-in-dh-12",
-    "title": "Introduction to Digital Humanities",
-    "section": "Challenges in DH (1/2)",
-    "text": "Challenges in DH (1/2)\n\n\n⚖️ Balancing quantitative and qualitative analysis\n🌫️ Dealing with ambiguity in humanities data\n🧭 Ensuring methods serve humanistic inquiry"
-  },
-  {
-    "objectID": "slides/s-intro.html#challenges-in-dh-22",
-    "href": "slides/s-intro.html#challenges-in-dh-22",
-    "title": "Introduction to Digital Humanities",
-    "section": "Challenges in DH (2/2)",
-    "text": "Challenges in DH (2/2)\n\n\n🔍 Ethical considerations in data use\n🔄 Long-term preservation of digital projects"
-  },
-  {
-    "objectID": "slides/s-intro.html#the-humanists-role-in-dh",
-    "href": "slides/s-intro.html#the-humanists-role-in-dh",
-    "title": "Introduction to Digital Humanities",
-    "section": "The Humanist’s Role in DH",
-    "text": "The Humanist’s Role in DH\n\n\n🧑‍🏫 Central to all project components\n🧠 Brings critical thinking skills\n🧭 Guides research questions\n🔍 Interprets results in context\n🛡️ Addresses ethical considerations"
-  },
-  {
-    "objectID": "slides/s-intro.html#looking-ahead-in-dh",
-    "href": "slides/s-intro.html#looking-ahead-in-dh",
-    "title": "Introduction to Digital Humanities",
-    "section": "Looking Ahead in DH",
-    "text": "Looking Ahead in DH\n\n\n🚀 Rapidly evolving field\n💡 New approaches to humanities questions\n📚 Requires ongoing learning\n🤝 Opportunities for innovative research"
+    "section": "Digital Humanities vs Traditional Humanities",
+    "text": "Digital Humanities vs Traditional Humanities\n\n\nTraditional Humanities:\n\n🔎 Limited by human reading capacity\n🧑‍🏫 Often individual research\n📚 Primarily books and articles\n🖋️ Close reading and interpretation\n🏛️ Focus on canonical works\n🗂️ Manual data collection and analysis\n🌐 Geographically limited research scope\n🕰️ Time-intensive archival research\n📊 Limited quantitative analysis\n🎭 Emphasis on qualitative methods\n\n\nDigital Humanities:\n\n📊 Handles large datasets and corpora\n👥 Often team-based, interdisciplinary projects\n🖥️ Diverse digital outputs (visualizations, databases, etc.)\n🔍 Distant reading and pattern recognition\n📜 Inclusion of non-canonical texts and artifacts\n🤖 Automated data collection and processing\n🌍 Global reach through digital archives\n⚡ Rapid processing of vast information\n📈 Advanced statistical and computational analysis\n🔀 Integration of quantitative and qualitative methods"
   },
   {
     "objectID": "slides/s-intro.html#reflection",
     "href": "slides/s-intro.html#reflection",
     "title": "Introduction to Digital Humanities",
     "section": "Reflection",
-    "text": "Reflection\n🤔 How might DH methods transform your area of study?\nDiscuss with a partner, then share with the class.\n\n\n\n\nMeng Liu | SEIS BFSU"
+    "text": "Reflection\n💡 Does humanities need computational methods?\n🧑 Are we losing the “human” in digital humanities?\n⚖️ How might DH methods transform your area of study?\nDiscuss with a partner, then share with the class.\n\n\n\n\nMeng Liu | SEIS BFSU"
   },
   {
-    "objectID": "book/index.html",
-    "href": "book/index.html",
-    "title": "Preface",
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
     "section": "",
-    "text": "This is the textbook for the course Introduction to Digital Humanities taught by Meng Liu, at the School of English and International Studies, Beijing Foreign Studies University.\nIntroduction to Digital Humanities explores the intersection of humanities scholarship and digital methodologies. Students will learn how computational techniques can enhance humanities research, covering key concepts in digital humanities, modern R programming, and various analytical methods including quantitative text analysis, topic modeling, sentiment analysis, and social network analysis. Through hands-on application of digital tools to humanities data, students will develop both technical skills and critical thinking abilities. The course progresses from foundational programming to advanced analytical techniques, concluding with discussions on ethics and AI in humanities scholarship. By the end of the course, students will be equipped with a versatile toolkit for innovative, data-driven humanities research, suitable for those seeking to expand their methodological approach to cultural studies.\nThe content of the book is updated on a regular basis as the course progresses.",
-    "crumbs": [
-      "Book",
-      "Preface"
-    ]
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
   },
   {
-    "objectID": "book/index.html#introduction-and-welcome-slides",
-    "href": "book/index.html#introduction-and-welcome-slides",
-    "title": "Preface",
-    "section": "Introduction and welcome slides",
-    "text": "Introduction and welcome slides",
-    "crumbs": [
-      "Book",
-      "Preface"
-    ]
-  },
-  {
-    "objectID": "book/01-introduction.html",
-    "href": "book/01-introduction.html",
-    "title": "Introduction to Digital Humanities",
+    "objectID": "syllabus.html#course-schedule",
+    "href": "syllabus.html#course-schedule",
+    "title": "Syllabus",
     "section": "",
-    "text": "Digital Humanities (DH) is an area of scholarly activity at the intersection of computing and the disciplines of the humanities. It brings digital tools and methods to the study of the humanities with the recognition that the printed word is no longer the main medium for knowledge production and distribution.\n\n\n\nInterdisciplinarity: DH combines methodologies from traditional humanities disciplines with tools provided by computing.\nData Analysis: Large-scale analysis of cultural data sets.\nVisualization: Creating visual representations of humanities data.\nDigital Preservation: Preserving cultural heritage through digital means.\n\nIn the next chapters, we’ll dive deeper into these concepts and start exploring practical applications.",
-    "crumbs": [
-      "Book",
-      "Introduction to Digital Humanities"
-    ]
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
   },
   {
-    "objectID": "book/01-introduction.html#key-concepts",
-    "href": "book/01-introduction.html#key-concepts",
-    "title": "Introduction to Digital Humanities",
-    "section": "",
-    "text": "Interdisciplinarity: DH combines methodologies from traditional humanities disciplines with tools provided by computing.\nData Analysis: Large-scale analysis of cultural data sets.\nVisualization: Creating visual representations of humanities data.\nDigital Preservation: Preserving cultural heritage through digital means.\n\nIn the next chapters, we’ll dive deeper into these concepts and start exploring practical applications.",
-    "crumbs": [
-      "Book",
-      "Introduction to Digital Humanities"
-    ]
+    "objectID": "syllabus.html#assessment",
+    "href": "syllabus.html#assessment",
+    "title": "Syllabus",
+    "section": "📊 Assessment",
+    "text": "📊 Assessment\nYour final grade will be composed of the following elements:\n\nMonthly Quiz 📝: 40%\n\nRegular assessments to check your understanding of the course material.\n\nClass Participation and Attendance 🙋‍♀️: 20%\n\nYour active involvement in class discussions and activities is crucial!\n\n\n\n\n\n\n\nImportant\n\n\n\n\nAbsence of one-third of class time, excused or unexcused, will disqualify you from earning credits for the course.\n\n\n\nTerm Paper 📄: 40%\n\n\n\n\n\n\n🎯 Term Project\n\n\n\nA digital humanities project of your choice! You should pick your topic for the term project by week 12. More details will be released later when you have learned R basics."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction to Digital Humanities",
-    "section": "",
-    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
-  },
-  {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "Introduction to Digital Humanities",
-    "section": "",
-    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
-  },
-  {
-    "objectID": "index.html#course-overview",
-    "href": "index.html#course-overview",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course Overview",
-    "text": "Course Overview\n\n\n🌱 Foundations\n\nDigital Humanities Overview\n\n\n\n🛠️ Core DH Techniques\n\nR Programming Basics\nQuantitative Text Analysis\n\n\n\n🚀 Specialized Topics\n\nTopic Modelling\nSentiment Analysis\nSocial Network Analysis"
-  },
-  {
-    "objectID": "slides/s-preface.html#course-overview",
-    "href": "slides/s-preface.html#course-overview",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course overview",
-    "text": "Course overview\n\n🎒 Course structure:\n\nLectures followed by practical sessions with R\nBring your laptop 💻\n\n🏠 Course platform:\n\n💬 Wechat: notifications + live chats\n🛜 Course website: course materials"
-  },
-  {
-    "objectID": "slides/s-preface.html#course-overview-1",
-    "href": "slides/s-preface.html#course-overview-1",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course overview",
-    "text": "Course overview\n\n🎯 Learning outcomes:\n\nUnderstand key DH concepts and methodologies\nDevelop basic programming skills in R\nApply digital methods to humanities research questions\nCritically evaluate DH projects and their implications\n\n\n\n\n\n\nMeng Liu | SEIS BFSU"
+    "objectID": "syllabus.html#ground-rules",
+    "href": "syllabus.html#ground-rules",
+    "title": "Syllabus",
+    "section": "🚀 Ground Rules",
+    "text": "🚀 Ground Rules\n\n\n\n\n\n\n🫡 Ground Rules\n\n\n\nPlease adhere to these core principles throughout the course:\n\n\n\nBe Open-Minded\n\nApproach new concepts and methods without preconceptions.\nSet aside any stereotypes or misconceptions about digital technologies in humanities.\nRemain receptive to diverse perspectives and unconventional ideas.\n\n\n\nEmbrace Frustration as Progress\n\nUnderstand that frustration is a normal part of the learning process.\nView challenges as opportunities for growth rather than obstacles.\nGive yourself time to work through difficult concepts or technical issues.\n\n\n\nOwn Your Learning\n\nTake responsibility for your learning in this course.\nActively seek out resources and ask questions when you need help.\nSet personal learning goals and work consistently towards achieving them.\n\n\n\nDon’t Fool Yourself\n\nBe honest about your understanding and progress.\nAcknowledge your limitations and areas for improvement.\nCritically examine your assumptions and conclusions.\n\n\n\n\n\n\n\nRemember\n\n\n\nBy following these principles, you’ll create a positive learning experience for yourself and contribute to a supportive classroom environment for everyone."
   }
 ]
