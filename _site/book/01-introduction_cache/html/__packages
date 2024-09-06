@@ -18,3 +18,8 @@ igraph
 ggraph
 scales
 hrbrthemes
+jsonlite
+sysfonts
+showtextdb
+showtext
+ggrepel

@@ -19,7 +19,7 @@ website:
       - href: syllabus.qmd
         text: Syllabus
       - href: toolbox.qmd
-        text: Toolbox
+        text: Toybox
       - text: Book
         href: book/index.qmd
 

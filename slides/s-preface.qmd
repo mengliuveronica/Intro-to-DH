@@ -119,3 +119,6 @@ For those interested in deeper philosophical discussions and critiques:
   - Apply digital methods to humanities research questions
   - Critically evaluate DH projects and their implications
 
+---
+
+# The End {.centered}

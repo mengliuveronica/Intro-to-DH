@@ -12,6 +12,11 @@ Welcome to Introduction to Digital Humanities! We will cover several key topics 
 
 Here's a breakdown of our semester:
 
+::: {.callout-warning}
+## Schedule Subject to Change
+Please note that this schedule is tentative and may be adjusted as needed throughout the semester to accommodate our learning progress and any unforeseen circumstances.
+:::
+
 
 | Week | Date | Content |
 |------|------|---------|

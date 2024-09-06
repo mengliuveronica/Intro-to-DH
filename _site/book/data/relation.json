@@ -1,0 +1,227 @@
+{	
+	"nodes": [
+    	{ "Label": "雍正" , "ID": 1, "Alliance": "皇室成员","Title":"皇上","角色描述":"九龙夺嫡之后终于登上了宝座。在他的眼中任何人都可以成为他巩固江山的棋子。纯元皇后去世多年，痴情的皇帝对她依然念念不忘，于是对酷似纯元皇后的甄嬛愈加宠爱，渐渐超过了华妃。甄嬛回宫，皇上对其极其信任，百依百顺。但最后还是被枕边人算计。"},
+    	{ "Label": "宜修" , "ID": 2, "Alliance": "皇后阵营", "Title": "皇后","角色描述":"纯元皇后的庶出妹妹。外表稳重端庄，但擅于隐忍，城府之深，极爱后位，后宫妃子皆为她的棋子。利用甄嬛打败了华妃，继而将甄嬛赶出宫外。甄嬛回宫后继续步步为营，但最后因害死纯元皇后的事情东窗事发，在太后的力保之下没被废后，但永生禁足于景仁宫，二人死生不复相见，最后新帝登基，心悸而死。"},
+    	{ "Label": "安陵容" , "ID": 3, "Alliance": "皇后阵营", "Title": "正三品贵嫔","角色描述":"进宫后地位低弱，尽管谨小慎微，还是因家世清贫受尽了冷眼欺压。初入宫的安陵容与甄嬛、沈眉庄结为姐妹，因与甄嬛关系密切而受了皇后的算计，逐渐与昔日姐妹越走越远。为了在残酷的后宫中，谋求一席生存之地，当了皇后的扯线傀儡，在残酷血腥的后宫争斗中相互扶持。因多次设计陷害甄嬛，最后自食恶果，吃苦杏仁自尽。"},
+    	{ "Label": "瓜尔佳文鸳" , "ID": 4, "Alliance": "皇后阵营", "Title": "从八品更衣","角色描述":"瓜尔佳‧鄂敏之女，满军镶黄旗出身，清高狂妄，依附于皇后，假意与甄嬛交好，实际为敌。陷害甄嬛一族一败涂地，成为储秀宫主位。皇后亲自赏赐红麝香珠使其不孕。时常拿嫔位欺压欣贵人，与安陵容一直面和心不和。因目无尊上降为贵人。指控甄嬛与温实初有染不成后被打入冷宫。为家人求情不成，苏培盛私下令侍卫痛打致死。"},
+    	{ "Label": "汤静言" , "ID": 5, "Alliance": "皇后阵营", "Title": "正一品贤妃","角色描述":"齐妃，她生下了皇上的长子，她貌似愚蠢，给甄嬛送掺了夹竹桃花粉的栗子糕，给叶澜依送掺着九寒汤的红枣汤，可一切的一切都是为了自己那个不争气的儿子。可她心机不足，做得实在太明显，以致被皇后抓住把柄，安排下杀母夺子之计，三尺白绫了断残生。"},
+    	{ "Label": "柔则" , "ID": 6, "Alliance": "皇后阵营", "Title":"皇后","角色描述":"纯元皇后朱柔则美若天仙，纯善温柔，通音律善舞蹈，才貌双全，一曲惊鸿舞死死拴住了玄凌的心。是皇帝玄凌的一生挚爱，后封其为纯元皇后，最后被庶出的妹妹朱宜修陷害导致难产而死。"},
+
+    	{ "Label": "甄嬛" , "ID": 7, "Alliance": "甄嬛阵营", "Title":"皇贵妃","角色描述":"因容貌酷似已逝的纯元皇后被选中，一直蒙受恩宠。对皇帝真心实意。因为在后宫算计中受到影响，一步步变得城府至深，结果却是她的一厢情愿，离开后宫，遇到了果郡王，心心相爱。后来设计回宫。经历了后宫无数的明争暗斗，勾心斗角，害死皇帝，扶养子登位，终于成为太后。"},
+    	{ "Label": "沈眉庄" , "ID": 8, "Alliance": "甄嬛阵营","Title":"正一品贵妃","角色描述":"沈眉庄人如其名，娴雅端庄。初入宫便得到皇帝夫人她心冷彻悟到成最早看透宫斗和皇帝寡情的人，于是一个人独居碎玉轩。沈眉庄唯一能接触到的好男人，他温文尔雅、体贴入微，被皇上摒弃的真情，难以得偿所愿的理想爱情，都给了温实初。生下和实初的孩子后血崩而亡。"},
+    	{ "Label": "冯若昭" , "ID": 9, "Alliance": "甄嬛阵营","Title":"正一品德妃","角色描述":"侧福晋年世兰房中的格格，受尽白眼。人前笨嘴拙舌，实则内敛智慧，隐藏锋芒。虽无生育，但却帮助甄嬛抚育胧月公主。但甄嬛回宫后，因想留胧月公主在身边而允诺皇后陷害甄嬛，后甄嬛答允将胧月公主长留敬妃身边；而再次对甄嬛死心塌地，在大封六宫时晋封为敬贵妃。为少数存活到故事最后乾隆登基的妃嫔之一。"},
+    	{ "Label": "齐月宾" , "ID": 10, "Alliance": "甄嬛阵营", "Title":"正一品贵妃","角色描述":"雍正的第一位妃嫔。性情稳重端庄、冷静隐忍，与世无争，颇受敬重。曾经给年世兰送去堕药，成为报复的对象。一直暗中帮助扶持甄嬛上位，借甄嬛之手连根除去了华妃一党，并收养曹琴默的女儿温仪公主为养女，从此旁观宫中风波。甄嬛回宫后封为皇贵妃。找出了皇后毒害纯元皇后的真相，扳倒了皇后。雍正驾崩后，再次一病不起。"},
+    	{ "Label": "叶澜依" , "ID": 11, "Alliance": "甄嬛阵营", "Title":"正五品嫔","角色描述":"圆明园中百骏园驯马女，英姿飒爽、明艳照人。昔年被果郡王救助，对他的爱只敢藏在心里。后因为她骑马的风姿很像华妃而被雍正看中入宫，封为答应。不被太后与后宫众人喜欢，被暗害导致不能生育。曾利用猫群袭击甄嬛。后又暗助甄嬛。与甄嬛联手复仇，使用慢性毒药一日日侵蚀皇上的身体，直至丧命。雍正驾崩后割腕自尽。"},
+    	{ "Label": "吕盈风" , "ID": 12, "Alliance": "甄嬛阵营","Title":"正二品妃","角色描述":"最初的位分是正六品常在，欣贵人晋位晋得很慢，目测“常在”是进宫即封的，欣贵人的母家即使算不上显赫也绝对不一般，能让女儿以“常在”的位分进宫，也算是极少数笑到最后的后宫女人了。最后被封为欣嫔。"},
+    	{ "Label": "方淳意" , "ID": 13, "Alliance": "甄嬛阵营","Title":"正二品妃","角色描述":"她14岁进宫，被封为常在。三年后侍寝，与甄嬛交好。性格天真灿漫，活泼可爱，不喜与人争宠，最爱吃食，不爱华丽的东西，刚入宫时甄嬛要送他饰品，最后她选择了糕点。后来淳儿捡拾风筝时无意撞见华妃收取他人贿赂，曹贵人使计令淳儿暴露，华妃便指示周宁海杀人灭口。死后被追封为贵人。"},
+    	{ "Label": "曹琴默" , "ID": 14, "Alliance": "甄嬛阵营","Title":"正二品妃","角色描述":"生性聪明狡猾，为温宜公主生母。原与华妃交好，为华妃对付其他妃嫔的军师。华妃失宠时将温宜公主作为筹码使曹贵人有苦难言、心生叛意。华妃垮台后，出面揭发华妃多样恶行，晋封襄嫔。太后觉其背叛旧主又心狠手辣，不宜留之，故被太后与皇帝在汤药里下慢性毒药而亡。曹琴默死后，其女温宜公主交予端妃抚养。"},
+
+    	{ "Label": "年世兰" , "ID": 15, "Alliance": "华妃阵营","Title":"正三品贵嫔","角色描述":"大将军的妹妹，仗着身世和宠爱，对其他的妃嫔不择手段，但本性并不坏，因为孩子被打掉而痛恨端妃。甄嬛在其打入冷宫后还不能怀孕的事实告诉她，绝望的华妃撞墙而死。最终她被追封为敦肃皇贵妃。"},
+    	{ "Label": "费云烟" , "ID": 16, "Alliance": "华妃阵营","Title":"正三品贵嫔","角色描述":"丽嫔是华妃手底下的第一“得力人才”。说起这丽嫔既没有曹贵人的心计，也没有芝答应的伶俐，又没有安陵容的魄力。只剩下一个美丽，“美丽”是真“没力”。当然她有对华妃的忠心，这是华妃最看重的，这就是为什么这样一个不着调的人，却深得华妃的喜爱，华妃对丽嫔胜过曹贵人都好几百倍。说话不着三不着俩，毫无顾忌。后来余氏被赐死，甄嬛让小允子装神弄鬼吓疯了她，事情解决后，太后让她去了冷宫。"},
+    	{ "Label": "余莺儿" , "ID": 17, "Alliance": "华妃阵营","Title":"庶人","角色描述":"本为倚梅园宫女，因除夕雪夜冒充身在倚梅园中祈福的甄嬛而受宠，由官女子晋位答应，又擅昆曲，获赐“妙音娘子”封号，而圣宠一时。恃宠而娇后因与欣常在不睦将其关进慎刑司，间接得罪太后。夺妙音娘子封号，后复位。因在御花园欺凌甄嬛再次被降为官女子。受华妃利用，命花穗在甄嬛的汤药下毒。事发后被雍正赐死，却不愿就死，安陵容以不宜等到皇帝出巡回来为由，告诉苏培盛，余氏既已被赐死，不会有人追究余氏的死因，大可直接下手。在苏培盛暗示下，被小厦子以弓弦绞杀，最终死状凄惨。"},
+
+
+    	{ "Label": "允礼" , "ID": 18, "Alliance": "皇室成员","Title":"果亲王","角色描述":"果郡王不同于宫中争权夺势的皇室子弟，他庆幸自己并非帝王之身，不必将朝政琐事萦绕于身，他不求娇妻美妾如云，只盼与爱人厮守到老。果郡王爱着甄嬛，却又不能僭越宫廷之礼。他善良、痴情、风流倜傥，终其一生都是在寻求一份爱，奋不顾身地保护一份爱，说他是为爱而生也不为过。"},
+    	{ "Label": "浣碧" , "ID": 19, "Alliance": "甄嬛阵营","Title":"果亲王侧福晋","角色描述":"她是甄嬛的贴身丫鬟，也是同父异母的妹妹，因生母是罪臣之女，不得不隐瞒身份，后以义女身份认祖归宗，更名——甄玉隐，嫁于果郡王允礼为侧妃。"},
+    	{ "Label": "孟静娴" , "ID": 20, "Alliance": "皇室成员","Title":"果亲王侧福晋","角色描述":"沛国公府的千金，性情恬淡温雅，谈吐不俗，思慕清河王玄清多年未果。后因甄玉隐嫁入清河王府为侧妃，静娴思念不已一病不起。沛国公怜女心切，哀求玄凌为女求取名位。玄凌念老臣之心，准尤静娴入清河王府为侧妃，人称“静妃”。玄清因爱慕甄嬛，对静娴礼敬有加，却无夫妻之实。一次，尤静娴趁清河王醉酒受孕，怀有一子。后尤静娴因误食有毒的旋覆花汤导致早产生下予澈，而后又遭甄玉隐以荣嫔慕容世芍衔着毒粉的指甲毒害而死。"},
+    	{ "Label": "允禧" , "ID": 21, "Alliance": "皇室成员","Title":"慎郡王","角色描述":"慎郡王名爱新觉罗允禧,是康熙排行第二十一的儿子。雍正登基时,允禧刚刚12岁,尚未卷进九子夺嫡的大战,因此没有遭受牵连。"},
+
+    	{ "Label": "剪秋" , "ID": 22, "Alliance": "皇后阵容","Title":"皇后贴身侍女","角色描述":"皇后的贴身侍女剪秋，作为陪嫁丫鬟与皇后一同入宫，协助皇后作恶多端，最后为了替皇后报仇，在甄嬛汤里下毒，被发现后，为了皇后受尽酷刑直至枉死。"},
+    	{ "Label": "江福海" , "ID": 23, "Alliance": "皇后阵容","Title":"景仁宫首领太监","角色描述":"景仁宫首领太监，在剪秋下毒失败后被送入慎刑司受刑，招供了皇后的所有罪行。"},
+    	{ "Label": "大阿哥" , "ID": 24, "Alliance": "皇后阵容","Title":"大阿哥","角色描述":"宜修怀孕之时柔则进府并与雍正一见钟情，宜修嫉妒，所以动了胎气，以至于大阿哥出生便体弱多病，先天不足，养到三岁时在一个风雨交加的夜晚便高烧而死。"},
+    	{ "Label": "三阿哥" , "ID": 25, "Alliance": "皇后阵容","Title":"三阿哥","角色描述":"三阿哥弘时听人唆使,请求皇帝厚待手足,善待罪臣,皇帝大怒,认为弘时图谋不轨,即刻撤下弘时的黄带子,交于恒亲王约束养赡,与其断绝父子关系。"},
+    	{ "Label": "宝娟" , "ID": 26, "Alliance": "皇后阵容","Title":"安陵容贴身宫女","角色描述":"安陵容罪行被皇上发现以后，宝鹃等一众近身服侍过安陵容的宫人皆被杖杀。"},
+    	{ "Label": "安比槐" , "ID": 27, "Alliance": "皇后阵容","Title":"松阳县丞","角色描述":"安陵容之父，松阳县丞。"},
+		{ "Label": "瓜尔佳鄂敏" , "ID": 28, "Alliance": "皇后阵容","Title":"布政使","角色描述":"祺贵人/瓜尔佳·文鸳之父。甄嬛回宫后，鄂敏勾结党羽、陷害甄氏一族事情败露，被关入狱中。因皇上下令瓜尔佳氏全族成年男子一律斩首，未满十四的流放边疆，妻女一律被没为官奴，绝望自杀。"},	
+
+		{ "Label": "温宜公主" , "ID": 29, "Alliance": "甄嬛阵营","Title":"温宜公主","角色描述":"温宜公主，生母为曹琴默。曹琴默死后交予端妃抚养。"},	
+    	{ "Label": "四阿哥" , "ID": 30, "Alliance": "甄嬛阵营","Title":"四阿哥","角色描述":"甄嬛的养子，因为其亲生母亲的原因，他从小就不受皇帝的喜欢。被甄嬛收为养子之后，刻苦读书，最后登基为皇帝。"},
+    	{ "Label": "李金桂" , "ID": 31, "Alliance": "甄嬛阵营","Title":"宫女","角色描述":"四阿哥的生母李金桂是一个低贱丑陋的宫女，当年的皇上因为宠幸李金桂被康熙皇帝训斥，所以他也只是让人照顾李金桂生产，李金桂生下四阿哥就撒手人寰了。"},
+    	{ "Label": "胧月公主" , "ID": 32, "Alliance": "甄嬛阵营","Title":"胧月公主","角色描述":"女主角甄嬛的长女，亦是甄嬛与雍正唯一的亲生血脉。"},
+    	{ "Label": "六阿哥" , "ID": 33, "Alliance": "甄嬛阵营","Title":"六阿哥","角色描述":"六阿哥弘曕是甄嬛与果亲王允礼的孩子，后被过继给果亲王。"},
+    	{ "Label": "灵犀" , "ID": 34, "Alliance": "甄嬛阵营","Title":"柔淑长公主","角色描述":"甄嬛与果郡王允礼所生的女儿，与双生兄长弘曕被众人认为是皇帝亲生。"},
+    	{ "Label": "甄玉饶" , "ID": 35, "Alliance": "甄嬛阵营","Title":"慎郡王嫡福晋","角色描述":"甄嬛亲妹妹，备受甄嬛宠爱，被皇上召进宫陪伴甄嬛，又因灵动可爱外貌有七八分像纯元皇后朱柔则，英气妩媚性格像才入宫时的华妃，被皇帝看中，但与玄汾（允禧）相爱，皇帝忍痛将其赐婚，玉娆嫁玄汾（允禧）。"},
+    	{ "Label": "崔槿汐" , "ID": 36, "Alliance": "甄嬛阵营","Title":"掌事宫女","角色描述":"槿汐是甄嬛忠实的仆人，也是甄嬛的良师益友。不论甄嬛是得宠还是失宠或是被废出宫抑或是再次得宠，槿汐始终陪伴在侧，照顾于她。槿汐不但为甄嬛出谋划策，更每每在关键时刻加以提醒，且必要时还可为甄嬛牺牲自己，如此情深义重，甄嬛遇之得之实乃大幸。"},
+		{ "Label": "温实初" , "ID": 37, "Alliance": "甄嬛阵营","Title":"宫中太医","角色描述":"宫中太医，从小一直爱慕甄嬛，但求亲无果。自甄嬛入宫后，一直帮着甄嬛，后和眉庄相好，生下一女静和。被祺嫔（唐艺昕饰）诬陷与甄嬛有染，为保甄嬛和眉庄清白而自宫。沈眉庄死后，自请为眉庄守灵三年。"},	
+		{ "Label": "周宁海" , "ID": 38, "Alliance": "华妃阵营","Title":"翊坤宫太监","角色描述":"翊坤宫首领太监，对华妃极其忠心，非常喜欢华妃，因而甘愿入宫守护她左右，腿便是为了救她而受的伤。在华妃倒台后被送入慎刑司受刑两天两夜仍不招供，足见其忠心。"},
+		
+		{ "Label": "苏培盛" , "ID": 39, "Alliance": "甄嬛阵营","Title":"御前总管太监","角色描述":"他是皇帝身边的头号忠仆，人人敬他三分。他是最了解皇帝的人，他知道皇帝要的是什么。他说话滴水不漏，却一针见血，皇帝无条件的信任着他。但他却恋上了甄嬛身边的宫女，崔槿汐。他是专情的，只要是涉及到槿汐的事情，他都全力去做，槿汐的要求，他都竭力去完成，他感动于槿汐的献身，哪怕他知道原因也是如此。最终他为了槿汐，算计了自己的主子：皇帝。"},
+		{ "Label": "小允子" , "ID": 40, "Alliance": "甄嬛阵营","Title":"永寿宫首领太监","角色描述":"甄嬛手下忠心耿耿的太监，因甄嬛出言为其兄弟叫来太医救治，小允子便决心跟随。入宫初时，甄嬛装病躲圣宠，当康禄海带着所有宫人都纷纷投奔他人时，小允子铁心留守便凸显出其知恩图报的一面。而后面对丽嫔等人指示余莺儿在甄嬛药中下毒，小允子扮鬼将其吓疯道出事情始末也将其干将的地位巩固。"},
+		{ "Label": "甄远道" , "ID": 41, "Alliance": "甄嬛阵营","Title":"四品典仪","角色描述":"甄嬛之父，四品典仪，曾被流放宁古塔。"},
+
+		{ "Label": "年羹尧" , "ID": 42, "Alliance": "华妃阵营","Title":"抚远大将军","角色描述":"华妃之兄、抚远大将军"},
+		{ "Label": "静和公主" , "ID": 43, "Alliance": "甄嬛阵营","Title":"静和公主","角色描述":"生父温实初与生母沈眉庄醉酒后生下的私生女。"},
+		{ "Label": "颂芝" , "ID": 44, "Alliance": "华妃阵营","Title":"从七品选侍","角色描述":"华妃的丫鬟，非常忠心，矢志不渝，甘为棋子。有着单纯的性格，在华妃面前小心翼翼。她的一生和青春其实都是在为了华妃奉献，为了帮华妃复宠，她成了皇帝的芝答应。但是只可惜，华妃一生太过骄纵，颂芝对她的好，对她的忠心她似乎都看不到。这种不求任何回报的心腹是忠仆，更是志士。"}	
+
+	],
+
+	"edges": [
+		{"source": 1, "target": 2, "Relationship": "妻子"}, 
+		{"source": 1, "target": 3, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 4, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 5, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 6, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 7, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 8, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 9, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 10, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 11, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 12, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 13, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 14, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 15, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 16, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 17, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 44, "Relationship": "嫔妃"}, 
+		{"source": 1, "target": 18, "Relationship": "弟弟"},
+
+
+		{"source": 2, "target": 1, "Relationship": "丈夫"}, 
+		{"source": 2, "target": 3, "Relationship": "同盟"}, 
+		{"source": 2, "target": 4, "Relationship": "同盟"}, 
+		{"source": 2, "target": 5, "Relationship": "同盟"}, 
+		{"source": 2, "target": 6, "Relationship": "姐姐"}, 
+		{"source": 2, "target": 7, "Relationship": "敌对"}, 
+		{"source": 2, "target": 15, "Relationship": "敌对"},  
+		{"source": 2, "target": 22, "Relationship": "心腹"}, 
+		{"source": 2, "target": 23, "Relationship": "心腹"}, 
+		{"source": 2, "target": 24, "Relationship": "儿子"}, 
+		{"source": 2, "target": 25, "Relationship": "养子"},  
+
+		{"source": 3, "target": 26, "Relationship": "心腹"},
+		{"source": 3, "target": 27, "Relationship": "父亲"},
+		{"source": 3, "target": 7, "Relationship": "昔日姐妹"},
+		{"source": 3, "target": 8, "Relationship": "昔日姐妹"},
+
+			
+		{"source": 4, "target": 28, "Relationship": "父亲"},
+		{"source": 5, "target": 25, "Relationship": "儿子"},
+
+		{"source": 6, "target": 1, "Relationship": "丈夫"},
+		{"source": 6, "target": 2, "Relationship": "妹妹"},
+
+		{"source": 7, "target": 2, "Relationship": "敌对"},
+		{"source": 7, "target": 3, "Relationship": "昔日姐妹"},
+		{"source": 7, "target": 8, "Relationship": "同盟"},
+		{"source": 7, "target": 9, "Relationship": "同盟"},
+		{"source": 7, "target": 10, "Relationship": "同盟"},
+		{"source": 7, "target": 11, "Relationship": "同盟"},
+		{"source": 7, "target": 12, "Relationship": "同盟"},
+		{"source": 7, "target": 13, "Relationship": "同盟"},
+		{"source": 7, "target": 14, "Relationship": "同盟"},
+		{"source": 7, "target": 15, "Relationship": "敌对"},
+		{"source": 7, "target": 18, "Relationship": "昔日恋人"},
+		{"source": 7, "target": 19, "Relationship": "妹妹"},
+		{"source": 7, "target": 30, "Relationship": "养子"},
+		{"source": 7, "target": 32, "Relationship": "女儿"},
+		{"source": 7, "target": 33, "Relationship": "儿子"},
+		{"source": 7, "target": 34, "Relationship": "女儿"},
+		{"source": 7, "target": 35, "Relationship": "妹妹"},
+		{"source": 7, "target": 36, "Relationship": "心腹"},
+		{"source": 7, "target": 37, "Relationship": "心腹"},
+		{"source": 7, "target": 39, "Relationship": "同盟"},
+		{"source": 7, "target": 40, "Relationship": "同盟"},
+		{"source": 7, "target": 41, "Relationship": "父亲"},
+
+		{"source": 8, "target": 3, "Relationship": "昔日姐妹"},
+		{"source": 8, "target": 7, "Relationship": "同盟"},
+		{"source": 8, "target": 43, "Relationship": "女儿"},
+		{"source": 8, "target": 37, "Relationship": "地下情"},
+
+		{"source": 9, "target": 32, "Relationship": "养女"},
+
+		{"source": 10, "target": 29, "Relationship": "养女"},
+
+		{"source": 11, "target": 18, "Relationship": "单恋"},
+
+		{"source": 14, "target": 29, "Relationship": "女儿"},
+
+		{"source": 15, "target": 2, "Relationship": "敌对"},
+		{"source": 15, "target": 7, "Relationship": "敌对"},
+		{"source": 15, "target": 16, "Relationship": "同盟"},
+		{"source": 15, "target": 42, "Relationship": "哥哥"},
+		{"source": 15, "target": 17, "Relationship": "同盟"},
+		{"source": 15, "target": 44, "Relationship": "心腹"},
+		{"source": 15, "target": 38, "Relationship": "心腹"},
+
+		{"source": 18, "target": 7, "Relationship": "昔日恋人"},
+		{"source": 18, "target": 33, "Relationship": "儿子"},
+		{"source": 18, "target": 34, "Relationship": "女儿"},
+		{"source": 18, "target": 19, "Relationship": "妻子"},
+		{"source": 18, "target": 20, "Relationship": "妻子"},
+		{"source": 18, "target": 21, "Relationship": "弟弟"},
+
+		{"source": 19, "target": 18, "Relationship": "丈夫"},
+		{"source": 19, "target": 7, "Relationship": "姐姐"},
+
+		{"source": 20, "target": 18, "Relationship": "丈夫"},
+
+		{"source": 18, "target": 1, "Relationship": "哥哥"},
+		{"source": 21, "target": 1, "Relationship": "哥哥"},
+		{"source": 21, "target": 35, "Relationship": "妻子"},
+
+		{"source": 22, "target": 2, "Relationship": "主子"},
+		{"source": 23, "target": 2, "Relationship": "主子"},
+		{"source": 24, "target": 2, "Relationship": "母亲"},
+		{"source": 24, "target": 1, "Relationship": "父亲"},
+		{"source": 25, "target": 2, "Relationship": "养母"},
+		{"source": 25, "target": 5, "Relationship": "母亲"},
+		{"source": 25, "target": 1, "Relationship": "父亲"},
+
+		{"source": 26, "target": 3, "Relationship": "主子"},
+		{"source": 27, "target": 3, "Relationship": "女儿"},
+		{"source": 28, "target": 4, "Relationship": "女儿"},
+
+		{"source": 29, "target": 14, "Relationship": "母亲"},
+		{"source": 29, "target": 1, "Relationship": "父亲"},
+		{"source": 29, "target": 10, "Relationship": "养母"},
+
+		{"source": 30, "target": 31, "Relationship": "母亲"},
+		{"source": 30, "target": 1, "Relationship": "父亲"},
+		{"source": 30, "target": 7, "Relationship": "养母"},
+		{"source": 31, "target": 30, "Relationship": "儿子"},
+
+		{"source": 32, "target": 7, "Relationship": "母亲"},
+		{"source": 32, "target": 1, "Relationship": "父亲"},
+		{"source": 32, "target": 9, "Relationship": "养母"},
+
+		{"source": 33, "target": 1, "Relationship": "养父"},
+		{"source": 33, "target": 7, "Relationship": "母亲"},
+		{"source": 33, "target": 18, "Relationship": "父亲"},
+
+		{"source": 34, "target": 1, "Relationship": "养父"},
+		{"source": 34, "target": 7, "Relationship": "母亲"},
+		{"source": 34, "target": 18, "Relationship": "父亲"},
+
+		{"source": 35, "target": 7, "Relationship": "姐姐"},
+		{"source": 35, "target": 21, "Relationship": "丈夫"},
+		{"source": 35, "target": 41, "Relationship": "父亲"},
+		{"source": 35, "target": 19, "Relationship": "姐姐"},
+
+		{"source": 36, "target": 7, "Relationship": "主子"},
+		{"source": 36, "target": 39, "Relationship": "偷吃"},
+
+		{"source": 37, "target": 7, "Relationship": "主子"},
+		{"source": 37, "target": 8, "Relationship": "地下情"},
+		{"source": 37, "target": 43, "Relationship": "女儿"},
+
+		{"source": 39, "target": 1, "Relationship": "主子"},
+		{"source": 39, "target": 36, "Relationship": "偷吃"},
+
+		{"source": 40, "target": 7, "Relationship": "主子"},
+
+		{"source": 41, "target": 7, "Relationship": "女儿"},
+		{"source": 41, "target": 19, "Relationship": "私生女"},
+		{"source": 41, "target": 35, "Relationship": "女儿"},
+
+		{"source": 42, "target": 15, "Relationship": "妹妹"},
+
+		{"source": 43, "target": 8, "Relationship": "母亲"},
+		{"source": 43, "target": 1, "Relationship": "养父"},
+		{"source": 43, "target": 37, "Relationship": "父亲"},
+
+		{"source": 44, "target": 15, "Relationship": "主子"},
+		{"source": 38, "target": 15, "Relationship": "主子"}
+
+	]
+}

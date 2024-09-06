@@ -140,7 +140,7 @@ format:
 ![](../images/republic_of_letters.png)
 
 
-[🍿 Watch a video about the project](https://www.youtube.com/watch?v=o-KY65ijpZI&list=PPSV)
+![🍿 Watch a video about the project](https://www.youtube.com/watch?v=o-KY65ijpZI&list=PPSV)
 
 ---
 
@@ -234,3 +234,8 @@ Digital Humanities:
 ### ⚖️ How might DH methods transform your area of study?
 
 Discuss with a partner, then share with the class.
+
+
+---
+
+# The End {.centered}

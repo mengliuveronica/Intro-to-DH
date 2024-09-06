@@ -1,5 +1,5 @@
 ---
-title: "Toolbox"
+title: "Toybox"
 format:
   html:
     toc: true

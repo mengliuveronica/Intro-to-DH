@@ -20,6 +20,13 @@ Credit: The content of the book is based on the following (amazing and highly ac
 
 - [R for Data Science (2e)](https://r4ds.hadley.nz/)
 - [Text Mining with R](https://www.tidytextmining.com/)
+
+Links to (philosophical/conceptual) readings about DH:
+Note that this is for learning purposes only, please do not distribute. 
+
+- [Download Here](https://pan.baidu.com/s/1ePoLaeSR5iShyUaZHG1nbg?pwd=2u68)
+- 提取码: 2u68 
+
 :::
 
 

@@ -109,7 +109,7 @@ austen_books <- austen_books() %>%
 austen_sentiment <- austen_books %>%
   unnest_tokens(word, text) %>%
   inner_join(get_sentiments("bing"), multiple="all") %>%
-  count(book, index = linenumber %/% 80, sentiment) %>%
+  count(book, index = linenumber %/% 100, sentiment) %>%
   pivot_wider(names_from = sentiment, values_from = n, values_fill = 0) %>% 
   mutate(sentiment = positive - negative)
 
@@ -159,76 +159,111 @@ This visualization shows the emotional trajectory of Jane Austen's novels over t
 3. What challenges might arise in applying sentiment analysis to historical texts?
 :::
 
-### Example 3: Network Analysis of Renaissance Artists
+### Example 3: Network Analysis of "Empresses in the Palace" Characters
 
 ```{r}
-#| label: renaissance-network
+#| label: empresses-network
 #| warning: false
 #| message: false
 #| cache: true
 #| fig-width: 12
 #| fig-height: 10
 #| fig-dpi: 300
+library(pacman)
+p_load(jsonlite,igraph,ggraph,tidyverse,showtext,ggrepel)
 
-library(igraph)
-library(ggraph)
-library(tidyverse)
+# Add Noto Sans CJK font
+font_add_google("Noto Sans SC", "Noto Sans SC")
+showtext_auto()
 
-# Create a dataset of Renaissance artists and their connections
-renaissance_connections <- tibble(
-  from = c("Leonardo da Vinci", "Michelangelo", "Raphael", 
-           "Donatello", "Verrocchio", "Ghirlandaio", "Perugino", "Botticelli", 
-           "Lorenzo de' Medici", "Lorenzo de' Medici", "Lorenzo de' Medici",
-           "Michelangelo", "Botticelli", "Ghirlandaio"),
-  to = c("Verrocchio", "Lorenzo de' Medici", "Perugino", 
-         "Lorenzo de' Medici", "Botticelli", "Michelangelo", "Raphael", "Ghirlandaio", 
-         "Leonardo da Vinci", "Michelangelo", "Botticelli",
-         "Leonardo da Vinci", "Verrocchio", "Botticelli"),
-  relationship = c("Student", "Protégé", "Student", 
-                   "Collaborator", "Teacher", "Teacher", "Teacher", "Collaborator", 
-                   "Patron", "Patron", "Patron",
-                   "Rival", "Collaborator", "Collaborator")
-)
 
-# Create the graph
-renaissance_graph <- graph_from_data_frame(renaissance_connections, directed = FALSE)
+# Read the JSON data
+relation_data <- fromJSON("../book/data/relation.json")
+
+relation_data$nodes <- relation_data$nodes %>% rename(Bio="角色描述")
+
+# Ensure that the 'source' and 'target' in edges match the 'ID' in nodes
+relation_data$edges$source <- as.character(relation_data$edges$source)
+relation_data$edges$target <- as.character(relation_data$edges$target)
+relation_data$nodes$ID <- as.character(relation_data$nodes$ID)
+edges <- relation_data$edges %>% select(-Relationship)
+# Set the ID as the row names for the nodes dataframe
+rownames(relation_data$nodes) <- relation_data$nodes$ID
+
+# Create the directed graph
+empresses_graph <- graph_from_data_frame(d = edges,
+                                         vertices = relation_data$nodes$ID,
+                                         directed = TRUE)
 
 # Set node attributes
-V(renaissance_graph)$type <- ifelse(V(renaissance_graph)$name == "Lorenzo de' Medici", "Patron", "Artist")
+V(empresses_graph)$Alliance <- relation_data$nodes$Alliance
+V(empresses_graph)$Label <- relation_data$nodes$Label
+
+# Create a color palette for alliances
+alliance_colors <- c(
+  "皇室成员" = "#4E79A7",  # Royal Blue
+  "皇后阵营" = "#F28E2B",  # Warm Orange
+  "甄嬛阵营" = "#E15759",  # Soft Red
+  "华妃阵营" = "#76B7B2"   # Teal
+)
+
+# Calculate node size based on total degree centrality (in + out)
+V(empresses_graph)$size <- degree(empresses_graph, mode = "total") * 0.5 + 3
+E(empresses_graph)$Relationship <- relation_data$edges$Relationship
 
 # Plot the network
-set.seed(123)  # for reproducibility
-ggraph(renaissance_graph, layout = "fr") +
-  geom_edge_link(aes(edge_colour = relationship), 
-                 arrow = arrow(length = unit(4, 'mm'), ends = "both", type = "closed"),
-                 start_cap = circle(4, 'mm'),
-                 end_cap = circle(4, 'mm'),
-                 edge_width = 1) +
-  geom_node_point(aes(color = type, size = type)) +
-  geom_node_text(aes(label = name), vjust = 1.8, hjust = 0.5, size = 4) +
-  scale_edge_colour_manual(values = c("Student" = "#4ECDC4", "Rival" = "#FF6B6B", 
-                                      "Patron" = "#45B7D1", "Teacher" = "#FFA07A", 
-                                      "Collaborator" = "#98D8C8", "Protégé" = "#C7F464")) +
-  scale_color_manual(values = c("Artist" = "#F7B267", "Patron" = "#7A6563")) +
-  scale_size_manual(values = c("Artist" = 12, "Patron" = 16)) +
+set.seed(123) # for reproducibility
+plot <- ggraph(empresses_graph, layout = "fr") +
+  geom_edge_link(aes(color=Relationship), arrow = arrow(length = unit(3, "mm")), end_cap = circle(2, "mm"), show.legend = TRUE,width=1) +
+  geom_node_point(aes(color = Alliance, size = size),show.legend=TRUE) +
+  geom_node_text(aes(label = Label), repel = TRUE, size = 6) +
+  scale_color_manual(values = alliance_colors, name = "Alliance") +
+  scale_size_continuous(range = c(5, 20), name = "Connections") +
   theme_void() +
-  labs(title = "Network of Renaissance Artists and Patrons",
-       subtitle = "Showing relationships between key figures of the Italian Renaissance",
-       caption = "Data: Simplified representation for educational purposes") +
-  theme(legend.position = "bottom",
-        plot.title = element_text(hjust = 0.5, size = 18, face = "bold"),
-        plot.subtitle = element_text(hjust = 0.5, size = 14),
-        plot.caption = element_text(hjust = 1, size = 10),
-        legend.text = element_text(size = 12),
-        legend.title = element_text(size = 14, face = "bold"))
+  labs(title = "Character Network in 'Empresses in the Palace'",
+       subtitle = "Directed relationships between key figures in the Chinese drama") +
+  theme(
+    legend.position = "none",
+   # legend.box = "vertical",
+    plot.title = element_text(hjust = 0.5, size = 18, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 14)
+   # plot.caption = element_text(hjust = 1, size = 10)
+   # legend.text = element_text(size = 8),
+   # legend.title = element_text(size = 10, face = "bold")
+  ) 
+# Display the plot
+print(plot)
+
+# Display summary statistics
+character_summary <- tibble(
+  Alliance = names(table(V(empresses_graph)$Alliance)),
+  Count = as.numeric(table(V(empresses_graph)$Alliance))
+)
+
+knitr::kable(character_summary, caption = "Summary of Character Alliances")
+
+# Calculate and display top 5 characters by total degree centrality
+top_characters <- tibble(
+  Character = V(empresses_graph)$Label,
+  InDegree = degree(empresses_graph, mode = "in"),
+  OutDegree = degree(empresses_graph, mode = "out"),
+  TotalDegree = degree(empresses_graph, mode = "total")
+) %>%
+  arrange(desc(TotalDegree)) %>%
+  left_join(.,relation_data$nodes%>%select(Label,Title,Alliance,Bio),by=(c("Character"="Label")))%>%
+  slice_head(n = 5)
+
+knitr::kable(top_characters, caption = "Top 5 Characters by Total Connections")
 ```
 
+This visualization shows the complex network of relationships between characters in the Chinese drama "Empresses in the Palace" (甄嬛传).
+
 ::: {.callout-tip collapse="true"}
-## Discussion: Renaissance Art Networks
-1. What insights can we gain about the Renaissance art world from this network visualization?
-2. How might the different types of relationships (e.g., teacher-student, patronage) have influenced the development of Renaissance art?
-3. What limitations might this network analysis have in representing the complex historical reality of the Renaissance art world?
-4. How could this type of analysis complement traditional art historical research methods?
+## Discussion: Character Networks in Historical Dramas
+1. What insights can we gain from this network visualization?
+2. Which characters appear to be central to the network? How might their positions reflect their importance in the narrative?
+3. How could this type of analysis complement traditional literary analysis of historical dramas or novels?
+4. What limitations might this network analysis have in representing the complex relationships and dynamics of the story?
 :::
 
 ## Challenges and Considerations in Digital Humanities
