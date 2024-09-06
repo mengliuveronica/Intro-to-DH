@@ -18,6 +18,8 @@ website:
         text: Home
       - href: syllabus.qmd
         text: Syllabus
+      - href: toolbox.qmd
+        text: Toolbox
       - text: Book
         href: book/index.qmd
 
@@ -48,6 +50,8 @@ format:
       source: false
       toggle: true
     highlight-style: github
+    include-after-body:
+      - file: _footer.html
   revealjs:
     theme: simple
     reveal_plugins:
@@ -55,7 +59,3 @@ format:
       - search
       - zoom
     output-dir: _site/slides
-
-
-include-after-body: 
-     - file: _footer.html

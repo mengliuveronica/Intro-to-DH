@@ -74,18 +74,45 @@ format:
 
 ---
 
-## Course overview 
+## Course Overview 
 
-- 🎒 Course structure:
+- 🎒 Course design:
+  - With a more pratical focus on DH methods using R
   - Lectures followed by practical sessions with R
   - Bring your laptop 💻
 - 🏠 Course platform:
   - 💬 Wechat: notifications + live chats
-  - 🛜 Course website: course materials
+  - 🛜 Course website: course materials/code scripts
 
 ---
 
-## Course overview 
+## Why Focus on DH Methods?
+
+- 🌉 Common ground: Methods bridge diverse humanities disciplines
+- 🔧 Transferable skills: Applicable across various research areas
+- 🚀 Future-proofing: Open the door to coding/programming to prepare for the AI age
+- 🧠 Critical thinking: Enhance analytical skills for all humanities
+- 💡 Computational thinking: Develop a sense of data and computational thinking
+
+---
+
+# Additional Resources
+
+For those interested in deeper philosophical discussions and critiques:
+
+- 📚 "On the Digital Humanities: Essays and Provocations" by Stephen Ramsay
+- 🤔 "Critical Digital Humanities: The Search for a Methodology" by James E. Dobson
+- 🖋️ "Defining Digital Humanities: A Reader" by Melissa Terras et al.
+
+---
+
+# Additional Resources
+
+![](../images/resources.png)
+
+---
+
+## Course Overview 
 - 🎯 Learning outcomes:
   - Understand key DH concepts and methodologies
   - Develop basic programming skills in R

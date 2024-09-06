@@ -1,0 +1,23 @@
+---
+title: "Toolbox"
+format:
+  html:
+    toc: true
+    number-sections: false
+---
+
+## 🏆 Student Leaderboard
+
+<iframe src="leaderboard.html" width="100%" height="500px" frameborder="0" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
+
+## 🃏 Poker Card Ballot Drawer
+
+<div id="ballot-drawer"></div>
+
+<script src="scripts/ballot-drawer.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    BallotDrawer.init('ballot-drawer');
+  });
+</script>
+

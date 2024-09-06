@@ -30,10 +30,10 @@ Here's a breakdown of our semester:
 
 Your final grade will be composed of the following elements:
 
-1. **Monthly Quiz** 📝: <span class="highlight-blue">40%</span>
+1. **Monthly Quiz** 📝: <span class="highlight-blue">30%</span>
    - Regular assessments to check your understanding of the course material.
 
-2. **Class Participation and Attendance** 🙋‍♀️: <span class="highlight-green">20%</span>
+2. **Class Participation and Attendance** 🙋‍♀️: <span class="highlight-green">30%</span>
    - Your active involvement in class discussions and activities is crucial!
    
    ::: {.callout-note}
@@ -49,38 +49,38 @@ Your final grade will be composed of the following elements:
    :::
 
 
-## 🚀 Ground Rules
+## 🚀 Important Pep Talk!
 
 :::{.callout-note icon="false"}
-# 🫡 Ground Rules
-Please adhere to these core principles throughout the course:
+# 💪 Setting the Right Mindset
+Remember these key points while you embark on your DH journey:
 :::
 
-### Be Open-Minded {.unnumbered}
+### Embrace the Learning Curve {.unnumbered}
 
-- Approach new concepts and methods without preconceptions.
-- Set aside any stereotypes or misconceptions about digital technologies in humanities.
-- Remain receptive to diverse perspectives and unconventional ideas.
+- Learning digital tools and methods is like learning a new language—it takes time and practice.
+- Don't be discouraged by initial difficulties; everyone faces challenges when starting out.
+- Celebrate small victories and progress along the way.
 
-### Embrace Frustration as Progress {.unnumbered}
+### Frustration is Part of Growth {.unnumbered}
 
-- Understand that frustration is a normal part of the learning process.
-- View challenges as opportunities for growth rather than obstacles.
-- Give yourself time to work through difficult concepts or technical issues.
+- Feeling frustrated? Congratulations! It means you're pushing your boundaries and learning.
+- Hadley Wickham (Father of modern R syntax) once said: "Everyone gets frustrated... I still get frustrated occasionally when writing R code. It's just a natural part of programming."
+- Take breaks when needed, but don't give up. Return with fresh eyes and renewed determination.
 
-### Own Your Learning {.unnumbered}
+### Cultivate Curiosity {.unnumbered}
 
-- Take responsibility for your learning in this course.
-- Actively seek out resources and ask questions when you need help.
-- Set personal learning goals and work consistently towards achieving them.
+- Approach new concepts with an open and inquisitive mind.
+- Ask questions, explore beyond the course material, and let your curiosity drive your learning.
+- Digital humanities is a field of endless possibilities—embrace the excitement of discovery.
 
-### Don't Fool Yourself {.unnumbered}
+### Build Resilience {.unnumbered}
 
-- Be honest about your understanding and progress.
-- Acknowledge your limitations and areas for improvement.
-- Critically examine your assumptions and conclusions.
+- Expect challenges and setbacks—they're not roadblocks, but opportunities to problem-solve.
+- Develop a growth mindset: view difficulties as chances to improve, not as personal shortcomings.
+- Remember: every expert was once a beginner. Persistence is key to mastery.
 
 :::{.callout-note}
 ## Remember
-By following these principles, you'll create a positive learning experience for yourself and contribute to a supportive classroom environment for everyone.
+I promise you can succeed in this class as long as you put your heart to it. Learning new digital skills may seem daunting at first, but with patience, persistence, and the right mindset, you'll be amazed at what you can achieve. Don't hesitate to reach out for help when you need it—we're all in this learning journey together!
 :::

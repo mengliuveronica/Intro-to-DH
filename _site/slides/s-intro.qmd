@@ -69,6 +69,19 @@ format:
 
 ---
 
+## What is digital humanities?🤨 
+
+![](/images/dh4.png){.absolute top=100 left=0 right=0 height="80%"}
+
+
+---
+
+## What is digital humanities?🤨 
+
+![](/images/dh5.png){.absolute top=100 left=0 right=0 height="80%"}
+
+---
+
 
 ## What is digital humanities?🤨 
 
@@ -86,21 +99,38 @@ format:
 
 ## Components of DH Projects
 
-1. 📁 MATERIALS (e.g. texts, images, artifacts)
-2. ⚙️ PROCESSING (computational analysis)
-3. 🎨 PRESENTATION (results display)
+1. 📁 MATERIALS 
+2. ⚙️ PROCESSING 
+3. 🎨 PRESENTATION 
 
 ---
 
-# Digital Humanities Workflow
 
-The fundamental activities in digital humanities projects typically include:
+## DH Materials 
 
-1. 🔄 Mediation/remediation
-2. 📊 Datafication/modeling 
-3. 🧮 Processing/analytics
-4. 📈 Presentation/display
-5. 🔐 Sustainability/preservation
+- 💾 Digital or digitized humanities sources
+- 🖼️ Examples: texts, images, audio, video
+- 📈 Often large-scale datasets
+
+
+---
+
+## DH Processing 
+
+- 🧮 Computational methods and tools
+- 📊 Data analysis and modeling
+- 🤖 Machine learning and AI applications
+
+
+---
+
+## DH Presentation 
+
+- 📊 Visualizations
+- 🗄️ Digital archives
+- 🖱️ Interactive platforms
+- 🗃️ Databases
+
 
 ---
 
@@ -156,137 +186,51 @@ The fundamental activities in digital humanities projects typically include:
 
 ## Example: Mapping the Republic of Letters
 
-### If you were the project director, what would the workflow look like? 🧐
-
-Letters of correspondence between
-
-1. 🔄 Mediation/remediation
-2. 📊 Datafication/modeling 
-3. 🧮 Processing/analytics
-4. 📈 Presentation/display
-5. 🔐 Sustainability/preservation
-
-## Discussion Questions
-
-### 💡 Does humanities need computational methods?
-### 🤖 Can algorithms understand cultural nuances?
-### 🧑 Are we losing the "human" in digital humanities?
-### ⚖️ How does DH change humanities research?
-
-
+### 🧐 How is the project different from a traditional humanities project? Discuss in pairs to identify key differences between traditional humanities and DH. {.centered}
 
 ---
 
-## Traditional vs Digital Humanities 
+## Digital Humanities vs Traditional Humanities {.smaller} 
 
 ::: {.columns}
 ::: {.column width="50%"}
-Traditional:
+Traditional Humanities:
 
-- 🔎 Limited by human capacity
-- 🧑‍🏫 Individual research
-- 📚 Books and articles
+- 🔎 Limited by human reading capacity
+- 🧑‍🏫 Often individual research
+- 📚 Primarily books and articles
+- 🖋️ Close reading and interpretation
+- 🏛️ Focus on canonical works
+- 🗂️ Manual data collection and analysis
+- 🌐 Geographically limited research scope
+- 🕰️ Time-intensive archival research
+- 📊 Limited quantitative analysis
+- 🎭 Emphasis on qualitative methods
 :::
 
 ::: {.column width="50%"}
-Digital:
+Digital Humanities:
 
-- 📊 Handles large datasets
-- 👥 Team-based projects
-- 🖥️ Diverse digital outputs
+- 📊 Handles large datasets and corpora
+- 👥 Often team-based, interdisciplinary projects
+- 🖥️ Diverse digital outputs (visualizations, databases, etc.)
+- 🔍 Distant reading and pattern recognition
+- 📜 Inclusion of non-canonical texts and artifacts
+- 🤖 Automated data collection and processing
+- 🌍 Global reach through digital archives
+- ⚡ Rapid processing of vast information
+- 📈 Advanced statistical and computational analysis
+- 🔀 Integration of quantitative and qualitative methods
 :::
 :::
 
----
-
-
-## DH Materials 
-
-::: {.incremental}
-- 💾 Digital or digitized humanities sources
-- 🖼️ Examples: texts, images, audio, video
-- 📈 Often large-scale datasets
-:::
-
----
-
-## DH Processing 
-
-::: {.incremental}
-- 🧮 Computational methods and tools
-- 📊 Data analysis and modeling
-- 🤖 Machine learning and AI applications
-:::
-
----
-
-## DH Presentation 
-
-::: {.incremental}
-- 📊 Visualizations
-- 🗄️ Digital archives
-- 🖱️ Interactive platforms
-- 🗃️ Databases
-:::
-
----
-
-## Fundamental DH Activities 
-
-::: {.incremental}
-1. 🔄 Mediation/remediation
-2. 🔢 Datafication/modeling
-3. 🧮 Processing/analytics
-4. 📊 Presentation/display
-5. 💾 Sustainability/preservation
-:::
-
----
-
-## Challenges in DH (1/2) 
-
-::: {.incremental}
-- ⚖️ Balancing quantitative and qualitative analysis
-- 🌫️ Dealing with ambiguity in humanities data
-- 🧭 Ensuring methods serve humanistic inquiry
-:::
-
----
-
-## Challenges in DH (2/2) 
-
-::: {.incremental}
-- 🔍 Ethical considerations in data use
-- 🔄 Long-term preservation of digital projects
-:::
-
----
-
-## The Humanist's Role in DH 
-
-::: {.incremental}
-- 🧑‍🏫 Central to all project components
-- 🧠 Brings critical thinking skills
-- 🧭 Guides research questions
-- 🔍 Interprets results in context
-- 🛡️ Addresses ethical considerations
-:::
-
----
-
-## Looking Ahead in DH 
-
-::: {.incremental}
-- 🚀 Rapidly evolving field
-- 💡 New approaches to humanities questions
-- 📚 Requires ongoing learning
-- 🤝 Opportunities for innovative research
-:::
 
 ---
 
 ## Reflection 
 
-🤔 How might DH methods transform your area of study?
+### 💡 Does humanities need computational methods?
+### 🧑 Are we losing the "human" in digital humanities?
+### ⚖️ How might DH methods transform your area of study?
 
 Discuss with a partner, then share with the class.

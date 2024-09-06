@@ -4,7 +4,7 @@
     "href": "book/01-introduction.html#digital-humanities-analysis-with-r",
     "title": "Introduction to Digital Humanities",
     "section": "\n2 Digital Humanities Analysis with R",
-    "text": "2 Digital Humanities Analysis with R\nLet’s explore some fascinating examples of how computational methods can be applied to humanities questions.\n\n2.1 Example 1: Text Analysis of Literary Works\n\nCodelibrary(pacman)\np_load(tidyverse, tidytext, wordcloud, gutenbergr, scales, hrbrthemes)\n\n\nThe downloaded binary packages are in\n    /var/folders/75/1c92wz5940d_wmwcx0v53mmw0000gn/T//Rtmpn5kRrQ/downloaded_packages\n\nCode# Function to download and process text\n# gutenberg_works(title == \"The Age of Innocence\")\ninno &lt;- gutenberg_download(541)\n\n# Analyze word frequencies\nword_freq &lt;- inno %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  anti_join(stop_words) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  top_n(20, n)\n\n# Create a bar plot of word frequencies\np &lt;- ggplot(word_freq, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#69b3a2\", width = 0.7) +\n  geom_text(aes(label = n), hjust = -0.3, size = 3) +\n  coord_flip() +\n  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +\n  labs(x = NULL, y = \"Frequency\", \n       title = \"Top 20 Most Frequent Words in The Age of Innocence\",\n       subtitle = \"After removing common stop words\",\n       caption = \"Source: Project Gutenberg\") +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(size = 16, face = \"bold\", margin = margin(b = 10)),\n    plot.subtitle = element_text(size = 12, color = \"gray50\", margin = margin(b = 20)),\n    plot.caption = element_text(size = 10, color = \"gray50\", margin = margin(t = 10)),\n    axis.text = element_text(size = 10),\n    axis.title = element_text(size = 12),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor = element_blank(),\n    plot.margin = margin(20, 20, 20, 20)\n  )\n\n# Print the plot\nprint(p)\n\n\n\n\n\n\n\nThis word cloud visualizes the most frequent words in The Age of Innocence, giving us a quick insight into common themes and vocabulary.\n\n\n\n\n\n\nDiscussion\n\n\n\n\n\n\nWhat words stand out to you in this visualization?\nHow might this kind of analysis complement traditional close reading of literary works?\nWhat limitations might this approach have for understanding the author’s language?\n\n\n\n\n\n2.2 Example 2: Sentiment Analysis of Jane Austen’s Novels\n\nCodelibrary(janeaustenr)\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(hrbrthemes)\n\n# Combine Austen's novels\nausten_books &lt;- austen_books() %&gt;%\n  group_by(book) %&gt;%\n  mutate(\n    linenumber = row_number(),\n    chapter = cumsum(str_detect(text, regex(\"^chapter [\\\\divxlc]\", ignore_case = TRUE)))\n  ) %&gt;%\n  ungroup()\n\n# Perform sentiment analysis\nausten_sentiment &lt;- austen_books %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  inner_join(get_sentiments(\"bing\")) %&gt;%\n  count(book, index = linenumber %/% 80, sentiment) %&gt;%\n  pivot_wider(names_from = sentiment, values_from = n, values_fill = 0) %&gt;% \n  mutate(sentiment = positive - negative)\n\n# Plot sentiment over narrative time\nggplot(austen_sentiment, aes(index, sentiment, fill = book)) +\n  geom_col(show.legend = FALSE) +\n  facet_wrap(~book, ncol = 2, scales = \"free_x\") +\n  labs(\n    title = \"Sentiment Analysis of Jane Austen's Novels\",\n    subtitle = \"Emotional trajectory throughout the narrative\",\n    x = \"Narrative Time\",\n    y = \"Sentiment Score\",\n    caption = \"Data: janeaustenr package | Analysis: tidytext\"\n  ) +\n  theme_ipsum(\n    base_size = 12,\n    strip_text_size = 14,\n    grid = \"Y\"\n  ) +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 18),\n    plot.subtitle = element_text(size = 14, color = \"gray50\"),\n    plot.caption = element_text(size = 10, color = \"gray50\"),\n    axis.title = element_text(face = \"bold\"),\n    strip.text = element_text(face = \"bold\"),\n    panel.spacing = unit(1, \"lines\")\n  ) +\n  scale_fill_brewer(palette = \"Set2\") +\n  scale_y_continuous(expand = expansion(mult = c(0.1, 0.1)))\n\n\n\n\n\n\nCode# Display summary statistics\nausten_summary &lt;- austen_sentiment %&gt;%\n  group_by(book) %&gt;%\n  summarize(\n    mean_sentiment = mean(sentiment),\n    max_sentiment = max(sentiment),\n    min_sentiment = min(sentiment)\n  )\n\nknitr::kable(austen_summary, caption = \"Summary Statistics of Sentiment Analysis\", digits = 2)\n\n\nSummary Statistics of Sentiment Analysis\n\nbook\nmean_sentiment\nmax_sentiment\nmin_sentiment\n\n\n\nSense & Sensibility\n7.99\n45\n-22\n\n\nPride & Prejudice\n8.59\n39\n-30\n\n\nMansfield Park\n10.01\n46\n-34\n\n\nEmma\n11.57\n44\n-20\n\n\nNorthanger Abbey\n7.33\n43\n-28\n\n\nPersuasion\n12.11\n51\n-11\n\n\n\n\n\nThis visualization shows the emotional trajectory of Jane Austen’s novels over their narrative time.\n\n\n\n\n\n\nDiscussion: Narrative Emotions\n\n\n\n\n\n\nWhat patterns do you notice in the emotional arcs of Austen’s novels?\nHow might this type of analysis enhance our understanding of narrative structure?\nWhat challenges might arise in applying sentiment analysis to historical texts?\n\n\n\n\n\n2.3 Example 3: Network Analysis of Historical Figures\n\nCodelibrary(igraph)\nlibrary(ggraph)\n\n# Create a sample dataset of historical figures and their connections\nhistorical_figures &lt;- tibble(\n  from = c(\"Napoleon\", \"Napoleon\", \"Wellington\", \"Nelson\", \"Wellington\", \"Nelson\"),\n  to = c(\"Wellington\", \"Nelson\", \"Nelson\", \"Napoleon\", \"Louis XVIII\", \"Emma Hamilton\")\n)\n\n# Create and plot the network\nset.seed(2023)\nhistorical_figures %&gt;%\n  graph_from_data_frame() %&gt;%\n  ggraph(layout = \"fr\") +\n  geom_edge_link(aes(edge_alpha = 0.5)) +\n  geom_node_point(color = \"lightblue\", size = 10) +\n  geom_node_text(aes(label = name), vjust = 1.5, hjust = 0.5) +\n  theme_void() +\n  labs(title = \"Network of Historical Figures\")\n\n\n\n\n\n\n\nThis network visualization shows connections between some key historical figures of the Napoleonic era.\n\n\n\n\n\n\nDiscussion: Historical Networks\n\n\n\n\n\n\nWhat insights can we gain from visualizing historical relationships in this way?\nHow might network analysis complement traditional historical research methods?\nWhat are some potential pitfalls or limitations of using network analysis in historical studies?",
+    "text": "2 Digital Humanities Analysis with R\nLet’s explore some fascinating examples of how computational methods can be applied to humanities questions.\n\n2.1 Example 1: Text Analysis of Literary Works\n\nCodelibrary(pacman)\np_load(tidyverse, tidytext, wordcloud, gutenbergr, scales, hrbrthemes)\n\n# Function to download and process text\n# gutenberg_works(title == \"The Age of Innocence\")\ninno &lt;- gutenberg_download(541)\n\n# Analyze word frequencies\nword_freq &lt;- inno %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  anti_join(stop_words) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  top_n(20, n)\n\n# Create a bar plot of word frequencies\np &lt;- ggplot(word_freq, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#69b3a2\", width = 0.7) +\n  geom_text(aes(label = n), hjust = -0.3, size = 3) +\n  coord_flip() +\n  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +\n  labs(x = NULL, y = \"Frequency\", \n       title = \"Top 20 Most Frequent Words in The Age of Innocence\",\n       subtitle = \"After removing common stop words\",\n       caption = \"Source: Project Gutenberg\") +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(size = 16, face = \"bold\", margin = margin(b = 10)),\n    plot.subtitle = element_text(size = 12, color = \"gray50\", margin = margin(b = 20)),\n    plot.caption = element_text(size = 10, color = \"gray50\", margin = margin(t = 10)),\n    axis.text = element_text(size = 10),\n    axis.title = element_text(size = 12),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor = element_blank(),\n    plot.margin = margin(20, 20, 20, 20)\n  )\n\n# Print the plot\nprint(p)\n\n\n\n\n\n\n\nThis word cloud visualizes the most frequent words in The Age of Innocence, giving us a quick insight into common themes and vocabulary.\n\n\n\n\n\n\nDiscussion\n\n\n\n\n\n\nWhat words stand out to you in this visualization?\nHow might this kind of analysis complement traditional close reading of literary works?\nWhat limitations might this approach have for understanding the author’s language?\n\n\n\n\n\n2.2 Example 2: Sentiment Analysis of Jane Austen’s Novels\n\nCodelibrary(janeaustenr)\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(hrbrthemes)\n\n# Combine Austen's novels\nausten_books &lt;- austen_books() %&gt;%\n  group_by(book) %&gt;%\n  mutate(\n    linenumber = row_number(),\n    chapter = cumsum(str_detect(text, regex(\"^chapter [\\\\divxlc]\", ignore_case = TRUE)))\n  ) %&gt;%\n  ungroup()\n\n# Perform sentiment analysis\nausten_sentiment &lt;- austen_books %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  inner_join(get_sentiments(\"bing\"), multiple=\"all\") %&gt;%\n  count(book, index = linenumber %/% 80, sentiment) %&gt;%\n  pivot_wider(names_from = sentiment, values_from = n, values_fill = 0) %&gt;% \n  mutate(sentiment = positive - negative)\n\n# Plot sentiment over narrative time\nggplot(austen_sentiment, aes(index, sentiment, fill = book)) +\n  geom_col(show.legend = FALSE) +\n  facet_wrap(~book, ncol = 2, scales = \"free_x\") +\n  labs(\n    title = \"Sentiment Analysis of Jane Austen's Novels\",\n    subtitle = \"Emotional trajectory throughout the narrative\",\n    x = \"Narrative Time\",\n    y = \"Sentiment Score\",\n    caption = \"Data: janeaustenr package | Analysis: tidytext\"\n  ) +\n  theme_minimal() +\n  theme(\n    text = element_text(size = 12),\n    strip.text = element_text(size = 14, face = \"bold\"),\n    panel.grid.minor = element_blank(),\n    plot.title = element_text(size = 18, face = \"bold\"),\n    plot.subtitle = element_text(size = 14, color = \"gray50\"),\n    plot.caption = element_text(size = 10, color = \"gray50\"),\n    axis.title = element_text(size = 12, face = \"bold\"),\n    plot.margin = margin(20, 20, 20, 20)\n  ) +\n  scale_fill_brewer(palette = \"Set2\") +\n  scale_y_continuous(expand = expansion(mult = c(0.1, 0.1)))\n\n\n\n\n\n\nCode# Display summary statistics\nausten_summary &lt;- austen_sentiment %&gt;%\n  group_by(book) %&gt;%\n  summarize(\n    mean_sentiment = mean(sentiment),\n    max_sentiment = max(sentiment),\n    min_sentiment = min(sentiment)\n  )\n\nknitr::kable(austen_summary, caption = \"Summary Statistics of Sentiment Analysis\", digits = 2)\n\n\nSummary Statistics of Sentiment Analysis\n\nbook\nmean_sentiment\nmax_sentiment\nmin_sentiment\n\n\n\nSense & Sensibility\n7.99\n45\n-22\n\n\nPride & Prejudice\n8.59\n39\n-30\n\n\nMansfield Park\n10.01\n46\n-34\n\n\nEmma\n11.57\n44\n-20\n\n\nNorthanger Abbey\n7.33\n43\n-28\n\n\nPersuasion\n12.11\n51\n-11\n\n\n\n\n\nThis visualization shows the emotional trajectory of Jane Austen’s novels over their narrative time.\n\n\n\n\n\n\nDiscussion: Narrative Emotions\n\n\n\n\n\n\nWhat patterns do you notice in the emotional arcs of Austen’s novels?\nHow might this type of analysis enhance our understanding of narrative structure?\nWhat challenges might arise in applying sentiment analysis to historical texts?\n\n\n\n\n\n2.3 Example 3: Network Analysis of Renaissance Artists\n\nCodelibrary(igraph)\nlibrary(ggraph)\nlibrary(tidyverse)\n\n# Create a dataset of Renaissance artists and their connections\nrenaissance_connections &lt;- tibble(\n  from = c(\"Leonardo da Vinci\", \"Michelangelo\", \"Raphael\", \n           \"Donatello\", \"Verrocchio\", \"Ghirlandaio\", \"Perugino\", \"Botticelli\", \n           \"Lorenzo de' Medici\", \"Lorenzo de' Medici\", \"Lorenzo de' Medici\",\n           \"Michelangelo\", \"Botticelli\", \"Ghirlandaio\"),\n  to = c(\"Verrocchio\", \"Lorenzo de' Medici\", \"Perugino\", \n         \"Lorenzo de' Medici\", \"Botticelli\", \"Michelangelo\", \"Raphael\", \"Ghirlandaio\", \n         \"Leonardo da Vinci\", \"Michelangelo\", \"Botticelli\",\n         \"Leonardo da Vinci\", \"Verrocchio\", \"Botticelli\"),\n  relationship = c(\"Student\", \"Protégé\", \"Student\", \n                   \"Collaborator\", \"Teacher\", \"Teacher\", \"Teacher\", \"Collaborator\", \n                   \"Patron\", \"Patron\", \"Patron\",\n                   \"Rival\", \"Collaborator\", \"Collaborator\")\n)\n\n# Create the graph\nrenaissance_graph &lt;- graph_from_data_frame(renaissance_connections, directed = FALSE)\n\n# Set node attributes\nV(renaissance_graph)$type &lt;- ifelse(V(renaissance_graph)$name == \"Lorenzo de' Medici\", \"Patron\", \"Artist\")\n\n# Plot the network\nset.seed(123)  # for reproducibility\nggraph(renaissance_graph, layout = \"fr\") +\n  geom_edge_link(aes(edge_colour = relationship), \n                 arrow = arrow(length = unit(4, 'mm'), ends = \"both\", type = \"closed\"),\n                 start_cap = circle(4, 'mm'),\n                 end_cap = circle(4, 'mm'),\n                 edge_width = 1) +\n  geom_node_point(aes(color = type, size = type)) +\n  geom_node_text(aes(label = name), vjust = 1.8, hjust = 0.5, size = 4) +\n  scale_edge_colour_manual(values = c(\"Student\" = \"#4ECDC4\", \"Rival\" = \"#FF6B6B\", \n                                      \"Patron\" = \"#45B7D1\", \"Teacher\" = \"#FFA07A\", \n                                      \"Collaborator\" = \"#98D8C8\", \"Protégé\" = \"#C7F464\")) +\n  scale_color_manual(values = c(\"Artist\" = \"#F7B267\", \"Patron\" = \"#7A6563\")) +\n  scale_size_manual(values = c(\"Artist\" = 12, \"Patron\" = 16)) +\n  theme_void() +\n  labs(title = \"Network of Renaissance Artists and Patrons\",\n       subtitle = \"Showing relationships between key figures of the Italian Renaissance\",\n       caption = \"Data: Simplified representation for educational purposes\") +\n  theme(legend.position = \"bottom\",\n        plot.title = element_text(hjust = 0.5, size = 18, face = \"bold\"),\n        plot.subtitle = element_text(hjust = 0.5, size = 14),\n        plot.caption = element_text(hjust = 1, size = 10),\n        legend.text = element_text(size = 12),\n        legend.title = element_text(size = 14, face = \"bold\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\nDiscussion: Renaissance Art Networks\n\n\n\n\n\n\nWhat insights can we gain about the Renaissance art world from this network visualization?\nHow might the different types of relationships (e.g., teacher-student, patronage) have influenced the development of Renaissance art?\nWhat limitations might this network analysis have in representing the complex historical reality of the Renaissance art world?\nHow could this type of analysis complement traditional art historical research methods?",
     "crumbs": [
       "Book",
       "Introduction to Digital Humanities"
@@ -31,6 +31,34 @@
       "Book",
       "Introduction to Digital Humanities"
     ]
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
+  },
+  {
+    "objectID": "syllabus.html#course-schedule",
+    "href": "syllabus.html#course-schedule",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
+  },
+  {
+    "objectID": "syllabus.html#assessment",
+    "href": "syllabus.html#assessment",
+    "title": "Syllabus",
+    "section": "📊 Assessment",
+    "text": "📊 Assessment\nYour final grade will be composed of the following elements:\n\nMonthly Quiz 📝: 30%\n\nRegular assessments to check your understanding of the course material.\n\nClass Participation and Attendance 🙋‍♀️: 30%\n\nYour active involvement in class discussions and activities is crucial!\n\n\n\n\n\n\n\nImportant\n\n\n\n\nAbsence of one-third of class time, excused or unexcused, will disqualify you from earning credits for the course.\n\n\n\nTerm Paper 📄: 40%\n\n\n\n\n\n\n🎯 Term Project\n\n\n\nA digital humanities project of your choice! You should pick your topic for the term project by week 12. More details will be released later when you have learned R basics."
+  },
+  {
+    "objectID": "syllabus.html#important-pep-talk",
+    "href": "syllabus.html#important-pep-talk",
+    "title": "Syllabus",
+    "section": "🚀 Important Pep Talk!",
+    "text": "🚀 Important Pep Talk!\n\n\n\n\n\n\n💪 Setting the Right Mindset\n\n\n\nRemember these key points while you embark on your DH journey:\n\n\n\nEmbrace the Learning Curve\n\nLearning digital tools and methods is like learning a new language—it takes time and practice.\nDon’t be discouraged by initial difficulties; everyone faces challenges when starting out.\nCelebrate small victories and progress along the way.\n\n\n\nFrustration is Part of Growth\n\nFeeling frustrated? Congratulations! It means you’re pushing your boundaries and learning.\nHadley Wickham (Father of modern R syntax) once said: “Everyone gets frustrated… I still get frustrated occasionally when writing R code. It’s just a natural part of programming.”\nTake breaks when needed, but don’t give up. Return with fresh eyes and renewed determination.\n\n\n\nCultivate Curiosity\n\nApproach new concepts with an open and inquisitive mind.\nAsk questions, explore beyond the course material, and let your curiosity drive your learning.\nDigital humanities is a field of endless possibilities—embrace the excitement of discovery.\n\n\n\nBuild Resilience\n\nExpect challenges and setbacks—they’re not roadblocks, but opportunities to problem-solve.\nDevelop a growth mindset: view difficulties as chances to improve, not as personal shortcomings.\nRemember: every expert was once a beginner. Persistence is key to mastery.\n\n\n\n\n\n\n\nRemember\n\n\n\nI promise you can succeed in this class as long as you put your heart to it. Learning new digital skills may seem daunting at first, but with patience, persistence, and the right mindset, you’ll be amazed at what you can achieve. Don’t hesitate to reach out for help when you need it—we’re all in this learning journey together!"
   },
   {
     "objectID": "slides/s-intro.html#what-is-digital-humanities",
@@ -79,6 +107,20 @@
     "href": "slides/s-intro.html#what-is-digital-humanities-6",
     "title": "Introduction to Digital Humanities",
     "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "slides/s-intro.html#what-is-digital-humanities-7",
+    "href": "slides/s-intro.html#what-is-digital-humanities-7",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "slides/s-intro.html#what-is-digital-humanities-8",
+    "href": "slides/s-intro.html#what-is-digital-humanities-8",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
     "text": "What is digital humanities?🤨\n\n“Digital humanities work is done at the intersection of computational methods and humanities materials.”\n– Johanna Drucker, 2021 📚\n\n\n🔀 Intersection of computation and humanities\n🔗 Combines traditional disciplines with digital tools\n🤝 Collaborative and interdisciplinary\n🔄 Iterative and public-facing\n🔓 Open and accessible"
   },
   {
@@ -86,7 +128,28 @@
     "href": "slides/s-intro.html#components-of-dh-projects",
     "title": "Introduction to Digital Humanities",
     "section": "Components of DH Projects",
-    "text": "Components of DH Projects\n\n📁 MATERIALS (e.g. texts, images, artifacts)\n⚙️ PROCESSING (computational analysis)\n🎨 PRESENTATION (results display)"
+    "text": "Components of DH Projects\n\n📁 MATERIALS\n⚙️ PROCESSING\n🎨 PRESENTATION"
+  },
+  {
+    "objectID": "slides/s-intro.html#dh-materials",
+    "href": "slides/s-intro.html#dh-materials",
+    "title": "Introduction to Digital Humanities",
+    "section": "DH Materials",
+    "text": "DH Materials\n\n💾 Digital or digitized humanities sources\n🖼️ Examples: texts, images, audio, video\n📈 Often large-scale datasets"
+  },
+  {
+    "objectID": "slides/s-intro.html#dh-processing",
+    "href": "slides/s-intro.html#dh-processing",
+    "title": "Introduction to Digital Humanities",
+    "section": "DH Processing",
+    "text": "DH Processing\n\n🧮 Computational methods and tools\n📊 Data analysis and modeling\n🤖 Machine learning and AI applications"
+  },
+  {
+    "objectID": "slides/s-intro.html#dh-presentation",
+    "href": "slides/s-intro.html#dh-presentation",
+    "title": "Introduction to Digital Humanities",
+    "section": "DH Presentation",
+    "text": "DH Presentation\n\n📊 Visualizations\n🗄️ Digital archives\n🖱️ Interactive platforms\n🗃️ Databases"
   },
   {
     "objectID": "slides/s-intro.html#example-mapping-the-republic-of-letters",
@@ -128,83 +191,135 @@
     "href": "slides/s-intro.html#example-mapping-the-republic-of-letters-5",
     "title": "Introduction to Digital Humanities",
     "section": "Example: Mapping the Republic of Letters",
-    "text": "Example: Mapping the Republic of Letters\nIf you were the project director, what would the workflow look like? 🧐\nLetters of correspondence between\n\n🔄 Mediation/remediation\n📊 Datafication/modeling\n🧮 Processing/analytics\n📈 Presentation/display\n🔐 Sustainability/preservation"
+    "text": "Example: Mapping the Republic of Letters\n🧐 How is the project different from a traditional humanities project? Discuss in pairs to identify key differences between traditional humanities and DH."
   },
   {
-    "objectID": "slides/s-intro.html#discussion-questions",
-    "href": "slides/s-intro.html#discussion-questions",
+    "objectID": "slides/s-intro.html#digital-humanities-vs-traditional-humanities",
+    "href": "slides/s-intro.html#digital-humanities-vs-traditional-humanities",
     "title": "Introduction to Digital Humanities",
-    "section": "Discussion Questions",
-    "text": "Discussion Questions\n💡 Does humanities need computational methods?\n🤖 Can algorithms understand cultural nuances?\n🧑 Are we losing the “human” in digital humanities?\n⚖️ How does DH change humanities research?"
-  },
-  {
-    "objectID": "slides/s-intro.html#traditional-vs-digital-humanities",
-    "href": "slides/s-intro.html#traditional-vs-digital-humanities",
-    "title": "Introduction to Digital Humanities",
-    "section": "Traditional vs Digital Humanities",
-    "text": "Traditional vs Digital Humanities\n\n\nTraditional:\n\n🔎 Limited by human capacity\n🧑‍🏫 Individual research\n📚 Books and articles\n\n\nDigital:\n\n📊 Handles large datasets\n👥 Team-based projects\n🖥️ Diverse digital outputs"
-  },
-  {
-    "objectID": "slides/s-intro.html#dh-materials",
-    "href": "slides/s-intro.html#dh-materials",
-    "title": "Introduction to Digital Humanities",
-    "section": "DH Materials",
-    "text": "DH Materials\n\n\n💾 Digital or digitized humanities sources\n🖼️ Examples: texts, images, audio, video\n📈 Often large-scale datasets"
-  },
-  {
-    "objectID": "slides/s-intro.html#dh-processing",
-    "href": "slides/s-intro.html#dh-processing",
-    "title": "Introduction to Digital Humanities",
-    "section": "DH Processing",
-    "text": "DH Processing\n\n\n🧮 Computational methods and tools\n📊 Data analysis and modeling\n🤖 Machine learning and AI applications"
-  },
-  {
-    "objectID": "slides/s-intro.html#dh-presentation",
-    "href": "slides/s-intro.html#dh-presentation",
-    "title": "Introduction to Digital Humanities",
-    "section": "DH Presentation",
-    "text": "DH Presentation\n\n\n📊 Visualizations\n🗄️ Digital archives\n🖱️ Interactive platforms\n🗃️ Databases"
-  },
-  {
-    "objectID": "slides/s-intro.html#fundamental-dh-activities",
-    "href": "slides/s-intro.html#fundamental-dh-activities",
-    "title": "Introduction to Digital Humanities",
-    "section": "Fundamental DH Activities",
-    "text": "Fundamental DH Activities\n\n\n🔄 Mediation/remediation\n🔢 Datafication/modeling\n🧮 Processing/analytics\n📊 Presentation/display\n💾 Sustainability/preservation"
-  },
-  {
-    "objectID": "slides/s-intro.html#challenges-in-dh-12",
-    "href": "slides/s-intro.html#challenges-in-dh-12",
-    "title": "Introduction to Digital Humanities",
-    "section": "Challenges in DH (1/2)",
-    "text": "Challenges in DH (1/2)\n\n\n⚖️ Balancing quantitative and qualitative analysis\n🌫️ Dealing with ambiguity in humanities data\n🧭 Ensuring methods serve humanistic inquiry"
-  },
-  {
-    "objectID": "slides/s-intro.html#challenges-in-dh-22",
-    "href": "slides/s-intro.html#challenges-in-dh-22",
-    "title": "Introduction to Digital Humanities",
-    "section": "Challenges in DH (2/2)",
-    "text": "Challenges in DH (2/2)\n\n\n🔍 Ethical considerations in data use\n🔄 Long-term preservation of digital projects"
-  },
-  {
-    "objectID": "slides/s-intro.html#the-humanists-role-in-dh",
-    "href": "slides/s-intro.html#the-humanists-role-in-dh",
-    "title": "Introduction to Digital Humanities",
-    "section": "The Humanist’s Role in DH",
-    "text": "The Humanist’s Role in DH\n\n\n🧑‍🏫 Central to all project components\n🧠 Brings critical thinking skills\n🧭 Guides research questions\n🔍 Interprets results in context\n🛡️ Addresses ethical considerations"
-  },
-  {
-    "objectID": "slides/s-intro.html#looking-ahead-in-dh",
-    "href": "slides/s-intro.html#looking-ahead-in-dh",
-    "title": "Introduction to Digital Humanities",
-    "section": "Looking Ahead in DH",
-    "text": "Looking Ahead in DH\n\n\n🚀 Rapidly evolving field\n💡 New approaches to humanities questions\n📚 Requires ongoing learning\n🤝 Opportunities for innovative research"
+    "section": "Digital Humanities vs Traditional Humanities",
+    "text": "Digital Humanities vs Traditional Humanities\n\n\nTraditional Humanities:\n\n🔎 Limited by human reading capacity\n🧑‍🏫 Often individual research\n📚 Primarily books and articles\n🖋️ Close reading and interpretation\n🏛️ Focus on canonical works\n🗂️ Manual data collection and analysis\n🌐 Geographically limited research scope\n🕰️ Time-intensive archival research\n📊 Limited quantitative analysis\n🎭 Emphasis on qualitative methods\n\n\nDigital Humanities:\n\n📊 Handles large datasets and corpora\n👥 Often team-based, interdisciplinary projects\n🖥️ Diverse digital outputs (visualizations, databases, etc.)\n🔍 Distant reading and pattern recognition\n📜 Inclusion of non-canonical texts and artifacts\n🤖 Automated data collection and processing\n🌍 Global reach through digital archives\n⚡ Rapid processing of vast information\n📈 Advanced statistical and computational analysis\n🔀 Integration of quantitative and qualitative methods"
   },
   {
     "objectID": "slides/s-intro.html#reflection",
     "href": "slides/s-intro.html#reflection",
     "title": "Introduction to Digital Humanities",
     "section": "Reflection",
-    "text": "Reflection\n🤔 How might DH methods transform your area of study?\nDiscuss with a partner, then share with the class.\n\n\n\n\nMeng Liu | SEIS BFSU"
+    "text": "Reflection\n💡 Does humanities need computational methods?\n🧑 Are we losing the “human” in digital humanities?\n⚖️ How might DH methods transform your area of study?\nDiscuss with a partner, then share with the class.\n\n\n\n\nMeng Liu | SEIS BFSU"
+  },
+  {
+    "objectID": "book/index.html",
+    "href": "book/index.html",
+    "title": "Preface",
+    "section": "",
+    "text": "This is the textbook for the course Introduction to Digital Humanities taught by Meng Liu, at the School of English and International Studies, Beijing Foreign Studies University.\nIntroduction to Digital Humanities explores the intersection of humanities scholarship and digital methodologies. Students will learn how computational techniques can enhance humanities research, covering key concepts in digital humanities, modern R programming, and various analytical methods including quantitative text analysis, topic modeling, sentiment analysis, and social network analysis. Through hands-on application of digital tools to humanities data, students will develop both technical skills and critical thinking abilities. The course progresses from foundational programming to advanced analytical techniques, concluding with discussions on ethics and AI in humanities scholarship. By the end of the course, students will be equipped with a versatile toolkit for innovative, data-driven humanities research, suitable for those seeking to expand their methodological approach to cultural studies.\nThe content of the book is updated on a regular basis as the course progresses.",
+    "crumbs": [
+      "Book",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "book/index.html#introduction-and-welcome-slides",
+    "href": "book/index.html#introduction-and-welcome-slides",
+    "title": "Preface",
+    "section": "Introduction and welcome slides",
+    "text": "Introduction and welcome slides",
+    "crumbs": [
+      "Book",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "book/02-R.html",
+    "href": "book/02-R.html",
+    "title": "Getting Started with R",
+    "section": "",
+    "text": "We will do all of your analysis with the open source (and free!) programming language R. We will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations produces the actual statistics and graphical output, while RStudio provides a nice interface for running R code.",
+    "crumbs": [
+      "Book",
+      "Getting Started with R"
+    ]
+  },
+  {
+    "objectID": "book/02-R.html#r-and-rstudio",
+    "href": "book/02-R.html#r-and-rstudio",
+    "title": "Getting Started with R",
+    "section": "",
+    "text": "We will do all of your analysis with the open source (and free!) programming language R. We will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations produces the actual statistics and graphical output, while RStudio provides a nice interface for running R code.",
+    "crumbs": [
+      "Book",
+      "Getting Started with R"
+    ]
+  },
+  {
+    "objectID": "book/02-R.html#online-help",
+    "href": "book/02-R.html#online-help",
+    "title": "Getting Started with R",
+    "section": "2 Online Help",
+    "text": "2 Online Help\nData science and statistical programming can be difficult. Computers are stupid and little errors in your code can cause hours of headache (even if you’ve been doing this stuff for years!).\nFortunately there are tons of online resources to help you with this. Two of the most important are StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and Posit Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nIf you use Mastodon or Twitter/X, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful.\nChatGPT is generally relatively okay with R questions, but it may hallucinate responses—it sometimes imagine packages that don’t exist and then give you answers with them. Think of it as glorified autocomplete. I’d encourage you to read the first few paragraphs here about a few important things to keep in mind when using ChatGPT, though.\nSearching for help with R on Google can sometimes be tricky because the program name is, um, a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).",
+    "crumbs": [
+      "Book",
+      "Getting Started with R"
+    ]
+  },
+  {
+    "objectID": "book/02-R.html#installation-guide",
+    "href": "book/02-R.html#installation-guide",
+    "title": "Getting Started with R",
+    "section": "3 Installation Guide",
+    "text": "3 Installation Guide\n\n3.1 Install R\nFirst you need to install R itself (the engine).\n\nGo to the CRAN (Collective R Archive Network) website: https://cran.r-project.org/\nClick on “Download R for XXX”, where XXX is either Mac or Windows: \n\nIf you use macOS, scroll down to the first .pkg file in the list of files (in this picture, it’s R-4.0.0.pkg; as of right now, the current version is 4.4.1) and download it.\n\n\n\nIf you use Windows, click “base” (or click on the bolded “install R for the first time” link) and download it. \n\nDouble click on the downloaded file (check your Downloads folder). Click yes through all the prompts to install like any other program.\nIf you use macOS, download and install XQuartz. You do not need to do this on Windows.\n\n\n\n3.2 Install RStudio\nNext, you need to install RStudio, the nicer graphical user interface (GUI) for R (the dashboard). Once R and RStudio are both installed, you can ignore R and only use RStudio. RStudio will use R automatically and you won’t ever have to interact with it directly.\n\nGo to the free download location on RStudio’s website: https://www.rstudio.com/products/rstudio/download/#download\nThe website should automatically detect your operating system (macOS or Windows) and show a big download button for it: \nIf not, scroll down a little to the large table and choose the version of RStudio that matches your operating system.\n\nDouble click on the downloaded file (again, check your Downloads folder). Click yes through all the prompts to install like any other program.\n\nDouble click on RStudio to run it (check your applications folder or start menu).\n\n\n3.3 Install tidyverse\nR packages are easy to install with RStudio. Select the packages panel, click on “Install,” type the name of the package you want to install, and press enter. \nThis can sometimes be tedious when you’re installing lots of packages, though. The tidyverse, for instance, consists of dozens of packages (including {ggplot2}) that all work together. Rather than install each individually, you can install a single magical package and get them all at the same time.\nGo to the packages panel in RStudio, click on “Install,” type “tidyverse”, and press enter. You’ll see a bunch of output in the RStudio console as all the tidyverse packages are installed. \nNotice also that RStudio will generate a line of code for you and run it: install.packages(\"tidyverse\"). You can also just paste and run this instead of using the packages panel.\n\n\n3.4 Install tinytex (Optional, this is for rendering PDF files)\nWhen you knit to PDF, R uses a special scientific typesetting program named LaTeX (pronounced “lay-tek” or “lah-tex”; for goofy nerdy reasons, the x is technically the “ch” sound in “Bach”, but most people just say it as “k”—saying “layteks” is frowned on for whatever reason).\nLaTeX is neat and makes pretty documents, but it’s a huge program—the macOS version, for instance, is nearly 4 GB! To make life easier, there’s an R package named {tinytex} that installs a minimal LaTeX program and that automatically deals with differences between macOS and Windows.\nHere’s how to install {tinytex} so you can knit to pretty PDFs:\n\nUse the Packages in panel in RStudio to install {tinytex} like you did above with {tidyverse}. Alternatively, run install.packages(\"tinytex\") in the console.\nRun tinytex::install_tinytex() in the console.\nWait for a bit while R downloads and installs everything you need.\nThe end! You should now be able to knit to PDF.\n\nCredit: this installation guide was adpated from the guide by Dr Andrew Heiss at Georgia State University.",
+    "crumbs": [
+      "Book",
+      "Getting Started with R"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Digital Humanities",
+    "section": "",
+    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "Introduction to Digital Humanities",
+    "section": "",
+    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
+  },
+  {
+    "objectID": "index.html#course-overview",
+    "href": "index.html#course-overview",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n\n🌱 Foundations\n\nDigital Humanities Overview\n\n\n\n🛠️ Core DH Techniques\n\nR Programming Basics\nQuantitative Text Analysis\n\n\n\n🚀 Specialized Topics\n\nTopic Modelling\nSentiment Analysis\nSocial Network Analysis"
+  },
+  {
+    "objectID": "slides/s-preface.html#course-overview",
+    "href": "slides/s-preface.html#course-overview",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n🎒 Course design:\n\nWith a more pratical focus on DH methods using R\nLectures followed by practical sessions with R\nBring your laptop 💻\n\n🏠 Course platform:\n\n💬 Wechat: notifications + live chats\n🛜 Course website: course materials/code scripts"
+  },
+  {
+    "objectID": "slides/s-preface.html#why-focus-on-dh-methods",
+    "href": "slides/s-preface.html#why-focus-on-dh-methods",
+    "title": "Introduction to Digital Humanities",
+    "section": "Why Focus on DH Methods?",
+    "text": "Why Focus on DH Methods?\n\n🌉 Common ground: Methods bridge diverse humanities disciplines\n🔧 Transferable skills: Applicable across various research areas\n🚀 Future-proofing: Open the door to coding/programming to prepare for the AI age\n🧠 Critical thinking: Enhance analytical skills for all humanities\n💡 Computational thinking: Develop a sense of data and computational thinking"
+  },
+  {
+    "objectID": "slides/s-preface.html#course-overview-1",
+    "href": "slides/s-preface.html#course-overview-1",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n🎯 Learning outcomes:\n\nUnderstand key DH concepts and methodologies\nDevelop basic programming skills in R\nApply digital methods to humanities research questions\nCritically evaluate DH projects and their implications\n\n\n\n\n\n\nMeng Liu | SEIS BFSU"
+  },
+  {
+    "objectID": "toolbox.html#poker-card-ballot-drawer",
+    "href": "toolbox.html#poker-card-ballot-drawer",
+    "title": "Toolbox",
+    "section": "🃏 Poker Card Ballot Drawer",
+    "text": "🃏 Poker Card Ballot Drawer"
   }
 ]
