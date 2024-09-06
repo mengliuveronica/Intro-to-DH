@@ -2,30 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mengliuveronica.github.io/Intro-to-DH/book/01-introduction.html</loc>
-    <lastmod>2024-08-27T12:45:02.659Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mengliuveronica.github.io/Intro-to-DH/slides/s-preface.html</loc>
-    <lastmod>2024-08-27T04:40:17.401Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mengliuveronica.github.io/Intro-to-DH/index.html</loc>
-    <lastmod>2024-08-26T02:32:23.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mengliuveronica.github.io/Intro-to-DH/book/02-R.html</loc>
-    <lastmod>2024-08-22T07:52:15.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mengliuveronica.github.io/Intro-to-DH/book/index.html</loc>
-    <lastmod>2024-08-26T10:45:41.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mengliuveronica.github.io/Intro-to-DH/slides/s-intro.html</loc>
-    <lastmod>2024-08-29T01:36:43.315Z</lastmod>
+    <lastmod>2024-08-27T12:45:02.000Z</lastmod>
   </url>
   <url>
     <loc>https://mengliuveronica.github.io/Intro-to-DH/syllabus.html</loc>
-    <lastmod>2024-08-22T07:37:27.000Z</lastmod>
+    <lastmod>2024-09-05T12:21:32.477Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mengliuveronica.github.io/Intro-to-DH/slides/s-intro.html</loc>
+    <lastmod>2024-08-29T06:41:19.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mengliuveronica.github.io/Intro-to-DH/book/index.html</loc>
+    <lastmod>2024-08-26T10:45:41.023Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mengliuveronica.github.io/Intro-to-DH/book/02-R.html</loc>
+    <lastmod>2024-09-06T04:04:51.584Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mengliuveronica.github.io/Intro-to-DH/index.html</loc>
+    <lastmod>2024-09-05T11:06:51.927Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mengliuveronica.github.io/Intro-to-DH/slides/s-preface.html</loc>
+    <lastmod>2024-08-27T04:39:59.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mengliuveronica.github.io/Intro-to-DH/toolbox.html</loc>
+    <lastmod>2024-09-06T04:05:51.551Z</lastmod>
   </url>
 </urlset>

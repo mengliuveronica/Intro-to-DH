@@ -33,68 +33,32 @@
     ]
   },
   {
-    "objectID": "slides/s-preface.html#course-overview",
-    "href": "slides/s-preface.html#course-overview",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course Overview",
-    "text": "Course Overview\n\n🎒 Course design:\n\nWith a more pratical focus on DH methods using R\nLectures followed by practical sessions with R\nBring your laptop 💻\n\n🏠 Course platform:\n\n💬 Wechat: notifications + live chats\n🛜 Course website: course materials/code scripts"
-  },
-  {
-    "objectID": "slides/s-preface.html#why-focus-on-dh-methods",
-    "href": "slides/s-preface.html#why-focus-on-dh-methods",
-    "title": "Introduction to Digital Humanities",
-    "section": "Why Focus on DH Methods?",
-    "text": "Why Focus on DH Methods?\n\n🌉 Common ground: Methods bridge diverse humanities disciplines\n🔧 Transferable skills: Applicable across various research areas\n🚀 Future-proofing: Open the door to coding/programming to prepare for the AI age\n🧠 Critical thinking: Enhance analytical skills for all humanities\n💡 Computational thinking: Develop a sense of data and computational thinking"
-  },
-  {
-    "objectID": "slides/s-preface.html#course-overview-1",
-    "href": "slides/s-preface.html#course-overview-1",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course Overview",
-    "text": "Course Overview\n\n🎯 Learning outcomes:\n\nUnderstand key DH concepts and methodologies\nDevelop basic programming skills in R\nApply digital methods to humanities research questions\nCritically evaluate DH projects and their implications\n\n\n\n\n\n\nMeng Liu | SEIS BFSU"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction to Digital Humanities",
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
     "section": "",
-    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
   },
   {
-    "objectID": "index.html#course-information",
-    "href": "index.html#course-information",
-    "title": "Introduction to Digital Humanities",
+    "objectID": "syllabus.html#course-schedule",
+    "href": "syllabus.html#course-schedule",
+    "title": "Syllabus",
     "section": "",
-    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
   },
   {
-    "objectID": "index.html#course-overview",
-    "href": "index.html#course-overview",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course Overview",
-    "text": "Course Overview\n\n\n🌱 Foundations\n\nDigital Humanities Overview\n\n\n\n🛠️ Core DH Techniques\n\nR Programming Basics\nQuantitative Text Analysis\n\n\n\n🚀 Specialized Topics\n\nTopic Modelling\nSentiment Analysis\nSocial Network Analysis"
+    "objectID": "syllabus.html#assessment",
+    "href": "syllabus.html#assessment",
+    "title": "Syllabus",
+    "section": "📊 Assessment",
+    "text": "📊 Assessment\nYour final grade will be composed of the following elements:\n\nMonthly Quiz 📝: 30%\n\nRegular assessments to check your understanding of the course material.\n\nClass Participation and Attendance 🙋‍♀️: 30%\n\nYour active involvement in class discussions and activities is crucial!\n\n\n\n\n\n\n\nImportant\n\n\n\n\nAbsence of one-third of class time, excused or unexcused, will disqualify you from earning credits for the course.\n\n\n\nTerm Paper 📄: 40%\n\n\n\n\n\n\n🎯 Term Project\n\n\n\nA digital humanities project of your choice! You should pick your topic for the term project by week 12. More details will be released later when you have learned R basics."
   },
   {
-    "objectID": "book/index.html",
-    "href": "book/index.html",
-    "title": "Preface",
-    "section": "",
-    "text": "This is the textbook for the course Introduction to Digital Humanities taught by Meng Liu, at the School of English and International Studies, Beijing Foreign Studies University.\nIntroduction to Digital Humanities explores the intersection of humanities scholarship and digital methodologies. Students will learn how computational techniques can enhance humanities research, covering key concepts in digital humanities, modern R programming, and various analytical methods including quantitative text analysis, topic modeling, sentiment analysis, and social network analysis. Through hands-on application of digital tools to humanities data, students will develop both technical skills and critical thinking abilities. The course progresses from foundational programming to advanced analytical techniques, concluding with discussions on ethics and AI in humanities scholarship. By the end of the course, students will be equipped with a versatile toolkit for innovative, data-driven humanities research, suitable for those seeking to expand their methodological approach to cultural studies.\nThe content of the book is updated on a regular basis as the course progresses.",
-    "crumbs": [
-      "Book",
-      "Preface"
-    ]
-  },
-  {
-    "objectID": "book/index.html#introduction-and-welcome-slides",
-    "href": "book/index.html#introduction-and-welcome-slides",
-    "title": "Preface",
-    "section": "Introduction and welcome slides",
-    "text": "Introduction and welcome slides",
-    "crumbs": [
-      "Book",
-      "Preface"
-    ]
+    "objectID": "syllabus.html#important-pep-talk",
+    "href": "syllabus.html#important-pep-talk",
+    "title": "Syllabus",
+    "section": "🚀 Important Pep Talk!",
+    "text": "🚀 Important Pep Talk!\n\n\n\n\n\n\n💪 Setting the Right Mindset\n\n\n\nRemember these key points while you embark on your DH journey:\n\n\n\nEmbrace the Learning Curve\n\nLearning digital tools and methods is like learning a new language—it takes time and practice.\nDon’t be discouraged by initial difficulties; everyone faces challenges when starting out.\nCelebrate small victories and progress along the way.\n\n\n\nFrustration is Part of Growth\n\nFeeling frustrated? Congratulations! It means you’re pushing your boundaries and learning.\nHadley Wickham (Father of modern R syntax) once said: “Everyone gets frustrated… I still get frustrated occasionally when writing R code. It’s just a natural part of programming.”\nTake breaks when needed, but don’t give up. Return with fresh eyes and renewed determination.\n\n\n\nCultivate Curiosity\n\nApproach new concepts with an open and inquisitive mind.\nAsk questions, explore beyond the course material, and let your curiosity drive your learning.\nDigital humanities is a field of endless possibilities—embrace the excitement of discovery.\n\n\n\nBuild Resilience\n\nExpect challenges and setbacks—they’re not roadblocks, but opportunities to problem-solve.\nDevelop a growth mindset: view difficulties as chances to improve, not as personal shortcomings.\nRemember: every expert was once a beginner. Persistence is key to mastery.\n\n\n\n\n\n\n\nRemember\n\n\n\nI promise you can succeed in this class as long as you put your heart to it. Learning new digital skills may seem daunting at first, but with patience, persistence, and the right mindset, you’ll be amazed at what you can achieve. Don’t hesitate to reach out for help when you need it—we’re all in this learning journey together!"
   },
   {
     "objectID": "slides/s-intro.html#what-is-digital-humanities",
@@ -143,6 +107,20 @@
     "href": "slides/s-intro.html#what-is-digital-humanities-6",
     "title": "Introduction to Digital Humanities",
     "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "slides/s-intro.html#what-is-digital-humanities-7",
+    "href": "slides/s-intro.html#what-is-digital-humanities-7",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "slides/s-intro.html#what-is-digital-humanities-8",
+    "href": "slides/s-intro.html#what-is-digital-humanities-8",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
     "text": "What is digital humanities?🤨\n\n“Digital humanities work is done at the intersection of computational methods and humanities materials.”\n– Johanna Drucker, 2021 📚\n\n\n🔀 Intersection of computation and humanities\n🔗 Combines traditional disciplines with digital tools\n🤝 Collaborative and interdisciplinary\n🔄 Iterative and public-facing\n🔓 Open and accessible"
   },
   {
@@ -150,7 +128,7 @@
     "href": "slides/s-intro.html#components-of-dh-projects",
     "title": "Introduction to Digital Humanities",
     "section": "Components of DH Projects",
-    "text": "Components of DH Projects\n\n📁 MATERIALS\n⚙️ PROCESSING\n🎨 PRESENTATION\n\n[Can you think of any examples?].{centered}"
+    "text": "Components of DH Projects\n\n📁 MATERIALS\n⚙️ PROCESSING\n🎨 PRESENTATION"
   },
   {
     "objectID": "slides/s-intro.html#dh-materials",
@@ -213,7 +191,7 @@
     "href": "slides/s-intro.html#example-mapping-the-republic-of-letters-5",
     "title": "Introduction to Digital Humanities",
     "section": "Example: Mapping the Republic of Letters",
-    "text": "Example: Mapping the Republic of Letters\n🧐 How is the workflow different from a traditional humanities project? Discuss in pairs to identify key differences between traditional humanities and DH."
+    "text": "Example: Mapping the Republic of Letters\n🧐 How is the project different from a traditional humanities project? Discuss in pairs to identify key differences between traditional humanities and DH."
   },
   {
     "objectID": "slides/s-intro.html#digital-humanities-vs-traditional-humanities",
@@ -230,31 +208,118 @@
     "text": "Reflection\n💡 Does humanities need computational methods?\n🧑 Are we losing the “human” in digital humanities?\n⚖️ How might DH methods transform your area of study?\nDiscuss with a partner, then share with the class.\n\n\n\n\nMeng Liu | SEIS BFSU"
   },
   {
-    "objectID": "syllabus.html",
-    "href": "syllabus.html",
-    "title": "Syllabus",
+    "objectID": "book/index.html",
+    "href": "book/index.html",
+    "title": "Preface",
     "section": "",
-    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
+    "text": "This is the textbook for the course Introduction to Digital Humanities taught by Meng Liu, at the School of English and International Studies, Beijing Foreign Studies University.\nIntroduction to Digital Humanities explores the intersection of humanities scholarship and digital methodologies. Students will learn how computational techniques can enhance humanities research, covering key concepts in digital humanities, modern R programming, and various analytical methods including quantitative text analysis, topic modeling, sentiment analysis, and social network analysis. Through hands-on application of digital tools to humanities data, students will develop both technical skills and critical thinking abilities. The course progresses from foundational programming to advanced analytical techniques, concluding with discussions on ethics and AI in humanities scholarship. By the end of the course, students will be equipped with a versatile toolkit for innovative, data-driven humanities research, suitable for those seeking to expand their methodological approach to cultural studies.\nThe content of the book is updated on a regular basis as the course progresses.",
+    "crumbs": [
+      "Book",
+      "Preface"
+    ]
   },
   {
-    "objectID": "syllabus.html#course-schedule",
-    "href": "syllabus.html#course-schedule",
-    "title": "Syllabus",
+    "objectID": "book/index.html#introduction-and-welcome-slides",
+    "href": "book/index.html#introduction-and-welcome-slides",
+    "title": "Preface",
+    "section": "Introduction and welcome slides",
+    "text": "Introduction and welcome slides",
+    "crumbs": [
+      "Book",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "book/02-R.html",
+    "href": "book/02-R.html",
+    "title": "Getting Started with R",
     "section": "",
-    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-4\n9.14, 9.23, 9.30\nR Programming Basics\n\n\n5-7\n10.7, 10.14, 10.21\nQuantitative Text Analysis\n\n\n8-10\n10.28, 11.4, 11.11\nTopic Modelling\n\n\n11-12\n11.18, 11.25\nSentiment Analysis\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment"
+    "text": "We will do all of your analysis with the open source (and free!) programming language R. We will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations produces the actual statistics and graphical output, while RStudio provides a nice interface for running R code.",
+    "crumbs": [
+      "Book",
+      "Getting Started with R"
+    ]
   },
   {
-    "objectID": "syllabus.html#assessment",
-    "href": "syllabus.html#assessment",
-    "title": "Syllabus",
-    "section": "📊 Assessment",
-    "text": "📊 Assessment\nYour final grade will be composed of the following elements:\n\nMonthly Quiz 📝: 40%\n\nRegular assessments to check your understanding of the course material.\n\nClass Participation and Attendance 🙋‍♀️: 20%\n\nYour active involvement in class discussions and activities is crucial!\n\n\n\n\n\n\n\nImportant\n\n\n\n\nAbsence of one-third of class time, excused or unexcused, will disqualify you from earning credits for the course.\n\n\n\nTerm Paper 📄: 40%\n\n\n\n\n\n\n🎯 Term Project\n\n\n\nA digital humanities project of your choice! You should pick your topic for the term project by week 12. More details will be released later when you have learned R basics."
+    "objectID": "book/02-R.html#r-and-rstudio",
+    "href": "book/02-R.html#r-and-rstudio",
+    "title": "Getting Started with R",
+    "section": "",
+    "text": "We will do all of your analysis with the open source (and free!) programming language R. We will use RStudio as the main program to access R. Think of R as an engine and RStudio as a car dashboard—R handles all the calculations produces the actual statistics and graphical output, while RStudio provides a nice interface for running R code.",
+    "crumbs": [
+      "Book",
+      "Getting Started with R"
+    ]
   },
   {
-    "objectID": "syllabus.html#ground-rules",
-    "href": "syllabus.html#ground-rules",
-    "title": "Syllabus",
-    "section": "🚀 Ground Rules",
-    "text": "🚀 Ground Rules\n\n\n\n\n\n\n🫡 Ground Rules\n\n\n\nPlease adhere to these core principles throughout the course:\n\n\n\nBe Open-Minded\n\nApproach new concepts and methods without preconceptions.\nSet aside any stereotypes or misconceptions about digital technologies in humanities.\nRemain receptive to diverse perspectives and unconventional ideas.\n\n\n\nEmbrace Frustration as Progress\n\nUnderstand that frustration is a normal part of the learning process.\nView challenges as opportunities for growth rather than obstacles.\nGive yourself time to work through difficult concepts or technical issues.\n\n\n\nOwn Your Learning\n\nTake responsibility for your learning in this course.\nActively seek out resources and ask questions when you need help.\nSet personal learning goals and work consistently towards achieving them.\n\n\n\nDon’t Fool Yourself\n\nBe honest about your understanding and progress.\nAcknowledge your limitations and areas for improvement.\nCritically examine your assumptions and conclusions.\n\n\n\n\n\n\n\nRemember\n\n\n\nBy following these principles, you’ll create a positive learning experience for yourself and contribute to a supportive classroom environment for everyone."
+    "objectID": "book/02-R.html#online-help",
+    "href": "book/02-R.html#online-help",
+    "title": "Getting Started with R",
+    "section": "2 Online Help",
+    "text": "2 Online Help\nData science and statistical programming can be difficult. Computers are stupid and little errors in your code can cause hours of headache (even if you’ve been doing this stuff for years!).\nFortunately there are tons of online resources to help you with this. Two of the most important are StackOverflow (a Q&A site with hundreds of thousands of answers to all sorts of programming questions) and Posit Community (a forum specifically designed for people using RStudio and the tidyverse (i.e. you)).\nIf you use Mastodon or Twitter/X, post R-related questions and content with #rstats. The community there is exceptionally generous and helpful.\nChatGPT is generally relatively okay with R questions, but it may hallucinate responses—it sometimes imagine packages that don’t exist and then give you answers with them. Think of it as glorified autocomplete. I’d encourage you to read the first few paragraphs here about a few important things to keep in mind when using ChatGPT, though.\nSearching for help with R on Google can sometimes be tricky because the program name is, um, a single letter. Google is generally smart enough to figure out what you mean when you search for “r scatterplot”, but if it does struggle, try searching for “rstats” instead (e.g. “rstats scatterplot”). Also, since most of your R work will deal with {ggplot2}, it’s often easier to just search for that instead of the letter “r” (e.g. “ggplot scatterplot”).",
+    "crumbs": [
+      "Book",
+      "Getting Started with R"
+    ]
+  },
+  {
+    "objectID": "book/02-R.html#installation-guide",
+    "href": "book/02-R.html#installation-guide",
+    "title": "Getting Started with R",
+    "section": "3 Installation Guide",
+    "text": "3 Installation Guide\n\n3.1 Install R\nFirst you need to install R itself (the engine).\n\nGo to the CRAN (Collective R Archive Network) website: https://cran.r-project.org/\nClick on “Download R for XXX”, where XXX is either Mac or Windows: \n\nIf you use macOS, scroll down to the first .pkg file in the list of files (in this picture, it’s R-4.0.0.pkg; as of right now, the current version is 4.4.1) and download it.\n\n\n\nIf you use Windows, click “base” (or click on the bolded “install R for the first time” link) and download it. \n\nDouble click on the downloaded file (check your Downloads folder). Click yes through all the prompts to install like any other program.\nIf you use macOS, download and install XQuartz. You do not need to do this on Windows.\n\n\n\n3.2 Install RStudio\nNext, you need to install RStudio, the nicer graphical user interface (GUI) for R (the dashboard). Once R and RStudio are both installed, you can ignore R and only use RStudio. RStudio will use R automatically and you won’t ever have to interact with it directly.\n\nGo to the free download location on RStudio’s website: https://www.rstudio.com/products/rstudio/download/#download\nThe website should automatically detect your operating system (macOS or Windows) and show a big download button for it: \nIf not, scroll down a little to the large table and choose the version of RStudio that matches your operating system.\n\nDouble click on the downloaded file (again, check your Downloads folder). Click yes through all the prompts to install like any other program.\n\nDouble click on RStudio to run it (check your applications folder or start menu).\n\n\n3.3 Install tidyverse\nR packages are easy to install with RStudio. Select the packages panel, click on “Install,” type the name of the package you want to install, and press enter. \nThis can sometimes be tedious when you’re installing lots of packages, though. The tidyverse, for instance, consists of dozens of packages (including {ggplot2}) that all work together. Rather than install each individually, you can install a single magical package and get them all at the same time.\nGo to the packages panel in RStudio, click on “Install,” type “tidyverse”, and press enter. You’ll see a bunch of output in the RStudio console as all the tidyverse packages are installed. \nNotice also that RStudio will generate a line of code for you and run it: install.packages(\"tidyverse\"). You can also just paste and run this instead of using the packages panel.\n\n\n3.4 Install tinytex (Optional, this is for rendering PDF files)\nWhen you knit to PDF, R uses a special scientific typesetting program named LaTeX (pronounced “lay-tek” or “lah-tex”; for goofy nerdy reasons, the x is technically the “ch” sound in “Bach”, but most people just say it as “k”—saying “layteks” is frowned on for whatever reason).\nLaTeX is neat and makes pretty documents, but it’s a huge program—the macOS version, for instance, is nearly 4 GB! To make life easier, there’s an R package named {tinytex} that installs a minimal LaTeX program and that automatically deals with differences between macOS and Windows.\nHere’s how to install {tinytex} so you can knit to pretty PDFs:\n\nUse the Packages in panel in RStudio to install {tinytex} like you did above with {tidyverse}. Alternatively, run install.packages(\"tinytex\") in the console.\nRun tinytex::install_tinytex() in the console.\nWait for a bit while R downloads and installs everything you need.\nThe end! You should now be able to knit to PDF.\n\nCredit: this installation guide was adpated from the guide by Dr Andrew Heiss at Georgia State University.",
+    "crumbs": [
+      "Book",
+      "Getting Started with R"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Digital Humanities",
+    "section": "",
+    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "Introduction to Digital Humanities",
+    "section": "",
+    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
+  },
+  {
+    "objectID": "index.html#course-overview",
+    "href": "index.html#course-overview",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n\n🌱 Foundations\n\nDigital Humanities Overview\n\n\n\n🛠️ Core DH Techniques\n\nR Programming Basics\nQuantitative Text Analysis\n\n\n\n🚀 Specialized Topics\n\nTopic Modelling\nSentiment Analysis\nSocial Network Analysis"
+  },
+  {
+    "objectID": "slides/s-preface.html#course-overview",
+    "href": "slides/s-preface.html#course-overview",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n🎒 Course design:\n\nWith a more pratical focus on DH methods using R\nLectures followed by practical sessions with R\nBring your laptop 💻\n\n🏠 Course platform:\n\n💬 Wechat: notifications + live chats\n🛜 Course website: course materials/code scripts"
+  },
+  {
+    "objectID": "slides/s-preface.html#why-focus-on-dh-methods",
+    "href": "slides/s-preface.html#why-focus-on-dh-methods",
+    "title": "Introduction to Digital Humanities",
+    "section": "Why Focus on DH Methods?",
+    "text": "Why Focus on DH Methods?\n\n🌉 Common ground: Methods bridge diverse humanities disciplines\n🔧 Transferable skills: Applicable across various research areas\n🚀 Future-proofing: Open the door to coding/programming to prepare for the AI age\n🧠 Critical thinking: Enhance analytical skills for all humanities\n💡 Computational thinking: Develop a sense of data and computational thinking"
+  },
+  {
+    "objectID": "slides/s-preface.html#course-overview-1",
+    "href": "slides/s-preface.html#course-overview-1",
+    "title": "Introduction to Digital Humanities",
+    "section": "Course Overview",
+    "text": "Course Overview\n\n🎯 Learning outcomes:\n\nUnderstand key DH concepts and methodologies\nDevelop basic programming skills in R\nApply digital methods to humanities research questions\nCritically evaluate DH projects and their implications\n\n\n\n\n\n\nMeng Liu | SEIS BFSU"
+  },
+  {
+    "objectID": "toolbox.html#poker-card-ballot-drawer",
+    "href": "toolbox.html#poker-card-ballot-drawer",
+    "title": "Toolbox",
+    "section": "🃏 Poker Card Ballot Drawer",
+    "text": "🃏 Poker Card Ballot Drawer"
   }
 ]

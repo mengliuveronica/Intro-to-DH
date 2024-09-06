@@ -69,6 +69,19 @@ format:
 
 ---
 
+## What is digital humanities?🤨 
+
+![](/images/dh4.png){.absolute top=100 left=0 right=0 height="80%"}
+
+
+---
+
+## What is digital humanities?🤨 
+
+![](/images/dh5.png){.absolute top=100 left=0 right=0 height="80%"}
+
+---
+
 
 ## What is digital humanities?🤨 
 
@@ -89,8 +102,6 @@ format:
 1. 📁 MATERIALS 
 2. ⚙️ PROCESSING 
 3. 🎨 PRESENTATION 
-
-[Can you think of any examples?].{centered}
 
 ---
 
@@ -120,18 +131,6 @@ format:
 - 🖱️ Interactive platforms
 - 🗃️ Databases
 
-
----
-
-# Digital Humanities Workflow
-
-The fundamental activities in digital humanities projects typically include:
-
-1. 🔄 Mediation/remediation
-2. 📊 Datafication/modeling 
-3. 🧮 Processing/analytics
-4. 📈 Presentation/display
-5. 🔐 Sustainability/preservation
 
 ---
 
@@ -187,7 +186,7 @@ The fundamental activities in digital humanities projects typically include:
 
 ## Example: Mapping the Republic of Letters
 
-### 🧐 How is the workflow different from a traditional humanities project? Discuss in pairs to identify key differences between traditional humanities and DH. {.centered}
+### 🧐 How is the project different from a traditional humanities project? Discuss in pairs to identify key differences between traditional humanities and DH. {.centered}
 
 ---
 
