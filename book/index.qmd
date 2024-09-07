@@ -31,6 +31,6 @@ Note that this is for learning purposes only, please do not distribute.
 
 
 
-## Introduction and welcome slides {.unnumbered}
+## Introduction and Welcome Slides {.unnumbered}
 
 <iframe src="../slides/s-preface.html" width="100%" height="500px"></iframe>

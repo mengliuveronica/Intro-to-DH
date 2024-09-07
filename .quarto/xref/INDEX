@@ -1,47 +1,26 @@
 {
-  "index.qmd": {
-    "index.html": "3ff93813"
-  },
-  "about.qmd": {
-    "about.html": "dcd69ae9"
-  },
-  "book/1-intro.qmd": {
-    "1-intro.html": "9f543901"
+  "book/02-R.qmd": {
+    "02-R.html": "b89da221"
   },
   "book/index.qmd": {
-    "index.html": "9936e19d"
+    "index.html": "fcb7bb74"
   },
-  "book/0-syllabus.qmd": {
-    "0-syllabus.html": "a473fdfe"
-  },
-  "book/references.qmd": {
-    "references.html": "305196f9"
-  },
-  "syllabus.qmd": {
-    "syllabus.html": "ce6360f7"
-  },
-  "book/01-introduction.qmd": {
-    "01-introduction.html": "02dbb51c"
-  },
-  "book/02-chapter2.qmd": {
-    "02-chapter2.html": "77d73be9"
-  },
-  "book/slides/00-slides.qmd": {
-    "00-slides.html": "6296b399"
-  },
-  "book/02-R.qmd": {
-    "02-R.html": "bbc394d3"
-  },
-  "slides/s-preface.qmd": {
-    "s-preface.html": "0c0f854f"
-  },
-  "book/slides/s-preface.qmd": {
-    "s-preface.html": "9b0a87d0"
+  "index.qmd": {
+    "index.html": "ef3f4dd8"
   },
   "slides/s-intro.qmd": {
-    "s-intro.html": "87a4dcb7"
+    "s-intro.html": "a6163a08"
+  },
+  "slides/s-preface.qmd": {
+    "s-preface.html": "db43b5bf"
+  },
+  "syllabus.qmd": {
+    "syllabus.html": "84bdf05a"
   },
   "toolbox.qmd": {
-    "toolbox.html": "f020951c"
+    "toolbox.html": "74a69049"
+  },
+  "book/01-introduction.qmd": {
+    "01-introduction.html": "59fd3a35"
   }
 }

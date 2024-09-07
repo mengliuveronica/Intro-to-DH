@@ -233,12 +233,26 @@ plot <- ggraph(empresses_graph, layout = "fr") +
   ) 
 # Display the plot
 print(plot)
+```
 
+This visualization shows the complex network of relationships between characters in the Chinese drama "Empresses in the Palace" (甄嬛传).
+
+::: {.callout-tip collapse="true"}
+## Discussion: Character Networks in Historical Dramas
+1. What insights can we gain from this network visualization?
+2. Which characters appear to be central to the network? How might their positions reflect their importance in the narrative?
+3. How could this type of analysis complement traditional literary analysis of historical dramas or novels?
+4. What limitations might this network analysis have in representing the complex relationships and dynamics of the story?
+:::
+
+Let's verify our impressions by doing some descriptive analyses:
+```{r}
 # Display summary statistics
 character_summary <- tibble(
   Alliance = names(table(V(empresses_graph)$Alliance)),
   Count = as.numeric(table(V(empresses_graph)$Alliance))
-)
+)%>%
+  arrange(desc(Count)) 
 
 knitr::kable(character_summary, caption = "Summary of Character Alliances")
 
@@ -256,15 +270,7 @@ top_characters <- tibble(
 knitr::kable(top_characters, caption = "Top 5 Characters by Total Connections")
 ```
 
-This visualization shows the complex network of relationships between characters in the Chinese drama "Empresses in the Palace" (甄嬛传).
 
-::: {.callout-tip collapse="true"}
-## Discussion: Character Networks in Historical Dramas
-1. What insights can we gain from this network visualization?
-2. Which characters appear to be central to the network? How might their positions reflect their importance in the narrative?
-3. How could this type of analysis complement traditional literary analysis of historical dramas or novels?
-4. What limitations might this network analysis have in representing the complex relationships and dynamics of the story?
-:::
 
 ## Challenges and Considerations in Digital Humanities
 
@@ -281,7 +287,7 @@ Always consider privacy, consent, and potential harm when working with data abou
 Digital humanities often requires collaboration between humanists, computer scientists, librarians, and others.
 
 ::: {.callout-tip collapse="true"}
-## Discussion: Collaboration Challenges (10 minutes)
+## Discussion: Collaboration Challenges 
 In small groups, discuss:
 
 1. What challenges might arise in collaborations between humanists and technologists?
