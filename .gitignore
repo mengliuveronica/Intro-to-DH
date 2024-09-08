@@ -13,4 +13,6 @@ id_ed25519
 # SSH config files
 config
 known_hosts
-authorized_keys
+authorized_keysyes
+y
+*.pub
