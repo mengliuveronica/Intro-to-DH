@@ -4,18 +4,7 @@
     "href": "book/01-introduction.html#digital-humanities-analysis-with-r",
     "title": "Introduction to Digital Humanities",
     "section": "\n2 Digital Humanities Analysis with R",
-    "text": "2 Digital Humanities Analysis with R\nLet’s explore some fascinating examples of how computational methods can be applied to humanities questions.\n\n2.1 Example 1: Text Analysis of Literary Works\n\nCodelibrary(pacman)\np_load(tidyverse, tidytext, wordcloud, gutenbergr, scales, hrbrthemes)\n\n# Function to download and process text\n# gutenberg_works(title == \"The Age of Innocence\")\ninno &lt;- gutenberg_download(541)\n\n# Analyze word frequencies\nword_freq &lt;- inno %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  anti_join(stop_words) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  top_n(20, n)\n\n# Create a bar plot of word frequencies\np &lt;- ggplot(word_freq, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#69b3a2\", width = 0.7) +\n  geom_text(aes(label = n), hjust = -0.3, size = 3) +\n  coord_flip() +\n  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +\n  labs(x = NULL, y = \"Frequency\", \n       title = \"Top 20 Most Frequent Words in The Age of Innocence\",\n       subtitle = \"After removing common stop words\",\n       caption = \"Source: Project Gutenberg\") +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(size = 16, face = \"bold\", margin = margin(b = 10)),\n    plot.subtitle = element_text(size = 12, color = \"gray50\", margin = margin(b = 20)),\n    plot.caption = element_text(size = 10, color = \"gray50\", margin = margin(t = 10)),\n    axis.text = element_text(size = 10),\n    axis.title = element_text(size = 12),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor = element_blank(),\n    plot.margin = margin(20, 20, 20, 20)\n  )\n\n# Print the plot\nprint(p)\n\n\n\n\n\n\n\nThis word cloud visualizes the most frequent words in The Age of Innocence, giving us a quick insight into common themes and vocabulary.\n\n\n\n\n\n\nDiscussion\n\n\n\n\n\n\nWhat words stand out to you in this visualization?\nHow might this kind of analysis complement traditional close reading of literary works?\nWhat limitations might this approach have for understanding the author’s language?\n\n\n\n\n\n2.2 Example 2: Sentiment Analysis of Jane Austen’s Novels\n\nCodelibrary(janeaustenr)\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(hrbrthemes)\n\n# Combine Austen's novels\nausten_books &lt;- austen_books() %&gt;%\n  group_by(book) %&gt;%\n  mutate(\n    linenumber = row_number(),\n    chapter = cumsum(str_detect(text, regex(\"^chapter [\\\\divxlc]\", ignore_case = TRUE)))\n  ) %&gt;%\n  ungroup()\n\n# Perform sentiment analysis\nausten_sentiment &lt;- austen_books %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  inner_join(get_sentiments(\"bing\"), multiple=\"all\") %&gt;%\n  count(book, index = linenumber %/% 100, sentiment) %&gt;%\n  pivot_wider(names_from = sentiment, values_from = n, values_fill = 0) %&gt;% \n  mutate(sentiment = positive - negative)\n\n# Plot sentiment over narrative time\nggplot(austen_sentiment, aes(index, sentiment, fill = book)) +\n  geom_col(show.legend = FALSE) +\n  facet_wrap(~book, ncol = 2, scales = \"free_x\") +\n  labs(\n    title = \"Sentiment Analysis of Jane Austen's Novels\",\n    subtitle = \"Emotional trajectory throughout the narrative\",\n    x = \"Narrative Time\",\n    y = \"Sentiment Score\",\n    caption = \"Data: janeaustenr package | Analysis: tidytext\"\n  ) +\n  theme_minimal() +\n  theme(\n    text = element_text(size = 12),\n    strip.text = element_text(size = 14, face = \"bold\"),\n    panel.grid.minor = element_blank(),\n    plot.title = element_text(size = 18, face = \"bold\"),\n    plot.subtitle = element_text(size = 14, color = \"gray50\"),\n    plot.caption = element_text(size = 10, color = \"gray50\"),\n    axis.title = element_text(size = 12, face = \"bold\"),\n    plot.margin = margin(20, 20, 20, 20)\n  ) +\n  scale_fill_brewer(palette = \"Set2\") +\n  scale_y_continuous(expand = expansion(mult = c(0.1, 0.1)))\n\n\n\n\n\n\nCode# Display summary statistics\nausten_summary &lt;- austen_sentiment %&gt;%\n  group_by(book) %&gt;%\n  summarize(\n    mean_sentiment = mean(sentiment),\n    max_sentiment = max(sentiment),\n    min_sentiment = min(sentiment)\n  )\n\nknitr::kable(austen_summary, caption = \"Summary Statistics of Sentiment Analysis\", digits = 2)\n\n\nSummary Statistics of Sentiment Analysis\n\nbook\nmean_sentiment\nmax_sentiment\nmin_sentiment\n\n\n\nSense & Sensibility\n9.94\n51\n-26\n\n\nPride & Prejudice\n10.69\n42\n-31\n\n\nMansfield Park\n12.47\n61\n-45\n\n\nEmma\n14.40\n48\n-31\n\n\nNorthanger Abbey\n9.19\n47\n-33\n\n\nPersuasion\n15.14\n59\n-13\n\n\n\n\n\nThis visualization shows the emotional trajectory of Jane Austen’s novels over their narrative time.\n\n\n\n\n\n\nDiscussion: Narrative Emotions\n\n\n\n\n\n\nWhat patterns do you notice in the emotional arcs of Austen’s novels?\nHow might this type of analysis enhance our understanding of narrative structure?\nWhat challenges might arise in applying sentiment analysis to historical texts?\n\n\n\n\n\n2.3 Example 3: Network Analysis of “Empresses in the Palace” Characters\n\nCodelibrary(pacman)\np_load(jsonlite,igraph,ggraph,tidyverse,showtext,ggrepel)\n\n# Add Noto Sans CJK font\nfont_add_google(\"Noto Sans SC\", \"Noto Sans SC\")\nshowtext_auto()\n\n\n# Read the JSON data\nrelation_data &lt;- fromJSON(\"../book/data/relation.json\")\n\nrelation_data$nodes &lt;- relation_data$nodes %&gt;% rename(Bio=\"角色描述\")\n\n# Ensure that the 'source' and 'target' in edges match the 'ID' in nodes\nrelation_data$edges$source &lt;- as.character(relation_data$edges$source)\nrelation_data$edges$target &lt;- as.character(relation_data$edges$target)\nrelation_data$nodes$ID &lt;- as.character(relation_data$nodes$ID)\nedges &lt;- relation_data$edges %&gt;% select(-Relationship)\n# Set the ID as the row names for the nodes dataframe\nrownames(relation_data$nodes) &lt;- relation_data$nodes$ID\n\n# Create the directed graph\nempresses_graph &lt;- graph_from_data_frame(d = edges,\n                                         vertices = relation_data$nodes$ID,\n                                         directed = TRUE)\n\n# Set node attributes\nV(empresses_graph)$Alliance &lt;- relation_data$nodes$Alliance\nV(empresses_graph)$Label &lt;- relation_data$nodes$Label\n\n# Create a color palette for alliances\nalliance_colors &lt;- c(\n  \"皇室成员\" = \"#4E79A7\",  # Royal Blue\n  \"皇后阵营\" = \"#F28E2B\",  # Warm Orange\n  \"甄嬛阵营\" = \"#E15759\",  # Soft Red\n  \"华妃阵营\" = \"#76B7B2\"   # Teal\n)\n\n# Calculate node size based on total degree centrality (in + out)\nV(empresses_graph)$size &lt;- degree(empresses_graph, mode = \"total\") * 0.5 + 3\nE(empresses_graph)$Relationship &lt;- relation_data$edges$Relationship\n\n# Plot the network\nset.seed(123) # for reproducibility\nplot &lt;- ggraph(empresses_graph, layout = \"fr\") +\n  geom_edge_link(aes(color=Relationship), arrow = arrow(length = unit(3, \"mm\")), end_cap = circle(2, \"mm\"), show.legend = TRUE,width=1) +\n  geom_node_point(aes(color = Alliance, size = size),show.legend=TRUE) +\n  geom_node_text(aes(label = Label), repel = TRUE, size = 6) +\n  scale_color_manual(values = alliance_colors, name = \"Alliance\") +\n  scale_size_continuous(range = c(5, 20), name = \"Connections\") +\n  theme_void() +\n  labs(title = \"Character Network in 'Empresses in the Palace'\",\n       subtitle = \"Directed relationships between key figures in the Chinese drama\") +\n  theme(\n    legend.position = \"none\",\n   # legend.box = \"vertical\",\n    plot.title = element_text(hjust = 0.5, size = 18, face = \"bold\"),\n    plot.subtitle = element_text(hjust = 0.5, size = 14)\n   # plot.caption = element_text(hjust = 1, size = 10)\n   # legend.text = element_text(size = 8),\n   # legend.title = element_text(size = 10, face = \"bold\")\n  ) \n# Display the plot\nprint(plot)\n\n\n\n\n\n\n\nThis visualization shows the complex network of relationships between characters in the Chinese drama “Empresses in the Palace” (甄嬛传).\n\n\n\n\n\n\nDiscussion: Character Networks in Historical Dramas\n\n\n\n\n\n\nWhat insights can we gain from this network visualization?\nWhich characters appear to be central to the network? How might their positions reflect their importance in the narrative?\nHow could this type of analysis complement traditional literary analysis of historical dramas or novels?\nWhat limitations might this network analysis have in representing the complex relationships and dynamics of the story?\n\n\n\n\nLet’s verify our impressions by doing some descriptive analyses:\n\nCode# Display summary statistics\ncharacter_summary &lt;- tibble(\n  Alliance = names(table(V(empresses_graph)$Alliance)),\n  Count = as.numeric(table(V(empresses_graph)$Alliance))\n)%&gt;%\n  arrange(desc(Count)) \n\nknitr::kable(character_summary, caption = \"Summary of Character Alliances\")\n\n\nSummary of Character Alliances\n\nAlliance\nCount\n\n\n\n甄嬛阵营\n22\n\n\n皇后阵容\n7\n\n\n华妃阵营\n6\n\n\n皇后阵营\n5\n\n\n皇室成员\n4\n\n\n\n\nCode# Calculate and display top 5 characters by total degree centrality\ntop_characters &lt;- tibble(\n  Character = V(empresses_graph)$Label,\n  InDegree = degree(empresses_graph, mode = \"in\"),\n  OutDegree = degree(empresses_graph, mode = \"out\"),\n  TotalDegree = degree(empresses_graph, mode = \"total\")\n) %&gt;%\n  arrange(desc(TotalDegree)) %&gt;%\n  left_join(.,relation_data$nodes%&gt;%select(Label,Title,Alliance,Bio),by=(c(\"Character\"=\"Label\")))%&gt;%\n  slice_head(n = 5)\n\nknitr::kable(top_characters, caption = \"Top 5 Characters by Total Connections\")\n\n\nTop 5 Characters by Total Connections\n\n\n\n\n\n\n\n\n\n\nCharacter\nInDegree\nOutDegree\nTotalDegree\nTitle\nAlliance\nBio\n\n\n\n甄嬛\n16\n22\n38\n皇贵妃\n甄嬛阵营\n因容貌酷似已逝的纯元皇后被选中，一直蒙受恩宠。对皇帝真心实意。因为在后宫算计中受到影响，一步步变得城府至深，结果却是她的一厢情愿，离开后宫，遇到了果郡王，心心相爱。后来设计回宫。经历了后宫无数的明争暗斗，勾心斗角，害死皇帝，扶养子登位，终于成为太后。\n\n\n雍正\n13\n18\n31\n皇上\n皇室成员\n九龙夺嫡之后终于登上了宝座。在他的眼中任何人都可以成为他巩固江山的棋子。纯元皇后去世多年，痴情的皇帝对她依然念念不忘，于是对酷似纯元皇后的甄嬛愈加宠爱，渐渐超过了华妃。甄嬛回宫，皇上对其极其信任，百依百顺。但最后还是被枕边人算计。\n\n\n宜修\n8\n11\n19\n皇后\n皇后阵营\n纯元皇后的庶出妹妹。外表稳重端庄，但擅于隐忍，城府之深，极爱后位，后宫妃子皆为她的棋子。利用甄嬛打败了华妃，继而将甄嬛赶出宫外。甄嬛回宫后继续步步为营，但最后因害死纯元皇后的事情东窗事发，在太后的力保之下没被废后，但永生禁足于景仁宫，二人死生不复相见，最后新帝登基，心悸而死。\n\n\n允礼\n7\n7\n14\n果亲王\n皇室成员\n果郡王不同于宫中争权夺势的皇室子弟，他庆幸自己并非帝王之身，不必将朝政琐事萦绕于身，他不求娇妻美妾如云，只盼与爱人厮守到老。果郡王爱着甄嬛，却又不能僭越宫廷之礼。他善良、痴情、风流倜傥，终其一生都是在寻求一份爱，奋不顾身地保护一份爱，说他是为爱而生也不为过。\n\n\n年世兰\n6\n7\n13\n正三品贵嫔\n华妃阵营\n大将军的妹妹，仗着身世和宠爱，对其他的妃嫔不择手段，但本性并不坏，因为孩子被打掉而痛恨端妃。甄嬛在其打入冷宫后还不能怀孕的事实告诉她，绝望的华妃撞墙而死。最终她被追封为敦肃皇贵妃。",
-    "crumbs": [
-      "Book",
-      "Introduction to Digital Humanities"
-    ]
-  },
-  {
-    "objectID": "book/01-introduction.html#challenges-and-considerations-in-digital-humanities",
-    "href": "book/01-introduction.html#challenges-and-considerations-in-digital-humanities",
-    "title": "Introduction to Digital Humanities",
-    "section": "\n3 Challenges and Considerations in Digital Humanities",
-    "text": "3 Challenges and Considerations in Digital Humanities\n\n3.1 Ethical Considerations\nDigital humanities projects often involve ethical considerations, particularly when working with sensitive or personal data.\n\n\n\n\n\n\nWarning\n\n\n\nAlways consider privacy, consent, and potential harm when working with data about individuals or communities.\n\n\n\n3.2 Interdisciplinary Collaboration\nDigital humanities often requires collaboration between humanists, computer scientists, librarians, and others.\n\n\n\n\n\n\nDiscussion: Collaboration Challenges\n\n\n\n\n\nIn small groups, discuss:\n\nWhat challenges might arise in collaborations between humanists and technologists?\nHow can these challenges be addressed?\n\nShare your group’s top insights with the class.\n\n\n\n\n3.3 Critical Approaches\nIt’s important to maintain critical perspectives on the use of digital tools in humanities research.\n\n\n\n\n\n\nNote\n\n\n\nRemember that computational methods are not neutral. They embed certain assumptions and biases that need to be critically examined.",
+    "text": "2 Digital Humanities Analysis with R\nLet’s explore some fascinating examples of how computational methods can be applied to humanities questions.\n\n2.1 Example 1: Text Analysis of Literary Works\n\nCodelibrary(pacman)\np_load(tidyverse, tidytext, wordcloud, gutenbergr, scales, hrbrthemes)\n\n# Function to download and process text\n# gutenberg_works(title == \"The Age of Innocence\")\ninno &lt;- gutenberg_download(541)\n\n# Analyze word frequencies\nword_freq &lt;- inno %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  anti_join(stop_words) %&gt;%\n  count(word, sort = TRUE) %&gt;%\n  top_n(20, n)\n\n# Create a bar plot of word frequencies\np &lt;- ggplot(word_freq, aes(x = reorder(word, n), y = n)) +\n  geom_col(fill = \"#69b3a2\", width = 0.7) +\n  geom_text(aes(label = n), hjust = -0.3, size = 3) +\n  coord_flip() +\n  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +\n  labs(x = NULL, y = \"Frequency\", \n       title = \"Top 20 Most Frequent Words in The Age of Innocence\",\n       subtitle = \"After removing common stop words\",\n       caption = \"Source: Project Gutenberg\") +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(size = 16, face = \"bold\", margin = margin(b = 10)),\n    plot.subtitle = element_text(size = 12, color = \"gray50\", margin = margin(b = 20)),\n    plot.caption = element_text(size = 10, color = \"gray50\", margin = margin(t = 10)),\n    axis.text = element_text(size = 10),\n    axis.title = element_text(size = 12),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor = element_blank(),\n    plot.margin = margin(20, 20, 20, 20)\n  )\n\n# Print the plot\nprint(p)\n\n\n\n\n\n\n\nThis word cloud visualizes the most frequent words in The Age of Innocence, giving us a quick insight into common themes and vocabulary.\n\n\n\n\n\n\nDiscussion\n\n\n\n\n\n\nWhat words stand out to you in this visualization?\nHow might this kind of analysis complement traditional close reading of literary works?\nWhat limitations might this approach have for understanding the author’s language?\n\n\n\n\n\n2.2 Example 2: Sentiment Analysis of Jane Austen’s Novels\n\nCodelibrary(janeaustenr)\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(hrbrthemes)\n\n# Combine Austen's novels\nausten_books &lt;- austen_books() %&gt;%\n  group_by(book) %&gt;%\n  mutate(\n    linenumber = row_number(),\n    chapter = cumsum(str_detect(text, regex(\"^chapter [\\\\divxlc]\", ignore_case = TRUE)))\n  ) %&gt;%\n  ungroup()\n\n# Perform sentiment analysis\nausten_sentiment &lt;- austen_books %&gt;%\n  unnest_tokens(word, text) %&gt;%\n  inner_join(get_sentiments(\"bing\"), multiple=\"all\") %&gt;%\n  count(book, index = linenumber %/% 100, sentiment) %&gt;%\n  pivot_wider(names_from = sentiment, values_from = n, values_fill = 0) %&gt;% \n  mutate(sentiment = positive - negative)\n\n# Plot sentiment over narrative time\nggplot(austen_sentiment, aes(index, sentiment, fill = book)) +\n  geom_col(show.legend = FALSE) +\n  facet_wrap(~book, ncol = 2, scales = \"free_x\") +\n  labs(\n    title = \"Sentiment Analysis of Jane Austen's Novels\",\n    subtitle = \"Emotional trajectory throughout the narrative\",\n    x = \"Narrative Time\",\n    y = \"Sentiment Score\",\n    caption = \"Data: janeaustenr package | Analysis: tidytext\"\n  ) +\n  theme_minimal() +\n  theme(\n    text = element_text(size = 12),\n    strip.text = element_text(size = 14, face = \"bold\"),\n    panel.grid.minor = element_blank(),\n    plot.title = element_text(size = 18, face = \"bold\"),\n    plot.subtitle = element_text(size = 14, color = \"gray50\"),\n    plot.caption = element_text(size = 10, color = \"gray50\"),\n    axis.title = element_text(size = 12, face = \"bold\"),\n    plot.margin = margin(20, 20, 20, 20)\n  ) +\n  scale_fill_brewer(palette = \"Set2\") +\n  scale_y_continuous(expand = expansion(mult = c(0.1, 0.1)))\n\n\n\n\n\n\nCode# Display summary statistics\nausten_summary &lt;- austen_sentiment %&gt;%\n  group_by(book) %&gt;%\n  summarize(\n    mean_sentiment = mean(sentiment),\n    max_sentiment = max(sentiment),\n    min_sentiment = min(sentiment)\n  )\n\nknitr::kable(austen_summary, caption = \"Summary Statistics of Sentiment Analysis\", digits = 2)\n\n\nSummary Statistics of Sentiment Analysis\n\nbook\nmean_sentiment\nmax_sentiment\nmin_sentiment\n\n\n\nSense & Sensibility\n9.94\n51\n-26\n\n\nPride & Prejudice\n10.69\n42\n-31\n\n\nMansfield Park\n12.47\n61\n-45\n\n\nEmma\n14.40\n48\n-31\n\n\nNorthanger Abbey\n9.19\n47\n-33\n\n\nPersuasion\n15.14\n59\n-13\n\n\n\n\n\nThis visualization shows the emotional trajectory of Jane Austen’s novels over their narrative time.\n\n\n\n\n\n\nDiscussion: Narrative Emotions\n\n\n\n\n\n\nWhat patterns do you notice in the emotional arcs of Austen’s novels?\nHow might this type of analysis enhance our understanding of narrative structure?\nWhat challenges might arise in applying sentiment analysis to historical texts?\n\n\n\n\n\n2.3 Example 3: Network Analysis of “Empresses in the Palace” Characters\n\nCodelibrary(pacman)\np_load(jsonlite,igraph,ggraph,tidyverse,showtext,ggrepel,cowplot)\n\n# Add Noto Sans CJK font\nfont_add_google(\"Noto Sans SC\", \"Noto Sans SC\")\nshowtext_auto()\n\n\n# Read the JSON data\nrelation_data &lt;- fromJSON(\"../book/data/relation.json\")\n\nrelation_data$nodes &lt;- relation_data$nodes %&gt;% rename(Bio=\"角色描述\")\n\nrelation_data$nodes &lt;- relation_data$nodes%&gt;%\nmutate(Alliance = ifelse(Alliance==\"皇后阵容\",\"皇后阵营\",Alliance))\n\n# Ensure that the 'source' and 'target' in edges match the 'ID' in nodes\nrelation_data$edges$source &lt;- as.character(relation_data$edges$source)\nrelation_data$edges$target &lt;- as.character(relation_data$edges$target)\nrelation_data$nodes$ID &lt;- as.character(relation_data$nodes$ID)\nedges &lt;- relation_data$edges %&gt;% select(-Relationship)\n# Set the ID as the row names for the nodes dataframe\nrownames(relation_data$nodes) &lt;- relation_data$nodes$ID\n\n# Create the directed graph\nempresses_graph &lt;- graph_from_data_frame(d = edges,\n                                         vertices = relation_data$nodes$ID,\n                                         directed = TRUE)\n\n# Set node attributes\nV(empresses_graph)$Alliance &lt;- relation_data$nodes$Alliance\nV(empresses_graph)$Label &lt;- relation_data$nodes$Label\n\n# Create a color palette for alliances\nalliance_colors &lt;- c(\n  \"皇室成员\" = \"#4E79A7\",  # Royal Blue\n  \"皇后阵营\" = \"#F28E2B\",  # Warm Orange\n  \"甄嬛阵营\" = \"#E15759\",  # Soft Red\n  \"华妃阵营\" = \"#76B7B2\"   # Teal\n)\n\n# Calculate node size based on total degree centrality (in + out)\nV(empresses_graph)$size &lt;- degree(empresses_graph, mode = \"total\") * 0.5 + 3\nE(empresses_graph)$Relationship &lt;- relation_data$edges$Relationship\n\n# Plot the network\nset.seed(123) # for reproducibility\nplot &lt;- ggraph(empresses_graph, layout = \"fr\") +\n  geom_edge_link0(aes(edge_color = Relationship), \n                  arrow = arrow(length = unit(0.2, \"inches\"),\n                  ends = \"last\", type = \"closed\"), \n                  show.legend = FALSE, \n                  width = 1) +\n  geom_node_point(aes(color = Alliance, size = size), \n                  shape = 20, show.legend = FALSE) +\n  geom_node_text(aes(label = Label), repel = TRUE, size = 6) +\n  scale_color_manual(values = alliance_colors) +\n  scale_edge_colour_discrete() +\n  scale_size_continuous(range = c(5, 20)) +\n  theme_void() +\n  labs(title = \"Character Network in 'Empresses in the Palace'\",\n       subtitle = \"Directed relationships between key figures in the Chinese drama\") +\n  theme(\n    plot.title = element_text(hjust = 0.5, size = 18, face = \"bold\"),\n    plot.subtitle = element_text(hjust = 0.5, size = 14),\n    legend.text = element_text(size = 8),\n    legend.title = element_text(size = 10, face = \"bold\")\n  )\n\n# Plot\nplot\n\n\n\n\n\n\n\nThis visualization shows the complex network of relationships between characters in the Chinese drama “Empresses in the Palace” (甄嬛传).\n\n\n\n\n\n\nDiscussion: Character Networks in Historical Dramas\n\n\n\n\n\n\nWhat insights can we gain from this network visualization? What information is presented in the plot?\nWhich characters appear to be central to the network? How might their positions reflect their importance in the narrative?\nHow could this type of analysis complement traditional literary analysis of historical dramas or novels?\nWhat limitations might this network analysis have in representing the complex relationships and dynamics of the story?\n\n\n\n\n\n2.4 Let’s verify our impressions!\n\nView Analyses\n\n\n\nCodelibrary(pacman)\np_load(jsonlite,igraph,ggraph,tidyverse,showtext,ggrepel,cowplot)\n# Create dummy data for legends\nalliance_data &lt;- data.frame(\n  Alliance = levels(factor(V(empresses_graph)$Alliance)),\n  x = 1,\n  y = 1:length(levels(factor(V(empresses_graph)$Alliance)))\n)\n\nsize_data &lt;- data.frame(\n  size = c(5, 10, 15, 20),\n  x = 1,\n  y = 1:4\n)\n\nrelationship_data &lt;- data.frame(\n  Relationship = levels(factor(E(empresses_graph)$Relationship)),\n  x = 1,\n  y = 1:length(levels(factor(E(empresses_graph)$Relationship)))\n)\n\n# Create separate legends\nnode_legend &lt;- cowplot::get_legend(\n  ggplot() +\n    geom_point(data = alliance_data, aes(x, y, color = Alliance), size = 5) +\n    geom_point(data = size_data, aes(x, y, size = size), color = \"black\") +\n    scale_color_manual(values = alliance_colors, name = \"Alliance\") +\n    scale_size_continuous(range = c(5, 20), name = \"Connections\") +\n    guides(\n      color = guide_legend(override.aes = list(size = 5)),\n      size = guide_legend(override.aes = list(color = \"steelblue\"))\n    ) +\n    theme(\n      legend.background = element_blank(),\n      legend.key = element_blank(),\n      legend.spacing.y = unit(0.5, \"cm\")\n    )\n)\n\nedge_legend &lt;- cowplot::get_legend(\n  ggplot(relationship_data, aes(x, y, color = Relationship)) +\n    geom_segment(aes(x = 0, xend = 1, yend = y),\n                 arrow = arrow(length = unit(0.2, \"inches\"), type = \"closed\")) +\n    scale_color_discrete(name = \"Relationship\") +\n    theme(\n      legend.background = element_blank(),\n      legend.key = element_blank(),\n      legend.spacing.y = unit(0.2, \"cm\"),\n      legend.text = element_text(margin = margin(r = 15))\n    )\n)\n\n# Combine plot and legends\ncombined_legend &lt;- plot_grid(\n  node_legend, \n  edge_legend, \n  ncol = 1, \n  rel_heights = c(1, 1.5),\n  align = 'v',\n  axis = 'l'\n)\n\n# Combine main plot and legends\nfinal_plot &lt;- plot_grid(\n  plot, \n  combined_legend,\n  rel_widths = c(5, 2),\n  align = 'h',\n  axis = 'tb'\n)\n\n# Display the final plot\nfinal_plot\n\n\n\n\n\n\n\n\nCodelibrary(pacman)\np_load(jsonlite,igraph,ggraph,tidyverse,showtext,ggrepel,cowplot)\n\n# Display summary statistics\ncharacter_summary &lt;- tibble(\n  Alliance = names(table(V(empresses_graph)$Alliance)),\n  Count = as.numeric(table(V(empresses_graph)$Alliance))\n)%&gt;%\n  arrange(desc(Count)) \n\nknitr::kable(character_summary, caption = \"Summary of Character Alliances\")\n\n\nSummary of Character Alliances\n\nAlliance\nCount\n\n\n\n甄嬛阵营\n22\n\n\n皇后阵营\n12\n\n\n华妃阵营\n6\n\n\n皇室成员\n4\n\n\n\n\nCode# Calculate and display top 5 characters by total degree centrality\ntop_characters &lt;- tibble(\n  Character = V(empresses_graph)$Label,\n  InDegree = degree(empresses_graph, mode = \"in\"),\n  OutDegree = degree(empresses_graph, mode = \"out\"),\n  TotalDegree = degree(empresses_graph, mode = \"total\")\n) %&gt;%\n  arrange(desc(TotalDegree)) %&gt;%\n  left_join(.,relation_data$nodes%&gt;%select(Label,Title,Alliance,Bio),by=(c(\"Character\"=\"Label\")))%&gt;%\n  slice_head(n = 5)\n\nknitr::kable(top_characters, caption = \"Top 5 Characters by Total Connections\")\n\n\nTop 5 Characters by Total Connections\n\n\n\n\n\n\n\n\n\n\nCharacter\nInDegree\nOutDegree\nTotalDegree\nTitle\nAlliance\nBio\n\n\n\n甄嬛\n16\n22\n38\n皇贵妃\n甄嬛阵营\n因容貌酷似已逝的纯元皇后被选中，一直蒙受恩宠。对皇帝真心实意。因为在后宫算计中受到影响，一步步变得城府至深，结果却是她的一厢情愿，离开后宫，遇到了果郡王，心心相爱。后来设计回宫。经历了后宫无数的明争暗斗，勾心斗角，害死皇帝，扶养子登位，终于成为太后。\n\n\n雍正\n13\n18\n31\n皇上\n皇室成员\n九龙夺嫡之后终于登上了宝座。在他的眼中任何人都可以成为他巩固江山的棋子。纯元皇后去世多年，痴情的皇帝对她依然念念不忘，于是对酷似纯元皇后的甄嬛愈加宠爱，渐渐超过了华妃。甄嬛回宫，皇上对其极其信任，百依百顺。但最后还是被枕边人算计。\n\n\n宜修\n8\n11\n19\n皇后\n皇后阵营\n纯元皇后的庶出妹妹。外表稳重端庄，但擅于隐忍，城府之深，极爱后位，后宫妃子皆为她的棋子。利用甄嬛打败了华妃，继而将甄嬛赶出宫外。甄嬛回宫后继续步步为营，但最后因害死纯元皇后的事情东窗事发，在太后的力保之下没被废后，但永生禁足于景仁宫，二人死生不复相见，最后新帝登基，心悸而死。\n\n\n允礼\n7\n7\n14\n果亲王\n皇室成员\n果郡王不同于宫中争权夺势的皇室子弟，他庆幸自己并非帝王之身，不必将朝政琐事萦绕于身，他不求娇妻美妾如云，只盼与爱人厮守到老。果郡王爱着甄嬛，却又不能僭越宫廷之礼。他善良、痴情、风流倜傥，终其一生都是在寻求一份爱，奋不顾身地保护一份爱，说他是为爱而生也不为过。\n\n\n年世兰\n6\n7\n13\n正三品贵嫔\n华妃阵营\n大将军的妹妹，仗着身世和宠爱，对其他的妃嫔不择手段，但本性并不坏，因为孩子被打掉而痛恨端妃。甄嬛在其打入冷宫后还不能怀孕的事实告诉她，绝望的华妃撞墙而死。最终她被追封为敦肃皇贵妃。",
     "crumbs": [
       "Book",
       "Introduction to Digital Humanities"
@@ -25,8 +14,8 @@
     "objectID": "book/01-introduction.html#conclusion",
     "href": "book/01-introduction.html#conclusion",
     "title": "Introduction to Digital Humanities",
-    "section": "\n4 Conclusion",
-    "text": "4 Conclusion\nThese demonstrations showcase just a few of the exciting possibilities that digital humanities offers for exploring and analyzing humanities data. By combining computational methods with traditional humanities scholarship, we can uncover new patterns, ask novel questions, and gain fresh insights into cultural and historical materials.\n\n\n\n\n\n\nFinal Reflection\n\n\n\n\n\nConsider the examples we’ve explored today:\n\nWhich technique (word frequency analysis, sentiment analysis, or network analysis) do you find most intriguing? Why?\nCan you think of a humanities question or topic from your own interests that might benefit from one of these computational approaches?\n\nShare your thoughts with a partner or the class if time allows.",
+    "section": "\n3 Conclusion",
+    "text": "3 Conclusion\nThese demonstrations showcase just a few of the exciting possibilities that digital humanities offers for exploring and analyzing humanities data. By combining computational methods with traditional humanities scholarship, we can uncover new patterns, ask novel questions, and gain fresh insights into cultural and historical materials.\n\n\n\n\n\n\nFinal Reflection\n\n\n\n\n\nConsider the examples we’ve explored today:\n\nWhich technique (word frequency analysis, sentiment analysis, or network analysis) do you find most intriguing? Why?\nCan you think of a humanities question or topic from your own interests that might benefit from one of these computational approaches?\n\nShare your thoughts with a partner or the class if time allows.",
     "crumbs": [
       "Book",
       "Introduction to Digital Humanities"
@@ -61,151 +50,25 @@
     "text": "🚀 Important Pep Talk!\n\n\n\n\n\n\n💪 Setting the Right Mindset\n\n\n\nRemember these key points while you embark on your DH journey:\n\n\n\nEmbrace the Learning Curve\n\nLearning digital tools and methods is like learning a new language—it takes time and practice.\nDon’t be discouraged by initial difficulties; everyone faces challenges when starting out.\nCelebrate small victories and progress along the way.\n\n\n\nFrustration is Part of Growth\n\nFeeling frustrated? Congratulations! It means you’re pushing your boundaries and learning.\nHadley Wickham (Father of modern R syntax) once said: “Everyone gets frustrated… I still get frustrated occasionally when writing R code. It’s just a natural part of programming.”\nTake breaks when needed, but don’t give up. Return with fresh eyes and renewed determination.\n\n\n\nCultivate Curiosity\n\nApproach new concepts with an open and inquisitive mind.\nAsk questions, explore beyond the course material, and let your curiosity drive your learning.\nDigital humanities is a field of endless possibilities—embrace the excitement of discovery.\n\n\n\nBuild Resilience\n\nExpect challenges and setbacks—they’re not roadblocks, but opportunities to problem-solve.\nDevelop a growth mindset: view difficulties as chances to improve, not as personal shortcomings.\nRemember: every expert was once a beginner. Persistence is key to mastery.\n\n\n\n\n\n\n\nRemember\n\n\n\nI promise you can succeed in this class as long as you put your heart to it. Learning new digital skills may seem daunting at first, but with patience, persistence, and the right mindset, you’ll be amazed at what you can achieve. Don’t hesitate to reach out for help when you need it—we’re all in this learning journey together!"
   },
   {
-    "objectID": "slides/s-intro.html#what-is-digital-humanities",
-    "href": "slides/s-intro.html#what-is-digital-humanities",
+    "objectID": "book/slides/s-preface.html#course-overview",
+    "href": "book/slides/s-preface.html#course-overview",
     "title": "Introduction to Digital Humanities",
-    "section": "What is digital humanities?🤨",
-    "text": "What is digital humanities?🤨"
+    "section": "Course Overview",
+    "text": "Course Overview\n\n🎒 Course design:\n\nWith a more pratical focus on DH methods using R\nLectures followed by practical sessions with R\nBring your laptop 💻\n\n🏠 Course platform:\n\n💬 Wechat: notifications + live chats\n🛜 Course website: course materials/code scripts"
   },
   {
-    "objectID": "slides/s-intro.html#what-is-digital-humanities-1",
-    "href": "slides/s-intro.html#what-is-digital-humanities-1",
+    "objectID": "book/slides/s-preface.html#why-focus-on-dh-methods",
+    "href": "book/slides/s-preface.html#why-focus-on-dh-methods",
     "title": "Introduction to Digital Humanities",
-    "section": "What is digital humanities?🤨",
-    "text": "What is digital humanities?🤨\nWrite down three keywords that come to mind."
+    "section": "Why Focus on DH Methods?",
+    "text": "Why Focus on DH Methods?\n\n🌉 Common ground: Methods bridge diverse humanities disciplines\n🔧 Transferable skills: Applicable across various research areas\n🚀 Future-proofing: Open the door to coding/programming to prepare for the AI age\n🧠 Critical thinking: Enhance analytical skills for all humanities\n💡 Computational thinking: Develop a sense of data and computational thinking"
   },
   {
-    "objectID": "slides/s-intro.html#what-is-digital-humanities-2",
-    "href": "slides/s-intro.html#what-is-digital-humanities-2",
+    "objectID": "book/slides/s-preface.html#course-overview-1",
+    "href": "book/slides/s-preface.html#course-overview-1",
     "title": "Introduction to Digital Humanities",
-    "section": "What is digital humanities?🤨",
-    "text": "What is digital humanities?🤨\n🤔 What patterns do you see in the word cloud? Any suprising entries?"
-  },
-  {
-    "objectID": "slides/s-intro.html#what-is-digital-humanities-3",
-    "href": "slides/s-intro.html#what-is-digital-humanities-3",
-    "title": "Introduction to Digital Humanities",
-    "section": "What is digital humanities?🤨",
-    "text": "What is digital humanities?🤨"
-  },
-  {
-    "objectID": "slides/s-intro.html#what-is-digital-humanities-4",
-    "href": "slides/s-intro.html#what-is-digital-humanities-4",
-    "title": "Introduction to Digital Humanities",
-    "section": "What is digital humanities?🤨",
-    "text": "What is digital humanities?🤨"
-  },
-  {
-    "objectID": "slides/s-intro.html#what-is-digital-humanities-5",
-    "href": "slides/s-intro.html#what-is-digital-humanities-5",
-    "title": "Introduction to Digital Humanities",
-    "section": "What is digital humanities?🤨",
-    "text": "What is digital humanities?🤨"
-  },
-  {
-    "objectID": "slides/s-intro.html#what-is-digital-humanities-6",
-    "href": "slides/s-intro.html#what-is-digital-humanities-6",
-    "title": "Introduction to Digital Humanities",
-    "section": "What is digital humanities?🤨",
-    "text": "What is digital humanities?🤨"
-  },
-  {
-    "objectID": "slides/s-intro.html#what-is-digital-humanities-7",
-    "href": "slides/s-intro.html#what-is-digital-humanities-7",
-    "title": "Introduction to Digital Humanities",
-    "section": "What is digital humanities?🤨",
-    "text": "What is digital humanities?🤨"
-  },
-  {
-    "objectID": "slides/s-intro.html#what-is-digital-humanities-8",
-    "href": "slides/s-intro.html#what-is-digital-humanities-8",
-    "title": "Introduction to Digital Humanities",
-    "section": "What is digital humanities?🤨",
-    "text": "What is digital humanities?🤨\n\n“Digital humanities work is done at the intersection of computational methods and humanities materials.”\n– Johanna Drucker, 2021 📚\n\n\n🔀 Intersection of computation and humanities\n🔗 Combines traditional disciplines with digital tools\n🤝 Collaborative and interdisciplinary\n🔄 Iterative and public-facing\n🔓 Open and accessible"
-  },
-  {
-    "objectID": "slides/s-intro.html#components-of-dh-projects",
-    "href": "slides/s-intro.html#components-of-dh-projects",
-    "title": "Introduction to Digital Humanities",
-    "section": "Components of DH Projects",
-    "text": "Components of DH Projects\n\n📁 MATERIALS\n⚙️ PROCESSING\n🎨 PRESENTATION"
-  },
-  {
-    "objectID": "slides/s-intro.html#dh-materials",
-    "href": "slides/s-intro.html#dh-materials",
-    "title": "Introduction to Digital Humanities",
-    "section": "DH Materials",
-    "text": "DH Materials\n\n💾 Digital or digitized humanities sources\n🖼️ Examples: texts, images, audio, video\n📈 Often large-scale datasets"
-  },
-  {
-    "objectID": "slides/s-intro.html#dh-processing",
-    "href": "slides/s-intro.html#dh-processing",
-    "title": "Introduction to Digital Humanities",
-    "section": "DH Processing",
-    "text": "DH Processing\n\n🧮 Computational methods and tools\n📊 Data analysis and modeling\n🤖 Machine learning and AI applications"
-  },
-  {
-    "objectID": "slides/s-intro.html#dh-presentation",
-    "href": "slides/s-intro.html#dh-presentation",
-    "title": "Introduction to Digital Humanities",
-    "section": "DH Presentation",
-    "text": "DH Presentation\n\n📊 Visualizations\n🗄️ Digital archives\n🖱️ Interactive platforms\n🗃️ Databases"
-  },
-  {
-    "objectID": "slides/s-intro.html#example-mapping-the-republic-of-letters",
-    "href": "slides/s-intro.html#example-mapping-the-republic-of-letters",
-    "title": "Introduction to Digital Humanities",
-    "section": "Example: Mapping the Republic of Letters",
-    "text": "Example: Mapping the Republic of Letters\n\n\n\n\n🍿 Watch a video about the project"
-  },
-  {
-    "objectID": "slides/s-intro.html#example-mapping-the-republic-of-letters-1",
-    "href": "slides/s-intro.html#example-mapping-the-republic-of-letters-1",
-    "title": "Introduction to Digital Humanities",
-    "section": "Example: Mapping the Republic of Letters",
-    "text": "Example: Mapping the Republic of Letters\nWhat it is\n\n🌐 One of the largest Digital Humanities initiatives worldwide\n🏛️ Stanford-based project with international collaborations\n🚀 Groundbreaking effort in historical data visualization"
-  },
-  {
-    "objectID": "slides/s-intro.html#example-mapping-the-republic-of-letters-2",
-    "href": "slides/s-intro.html#example-mapping-the-republic-of-letters-2",
-    "title": "Introduction to Digital Humanities",
-    "section": "Example: Mapping the Republic of Letters",
-    "text": "Example: Mapping the Republic of Letters\nWhat it does\n\n🗺️ Maps and analyzes intellectual networks of the 17th-18th century Enlightenment\n✉️ Visualizes over 200,000 letters exchanged by key historical figures\n🔍 Reveals patterns of knowledge exchange across Europe and the Americas"
-  },
-  {
-    "objectID": "slides/s-intro.html#example-mapping-the-republic-of-letters-3",
-    "href": "slides/s-intro.html#example-mapping-the-republic-of-letters-3",
-    "title": "Introduction to Digital Humanities",
-    "section": "Example: Mapping the Republic of Letters",
-    "text": "Example: Mapping the Republic of Letters\nCan you identify the core components of this DH project? 🧐 (quick learning check!)\n\n📁 MATERIALS\n⚙️ PROCESSING\n🎨 PRESENTATION"
-  },
-  {
-    "objectID": "slides/s-intro.html#example-mapping-the-republic-of-letters-4",
-    "href": "slides/s-intro.html#example-mapping-the-republic-of-letters-4",
-    "title": "Introduction to Digital Humanities",
-    "section": "Example: Mapping the Republic of Letters",
-    "text": "Example: Mapping the Republic of Letters\nCan you identify the core components of this DH project? 🧐\n\n📁 MATERIALS: Letters and correspondence of Enlightenment thinkers\n⚙️ PROCESSING: Network analysis, geospatial mapping\n🎨 PRESENTATION: Interactive visualizations of intellectual networks"
-  },
-  {
-    "objectID": "slides/s-intro.html#example-mapping-the-republic-of-letters-5",
-    "href": "slides/s-intro.html#example-mapping-the-republic-of-letters-5",
-    "title": "Introduction to Digital Humanities",
-    "section": "Example: Mapping the Republic of Letters",
-    "text": "Example: Mapping the Republic of Letters\n🧐 How is the project different from a traditional humanities project? Discuss in pairs to identify key differences between traditional humanities and DH."
-  },
-  {
-    "objectID": "slides/s-intro.html#digital-humanities-vs-traditional-humanities",
-    "href": "slides/s-intro.html#digital-humanities-vs-traditional-humanities",
-    "title": "Introduction to Digital Humanities",
-    "section": "Digital Humanities vs Traditional Humanities",
-    "text": "Digital Humanities vs Traditional Humanities\n\n\nTraditional Humanities:\n\n🔎 Limited by human reading capacity\n🧑‍🏫 Often individual research\n📚 Primarily books and articles\n🖋️ Close reading and interpretation\n🏛️ Focus on canonical works\n🗂️ Manual data collection and analysis\n🌐 Geographically limited research scope\n🕰️ Time-intensive archival research\n📊 Limited quantitative analysis\n🎭 Emphasis on qualitative methods\n\n\nDigital Humanities:\n\n📊 Handles large datasets and corpora\n👥 Often team-based, interdisciplinary projects\n🖥️ Diverse digital outputs (visualizations, databases, etc.)\n🔍 Distant reading and pattern recognition\n📜 Inclusion of non-canonical texts and artifacts\n🤖 Automated data collection and processing\n🌍 Global reach through digital archives\n⚡ Rapid processing of vast information\n📈 Advanced statistical and computational analysis\n🔀 Integration of quantitative and qualitative methods"
-  },
-  {
-    "objectID": "slides/s-intro.html#reflection",
-    "href": "slides/s-intro.html#reflection",
-    "title": "Introduction to Digital Humanities",
-    "section": "Reflection",
-    "text": "Reflection\n💡 Does humanities need computational methods?\n🧑 Are we losing the “human” in digital humanities?\n⚖️ How might DH methods transform your area of study?\nDiscuss with a partner, then share with the class."
+    "section": "Course Overview",
+    "text": "Course Overview\n\n🎯 Learning outcomes:\n\nUnderstand key DH concepts and methodologies\nDevelop basic programming skills in R\nApply digital methods to humanities research questions\nCritically evaluate DH projects and their implications"
   },
   {
     "objectID": "book/index.html",
@@ -274,6 +137,153 @@
     ]
   },
   {
+    "objectID": "book/slides/s-intro.html#what-is-digital-humanities",
+    "href": "book/slides/s-intro.html#what-is-digital-humanities",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#what-is-digital-humanities-1",
+    "href": "book/slides/s-intro.html#what-is-digital-humanities-1",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨\nWrite down three keywords that come to mind."
+  },
+  {
+    "objectID": "book/slides/s-intro.html#what-is-digital-humanities-2",
+    "href": "book/slides/s-intro.html#what-is-digital-humanities-2",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨\n🤔 What patterns do you see in the word cloud? Any suprising entries?"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#what-is-digital-humanities-3",
+    "href": "book/slides/s-intro.html#what-is-digital-humanities-3",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#what-is-digital-humanities-4",
+    "href": "book/slides/s-intro.html#what-is-digital-humanities-4",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#what-is-digital-humanities-5",
+    "href": "book/slides/s-intro.html#what-is-digital-humanities-5",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#what-is-digital-humanities-6",
+    "href": "book/slides/s-intro.html#what-is-digital-humanities-6",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#what-is-digital-humanities-7",
+    "href": "book/slides/s-intro.html#what-is-digital-humanities-7",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#what-is-digital-humanities-8",
+    "href": "book/slides/s-intro.html#what-is-digital-humanities-8",
+    "title": "Introduction to Digital Humanities",
+    "section": "What is digital humanities?🤨",
+    "text": "What is digital humanities?🤨\n\n“Digital humanities work is done at the intersection of computational methods and humanities materials.”\n– Johanna Drucker, 2021 📚\n\n\n🔀 Intersection of computation and humanities\n🔗 Combines traditional disciplines with digital tools\n🤝 Collaborative and interdisciplinary\n🔄 Iterative and public-facing\n🔓 Open and accessible"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#components-of-dh-projects",
+    "href": "book/slides/s-intro.html#components-of-dh-projects",
+    "title": "Introduction to Digital Humanities",
+    "section": "Components of DH Projects",
+    "text": "Components of DH Projects\n\n📁 MATERIALS\n⚙️ PROCESSING\n🎨 PRESENTATION"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#dh-materials",
+    "href": "book/slides/s-intro.html#dh-materials",
+    "title": "Introduction to Digital Humanities",
+    "section": "DH Materials",
+    "text": "DH Materials\n\n💾 Digital or digitized humanities sources\n🖼️ Examples: texts, images, audio, video\n📈 Often large-scale datasets"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#dh-processing",
+    "href": "book/slides/s-intro.html#dh-processing",
+    "title": "Introduction to Digital Humanities",
+    "section": "DH Processing",
+    "text": "DH Processing\n\n🧮 Computational methods and tools\n📊 Data analysis and modeling\n🤖 Machine learning and AI applications"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#dh-presentation",
+    "href": "book/slides/s-intro.html#dh-presentation",
+    "title": "Introduction to Digital Humanities",
+    "section": "DH Presentation",
+    "text": "DH Presentation\n\n📊 Visualizations\n🗄️ Digital archives\n🖱️ Interactive platforms\n🗃️ Databases"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#example-mapping-the-republic-of-letters",
+    "href": "book/slides/s-intro.html#example-mapping-the-republic-of-letters",
+    "title": "Introduction to Digital Humanities",
+    "section": "Example: Mapping the Republic of Letters",
+    "text": "Example: Mapping the Republic of Letters\n\n\n\n\n🍿 Watch a video about the project"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-1",
+    "href": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-1",
+    "title": "Introduction to Digital Humanities",
+    "section": "Example: Mapping the Republic of Letters",
+    "text": "Example: Mapping the Republic of Letters\nWhat it is\n\n🌐 One of the largest Digital Humanities initiatives worldwide\n🏛️ Stanford-based project with international collaborations\n🚀 Groundbreaking effort in historical data visualization"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-2",
+    "href": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-2",
+    "title": "Introduction to Digital Humanities",
+    "section": "Example: Mapping the Republic of Letters",
+    "text": "Example: Mapping the Republic of Letters\nWhat it does\n\n🗺️ Maps and analyzes intellectual networks of the 17th-18th century Enlightenment\n✉️ Visualizes over 200,000 letters exchanged by key historical figures\n🔍 Reveals patterns of knowledge exchange across Europe and the Americas"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-3",
+    "href": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-3",
+    "title": "Introduction to Digital Humanities",
+    "section": "Example: Mapping the Republic of Letters",
+    "text": "Example: Mapping the Republic of Letters\nCan you identify the core components of this DH project? 🧐 (quick learning check!)\n\n📁 MATERIALS\n⚙️ PROCESSING\n🎨 PRESENTATION"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-4",
+    "href": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-4",
+    "title": "Introduction to Digital Humanities",
+    "section": "Example: Mapping the Republic of Letters",
+    "text": "Example: Mapping the Republic of Letters\nCan you identify the core components of this DH project? 🧐\n\n📁 MATERIALS: Letters and correspondence of Enlightenment thinkers\n⚙️ PROCESSING: Network analysis, geospatial mapping\n🎨 PRESENTATION: Interactive visualizations of intellectual networks"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-5",
+    "href": "book/slides/s-intro.html#example-mapping-the-republic-of-letters-5",
+    "title": "Introduction to Digital Humanities",
+    "section": "Example: Mapping the Republic of Letters",
+    "text": "Example: Mapping the Republic of Letters\n🧐 How is the project different from a traditional humanities project? Discuss in pairs to identify key differences between traditional humanities and DH."
+  },
+  {
+    "objectID": "book/slides/s-intro.html#digital-humanities-vs-traditional-humanities",
+    "href": "book/slides/s-intro.html#digital-humanities-vs-traditional-humanities",
+    "title": "Introduction to Digital Humanities",
+    "section": "Digital Humanities vs Traditional Humanities",
+    "text": "Digital Humanities vs Traditional Humanities\n\n\nTraditional Humanities:\n\n🔎 Limited by human reading capacity\n🧑‍🏫 Often individual research\n📚 Primarily books and articles\n🖋️ Close reading and interpretation\n🏛️ Focus on canonical works\n🗂️ Manual data collection and analysis\n🌐 Geographically limited research scope\n🕰️ Time-intensive archival research\n📊 Limited quantitative analysis\n🎭 Emphasis on qualitative methods\n\n\nDigital Humanities:\n\n📊 Handles large datasets and corpora\n👥 Often team-based, interdisciplinary projects\n🖥️ Diverse digital outputs (visualizations, databases, etc.)\n🔍 Distant reading and pattern recognition\n📜 Inclusion of non-canonical texts and artifacts\n🤖 Automated data collection and processing\n🌍 Global reach through digital archives\n⚡ Rapid processing of vast information\n📈 Advanced statistical and computational analysis\n🔀 Integration of quantitative and qualitative methods"
+  },
+  {
+    "objectID": "book/slides/s-intro.html#reflection",
+    "href": "book/slides/s-intro.html#reflection",
+    "title": "Introduction to Digital Humanities",
+    "section": "Reflection",
+    "text": "Reflection\n💡 Does humanities need computational methods?\n🧑 Are we losing the “human” in digital humanities?\n⚖️ How might DH methods transform your area of study?\nDiscuss with a partner, then share with the class."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Introduction to Digital Humanities",
@@ -293,27 +303,6 @@
     "title": "Introduction to Digital Humanities",
     "section": "Course Overview",
     "text": "Course Overview\n\n\n🌱 Foundations\n\nDigital Humanities Overview\n\n\n\n🛠️ Core DH Techniques\n\nR Programming Basics\nQuantitative Text Analysis\n\n\n\n🚀 Specialized Topics\n\nTopic Modelling\nSentiment Analysis\nSocial Network Analysis"
-  },
-  {
-    "objectID": "slides/s-preface.html#course-overview",
-    "href": "slides/s-preface.html#course-overview",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course Overview",
-    "text": "Course Overview\n\n🎒 Course design:\n\nWith a more pratical focus on DH methods using R\nLectures followed by practical sessions with R\nBring your laptop 💻\n\n🏠 Course platform:\n\n💬 Wechat: notifications + live chats\n🛜 Course website: course materials/code scripts"
-  },
-  {
-    "objectID": "slides/s-preface.html#why-focus-on-dh-methods",
-    "href": "slides/s-preface.html#why-focus-on-dh-methods",
-    "title": "Introduction to Digital Humanities",
-    "section": "Why Focus on DH Methods?",
-    "text": "Why Focus on DH Methods?\n\n🌉 Common ground: Methods bridge diverse humanities disciplines\n🔧 Transferable skills: Applicable across various research areas\n🚀 Future-proofing: Open the door to coding/programming to prepare for the AI age\n🧠 Critical thinking: Enhance analytical skills for all humanities\n💡 Computational thinking: Develop a sense of data and computational thinking"
-  },
-  {
-    "objectID": "slides/s-preface.html#course-overview-1",
-    "href": "slides/s-preface.html#course-overview-1",
-    "title": "Introduction to Digital Humanities",
-    "section": "Course Overview",
-    "text": "Course Overview\n\n🎯 Learning outcomes:\n\nUnderstand key DH concepts and methodologies\nDevelop basic programming skills in R\nApply digital methods to humanities research questions\nCritically evaluate DH projects and their implications"
   },
   {
     "objectID": "toolbox.html#poker-card-ballot-drawer",

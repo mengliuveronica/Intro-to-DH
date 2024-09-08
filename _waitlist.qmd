@@ -1,0 +1,32 @@
+
+## Challenges and Considerations in Digital Humanities
+
+### Ethical Considerations
+
+Digital humanities projects often involve ethical considerations, particularly when working with sensitive or personal data.
+
+::: {.callout-warning}
+Always consider privacy, consent, and potential harm when working with data about individuals or communities.
+:::
+
+### Interdisciplinary Collaboration
+
+Digital humanities often requires collaboration between humanists, computer scientists, librarians, and others.
+
+::: {.callout-tip collapse="true"}
+## Discussion: Collaboration Challenges 
+In small groups, discuss:
+
+1. What challenges might arise in collaborations between humanists and technologists?
+2. How can these challenges be addressed?
+
+Share your group's top insights with the class.
+:::
+
+### Critical Approaches
+
+It's important to maintain critical perspectives on the use of digital tools in humanities research.
+
+::: {.callout-note}
+Remember that computational methods are not neutral. They embed certain assumptions and biases that need to be critically examined.
+:::

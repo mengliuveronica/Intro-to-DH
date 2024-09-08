@@ -22,5 +22,14 @@
   },
   "book/01-introduction.qmd": {
     "01-introduction.html": "59fd3a35"
+  },
+  "waitlist.qmd": {
+    "waitlist.html": "7f3c0a56"
+  },
+  "book/slides/s-intro.qmd": {
+    "s-intro.html": "6d81107b"
+  },
+  "book/slides/s-preface.qmd": {
+    "s-preface.html": "910cc7bf"
   }
 }

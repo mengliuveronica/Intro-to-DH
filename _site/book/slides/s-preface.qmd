@@ -4,8 +4,6 @@ subtitle: "Welcome and Introduction"
 author: "Meng Liu"
 format:
   revealjs:
-    theme: default
-    css: "../custom.css"
     slide-number: true
     footer: Meng Liu | SEIS BFSU
     logo: "../images/Meng.png"

@@ -11,7 +11,7 @@ format:
 
 ::: {.grid}
 ::: {.g-col-4}
-![](images/dh.png){width=150px fig-align="left"}
+![](../book/images/dh.png){width=150px fig-align="left"}
 :::
 ::: {.g-col-6}
 **Introduction to Digital Humanitites 数字人文导论** • 2024 Fall 秋  

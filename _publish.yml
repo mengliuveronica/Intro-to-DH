@@ -1,4 +1,4 @@
 - source: project
   netlify:
     - id: cf44df0c-ac89-44c6-81a0-9f77a689036c
-      url: 'https://poetic-pasca-62ce21.netlify.app'
+      url: 'https://intro-to-dh.netlify.app'

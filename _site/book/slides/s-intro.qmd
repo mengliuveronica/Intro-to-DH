@@ -4,8 +4,6 @@ subtitle: "Exploring the Intersection of Humanities and Technology"
 author: "Meng Liu"
 format:
   revealjs:
-    theme: default
-    css: "../custom.css"
     slide-number: true
     footer: Meng Liu | SEIS BFSU
     logo: "../images/Meng.png"
@@ -49,7 +47,7 @@ format:
 
 ## What is digital humanities?🤨 
 
-![](/images/dh1.png){.absolute top=100 left=0 right=0 height="80%"}
+![](../images/dh1.png){.absolute top=100 left=0 right=0 height="80%"}
 
 
 
@@ -58,27 +56,27 @@ format:
 
 ## What is digital humanities?🤨 
 
-![](/images/dh2.png){.absolute top=100 left=0 right=0 height="80%"}
+![](../images/dh2.png){.absolute top=100 left=0 right=0 height="80%"}
 
 
 ---
 
 ## What is digital humanities?🤨 
 
-![](/images/dh3.png){.absolute top=100 left=0 right=0 height="80%"}
+![](../images/dh3.png){.absolute top=100 left=0 right=0 height="80%"}
 
 ---
 
 ## What is digital humanities?🤨 
 
-![](/images/dh4.png){.absolute top=100 left=0 right=0 height="80%"}
+![](../images/dh4.png){.absolute top=100 left=0 right=0 height="80%"}
 
 
 ---
 
 ## What is digital humanities?🤨 
 
-![](/images/dh5.png){.absolute top=100 left=0 right=0 height="80%"}
+![](../images/dh5.png){.absolute top=100 left=0 right=0 height="80%"}
 
 ---
 

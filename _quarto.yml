@@ -3,12 +3,10 @@ project:
   output-dir: _site
   render:
     - "*.qmd"
-    - "!_*.qmd"  # Excludes files starting with underscore
-    - "book/*.qmd"
+    - "!_*.qmd"
     - "book/slides/*.qmd"
   resources:
     - "book/"
-    - "slides/" 
 
 website:
   title: "Intro to DH"
@@ -54,8 +52,12 @@ format:
       - file: _footer.html
   revealjs:
     theme: simple
+    css: "../../custom.css"
     reveal_plugins:
       - notes
       - search
       - zoom
-    output-dir: _site/slides
+    output-dir: _site/book/slides
+
+execute:
+  freeze: auto
