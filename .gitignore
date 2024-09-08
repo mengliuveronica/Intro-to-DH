@@ -1,3 +1,16 @@
 /.quarto/
 .env
 .pub
+
+# SSH keys
+.ssh/*
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+*.pub
+
+# SSH config files
+config
+known_hosts
+authorized_keys
