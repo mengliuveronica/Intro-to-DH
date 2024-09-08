@@ -51,7 +51,7 @@ format:
     include-after-body:
       - file: _footer.html
   revealjs:
-    theme: simple
+    theme: default
     css: "../../custom.css"
     reveal_plugins:
       - notes

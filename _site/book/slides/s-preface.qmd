@@ -29,6 +29,13 @@ format:
 
 ---
 
+- About Me 👩🏻‍🏫
+- About the Course 🎯
+- About You 👋
+
+---
+
+
 # Who am I? 🙋🏻‍♀️ {.centered}
 
 ---
@@ -69,6 +76,10 @@ format:
 ### Teaching 👩🏻‍🏫 
 ![](../images/teaching.png)
 
+
+---
+
+# About the Course 🎯 {.centered}
 
 ---
 
@@ -116,6 +127,19 @@ For those interested in deeper philosophical discussions and critiques:
   - Develop basic programming skills in R
   - Apply digital methods to humanities research questions
   - Critically evaluate DH projects and their implications
+
+---
+
+## Getting Ready
+- 🏠 Tour the website 
+- 💬 Create wechat group 
+- 🤳 Join 微助教班级
+
+---
+
+## About You
+
+![](../images/intro-survey.png)
 
 ---
 

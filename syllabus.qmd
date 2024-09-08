@@ -12,12 +12,6 @@ Welcome to Introduction to Digital Humanities! We will cover several key topics 
 
 Here's a breakdown of our semester:
 
-::: {.callout-warning}
-## Schedule Subject to Change
-Please note that this schedule is tentative and may be adjusted as needed throughout the semester to accommodate our learning progress and any unforeseen circumstances.
-:::
-
-
 | Week | Date | Content |
 |------|------|---------|
 | 1 | 9.9 | <span class="highlight-yellow">Orientation: Introduction to Digital Humanities</span> |
@@ -29,17 +23,20 @@ Please note that this schedule is tentative and may be adjusted as needed throug
 | 16 | 12.23 | <span class="highlight-yellow">Ethics, AI and Future of Digital Humanities</span> |
 | 17-18 | Exam Weeks | Final Assessment |
 
-
+::: {.callout-note}
+## Schedule Subject to Change
+Please note that this schedule is tentative and may be adjusted as needed throughout the semester to accommodate our learning progress and any unforeseen circumstances.
+:::
 
 ## 📊 Assessment
 
 Your final grade will be composed of the following elements:
 
 1. **Monthly Quiz** 📝: <span class="highlight-blue">30%</span>
-   - Regular assessments to check your understanding of the course material.
+   - Regular assessments to check your understanding of the course material. (微助教/问卷星)
 
 2. **Class Participation and Attendance** 🙋‍♀️: <span class="highlight-green">30%</span>
-   - Your active involvement in class discussions and activities is crucial!
+   - Your active involvement in class discussions and activities is crucial! (微助教/Leaderboard)
    
    ::: {.callout-note}
    ## Important
