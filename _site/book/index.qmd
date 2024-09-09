@@ -18,6 +18,7 @@ The content of the book is updated on a regular basis as the course progresses.
 ::: {.callout-note}
 Credit: The content of the book is based on the following (amazing and highly acclaimed) sources: 
 
+- [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)
 - [R for Data Science (2e)](https://r4ds.hadley.nz/)
 - [Text Mining with R](https://www.tidytextmining.com/)
 
