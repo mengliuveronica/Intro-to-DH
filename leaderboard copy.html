@@ -141,14 +141,6 @@
         </p>
         <div id="leaderboard"></div>
 
-        <!-- Add this new search section -->
-        <div id="searchSection">
-            <h3>Search Student</h3>
-            <input type="text" id="searchInput" placeholder="Enter student name">
-            <button id="searchButton">Search</button>
-            <div id="searchResult"></div>
-        </div>
-
         <div id="adminControls">
             <h3>Admin Controls</h3>
             <input type="password" id="adminPasswordInput" placeholder="Admin Password">
@@ -156,9 +148,9 @@
         </div>
 
         <div id="addEntry" class="hidden">
-            <h4>Add Score</h4>
+            <h4>Add New Entry</h4>
             <input type="text" id="nameInput" placeholder="Name">
-            <input type="number" id="scoreInput" placeholder="Score to add">
+            <input type="number" id="scoreInput" placeholder="Score">
             <button id="addButton">Add</button>
         </div>
 
@@ -170,8 +162,8 @@
             <span class="close">&times;</span>
             <h2>Update Entry</h2>
             <input type="text" id="updateNameInput" placeholder="Name">
-            <input type="number" id="updateScoreInput" placeholder="Score to add">
-            <button id="updateConfirmButton">Add</button>
+            <input type="number" id="updateScoreInput" placeholder="Score">
+            <button id="updateConfirmButton">Update</button>
         </div>
     </div>
 
@@ -199,8 +191,7 @@
         async function fetchLeaderboard() {
             const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?sort[0][field]=Score&sort[0][direction]=desc&maxRecords=10`;
             const response = await fetch(url, {
-                headers: { 'Authorization': `Bearer ${AIRTABLE_API_KEY}` },
-                cache: 'no-store' // Force fresh fetch
+                headers: { 'Authorization': `Bearer ${AIRTABLE_API_KEY}` }
             });
             const data = await response.json();
             return data.records;
@@ -217,7 +208,6 @@
 
         async function displayLeaderboard() {
             const leaderboard = await fetchLeaderboard();
-            console.log('Fetched leaderboard:', leaderboard);
             const leaderboardDiv = document.getElementById('leaderboard');
             leaderboardDiv.innerHTML = '';
 
@@ -235,7 +225,7 @@
                     adminButtons.className = 'admin-buttons';
                     
                     const updateButton = document.createElement('button');
-                    updateButton.textContent = 'Add';
+                    updateButton.textContent = 'Update';
                     updateButton.onclick = () => showUpdateModal(entry.id, entry.fields.Name, entry.fields.Score);
                     adminButtons.appendChild(updateButton);
 
@@ -250,168 +240,69 @@
             });
         }
 
-        async function searchStudent(name) {
-            console.log(`Searching for student: ${name}`);
-            const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}?filterByFormula=LOWER({Name})="${name.toLowerCase()}"`;
-            try {
-                const response = await fetch(url, {
-                    headers: { 'Authorization': `Bearer ${AIRTABLE_API_KEY}` }
-                });
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                console.log(`Search results:`, data.records);
-                return data.records;
-            } catch (error) {
-                console.error('Error searching for student:', error);
-                return [];
-            }
-        }
+        async function addEntry() {
+            const name = document.getElementById('nameInput').value;
+            const score = parseInt(document.getElementById('scoreInput').value);
 
-        async function displaySearchResult(name) {
-            const results = await searchStudent(name);
-            const searchResultDiv = document.getElementById('searchResult');
-            searchResultDiv.innerHTML = '';
-
-            if (results.length === 0) {
-                searchResultDiv.innerHTML = '<p>No student found with that name.</p>';
-            } else {
-                results.forEach(student => {
-                    const resultItem = document.createElement('div');
-                    resultItem.innerHTML = `
-                        <p><strong>${student.fields.Name}</strong>: ${student.fields.Score} points</p>
-                    `;
-                    searchResultDiv.appendChild(resultItem);
-                });
-            }
-        }
-
-        async function addOrUpdateEntry() {
-            const name = document.getElementById('nameInput').value.trim();
-            const scoreToAdd = parseInt(document.getElementById('scoreInput').value);
-
-            console.log(`Attempting to add/update entry for ${name} with score ${scoreToAdd}`);
-
-            if (!name || isNaN(scoreToAdd)) {
+            if (!name || isNaN(score)) {
                 console.log('Please enter a valid name and score.');
                 return;
             }
 
-            try {
-                const existingStudents = await searchStudent(name);
-                
-                if (existingStudents.length > 0) {
-                    // Update existing student
-                    const student = existingStudents[0];
-                    const currentScore = student.fields.Score || 0;
-                    const newScore = currentScore + scoreToAdd;
-                    console.log(`Updating ${student.fields.Name}'s score from ${currentScore} to ${newScore}`);
-                    await updateEntry(student.id, student.fields.Name, newScore);
-                    
-                    // Force refresh of the specific entry
-                    const updatedStudent = await searchStudent(name);
-                    console.log('Updated student data:', updatedStudent);
-                } else {
-                    // Add new student
-                    console.log(`Adding new student ${name} with score ${scoreToAdd}`);
-                    await addNewEntry(name, scoreToAdd);
-                }
+            const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    records: [{ fields: { Name: name, Score: score } }]
+                })
+            });
 
-                await displayLeaderboard();
+            if (response.ok) {
+                displayLeaderboard();
                 document.getElementById('nameInput').value = '';
                 document.getElementById('scoreInput').value = '';
-            } catch (error) {
-                console.error('Error in addOrUpdateEntry:', error);
-            }
-        }
-
-        async function updateEntry(id, name, newScore) {
-            console.log(`Updating entry for ${name} with new score ${newScore}`);
-            const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/${id}`;
-            try {
-                const response = await fetch(url, {
-                    method: 'PATCH',
-                    headers: {
-                        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        fields: { Name: name, Score: newScore }
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const responseData = await response.json();
-                console.log('Airtable update response:', responseData);
-
-                console.log(`Successfully updated ${name}'s score to ${newScore}`);
-            } catch (error) {
-                console.error('Error updating entry:', error);
-            }
-        }
-
-        async function addNewEntry(name, score) {
-            console.log(`Adding new entry for ${name} with score ${score}`);
-            const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`;
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        records: [{ fields: { Name: name, Score: score } }]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                console.log(`Successfully added new entry for ${name} with score ${score}`);
-            } catch (error) {
-                console.error('Error adding new entry:', error);
+            } else {
+                console.log('Error adding entry. Please try again.');
             }
         }
 
         function showUpdateModal(id, currentName, currentScore) {
             currentUpdateId = id;
             document.getElementById('updateNameInput').value = currentName;
-            document.getElementById('updateScoreInput').value = ''; // Clear this field
+            document.getElementById('updateScoreInput').value = currentScore;
             document.getElementById('updateModal').style.display = 'block';
         }
 
-        async function performUpdate() {
+        async function updateEntry() {
             const name = document.getElementById('updateNameInput').value;
-            const scoreToAdd = parseInt(document.getElementById('updateScoreInput').value);
+            const score = parseInt(document.getElementById('updateScoreInput').value);
 
-            if (!name || isNaN(scoreToAdd)) {
-                console.log('Please enter a valid name and score to add.');
+            if (!name || isNaN(score)) {
+                console.log('Please enter a valid name and score.');
                 return;
             }
 
-            try {
-                const existingStudents = await searchStudent(name);
-                if (existingStudents.length > 0) {
-                    const student = existingStudents[0];
-                    const currentScore = student.fields.Score || 0;
-                    const newScore = currentScore + scoreToAdd;
-                    await updateEntry(student.id, student.fields.Name, newScore);
-                    console.log(`Updated ${student.fields.Name}'s score from ${currentScore} to ${newScore}`);
-                } else {
-                    console.log(`Student ${name} not found. Cannot update.`);
-                    return;
-                }
+            const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/${currentUpdateId}`;
+            const response = await fetch(url, {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    fields: { Name: name, Score: score }
+                })
+            });
 
+            if (response.ok) {
                 document.getElementById('updateModal').style.display = 'none';
-                await displayLeaderboard();
-            } catch (error) {
-                console.error('Error in performUpdate:', error);
+                displayLeaderboard();
+            } else {
+                console.log('Error updating entry. Please try again.');
             }
         }
 
@@ -471,17 +362,12 @@
             console.log('Admin not logged in');
         }
 
-        document.getElementById('searchButton').addEventListener('click', function() {
-            const searchName = document.getElementById('searchInput').value;
-            displaySearchResult(searchName);
-        });
-
-        document.getElementById('addButton').addEventListener('click', addOrUpdateEntry);
+        document.getElementById('addButton').addEventListener('click', addEntry);
         document.getElementById('loginButton').addEventListener('click', function() {
             console.log('Login button clicked');
             login();
         });
-        document.getElementById('updateConfirmButton').addEventListener('click', performUpdate);
+        document.getElementById('updateConfirmButton').addEventListener('click', updateEntry);
         document.getElementById('deleteConfirmButton').addEventListener('click', deleteEntry);
         document.getElementById('deleteCancelButton').addEventListener('click', function() {
             document.getElementById('deleteModal').style.display = 'none';
