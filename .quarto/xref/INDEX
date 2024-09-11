@@ -31,5 +31,17 @@
   },
   "book/slides/s-preface.qmd": {
     "s-preface.html": "910cc7bf"
+  },
+  "book/03-dice.qmd": {
+    "03-dice.html": "973b8dd6"
+  },
+  "book/01-introduction copy.qmd": {
+    "01-introduction copy.html": "1e5184b8"
+  },
+  "book/04-cards.qmd": {
+    "04-cards.html": "ba15def4"
+  },
+  "book/05-tidyverse.qmd": {
+    "05-tidyverse.html": "62244491"
   }
 }

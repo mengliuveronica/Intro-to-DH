@@ -1,0 +1,365 @@
+---
+title: "§4 Dealing with Cards 🃏"
+subtitle: "R Objects and Data Frames"
+format:
+  html:
+    toc: true
+    code-fold: false
+    code-tools: true
+    code-link: true
+    highlight-style: github
+    include-in-header:
+      text: |
+        <script src="quiz.js"></script>
+        <script src="content-switch.js"></script>
+execute:
+  freeze: auto
+---
+
+Welcome to your second project with R! We'll create a virtual deck of poker cards to explore more advanced R concepts. Just as historians analyze artifacts or literary scholars examine texts, we'll be examining different ways to structure and manipulate data in R.
+
+::: {.callout-tip}
+## Learning Objectives
+- 🧱 Understand different R data types - the building blocks of information
+- 📊 Create and manipulate data frames - R's powerful spreadsheet-like structure
+- 🃏 Build a virtual deck of cards - applying R concepts to a real-world object
+- 🔍 Extract and modify data - skills crucial for data analysis
+:::
+
+# R Data Types 🧱
+
+In R, just as in language, we have different types of information. Let's explore some common data types:
+
+## Numeric
+We've already seen this with our dice. It includes both integers and decimal numbers:
+
+```{r}
+my_integer <- 42
+my_deci <- 3.14
+class(my_integer)
+class(my_deci)
+```
+
+## Character
+This is used for text data, like words or sentences:
+
+```{r}
+my_name <- "Shakespeare"
+my_quote <- "To be or not to be"
+class(my_name)
+class(my_quote)
+```
+
+
+## Logical
+This represents true/false values:
+
+```{r}
+is_sunny <- TRUE
+is_raining <- FALSE
+class(is_sunny)
+class(is_raining)
+```
+
+
+## Factor
+This is used for categorical data, like genres in literature:
+
+```{r}
+genres <- factor(c("Poetry", "Prose", "Drama"))
+class(genres)
+```
+
+
+::: {.callout-note}
+Factors are useful for representing data that falls into distinct categories, like genres, time periods, or author nationalities in literary studies.
+:::
+
+## Learning Check 🏁 
+
+<div id="quiz1"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "Which data type would you use to store a person's age?",
+      options: [
+        "Character",
+        "Numeric",
+        "Logical",
+        "Factor"
+      ]
+    },
+    {
+      text: "What data type is best for storing the title of a book?",
+      options: [
+        "Numeric",
+        "Character",
+        "Logical",
+        "Factor"
+      ]
+    },
+    {
+      text: "Which data type would you use to represent whether a book is fiction or non-fiction?",
+      options: [
+        "Numeric",
+        "Character",
+        "Logical",
+        "Factor"
+      ]
+    }
+  ],
+  answers: [1, 1, 3]
+}, "quiz1");
+</script>
+
+## Hands-On Coding 💻
+
+Try the following:
+
+1. Create a numeric variable called `year_published` and assign it the year your favorite book was published.
+2. Create a character variable called `book_title` with the title of your favorite book.
+3. Create a logical variable called `is_fiction` indicating whether your favorite book is fiction (TRUE) or non-fiction (FALSE).
+4. Create a factor variable called `book_genre` with a few genres (e.g., "Mystery", "Romance", "Science Fiction").
+
+<div id="hidden-content1" style="display: none;">
+
+
+```{r}
+# Year published
+year_published <- 1960
+# Book title
+book_title <- "To Kill a Mockingbird"
+# Fiction or non-fiction
+is_fiction <- TRUE
+# Book genre
+book_genre <- factor(c("Mystery", "Romance", "Science Fiction"))
+```
+
+</div>
+
+<script>
+createToggleSection('button1', 'hidden-content1');
+</script>
+
+# Data Frames 📊
+
+A data frame is like a spreadsheet in R. It's a collection of vectors of equal length, each representing a column. This structure is perfect for our deck of cards!
+
+Let's create a simple data frame to represent books:
+
+
+```{r}
+books <- data.frame(
+title = c("1984", "Pride and Prejudice", "The Great Gatsby"),
+author = c("Orwell", "Austen", "Fitzgerald"),
+year = c(1949, 1813, 1925)
+)
+print(books)
+```
+
+
+::: {.callout-tip}
+Data frames are crucial in data analysis. They allow you to store different types of data (like numbers and text) together in a structured format.
+:::
+
+## Accessing Data in a Data Frame
+
+You can access specific parts of a data frame using various methods:
+
+```{r}
+# Get a specific column
+books$title
+
+#Get a specific row
+books[2, ]
+
+#Get a specific cell
+books[1, 2]
+```
+
+
+## Learning Check 🏁
+
+<div id="quiz2"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "What is a data frame in R?",
+      options: [
+        "A type of graph",
+        "A collection of vectors of equal length",
+        "A single column of data",
+        "A programming function"
+      ]
+    },
+    {
+      text: "How would you access the 'author' column in a data frame called 'books'?",
+      options: [
+        "books[author]",
+        "books$author",
+        "author(books)",
+        "books.author"
+      ]
+    },
+    {
+      text: "What does books[2, ] return?",
+      options: [
+        "The second column of the 'books' data frame",
+        "The second row of the 'books' data frame",
+        "The second cell of the 'books' data frame",
+        "An error"
+      ]
+    }
+  ],
+  answers: [1, 1, 1]
+}, "quiz2");
+</script>
+
+## Hands-On Coding 💻
+
+Let's create a data frame for a deck of cards:
+
+1. Create three vectors: `suit` (Hearts, Diamonds, Clubs, Spades), `rank` (Ace, 2-10, Jack, Queen, King), and `value` (1-13).
+2. Use these vectors to create a data frame called `deck`.
+3. Print the first few rows of your deck using the `head()` function.
+4. Access all the hearts in your deck.
+5. Find the value of the King of Spades.
+
+<div id="hidden-content2" style="display: none;">
+
+
+```{r}
+# Create vectors
+suit <- rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = 13)
+rank <- rep(c("Ace", 2:10, "Jack", "Queen", "King"), times = 4)
+value <- rep(1:13, times = 4)
+
+# Create data frame
+deck <- data.frame(suit, rank, value)
+
+# Print first few rows
+head(deck)
+
+# Access all hearts
+hearts <- deck[deck$suit == "Hearts", ]
+
+# Find value of King of Spades
+king_of_spades <- deck[deck$suit == "Spades" & deck$rank == "King", "value"]
+print(king_of_spades)
+```
+
+</div>
+
+<script>
+createToggleSection('button2', 'hidden-content2');
+</script>
+
+# Building Our Deck of Cards 🃏
+
+Now that we understand data frames, let's build our full deck of cards:
+
+```{r}
+# Create the deck
+deck <- data.frame(
+suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = 13),
+rank = rep(c("Ace", 2:10, "Jack", "Queen", "King"), times = 4),
+value = rep(1:13, times = 4)
+)
+
+# View the first few cards
+head(deck)
+```
+
+
+
+This deck is now a structured data set that we can manipulate and analyze, just like any other data set in R!
+
+## Learning Check 🏁
+
+<div id="quiz3"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "How many rows does our deck data frame have?",
+      options: [
+        "13",
+        "4",
+        "52",
+        "26"
+      ]
+    },
+    {
+      text: "What function would you use to see the structure of the deck?",
+      options: [
+        "structure(deck)",
+        "str(deck)",
+        "summary(deck)",
+        "view(deck)"
+      ]
+    },
+    {
+      text: "How would you access all the Aces in the deck?",
+      options: [
+        "deck[deck$value == 1, ]",
+        "deck$Ace",
+        "deck[1, ]",
+        "deck[deck$rank == 'Ace', ]"
+      ]
+    }
+  ],
+  answers: [2, 1, 3]
+}, "quiz3");
+</script>
+
+## Hands-On Coding 💻
+
+Let's practice working with our deck:
+
+1. Use the `str()` function to examine the structure of the deck.
+2. Find all the face cards (Jack, Queen, King) in the deck.
+3. Calculate the average value of all cards in the deck.
+4. Create a new column in the deck called `color`, where Hearts and Diamonds are "Red" and Clubs and Spades are "Black".
+5. (Optional challenge) Create a function that randomly "draws" a card from the deck and prints its description (e.g., "You drew the King of Hearts").
+
+<div id="hidden-content3" style="display: none;">
+
+
+```{r}
+# Examine structure
+str(deck)
+
+# Find face cards
+face_cards <- deck[deck$rank %in% c("Jack", "Queen", "King"), ]
+
+# Calculate average value
+average_value <- mean(deck$value)
+
+# Add color column
+deck$color <- ifelse(deck$suit %in% c("Hearts", "Diamonds"), "Red", "Black")
+
+# (Optional) Draw a card function
+draw_card <- function() {
+card <- deck[sample(nrow(deck), 1), ]
+print(paste("You drew the", card$rank, "of", card$suit))
+}
+draw_card()
+```
+
+</div>
+
+<script>
+createToggleSection('button3', 'hidden-content3');
+</script>
+
+# Conclusion
+
+In this chapter, we've explored different data types in R and learned how to create and manipulate data frames. We've applied these concepts to build a virtual deck of cards, demonstrating how R can be used to represent and analyze real-world objects.
+
+These skills form the foundation for more advanced data manipulation and analysis techniques. In the next chapter, we'll learn how to write functions to deal and shuffle our deck, bringing our virtual cards to life!
+

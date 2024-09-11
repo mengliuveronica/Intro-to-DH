@@ -1,0 +1,730 @@
+---
+title: "§3 Rolling the Dice 🎲"
+subtitle: R Basics
+format:
+  html:
+    toc: true
+    code-fold: false
+    code-tools: true
+    code-link: true
+    highlight-style: github
+    include-in-header:
+      text: |
+        <script src="quiz.js"></script>
+        <script src="content-switch.js"></script>
+execute:
+  freeze: auto
+---
+
+
+Welcome to your first hands-on project with R! We'll create a virtual pair of dice to learn fundamental R concepts. Just as historians analyze artifacts or literary scholars examine texts, we'll be examining the building blocks of data analysis.
+
+::: {.callout-note collapse="true"}
+## Why Dice?
+Dice serve as an excellent starting point for learning R basics because:
+
+1. They're simple and familiar objects, making the concepts easier to grasp.
+2. Simulating dice rolls allows us to practice creating variables, using functions, and generating random numbers - all fundamental programming concepts.
+3. Results are easily verifiable, helping you build confidence in your code.
+:::
+
+::: {.callout-tip collapse="true"}
+## Learning Objectives
+- 🖥️ Get comfortable with the RStudio interface - your new digital work space
+- 🧱 Learn to create and manipulate R objects - the building blocks of R
+- 🛠️ Explore R functions - tools to automate repetitive tasks in your research
+- 📘 Introduction to Quarto documents - seamlessly combine your analysis and narrative
+:::
+
+# RStudio User Interface
+
+## Understanding the RStudio Interface 🖥️
+
+When you open RStudio, you'll see four main panes:
+
+1. **Console** (usually bottom-left): This is where you type R commands and see results. Think of it as a conversation with R - you ask questions, and R answers.
+
+2. **Source** (usually top-left): Here you write and edit R scripts. It's like a digital notebook for your code.
+
+3. **Environment** (usually top-right): This shows data and objects in R's memory. Imagine it as a shelf where R stores all the information you've given it.
+
+4. **Files/Plots/Packages/Help** (usually bottom-right): This multi-purpose pane is like a Swiss Army knife, offering file management, visualizations, add-ons, and documentation.
+
+## Running R Code 🏃‍♂️
+
+There are several ways to execute R code in RStudio:
+
+1. **Using the Console:**
+   - Type code directly into the Console and press Enter.
+
+2. **Using the Source Editor:**
+   - Write code in the Source Editor.
+   - Run a single line: Place cursor on the line and press Ctrl+Enter (Cmd+Enter on Mac).
+   - Run multiple lines: Highlight lines and press Ctrl+Enter (Cmd+Enter on Mac).
+   - Run entire script: Click "Run" button or press Ctrl+Shift+Enter (Cmd+Shift+Enter on Mac).
+
+::: {.callout-tip}
+## Pro Tip
+Writing code in the Source Editor allows you to save, edit, and rerun your entire analysis easily.
+:::
+
+
+## Learning Check 🏁 
+
+<div id="quiz1"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "What are the four main panes in RStudio?",
+      options: [
+        "Editor, Terminal, Viewer, Packages",
+        "Console, Source, Environment, Files/Plots/Packages/Help",
+        "Code, Output, Data, Plots",
+        "Script, Console, Workspace, Help"
+      ]
+    },
+    {
+      text: "Where would you typically write and save your R scripts?",
+      options: [
+        "Console",
+        "Source Editor",
+        "Environment",
+        "Files pane"
+      ]
+    },
+    {
+      text: "How can you run a single line of code from the Source Editor?",
+      options: [
+        "Click the \"Run\" button",
+        "Press Ctrl+Shift+Enter (Cmd+Shift+Enter on Mac)",
+        "Place cursor on the line and press Ctrl+Enter (Cmd+Enter on Mac)",
+        "Double-click the line"
+      ]
+    }
+  ],
+  answers: [1, 1, 2]
+}, "quiz1");
+</script>
+
+## Hands-On Coding 💻
+
+Try the following:
+
+1. Open RStudio and create a new R script named "my_first_script.R"
+2. In the script, write a simple calculation (e.g., `5 * 7`)
+3. Run this calculation using different methods:
+   - Console
+   - Running a single line
+   - Running the entire script
+4. Observe where the result appears in the RStudio interface
+
+<div id="hidden-content1" style="display: none;">
+
+```
+# In my_first_script.R
+5 * 7
+
+# In Console
+> 5 * 7
+[1] 35
+
+```
+</div>
+
+<script>
+createToggleSection('button1', 'hidden-content1');
+</script>
+
+
+
+# Objects in R 📦
+
+In R, we store data in things called *objects*. You can think of an object as a container with a label 📦. The label is the name we give to the object, and inside the container is our data.
+
+For example, we can create an object called `my_age` and store a number in it:
+
+```{r}
+my_age <- 22
+```
+
+This is similar to how you might label a box "Books" before putting books inside it. Now, whenever R sees `my_age`, it knows to use the value 22.
+
+::: {.callout-note}
+## Key Concepts
+- **Objects**: Containers for storing data in R.
+- **Assignment Operator** (`<-`): Used to assign values to objects.
+:::
+
+::: {.callout-tip}
+## Naming Objects
+When naming objects in R:
+
+- Names can't start with a number
+- Avoid special symbols like ^, !, $, @, +, -, /, or *
+- R is case-sensitive, so `Name` and `name` are different objects
+- Avoid using names of existing functions or objects
+
+:::
+
+
+## Creating a Die as an Object 🎲
+
+Let's start by creating a single die:
+
+```{r}
+die <- 1:6
+die
+```
+
+::: {.callout-note}
+## Key Concepts
+- **Vector**: A basic container that can hold multiple items of the same type.
+:::
+
+::: {.callout-tip}
+## The Colon Operator
+The colon operator (`:`) returns every integer between two integers. It's an easy way to create a sequence of numbers.
+:::
+
+🙋🏻‍♀️ What if I want to create a vector that's not a sequence of numbers?
+
+### Combining Data: `c()` 
+In R, `c()` stands for "combine" or "concatenate". It's used to create vectors, which are sequences of data elements of the same type. For example:
+
+```{r}
+# Creating a vector of numbers
+numbers <- c(2, 4, 6, 8, 10)
+numbers
+# Creating a vector of characters (text)
+fruits <- c("apple", "banana", "cherry")
+fruits
+# Creating a vector of logical values
+logical_values <- c(TRUE, FALSE, TRUE, TRUE)
+logical_values
+# You can also mix data types, but R will convert them to a single type
+mixed <- c(1, "two", TRUE)
+mixed # R converts all to characters
+```
+
+<br>
+The `c()` function is versatile and essential for creating custom datasets in R. You can use it to make lists of any kind of data you're working with in your research.
+
+
+## Manipulating Objects
+
+You can perform various operations on your `die` object:
+
+```{r}
+die - 1
+die * 2
+die / 2
+```
+
+## Learning Check 🏁
+
+<div id="quiz2"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "What is an object in R?",
+      options: [
+        "A function that performs calculations",
+        "A container for storing data",
+        "A type of plot or graph",
+        "A programming language"
+      ]
+    },
+    {
+      text: "How do you create an object in R?",
+      options: [
+        "Using the create() function",
+        "Using the assignment operator (<-)",
+        "Using the new() function",
+        "Using the object() function"
+      ]
+    },
+    {
+      text: "Which of the following is NOT a rule for naming objects in R?",
+      options: [
+        "Names can't start with a number",
+        "Avoid special symbols like ^, !, $, @, +, -, /, or *",
+        "R is case-sensitive",
+        "Names must be in all uppercase letters"
+      ]
+    }
+  ],
+  answers: [1, 1, 3]
+}, "quiz2");
+</script>
+
+## Hands-On Coding 💻
+
+Try the following:
+
+1. Create an object called `favorite_number` and assign it your favorite number.
+2. Create a vector called `lucky_numbers` with 3-5 numbers you consider lucky.
+3. Use the `length()` function to find out how many lucky numbers you have.
+4. Create a new vector called `unlucky_numbers` by subtracting 1 from each of your `lucky_numbers`.
+5. Create a vector called `all_numbers` that combines your `lucky_numbers` and `unlucky_numbers`.
+
+
+<div id="hidden-content2" style="display: none;">
+
+```{r}
+# 1. Create favorite_number
+favorite_number <- 7
+
+# 2. Create lucky_numbers
+lucky_numbers <- c(3, 7, 13)
+
+# 3. Use length() function
+length(lucky_numbers)
+
+# 4. Create unlucky_numbers
+unlucky_numbers <- lucky_numbers - 1
+
+# 5. Combine vectors
+all_numbers <- c(lucky_numbers, unlucky_numbers)
+print(all_numbers)
+```
+
+
+::: {.callout-tip}
+## Printing in R
+In R, using `print()` is often optional when working in the console. Simply typing the object name (e.g., `all_numbers`) will automatically display its contents. However, `print()` is useful in functions or scripts where you want to ensure output is displayed. It's also helpful for explicitly showing your intent to output a value.
+:::
+
+</div>
+
+<script>
+createToggleSection('button2', 'hidden-content2');
+</script>
+
+
+
+# Functions in R 🛠️
+
+In R programming, functions are like specialized tools that help you perform specific tasks. Just as you might use a hammer to drive a nail or a screwdriver to tighten a screw, you use functions in R to perform particular operations on your data.
+
+## Key Concepts of Functions in R
+
+1. **Purpose**: Functions are reusable blocks of code that perform a specific task.
+
+2. **Structure**: A function typically has three parts:
+   - **Name**: What you call the function (e.g., `sum`, `mean`, `plot`)
+   - **Arguments**: Input values the function needs to do its job
+   - **Body**: The code that defines what the function does
+
+   Here's the generic structure of a function in R:
+
+   ```{r}
+   name_of_function <- function(argument1, argument2, ...) {
+     # Body of the function
+     # Perform operations using the arguments
+     
+     return(result)  # Output of the function
+   }
+   ```
+
+   In this structure:
+   - `name_of_function` is where you specify the function's name
+   - `function()` keyword defines it as a function
+   - `(argument1, argument2, ...)` are the inputs the function accepts
+   - The code between `{` and `}` is the body of the function
+   - `return()` specifies what the function outputs
+
+   Now, let's look at a specific example:
+
+   ```{r}
+   double_value <- function(x) {
+     result <- x * 2
+     return(result)
+   }
+   ```
+    
+   In this example:
+   - The function **name** is `double_value`
+   - It has one **argument**: `x`
+   - The **body** is the code between the curly braces `{ }`
+   - The `return()` statement specifies what the function outputs
+
+   You can use this function like this:
+   ```{r}
+   doubled_value <- double_value(5)
+   doubled_value
+   ```
+
+3. **Input and Output**: Functions often take input (arguments) and return output (results).
+
+4. **Built-in vs. Custom**: R has many built-in functions, but you can also create your own. You can also set default values for the arguments so that the function can still run without input. 
+
+5. **Syntax**: To use a function, type its name followed by parentheses containing any arguments:
+   
+   `function_name(argument1, argument2, ...)`
+
+6. **Documentation**: You can learn about a function's use and arguments with `?function_name` in the console.
+
+Remember, functions are powerful tools that help you organize and streamline your code, making your analysis more efficient and readable.
+
+
+## Using Built-in Functions
+
+R comes with many built-in functions that you can use right away. These are like the basic tools that come in a starter toolkit. Let's look at a few examples:
+
+```{r}
+# The round() function rounds numbers
+round(3.14159)
+
+# The sum() function adds numbers together
+sum(1, 2, 3, 4, 5)
+
+# The length() function tells you how many items are in a list or vector
+length(die)
+```
+
+Using a function is straightforward. You write the name of the function followed by parentheses. Inside the parentheses, you put the information (called "arguments") that the function needs to do its job.
+
+::: {.callout-note}
+## Comments in R
+Did you notice the `#` ... part in the above code chunk?
+
+In R, the `#` symbol is used to create comments. Anything after a `#` on a line is ignored by R when running the code. Comments are useful for:
+
+1. Explaining what your code does
+2. Temporarily disabling code without deleting it
+3. Organizing your script into sections
+
+:::
+
+### Simulating Randomness: `sample()`
+
+To simulate rolling a die, we need a function that can randomly select a number. The `sample()` function is perfect for this task. It's like reaching into a bag and pulling out a random item.
+
+```{r}
+# Roll the die once
+sample(x = die, size = 1)
+
+# Roll the die again
+sample(x = die, size = 1)
+```
+
+In this case, `x = die` tells the function what to choose from (our die object), and `size = 1` says to pick one number.
+
+::: {.callout-note}
+## Sampling With Replacement
+By default, `sample()` doesn't put the number back in the "bag" after selecting it. For dice rolling, we want to allow the same number to be selected multiple times. Use `replace = TRUE` in the `sample()` function to achieve this.
+:::
+
+```{r}
+# Roll two dice
+sample(die, size = 2, replace = TRUE)
+```
+
+## Writing Your Own Functions
+
+Let's create a function to roll two dice:
+
+```{r}
+roll <- function() {
+  dice <- sample(die, size = 2, replace = TRUE)
+  sum(dice)
+}
+```
+
+Let's break this down:
+
+1. `roll <- function() { ... }` creates a new function named `roll`.
+2. Inside the curly braces `{ }` is the "body" of the function - the instructions for what it should do.
+3. `dice <- sample(die, size = 2, replace = TRUE)` rolls two dice.
+4. `sum(dice)` adds up the numbers rolled.
+
+Now, whenever you want to roll two dice and get the sum, you can simply use:
+
+```{r}
+roll()
+roll()
+```
+
+
+## Learning Check 🏁
+
+<div id="quiz3"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "What is a function in R?",
+      options: [
+        "A type of data structure",
+        "A reusable block of code that performs a specific task",
+        "A method for creating objects",
+        "A special type of variable"
+      ]
+    },
+    {
+      text: "What are the components of a function in R?",
+      options: [
+        "Name, arguments, and body",
+        "Header, content, and footer",
+        "Input, process, and output",
+        "Declaration, definition, and call"
+      ]
+    },
+    {
+      text: "What is the purpose of arguments in a function?",
+      options: [
+        "To name the function",
+        "To specify the return value",
+        "To provide input values for the function to use",
+        "To define the scope of the function"
+      ]
+    }
+  ],
+  answers: [1, 0, 2]
+}, "quiz3");
+</script>
+
+## Hands-On Coding 💻
+
+Let's practice using and creating functions:
+
+1. Use the `mean()` function to calculate the average of your `lucky_numbers`.
+2. Create a function called `double_it` that takes a number and returns its double.
+3. Use your `double_it` function on your `favorite_number`.
+4. Create a function called `roll_dice` that simulates rolling any number of dice. It should take one argument: the number of dice to roll.
+5. (Optional challenge) Modify your `roll_dice` function to accept a second argument for the number of sides on each die.
+
+<div id="hidden-content3" style="display: none;">
+
+```{r}
+# 1. Calculate mean of lucky_numbers
+mean(lucky_numbers)
+
+# 2. Create double_it function
+double_it <- function(x) {
+  return(x * 2)
+}
+
+# 3. Use double_it on favorite_number
+double_it(favorite_number)
+
+# 4. Create roll_dice function
+roll_dice <- function(num_dice) {
+  return(sum(sample(1:6, num_dice, replace = TRUE)))
+}
+
+# 5. (Optional) Modified roll_dice function
+roll_dice <- function(num_dice, num_sides = 6) {
+  return(sum(sample(1:num_sides, num_dice, replace = TRUE)))
+}
+```
+
+</div>
+
+<script>
+createToggleSection('button3', 'hidden-content3');
+</script>
+
+
+
+# Introduction to Quarto 📘
+
+Quarto is a powerful tool that allows you to combine R code, its output, and explanatory text in one document. It is like a special notebook where you can:
+
+1. Write normal text (like in Microsoft Word)
+2. Add R code (and other programming lanugage too!) to create charts or analyze data
+3. See the results of your code right next to your text
+
+## Why Use Quarto?
+
+1. **Reproducibility**: Quarto documents contain both code and narrative that make it easy to reproduce your analyses. 
+2. **Professional Presentation**: Create polished, professional-looking documents.
+3. **Flexibility**: Output to various formats like HTML, PDF, or slideshows.
+
+::: {.callout-tip}
+### The Importance of Reproducibility
+In the humanities, as in all academic fields, being able to reproduce results is crucial. When you write your R code in scripts, you're creating a record of every step in your analysis. This is like creating detailed footnotes or citations in a research paper - it allows others (or future you!) to follow your work exactly.
+
+Using scripts also makes it easy to make changes and rerun your entire analysis, which is much more efficient than trying to remember and retype everything in the console.
+:::
+
+## Quarto Document
+
+A Quarto document has two main parts:
+- A header at the top (called YAML header)
+- The main content (text and code)
+
+Below is an example:
+```
+yaml
+---
+title: "My First Quarto Document"
+author: "Your Name"
+format: html
+---
+This is where you write your content.
+
+You can use markdown to format your text or use the "visual editing mode" to have an experience similar to Microsoft Word editor.
+
+```
+
+## Essential Quarto Concepts
+
+### Rendering
+
+Rendering is the process of converting your Quarto document into its final output format (e.g., HTML, PDF, or Word). To render your document:
+
+1. Click the "Render" button in RStudio, or
+2. Use the keyboard shortcut Ctrl+Shift+K (Cmd+Shift+K on Mac)
+
+When you render, Quarto executes all the code in your document and combines the results with your text to create the final output.
+
+### Code Chunk Options
+
+Code chunks in Quarto can be customized using options. These options control how the code is executed and displayed. Here are some common options:
+
+```{{r}}
+#| label: chunk-name
+#| echo: true
+#| eval: true
+#| warning: false
+#| message: false
+
+# Your R code here
+```
+
+- `label`: Gives the chunk a unique name
+- `echo`: Controls whether the code is displayed in the output (true/false)
+- `eval`: Determines if the code should be executed (true/false)
+- `warning`: Shows or hides warnings (true/false)
+- `message`: Shows or hides messages (true/false)
+
+You can set these options globally in the YAML header or for individual chunks.
+
+::: {.callout-tip}
+## Pro Tip
+Use code chunk options to control what your readers see. For example, you might hide code for complex calculations but show the results.
+:::
+
+## Learning Check 🏁
+
+<div id="quiz4"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "What is Quarto?",
+      options: [
+        "A new programming language",
+        "A tool for combining R code, output, and explanatory text in one document",
+        "A statistical package for R",
+        "A version control system"
+      ]
+    },
+    {
+      text: "Which of the following is NOT a benefit of using Quarto?",
+      options: [
+        "Reproducibility",
+        "Presentation",
+        "Flexibility",
+        "Automatic error correction"
+      ]
+    },
+    {
+      text: "How do you include R code in a Quarto document?",
+      options: [
+        "By using the <r> tag",
+        "By using code chunks denoted by ```{r}",
+        "By writing R code directly in the text",
+        "By importing an R script file"
+      ]
+    }
+  ],
+  answers: [1, 3, 1]
+}, "quiz4");
+</script>
+
+## Hands-On Coding 💻
+
+Let's practice creating a simple Quarto document:
+
+1. Create a new Quarto document in RStudio.
+2. Add a title and your name as the author.
+3. Write a brief introduction about dice rolling simulations.
+4. Insert a code chunk that uses your `roll_dice` function to simulate rolling 2 dice.
+5. Add some text explaining the result.
+6. (Optional challenge) Create a code chunk that simulates rolling 2 dice 100 times and calculates the average result.
+
+<div id="hidden-content4" style="display: none;">
+
+
+```
+---
+title: "Dice Rolling Simulation"
+author: "Your Name"
+format: html
+---
+
+## Introduction
+
+In this document, we'll simulate rolling dice using R functions we've created.
+
+## Rolling Two Dice
+
+Let's roll two six-sided dice:
+
+```
+
+```{r}
+roll_dice <- function(num_dice) {
+  return(sum(sample(1:6, num_dice, replace = TRUE)))
+}
+
+result <- roll_dice(2)
+print(paste("The result of rolling 2 dice is:", result))
+```
+
+```
+This simulates rolling two six-sided dice and adding up the results.
+
+## (Optional) Multiple Rolls
+
+Let's simulate rolling 2 dice 100 times and calculate the average:
+
+```
+
+```{r}
+results <- replicate(100, roll_dice(2))
+average_result <- mean(results)
+print(paste("The average result of 100 rolls is:", round(average_result, 2)))
+```
+
+```
+This gives us an idea of the expected value when rolling two dice.
+
+```
+
+</div>
+
+<script>
+createToggleSection('button4', 'hidden-content4');
+</script>
+
+
+
+# Conclusion
+
+In this chapter, we've covered the basics of R programming by creating a virtual dice rolling simulation. We've learned about the RStudio interface, R objects, functions, and introduced Quarto for creating reproducible documents. These foundational skills will serve as building blocks as we dive deeper into data analysis and visualization in R.
+
+
+
+
+
+
+

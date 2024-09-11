@@ -16,3 +16,5 @@ known_hosts
 authorized_keysyes
 y
 *.pub
+
+/.luarc.json

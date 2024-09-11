@@ -1,13 +1,11 @@
 ---
-title: "Introduction to Digital Humanities"
+title: "§1 Introduction to Digital Humanities"
 format:
   html:
     toc: true
     code-fold: true
     code-tools: true
     code-link: true
-    code-block-bg: "#f8f8f8"
-    code-block-border-left: "#31BAE9"
     highlight-style: github
 execute:
   freeze: auto
@@ -254,12 +252,12 @@ This visualization shows the complex network of relationships between characters
 :::
 
 
-### Let's verify our impressions!
+#### Let's verify our impressions!
 
 <script>
 function checkPassword() {
   var password = document.getElementById("password-input").value;
-  if (password === "1234") {
+  if (password === "123") {
     document.getElementById("hidden-content").style.display = "block";
     document.getElementById("password-section").style.display = "none";
   } else {

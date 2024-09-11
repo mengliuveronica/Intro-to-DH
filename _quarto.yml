@@ -30,6 +30,7 @@ website:
         - book/index.qmd
         - book/01-introduction.qmd
         - book/02-R.qmd
+        - book/03-dice.qmd
 
 
 bibliography: book/references.bib
@@ -58,6 +59,7 @@ format:
       - search
       - zoom
     output-dir: _site/book/slides
+
 
 execute:
   freeze: auto
