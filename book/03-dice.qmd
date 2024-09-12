@@ -5,9 +5,9 @@ format:
   html:
     toc: true
     code-fold: false
-    code-tools: true
+    code-tools: false
     code-link: true
-    callout-collapse: true
+    callout-fold: true
     highlight-style: github
     include-in-header:
       text: |
