@@ -5,14 +5,14 @@ format:
   html:
     toc: true
     code-fold: false
-    code-tools: false
     code-link: true
-    callout-fold: true
     highlight-style: github
     include-in-header:
       text: |
         <script src="quiz.js"></script>
         <script src="content-switch.js"></script>
+filters: 
+ - collapse-callout.lua
 execute:
   freeze: auto
 ---
@@ -559,7 +559,7 @@ Quarto is a powerful tool that allows you to combine R code, its output, and exp
 
 ::: {.callout-tip}
 ### The Importance of Reproducibility
-In the humanities, as in all academic fields, being able to reproduce results is crucial. When you write your R code in scripts, you're creating a record of every step in your analysis. This is like creating detailed footnotes or citations in a research paper - it allows others (or future you!) to follow your work exactly.
+In the humanities, as in all academic fields, being able to reproduce the analytical process is crucial. When you write your R code in scripts, you're creating a record of every step in your analysis. This is like creating detailed footnotes or citations in a research paper - it allows others (or future you!) to follow your work exactly.
 
 Using scripts also makes it easy to make changes and rerun your entire analysis, which is much more efficient than trying to remember and retype everything in the console.
 :::

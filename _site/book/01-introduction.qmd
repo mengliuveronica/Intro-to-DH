@@ -4,7 +4,6 @@ format:
   html:
     toc: true
     code-fold: true
-    code-tools: true
     code-link: true
     highlight-style: github
 execute:

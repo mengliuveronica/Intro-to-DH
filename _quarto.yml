@@ -51,6 +51,8 @@ format:
     highlight-style: github
     include-after-body:
       - file: _footer.html
+    filter:
+      - book/collapse-callout.lua
   revealjs:
     theme: default
     css: "../../custom.css"

@@ -5,13 +5,14 @@ format:
   html:
     toc: true
     code-fold: false
-    code-tools: false
     code-link: true
     highlight-style: github
     include-in-header:
       text: |
         <script src="quiz.js"></script>
         <script src="content-switch.js"></script>
+filters: 
+ - collapse-callout.lua
 execute:
   freeze: auto
 ---
