@@ -7,6 +7,7 @@ format:
     code-fold: false
     code-tools: true
     code-link: true
+    callout-collapse: true
     highlight-style: github
     include-in-header:
       text: |
@@ -222,6 +223,21 @@ die * 2
 die / 2
 ```
 
+<br>
+🤨 What do you notice about the results of the above operations?
+
+::: {.callout-note}
+## Vectorized Operations in R
+R performs these operations element-wise on the `die` object because it uses vectorized operations. This means:
+
+1. Each element in the `die` vector is individually operated on.
+2. The operation is applied to every element simultaneously.
+3. A new vector of the same length is returned as the result.
+
+This vectorized approach makes R efficient for handling data and allows for concise, readable code when working with vectors or larger datasets.
+:::
+
+
 ## Learning Check 🏁
 
 <div id="quiz2"></div>
@@ -344,8 +360,7 @@ In R programming, functions are like specialized tools that help you perform spe
      result <- x * 2
      return(result)
    }
-   ```
-    
+   ```    
    In this example:
    - The function **name** is `double_value`
    - It has one **argument**: `x`
@@ -491,36 +506,32 @@ createQuiz({
 
 ## Hands-On Coding 💻
 
-Let's practice using and creating functions:
+Let's apply what we've learned to simulate flipping a coin. This is similar to rolling a die, but with only two possible outcomes.
 
-1. Use the `mean()` function to calculate the average of your `lucky_numbers`.
-2. Create a function called `double_it` that takes a number and returns its double.
-3. Use your `double_it` function on your `favorite_number`.
-4. Create a function called `roll_dice` that simulates rolling any number of dice. It should take one argument: the number of dice to roll.
-5. (Optional challenge) Modify your `roll_dice` function to accept a second argument for the number of sides on each die.
+1. Create an object called `coin` that represents the two sides of a coin (use the numbers 1 and 2).
+
+2. Use the `sample()` function to simulate flipping the coin once.
+
+3. Create a function called `flip_coin()` that simulates flipping a coin and returns the result.
+
+4. Modify your `flip_coin()` function to have an argument named n_flips so that the user could specify the number of time the coin is flipped.  
+
+
 
 <div id="hidden-content3" style="display: none;">
 
 ```{r}
-# 1. Calculate mean of lucky_numbers
-mean(lucky_numbers)
-
-# 2. Create double_it function
-double_it <- function(x) {
-  return(x * 2)
+# 1. Create coin object
+coin <- 1:2
+# 2. Flip coin once using sample()
+sample(coin, 1)
+# 3. Create flip_coin() function
+flip_coin <- function() {
+sample(coin, size = 1)
 }
-
-# 3. Use double_it on favorite_number
-double_it(favorite_number)
-
-# 4. Create roll_dice function
-roll_dice <- function(num_dice) {
-  return(sum(sample(1:6, num_dice, replace = TRUE)))
-}
-
-# 5. (Optional) Modified roll_dice function
-roll_dice <- function(num_dice, num_sides = 6) {
-  return(sum(sample(1:num_sides, num_dice, replace = TRUE)))
+# 4. Modify flip_coin() to have a n_flips argument
+flip_coin <- function(n_flips) {
+  sample(coin, size = n_flips, replace = TRUE)
 }
 ```
 
@@ -575,6 +586,37 @@ You can use markdown to format your text or use the "visual editing mode" to hav
 
 ## Essential Quarto Concepts
 
+### Editing Quarto Files: Source vs. Visual Editor
+Quarto documents can be edited in two modes: Source and Visual.
+
+1. **Source Editor**: This mode shows you the raw Markdown and YAML content of your document. It's great for:
+   - Precise control over your document's structure
+   - Editing code chunks directly
+   - Working with advanced Quarto features
+
+
+2. **Visual Editor**: This mode provides a WYSIWYG (What You See Is What You Get) interface, similar to word processors like Microsoft Word. It's useful for:
+   - Formatting text without knowing Markdown syntax
+   - Easily inserting tables, images, and other elements
+   - Collaborating with team members who may not be familiar with Markdown
+
+
+::: {.callout-tip}
+## Markdown Basics
+Markdown is a lightweight markup language used in Quarto documents. Here are some basic syntax examples:
+
+- `# Heading 1`, `## Heading 2`, `### Heading 3`, etc. for headings
+- `*italic*` or `_italic_` for *italic text*
+- `**bold**` or `__bold__` for **bold text**
+- `- item` for unordered lists
+- `1. item` for ordered lists
+- `[link text](URL)` for [links](https://quarto.org)
+- `![alt text](image.jpg)` for images
+
+For a more comprehensive guide, check out Quarto's [Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html).
+:::
+
+
 ### Rendering
 
 Rendering is the process of converting your Quarto document into its final output format (e.g., HTML, PDF, or Word). To render your document:
@@ -584,7 +626,9 @@ Rendering is the process of converting your Quarto document into its final outpu
 
 When you render, Quarto executes all the code in your document and combines the results with your text to create the final output.
 
-### Code Chunk Options
+
+
+### (Optional) Code Chunk Options
 
 Code chunks in Quarto can be customized using options. These options control how the code is executed and displayed. Here are some common options:
 
@@ -652,63 +696,52 @@ createQuiz({
 
 ## Hands-On Coding 💻
 
-Let's practice creating a simple Quarto document:
+Let's practice creating a simple Quarto document about our coin flipping simulation:
 
 1. Create a new Quarto document in RStudio.
-2. Add a title and your name as the author.
-3. Write a brief introduction about dice rolling simulations.
-4. Insert a code chunk that uses your `roll_dice` function to simulate rolling 2 dice.
-5. Add some text explaining the result.
-6. (Optional challenge) Create a code chunk that simulates rolling 2 dice 100 times and calculates the average result.
+2. Add a title "Coin Flipping Simulation" and your name as the author.
+3. Write a brief introduction about coin flipping simulations.
+4. Insert a code chunk that defines your `coin` object and `flip_coin()` function.
+5. Add another code chunk that uses your `flip_coin()` function to simulate flipping a coin 10 times.
+6. Add some text explaining the results.
+7. Render it as an html file. 
 
 <div id="hidden-content4" style="display: none;">
 
-
 ```
 ---
-title: "Dice Rolling Simulation"
+title: "Coin Flipping Simulation"
 author: "Your Name"
 format: html
 ---
+# Introduction
+In this document, we'll simulate flipping coins using R functions we've created.
 
-## Introduction
-
-In this document, we'll simulate rolling dice using R functions we've created.
-
-## Rolling Two Dice
-
-Let's roll two six-sided dice:
+# Defining Our Coin and Flip Function
+First, let's define our coin and create a function to flip it:
 
 ```
 
 ```{r}
-roll_dice <- function(num_dice) {
-  return(sum(sample(1:6, num_dice, replace = TRUE)))
+coin <- 1:2   
+
+flip_coin <- function(n_flips) {
+  sample(coin, size = n_flips, replace = TRUE)
 }
-
-result <- roll_dice(2)
-print(paste("The result of rolling 2 dice is:", result))
 ```
-
 ```
-This simulates rolling two six-sided dice and adding up the results.
-
-## (Optional) Multiple Rolls
-
-Let's simulate rolling 2 dice 100 times and calculate the average:
-
+# Flipping a Coin 10 Times
+Now, let's flip our coin 10 times:
 ```
-
 ```{r}
-results <- replicate(100, roll_dice(2))
-average_result <- mean(results)
-print(paste("The average result of 100 rolls is:", round(average_result, 2)))
+ten_flips <- flip_coin(10)
+print(ten_flips)
 ```
 
 ```
-This gives us an idea of the expected value when rolling two dice.
-
+This simulates flipping a coin 10 times. Each 1 represents heads, and each 2 represents tails. We then count how many times we got heads.
 ```
+Congratulations! 🎉 You've just created your first Quarto document combining narrative text and code analysis. This is an important step in your journey of digital humanities, as it allows you to present your research and analysis in a clear, reproducible format. As you continue to explore, you'll find that Quarto is a powerful tool for integrating your humanities insights with computational methods.
 
 </div>
 
@@ -720,8 +753,36 @@ createToggleSection('button4', 'hidden-content4');
 
 # Conclusion
 
-In this chapter, we've covered the basics of R programming by creating a virtual dice rolling simulation. We've learned about the RStudio interface, R objects, functions, and introduced Quarto for creating reproducible documents. These foundational skills will serve as building blocks as we dive deeper into data analysis and visualization in R.
+::: {.callout-note}
+## Key Takeaways
 
+In this chapter, we've covered:
+
+- The basics of R programming through a virtual dice rolling simulation
+- An introduction to the RStudio interface
+- Creating and manipulating R objects
+- Defining and using functions
+- Creating reproducible documents with Quarto
+:::
+
+
+These foundational skills serve as building blocks for our journey into the world of digital humanities. As we progress, we'll build upon these concepts to perform more complex data analysis and create compelling visualizations.
+
+
+::: {.topic-flow}
+::: {.topic-box .highlight-blue}
+RStudio
+:::
+::: {.topic-box .highlight-green}
+R Basics
+:::
+::: {.topic-box .highlight-yellow}
+Functions
+:::
+::: {.topic-box .highlight-pink}
+Quarto
+:::
+:::
 
 
 
