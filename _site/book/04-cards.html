@@ -96,7 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><script src="quiz.js"></script><script src="content-switch.js"></script><link rel="stylesheet" href="../custom.css">
 </head>
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Toybox</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../book/index.html"> 
+    <a class="nav-link active" href="../book/index.html" aria-current="page"> 
 <span class="menu-text">Book</span></a>
   </li>  
 </ul>
@@ -132,8 +132,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../book/04-cards.html">§4 Dealing with Cards 🃏</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">§1 Introduction to Digital Humanities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/02-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">§2 Getting Started With R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/03-dice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">§3 Rolling the Dice 🎲</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/04-cards.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">§4 Dealing with Cards 🃏</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
@@ -159,13 +210,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </li>
   <li>
-<a href="#building-our-deck-of-cards" id="toc-building-our-deck-of-cards" class="nav-link" data-scroll-target="#building-our-deck-of-cards"><span class="header-section-number">3</span> Building Our Deck of Cards 🃏</a>
+<a href="#building-your-deck-of-cards" id="toc-building-your-deck-of-cards" class="nav-link" data-scroll-target="#building-your-deck-of-cards"><span class="header-section-number">3</span> Building Your Deck of Cards 🃏</a>
   <ul class="collapse">
-<li><a href="#learning-check-2" id="toc-learning-check-2" class="nav-link" data-scroll-target="#learning-check-2"><span class="header-section-number">3.1</span> Learning Check 🏁</a></li>
-  <li><a href="#hands-on-coding-2" id="toc-hands-on-coding-2" class="nav-link" data-scroll-target="#hands-on-coding-2"><span class="header-section-number">3.2</span> Hands-On Coding 💻</a></li>
+<li><a href="#create-the-deck" id="toc-create-the-deck" class="nav-link" data-scroll-target="#create-the-deck"><span class="header-section-number">3.1</span> Create the Deck</a></li>
+  <li>
+<a href="#accessing-information" id="toc-accessing-information" class="nav-link" data-scroll-target="#accessing-information"><span class="header-section-number">3.2</span> Accessing Information</a>
+  <ul class="collapse">
+<li><a href="#how-many-cards-are-in-the-deck" id="toc-how-many-cards-are-in-the-deck" class="nav-link" data-scroll-target="#how-many-cards-are-in-the-deck"><span class="header-section-number">3.2.1</span> How many cards are in the deck?</a></li>
+  <li><a href="#what-are-all-the-unique-suits-in-the-deck" id="toc-what-are-all-the-unique-suits-in-the-deck" class="nav-link" data-scroll-target="#what-are-all-the-unique-suits-in-the-deck"><span class="header-section-number">3.2.2</span> What are all the unique suits in the deck?</a></li>
+  <li><a href="#how-many-hearts-are-in-the-deck" id="toc-how-many-hearts-are-in-the-deck" class="nav-link" data-scroll-target="#how-many-hearts-are-in-the-deck"><span class="header-section-number">3.2.3</span> How many hearts are in the deck?</a></li>
+  <li><a href="#optional-challenge-how-to-view-all-the-face-cards-jack-queen-king-in-the-deck" id="toc-optional-challenge-how-to-view-all-the-face-cards-jack-queen-king-in-the-deck" class="nav-link" data-scroll-target="#optional-challenge-how-to-view-all-the-face-cards-jack-queen-king-in-the-deck"><span class="header-section-number">3.2.4</span> (Optional challenge) How to view all the face cards (Jack, Queen, King) in the deck?</a></li>
   </ul>
 </li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4</span> Conclusion</a></li>
+  <li>
+<a href="#modifying-the-deck" id="toc-modifying-the-deck" class="nav-link" data-scroll-target="#modifying-the-deck"><span class="header-section-number">3.3</span> Modifying the Deck</a>
+  <ul class="collapse">
+<li><a href="#add-a-face-card-indicator" id="toc-add-a-face-card-indicator" class="nav-link" data-scroll-target="#add-a-face-card-indicator"><span class="header-section-number">3.3.1</span> Add a face card indicator</a></li>
+  <li><a href="#create-jokers" id="toc-create-jokers" class="nav-link" data-scroll-target="#create-jokers"><span class="header-section-number">3.3.2</span> Create Jokers</a></li>
+  <li><a href="#view-high-value-cards" id="toc-view-high-value-cards" class="nav-link" data-scroll-target="#view-high-value-cards"><span class="header-section-number">3.3.3</span> View high value cards</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#analyzing-the-deck" id="toc-analyzing-the-deck" class="nav-link" data-scroll-target="#analyzing-the-deck"><span class="header-section-number">3.4</span> Analyzing the Deck</a>
+  <ul class="collapse">
+<li><a href="#count-face-cards" id="toc-count-face-cards" class="nav-link" data-scroll-target="#count-face-cards"><span class="header-section-number">3.4.1</span> Count face cards</a></li>
+  <li><a href="#find-average-card-value" id="toc-find-average-card-value" class="nav-link" data-scroll-target="#find-average-card-value"><span class="header-section-number">3.4.2</span> Find average card value</a></li>
+  <li><a href="#find-highest-value-card" id="toc-find-highest-value-card" class="nav-link" data-scroll-target="#find-highest-value-card"><span class="header-section-number">3.4.3</span> Find highest value card</a></li>
+  </ul>
+</li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.5</span> Conclusion</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -185,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>Welcome to your second project with R! We’ll create a virtual deck of poker cards to explore more advanced R concepts. Just as historians analyze artifacts or literary scholars examine texts, we’ll be examining different ways to structure and manipulate data in R.</p>
+</header><p>Welcome to your second project with R! We’ll create a virtual deck of poker cards to explore more advanced R concepts.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -210,6 +285,27 @@ Learning Objectives
 <section id="r-data-types" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> R Data Types 🧱</h1>
 <p>In R, just as in language, we have different types of information. Let’s explore some common data types:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Basic Data Types
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Numeric: For numbers (integers and decimals)</li>
+<li>Character: For text data</li>
+<li>Logical: For true/false values</li>
+<li>Factor: For categorical data Each type serves a specific purpose in organizing and analyzing information.</li>
+</ul>
+</div>
+</div>
+</div>
 <section id="numeric" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="numeric">
 <span class="header-section-number">1.1</span> Numeric</h2>
 <p>We’ve already seen this with our dice. It includes both integers and decimal numbers:</p>
@@ -265,19 +361,44 @@ Learning Objectives
 <pre><code>[1] "factor"</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+What is the Difference Between Factor and Character?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Factors are useful for representing data that falls into distinct categories, like genres, time periods, or author nationalities in literary studies.</p>
+<p>Character and factor may seem similar, but they serve different purposes:</p>
+<ol type="1">
+<li>
+<span class="highlight-blue">Character</span>
+<ul>
+<li>This is simply text data.</li>
+<li>It can be any combination of letters, numbers, or symbols.</li>
+<li>Examples: <code>"apple"</code>, <code>"banana"</code>, <code>"cherry123"</code>
+</li>
+</ul>
+</li>
+<li>
+<span class="highlight-green">Factor</span>
+<ul>
+<li>This is for categorical data, made up of distinct levels or categories.</li>
+<li>It’s used when data falls into a limited number of specific groups.</li>
+<li>Examples: Days of the week, book genres, or rating scales</li>
+</ul>
+</li>
+</ol>
+<p><strong>Key differences:</strong></p>
+<ul>
+<li>Characters can be any text, while factors consist of predefined levels or categories.</li>
+<li>Each level in a factor is assigned a unique integer behind the scenes, making factors more efficient for certain analyses.</li>
+<li>Factors are ideal for data with a fixed set of possible values or categories.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -360,41 +481,192 @@ createToggleSection('button1', 'hidden-content1');
 3    The Great Gatsby Fitzgerald 1925</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<section id="accessing-data-in-a-data-frame" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="accessing-data-in-a-data-frame">
+<span class="header-section-number">2.1</span> Accessing Data in a Data Frame</h2>
+<p>You can access specific parts of a data frame using various methods.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<code>$</code> and <code>[row_number, column_number]</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Data frames are crucial in data analysis. They allow you to store different types of data (like numbers and text) together in a structured format.</p>
+<ol type="1">
+<li>
+<strong>Columns</strong>: Use <code>$</code> followed by the column name (e.g., <code>books$title</code>).
+<ul>
+<li>This gives you all the values in that column.</li>
+</ul>
+</li>
+<li>
+<strong>Rows</strong>: Use <code>[row_number, ]</code> (e.g., <code>books[2, ]</code>).
+<ul>
+<li>The comma is important! It means “all columns”.</li>
+<li>This gives you all the data in that specific row.</li>
+</ul>
+</li>
+<li>
+<strong>Individual Cells</strong>: Use <code>[row_number, column_number]</code> (e.g., <code>books[1, 2]</code>).
+<ul>
+<li>This gives you the value in a specific row and column.</li>
+</ul>
+</li>
+</ol>
 </div>
 </div>
 </div>
-<section id="accessing-data-in-a-data-frame" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="accessing-data-in-a-data-frame">
-<span class="header-section-number">2.1</span> Accessing Data in a Data Frame</h2>
-<p>You can access specific parts of a data frame using various methods:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Acessing the <code>books</code> Data Frame
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Data frames are essentially just spread sheet tables. Our <code>books</code> data frame looks like this:</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>title</th>
+<th>author</th>
+<th>year</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1984</td>
+<td>Orwell</td>
+<td>1949</td>
+</tr>
+<tr class="even">
+<td>Pride and Prejudice</td>
+<td>Austen</td>
+<td>1813</td>
+</tr>
+<tr class="odd">
+<td>The Great Gatsby</td>
+<td>Fitzgerald</td>
+<td>1925</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<code>books$title</code> would give: <code>1984</code>, <code>Pride and Prejudice</code>, <code>The Great Gatsby</code>
+</li>
+<li>
+<code>books[2, ]</code> would give: <code>Pride and Prejudice</code>, <code>Austen</code>, <code>1813</code>
+</li>
+<li>
+<code>books[1, 2]</code> would give: <code>Orwell</code>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get a specific column</span></span>
 <span><span class="va">books</span><span class="op">$</span><span class="va">title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1984"                "Pride and Prejudice" "The Great Gatsby"   </code></pre>
 </div>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Get a specific row</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get a specific row</span></span>
 <span><span class="va">books</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                title author year
 2 Pride and Prejudice Austen 1813</code></pre>
 </div>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Get a specific cell</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get a specific cell</span></span>
 <span><span class="va">books</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Orwell"</code></pre>
+</div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get a specific cell using row number and column name</span></span>
+<span><span class="va">books</span><span class="op">[</span><span class="fl">2</span>, <span class="st">"title"</span><span class="op">]</span> <span class="co"># Get the second title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Pride and Prejudice"</code></pre>
+</div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get the record based on a specific value</span></span>
+<span><span class="va">books</span><span class="op">[</span><span class="va">books</span><span class="op">$</span><span class="va">author</span> <span class="op">==</span> <span class="st">"Austen"</span>, <span class="op">]</span> <span class="co"># Get all records by Austen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                title author year
+2 Pride and Prejudice Austen 1813</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Understanding Nested Functions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The line <code>books[books$author == "Austen", ]</code> might look complex, but let’s break it down:</p>
+<ol type="1">
+<li>
+<code>books$author</code>: This part gets the <code>author</code> column from our books data frame.</li>
+<li>
+<code>books$author == "Austen"</code>: This compares each author name to “Austen”.</li>
+</ol>
+<ul>
+<li>It creates a list of TRUE/FALSE values (TRUE where the author is Austen, FALSE otherwise).</li>
+<li>For example, if we had 3 books and only the second was by Austen, this would give: [FALSE, TRUE, FALSE]</li>
+</ul>
+<ol start="3" type="1">
+<li>
+<code>books[...]</code>: This is like asking R to look inside the books data frame.</li>
+<li>
+<code>books[books$author == "Austen", ]</code>: This combines steps 2 and 3.</li>
+</ol>
+<ul>
+<li>It tells R: “From the books data frame, give me all rows where the author is Austen”.</li>
+<li>The comma at the end means “give me all columns for these rows”.</li>
+</ul>
+<p>Think of it like a librarian (R) searching through a catalog (the data frame):</p>
+<ul>
+<li>You ask: “Can you find all books by Austen?”</li>
+<li>The librarian checks each book’s author (TRUE/FALSE for Austen).</li>
+<li>Then returns all information about the books that matched.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Filtering Data Based on Conditions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This example demonstrates a powerful technique called “filtering”:</p>
+<ol type="1">
+<li>Creating a condition: <code>books$author == "Austen"</code> creates a logical vector (TRUE/FALSE) for each row where the author is Austen.</li>
+<li>Using the condition: We use this vector inside the square brackets <code>[ ]</code> to select only those rows that meet our condition.</li>
+<li>Selecting columns: The comma after the condition (<code>books [condition, ]</code>) means “select all columns for these rows”.</li>
+</ol>
+<p>This method allows you to extract specific records based on any condition you specify. For example:</p>
+<ul>
+<li>Find all books published after 1900: books[books$year &gt; 1900, ]</li>
+<li>Find all books with “War” in the title: books[grepl(“War”, books$title), ]</li>
+</ul>
+<p>Filtering is a crucial skill in data manipulation and analysis, allowing you to focus on specific subsets of your data.</p>
+</div>
 </div>
 </div>
 </section><section id="learning-check-1" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="learning-check-1">
@@ -417,80 +689,301 @@ createQuiz({
     {
       text: "How would you access the 'author' column in a data frame called 'books'?",
       options: [
-        "books[author]",
-        "books$author",
-        "author(books)",
-        "books.author"
+        "`books[author]`",
+        "`books$author`",
+        "`author(books)`",
+        "`books.author`"
       ]
     },
     {
-      text: "What does books[2, ] return?",
+      text: "What does `books[2, ]` return?",
       options: [
         "The second column of the 'books' data frame",
         "The second row of the 'books' data frame",
         "The second cell of the 'books' data frame",
         "An error"
       ]
+    },
+    {
+      text: "In the expression `books[books$year > 1900, ]`, what does `books$year > 1900` do?",
+      options: [
+        "It selects all books published after 1900",
+        "It creates a logical vector (TRUE/FALSE) for each row",
+        "It returns an error because you can't compare a column to a number",
+        "It modifies the 'year' column in the books data frame"
+      ]
+    },
+    {
+      text: "Which of the following would correctly filter the 'books' data frame to show only books by 'Austen'?",
+      options: [
+        "`books$author == 'Austen'`",
+        "`books[books$author = 'Austen']`",
+        "`books[books$author == 'Austen', ]`",
+        "`filter(books, author == 'Austen')`"
+      ]
     }
   ],
-  answers: [1, 1, 1]
+  answers: [1, 1, 1, 1, 2]
 }, "quiz2");
 </script></section><section id="hands-on-coding-1" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="hands-on-coding-1">
 <span class="header-section-number">2.3</span> Hands-On Coding 💻</h2>
-<p>Let’s create a data frame for a deck of cards:</p>
+<p>Let’s apply our data frame skills to a new context: famous paintings. We’ll create a data frame of artworks and practice accessing its data in various ways.</p>
+<p>Try the following exercises:</p>
 <ol type="1">
-<li>Create three vectors: <code>suit</code> (Hearts, Diamonds, Clubs, Spades), <code>rank</code> (Ace, 2-10, Jack, Queen, King), and <code>value</code> (1-13).</li>
-<li>Use these vectors to create a data frame called <code>deck</code>.</li>
-<li>Print the first few rows of your deck using the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function.</li>
-<li>Access all the hearts in your deck.</li>
-<li>Find the value of the King of Spades.</li>
+<li>Create a data frame called <code>paintings</code> with columns for title, artist, and year_created.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Example Data
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Feel free to use your own favorite paintings for this exercise! If you prefer, you can use the following information:</p>
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Title</th>
+<th>Artist</th>
+<th>Year Created</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Mona Lisa</td>
+<td>Leonardo da Vinci</td>
+<td>1503</td>
+</tr>
+<tr class="even">
+<td>The Starry Night</td>
+<td>Vincent van Gogh</td>
+<td>1889</td>
+</tr>
+<tr class="odd">
+<td>The Persistence of Memory</td>
+<td>Salvador Dali</td>
+<td>1931</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Access the ‘artist’ column of the data frame.</li>
+<li>Get the third row of the data frame.</li>
+<li>Find the year the second painting in the data frame was created.</li>
+<li>(Optional challenge) Add a new column called ‘style’ to the data frame (e.g., “Renaissance”, “Post-Impressionism”, “Surrealism”).</li>
 </ol>
 <div id="hidden-content2" style="display: none;">
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create vectors</span></span>
-<span><span class="va">suit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hearts"</span>, <span class="st">"Diamonds"</span>, <span class="st">"Clubs"</span>, <span class="st">"Spades"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">13</span><span class="op">)</span></span>
-<span><span class="va">rank</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ace"</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"Jack"</span>, <span class="st">"Queen"</span>, <span class="st">"King"</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Create data frame</span></span>
-<span><span class="va">deck</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">suit</span>, <span class="va">rank</span>, <span class="va">value</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Print first few rows</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">deck</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 1. Create the paintings data frame</span></span>
+<span><span class="va">paintings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mona Lisa"</span>, <span class="st">"The Starry Night"</span>, <span class="st">"The Persistence of Memory"</span><span class="op">)</span>,</span>
+<span>    artist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Leonardo da Vinci"</span>, <span class="st">"Vincent van Gogh"</span>, <span class="st">"Salvador Dali"</span><span class="op">)</span>,</span>
+<span>    year_created <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1503</span>, <span class="fl">1889</span>, <span class="fl">1931</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># 2. Access the 'artist' column</span></span>
+<span><span class="va">paintings</span><span class="op">$</span><span class="va">artist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    suit rank value
-1 Hearts  Ace     1
-2 Hearts    2     2
-3 Hearts    3     3
-4 Hearts    4     4
-5 Hearts    5     5
-6 Hearts    6     6</code></pre>
+<pre><code>[1] "Leonardo da Vinci" "Vincent van Gogh"  "Salvador Dali"    </code></pre>
 </div>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Access all hearts</span></span>
-<span><span class="va">hearts</span> <span class="op">&lt;-</span> <span class="va">deck</span><span class="op">[</span><span class="va">deck</span><span class="op">$</span><span class="va">suit</span> <span class="op">==</span> <span class="st">"Hearts"</span>, <span class="op">]</span></span>
-<span></span>
-<span><span class="co"># Find value of King of Spades</span></span>
-<span><span class="va">king_of_spades</span> <span class="op">&lt;-</span> <span class="va">deck</span><span class="op">[</span><span class="va">deck</span><span class="op">$</span><span class="va">suit</span> <span class="op">==</span> <span class="st">"Spades"</span> <span class="op">&amp;</span> <span class="va">deck</span><span class="op">$</span><span class="va">rank</span> <span class="op">==</span> <span class="st">"King"</span>, <span class="st">"value"</span><span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">king_of_spades</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 3. Get the third row</span></span>
+<span><span class="va">paintings</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 13</code></pre>
+<pre><code>                      title        artist year_created
+3 The Persistence of Memory Salvador Dali         1931</code></pre>
+</div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 4. Find the year the second painting was created</span></span>
+<span><span class="va">paintings</span><span class="op">[</span><span class="fl">2</span>, <span class="st">"year_created"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1889</code></pre>
+</div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 5. Add a new 'style' column</span></span>
+<span><span class="va">paintings</span><span class="op">$</span><span class="va">style</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Renaissance"</span>, <span class="st">"Post-Impressionism"</span>, <span class="st">"Surrealism"</span><span class="op">)</span></span>
+<span><span class="co"># View the updated data frame</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">paintings</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      title            artist year_created              style
+1                 Mona Lisa Leonardo da Vinci         1503        Renaissance
+2          The Starry Night  Vincent van Gogh         1889 Post-Impressionism
+3 The Persistence of Memory     Salvador Dali         1931         Surrealism</code></pre>
 </div>
 </div>
 </div>
 <script>
 createToggleSection('button2', 'hidden-content2');
-</script></section></section><section id="building-our-deck-of-cards" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> Building Our Deck of Cards 🃏</h1>
-<p>Now that we understand data frames, let’s build our full deck of cards:</p>
+</script></section></section><section id="building-your-deck-of-cards" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> Building Your Deck of Cards 🃏</h1>
+<p>Now that you have learned about different data types and how to work with data frames, let’s put your skills to the test by creating a virtual deck of cards!</p>
+<div class="info-section">
+<section id="how-to-use-this-section" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="how-to-use-this-section">How to Use This Section</h3>
+<ol type="1">
+<li>Read each task carefully.</li>
+<li>Try solving it on your own first.</li>
+<li>Use support tools if needed:
+<ul>
+<li>“Show Hint” 💡: For a gentle nudge</li>
+<li>“Show Template” 🧩: For a fill-in-the-blank version</li>
+<li>“Show Solution” ✅: For the complete answer</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Progressive Hints
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For some tasks, there are multiple hints available. For example, <code>Hint 1/3</code> means this the first out of three hints in total. Click on the <code>Show Hint</code> button will reveal one hint at a time.</p>
+</div>
+</div>
+</div>
+</li>
+</ol></section><section id="tips-for-success" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="tips-for-success">Tips for Success</h3>
+<ul>
+<li>Type out the code yourself, even when using solutions.</li>
+<li>Experiment with small code changes to learn more.</li>
+<li>Take your time and review earlier sections if needed.</li>
+</ul></section><section id="workflow-recommendations" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="workflow-recommendations">Workflow Recommendations</h3>
+<p><span class="highlight-green">New coders</span>:</p>
+<ol type="1">
+<li>Read the task carefully</li>
+<li>Review the template for structure</li>
+<li>Copy template to your file and fill in blanks</li>
+<li>Use hints/solutions if needed, typing out the code</li>
+<li>Experiment with small changes</li>
+</ol>
+<p><span class="highlight-blue">Experienced coders</span>:</p>
+<ol type="1">
+<li>Attempt task independently</li>
+<li>Use hints progressively if stuck</li>
+<li>Compare your solution to the provided one</li>
+<li>Try alternative approaches</li>
+</ol></section><section id="remember" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="remember">Remember</h3>
+<ul>
+<li>Everyone starts as a beginner</li>
+<li>Mistakes are part of learning</li>
+<li>Focus on learning and improving, not perfection</li>
+</ul>
+<p>Happy coding! 🚀</p>
+</section>
+</div>
+<section id="create-the-deck" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="create-the-deck">
+<span class="header-section-number">3.1</span> Create the Deck</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Structure of a Deck
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Remember, a standard deck of cards consists of:</p>
+<ul>
+<li>4 suits: Hearts♥️, Diamonds♦️, Clubs♣️, and Spades♠️</li>
+<li>13 ranks in each suit: Ace, 2, 3, …, 10, Jack, Queen, King</li>
+<li>A total of 52 cards (4 suits × 13 ranks)</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Create a data frame called <code>deck</code> with three columns: <code>suit</code>, <code>rank</code>, and <code>value</code>.</p>
+<ul>
+<li>
+<code>suit</code> should contain all four suits, repeated 13 times each.</li>
+<li>
+<code>rank</code> should contain all 13 ranks, repeated for each suit.</li>
+<li>
+<code>value</code> should assign numeric values to the ranks (Ace = 1, Jack = 11, Queen = 12, King = 13, others as their numeric value).</li>
+</ul>
+<div id="hint1-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint 1/3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Recall how we created the <code>books</code> data frame. You can adapt it here.</p>
+<p>Instead of listing all cards one by one, you can use <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> function to create repeating patterns. Type <code>?rep()</code> in your console to learn how to use it.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="hint1-2" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint 2/3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Use the <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> function to repeat values. For example, <code>rep(c("A", "B"), each = 3)</code> gives <code>"A" "A" "A" "B" "B" "B"</code>. rep(c(“A”, “B”), times = 3)<code>gives</code>“A” “B” “A” “B” “A” “B”`.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="hint1-3" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint 3/3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>For the <code>suit</code> column, you’ll need to repeat each suit 13 times. Try: <code>suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = 13)</code></p>
+<p>For the <code>rank</code> column, you need to repeat the sequence of ranks 4 times. Use: <code>rank = rep(c("Ace", 2:10, "Jack", "Queen", "King"), times = 4)</code></p>
+<p>For the <code>value</code> column, create a sequence from 1 to 13 and repeat it 4 times: <code>value = rep(1:13, times = 4)</code></p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint1', 3);
+</script><div id="template1" style="display: none;">
+<pre><code>deck &lt;- data.frame(
+    suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = _),
+    rank = rep(c("Ace", _, "Jack", "Queen", "King"), times = _),
+    value = rep(_, times = 4)
+)</code></pre>
+</div>
+<script>
+createToggleSection('template-button1', 'template1', 'Show Template');
+</script><div id="solution1" style="display: none;">
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the deck</span></span>
-<span><span class="va">deck</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">deck</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>suit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hearts"</span>, <span class="st">"Diamonds"</span>, <span class="st">"Clubs"</span>, <span class="st">"Spades"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>,</span>
 <span>rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ace"</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"Jack"</span>, <span class="st">"Queen"</span>, <span class="st">"King"</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span>
-<span>value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span>value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># View the first few cards</span></span>
+<span><span class="co"># View the first few rows</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">deck</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    suit rank value
@@ -502,94 +995,528 @@ createToggleSection('button2', 'hidden-content2');
 6 Hearts    6     6</code></pre>
 </div>
 </div>
-<p>This deck is now a structured data set that we can manipulate and analyze, just like any other data set in R!</p>
-<section id="learning-check-2" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="learning-check-2">
-<span class="header-section-number">3.1</span> Learning Check 🏁</h2>
-<div id="quiz3">
-
 </div>
 <script>
-createQuiz({
-  questions: [
-    {
-      text: "How many rows does our deck data frame have?",
-      options: [
-        "13",
-        "4",
-        "52",
-        "26"
-      ]
-    },
-    {
-      text: "What function would you use to see the structure of the deck?",
-      options: [
-        "structure(deck)",
-        "str(deck)",
-        "summary(deck)",
-        "view(deck)"
-      ]
-    },
-    {
-      text: "How would you access all the Aces in the deck?",
-      options: [
-        "deck[deck$value == 1, ]",
-        "deck$Ace",
-        "deck[1, ]",
-        "deck[deck$rank == 'Ace', ]"
-      ]
-    }
-  ],
-  answers: [2, 1, 3]
-}, "quiz3");
-</script></section><section id="hands-on-coding-2" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="hands-on-coding-2">
-<span class="header-section-number">3.2</span> Hands-On Coding 💻</h2>
-<p>Let’s practice working with our deck:</p>
-<ol type="1">
-<li>Use the <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> function to examine the structure of the deck.</li>
-<li>Find all the face cards (Jack, Queen, King) in the deck.</li>
-<li>Calculate the average value of all cards in the deck.</li>
-<li>Create a new column in the deck called <code>color</code>, where Hearts and Diamonds are “Red” and Clubs and Spades are “Black”.</li>
-<li>(Optional challenge) Create a function that randomly “draws” a card from the deck and prints its description (e.g., “You drew the King of Hearts”).</li>
-</ol>
-<div id="hidden-content3" style="display: none;">
+createToggleSection('solution-button1', 'solution1');
+</script></section><section id="accessing-information" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="accessing-information">
+<span class="header-section-number">3.2</span> Accessing Information</h2>
+<p>Now that we have our deck, let’s practice accessing information from it.</p>
+<section id="how-many-cards-are-in-the-deck" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="how-many-cards-are-in-the-deck">
+<span class="header-section-number">3.2.1</span> How many cards are in the deck?</h3>
+<div id="hint2-1-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>To find the number of cards, think about how you’d check the structure of a data frame.</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint2-1', 1);
+</script><div id="template2-1" style="display: none;">
+<pre><code># View the structure of the deck
+_(deck)
+
+# Count the number of cards (rows) in the deck
+_(deck)</code></pre>
+</div>
+<script>
+createToggleSection('template-button2', 'template2-1', 'Show Template');
+</script><div id="solution2" style="display: none;">
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Examine structure</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">deck</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">deck</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   52 obs. of  3 variables:
  $ suit : chr  "Hearts" "Hearts" "Hearts" "Hearts" ...
  $ rank : chr  "Ace" "2" "3" "4" ...
  $ value: int  1 2 3 4 5 6 7 8 9 10 ...</code></pre>
 </div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Find face cards</span></span>
-<span><span class="va">face_cards</span> <span class="op">&lt;-</span> <span class="va">deck</span><span class="op">[</span><span class="va">deck</span><span class="op">$</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jack"</span>, <span class="st">"Queen"</span>, <span class="st">"King"</span><span class="op">)</span>, <span class="op">]</span></span>
-<span></span>
-<span><span class="co"># Calculate average value</span></span>
-<span><span class="va">average_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">deck</span><span class="op">$</span><span class="va">value</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Add color column</span></span>
-<span><span class="va">deck</span><span class="op">$</span><span class="va">color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">deck</span><span class="op">$</span><span class="va">suit</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hearts"</span>, <span class="st">"Diamonds"</span><span class="op">)</span>, <span class="st">"Red"</span>, <span class="st">"Black"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># (Optional) Draw a card function</span></span>
-<span><span class="va">draw_card</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span><span class="va">card</span> <span class="op">&lt;-</span> <span class="va">deck</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">deck</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, <span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"You drew the"</span>, <span class="va">card</span><span class="op">$</span><span class="va">rank</span>, <span class="st">"of"</span>, <span class="va">card</span><span class="op">$</span><span class="va">suit</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="fu">draw_card</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">deck</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You drew the 7 of Hearts"</code></pre>
+<pre><code>[1] 52</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> and Related Functions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> is a useful function for working with data frames:</p>
+<ul>
+<li>
+<code>nrow(df)</code>: Returns the number of rows in a data frame</li>
+<li>
+<code>ncol(df)</code>: Returns the number of columns in a data frame</li>
+<li>
+<code>dim(df)</code>: Returns both the number of rows and columns as a vector</li>
+<li>
+<code>length(df)</code>: Returns the number of columns (as data frames are lists of vectors)</li>
+</ul>
+<p>These functions are essential for understanding the size and structure of your data. For example, <code>nrow(deck)</code> tells you how many cards are in the deck.</p>
+</div>
 </div>
 </div>
 </div>
 <script>
-createToggleSection('button3', 'hidden-content3');
-</script></section></section><section id="conclusion" class="level1" data-number="4"><h1 data-number="4">
-<span class="header-section-number">4</span> Conclusion</h1>
-<p>In this chapter, we’ve explored different data types in R and learned how to create and manipulate data frames. We’ve applied these concepts to build a virtual deck of cards, demonstrating how R can be used to represent and analyze real-world objects.</p>
-<p>These skills form the foundation for more advanced data manipulation and analysis techniques. In the next chapter, we’ll learn how to write functions to deal and shuffle our deck, bringing our virtual cards to life!</p>
+createToggleSection('solution-button2', 'solution2');
+</script></section><section id="what-are-all-the-unique-suits-in-the-deck" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="what-are-all-the-unique-suits-in-the-deck">
+<span class="header-section-number">3.2.2</span> What are all the unique suits in the deck?</h3>
+<div id="hint2-2-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Check out the <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code> function. This is useful when you want to see how many categories are in a factor or categorical variable.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="template2-2" style="display: none;">
+<pre><code>unique(deck$_)</code></pre>
+</div>
+<script>
+createToggleSection('template-button2-2', 'template2-2', 'Show Template');
+</script><script>
+createProgressiveHints('hint2-2', 1);
+</script><div id="solution2-2" style="display: none;">
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">deck</span><span class="op">$</span><span class="va">suit</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hearts"   "Diamonds" "Clubs"    "Spades"  </code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('solution-button2-2', 'solution2-2');
+</script></section><section id="how-many-hearts-are-in-the-deck" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="how-many-hearts-are-in-the-deck">
+<span class="header-section-number">3.2.3</span> How many hearts are in the deck?</h3>
+<div id="hint2-3-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>You can use logical indexing to select all hearts, then count them using <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>. How would you create a logical vector for hearts?</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint2-3', 1);
+</script><div id="template2-3" style="display: none;">
+<pre><code>sum(deck$_ == "_")</code></pre>
+</div>
+<script>
+createToggleSection('template-button2-3', 'template2-3', 'Show Template');
+</script><div id="solution2-3" style="display: none;">
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">deck</span><span class="op">$</span><span class="va">suit</span> <span class="op">==</span> <span class="st">"Hearts"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('solution-button2-3', 'solution2-3');
+</script></section><section id="optional-challenge-how-to-view-all-the-face-cards-jack-queen-king-in-the-deck" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="optional-challenge-how-to-view-all-the-face-cards-jack-queen-king-in-the-deck">
+<span class="header-section-number">3.2.4</span> (Optional challenge) How to view all the face cards (Jack, Queen, King) in the deck?</h3>
+<div id="hint2-5-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>You need to do conditional filtering. You can use the <code>%in%</code> operator to check if values are in a set (i.e., multiple “OR” conditions). Check out the usage of this function from its help page.</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint2-5', 1);
+</script><div id="template2-5" style="display: none;">
+<pre><code>deck[deck$rank _ c("_", "_", "_"), ]</code></pre>
+</div>
+<script>
+createToggleSection('template-button2-5', 'template2-5', 'Show Template');
+</script><div id="solution2-5" style="display: none;">
+<div class="cell">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">deck</span><span class="op">[</span><span class="va">deck</span><span class="op">$</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jack"</span>, <span class="st">"Queen"</span>, <span class="st">"King"</span><span class="op">)</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       suit  rank value
+11   Hearts  Jack    11
+12   Hearts Queen    12
+13   Hearts  King    13
+24 Diamonds  Jack    11
+25 Diamonds Queen    12
+26 Diamonds  King    13
+37    Clubs  Jack    11
+38    Clubs Queen    12
+39    Clubs  King    13
+50   Spades  Jack    11
+51   Spades Queen    12
+52   Spades  King    13</code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('solution-button2-5', 'solution2-5');
+</script></section></section><section id="modifying-the-deck" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="modifying-the-deck">
+<span class="header-section-number">3.3</span> Modifying the Deck</h2>
+<p>Let’s make some changes to our deck:</p>
+<section id="add-a-face-card-indicator" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="add-a-face-card-indicator">
+<span class="header-section-number">3.3.1</span> Add a face card indicator</h3>
+<p>Add a new column called <code>is_face_card</code> that is TRUE for Jack, Queen, and King, and FALSE for other cards.</p>
+<div id="hint3-1-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Think about how we can check if a card’s rank is Jack, Queen, or King. Remember the <code>%in%</code> operator we used earlier.</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint3-1', 1);
+</script><div id="template3-1" style="display: none;">
+<pre><code>deck$is_face_card &lt;- deck$rank %in% c("_", "_", "_")
+head(deck)</code></pre>
+</div>
+<script>
+createToggleSection('template-button3-1', 'template3-1', 'Show Template');
+</script><div id="solution3-1" style="display: none;">
+<div class="cell">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">deck</span><span class="op">$</span><span class="va">is_face_card</span> <span class="op">&lt;-</span> <span class="va">deck</span><span class="op">$</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jack"</span>, <span class="st">"Queen"</span>, <span class="st">"King"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">deck</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    suit rank value is_face_card
+1 Hearts  Ace     1        FALSE
+2 Hearts    2     2        FALSE
+3 Hearts    3     3        FALSE
+4 Hearts    4     4        FALSE
+5 Hearts    5     5        FALSE
+6 Hearts    6     6        FALSE</code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('solution-button3-1', 'solution3-1');
+</script></section><section id="create-jokers" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="create-jokers">
+<span class="header-section-number">3.3.2</span> Create Jokers</h3>
+<p>Change the suit of all Aces to “Joker” (creating wild cards).</p>
+<div id="hint3-2-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Remember how we accessed specific rows in a data frame using <code>[,]</code>. How can we select all Aces and change their suit?</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint3-2', 1);
+</script><div id="template3-2" style="display: none;">
+<pre><code>deck$_[deck$_ == "_"] &lt;- "_"
+deck[deck$_ == "_", ]</code></pre>
+</div>
+<script>
+createToggleSection('template-button3-2', 'template3-2', 'Show Template');
+</script><div id="solution3-2" style="display: none;">
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">deck</span><span class="op">$</span><span class="va">suit</span><span class="op">[</span><span class="va">deck</span><span class="op">$</span><span class="va">rank</span> <span class="op">==</span> <span class="st">"Ace"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Joker"</span></span>
+<span><span class="va">deck</span><span class="op">[</span><span class="va">deck</span><span class="op">$</span><span class="va">rank</span> <span class="op">==</span> <span class="st">"Ace"</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    suit rank value is_face_card
+1  Joker  Ace     1        FALSE
+14 Joker  Ace     1        FALSE
+27 Joker  Ace     1        FALSE
+40 Joker  Ace     1        FALSE</code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('solution-button3-2', 'solution3-2');
+</script></section><section id="view-high-value-cards" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="view-high-value-cards">
+<span class="header-section-number">3.3.3</span> View high value cards</h3>
+<p>View only the cards with a value greater than 10.</p>
+<div id="hint3-3-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Recall how we used logical conditions to filter data frames. We can use different symbols such as <code>&lt;</code> <code>&gt;</code> <code>==</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint3-3', 1);
+</script><div id="template3-3" style="display: none;">
+<pre><code>high_value_cards &lt;- deck[deck$_ _ _, ]
+print(high_value_cards)</code></pre>
+</div>
+<script>
+createToggleSection('template-button3-3', 'template3-3', 'Show Template');
+</script><div id="solution3-3" style="display: none;">
+<div class="cell">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">high_value_cards</span> <span class="op">&lt;-</span> <span class="va">deck</span><span class="op">[</span><span class="va">deck</span><span class="op">$</span><span class="va">value</span> <span class="op">&gt;</span> <span class="fl">10</span>, <span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">high_value_cards</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       suit  rank value is_face_card
+11   Hearts  Jack    11         TRUE
+12   Hearts Queen    12         TRUE
+13   Hearts  King    13         TRUE
+24 Diamonds  Jack    11         TRUE
+25 Diamonds Queen    12         TRUE
+26 Diamonds  King    13         TRUE
+37    Clubs  Jack    11         TRUE
+38    Clubs Queen    12         TRUE
+39    Clubs  King    13         TRUE
+50   Spades  Jack    11         TRUE
+51   Spades Queen    12         TRUE
+52   Spades  King    13         TRUE</code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('solution-button3-3', 'solution3-3');
+</script></section></section><section id="analyzing-the-deck" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="analyzing-the-deck">
+<span class="header-section-number">3.4</span> Analyzing the Deck</h2>
+<p>Now that we’ve modified our deck, let’s analyze it using the skills we’ve learned:</p>
+<section id="count-face-cards" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="count-face-cards">
+<span class="header-section-number">3.4.1</span> Count face cards</h3>
+<p>Count how many face cards (Jack, Queen, King) are in the deck.</p>
+<div id="hint4-1-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-22" class="callout-22-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Remember the <code>is_face_card</code> column we created? How can we count the number of TRUE values? Try <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>.</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint4-1', 1);
+</script><div id="template4-1" style="display: none;">
+<pre><code>face_card_count &lt;- sum(deck$_)
+print(paste("Number of face cards:", _))</code></pre>
+</div>
+<script>
+createToggleSection('template-button4-1', 'template4-1', 'Show Template');
+</script><div id="solution4-1-1" style="display: none;">
+<div class="cell">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">face_card_count</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">deck</span><span class="op">$</span><span class="va">is_face_card</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Number of face cards:"</span>, <span class="va">face_card_count</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Number of face cards: 12"</code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('solution-button4-1', 'solution4-1-1');
+</script></section><section id="find-average-card-value" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="find-average-card-value">
+<span class="header-section-number">3.4.2</span> Find average card value</h3>
+<p>Calculate the average value of all cards in the deck.</p>
+<div id="hint4-2-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>We can use <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> to calculate an average. Which column contains the card values?</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint4-2', 1);
+</script><div id="template4-2" style="display: none;">
+<pre><code>average_value &lt;- _(deck$_)
+print(paste("Average card value:", round(_, 2)))</code></pre>
+</div>
+<script>
+createToggleSection('template-button4-2', 'template4-2', 'Show Template');
+</script><div id="solution4-2" style="display: none;">
+<div class="cell">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">average_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">deck</span><span class="op">$</span><span class="va">value</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Average card value:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">average_value</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Average card value: 7"</code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('solution-button4-2', 'solution4-2');
+</script></section><section id="find-highest-value-card" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="find-highest-value-card">
+<span class="header-section-number">3.4.3</span> Find highest value card</h3>
+<p>Identify the card(s) with the highest value in the deck.</p>
+<div id="hint4-3-1" style="display: none;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>How can we find the maximum value in the deck? Try <code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>.</p>
+<p>Once we have that, how can we select all cards with that value?</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+createProgressiveHints('hint4-3', 1);
+</script><div id="template4-3" style="display: none;">
+<pre><code>max_value &lt;- _(deck$value)
+highest_cards &lt;- deck[deck$value == _, ]
+print(_)</code></pre>
+</div>
+<script>
+createToggleSection('template-button4-3', 'template4-3', 'Show Template');
+</script><div id="solution4-3" style="display: none;">
+<div class="cell">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">max_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">deck</span><span class="op">$</span><span class="va">value</span><span class="op">)</span></span>
+<span><span class="va">highest_cards</span> <span class="op">&lt;-</span> <span class="va">deck</span><span class="op">[</span><span class="va">deck</span><span class="op">$</span><span class="va">value</span> <span class="op">==</span> <span class="va">max_value</span>, <span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">highest_cards</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       suit rank value is_face_card
+13   Hearts King    13         TRUE
+26 Diamonds King    13         TRUE
+39    Clubs King    13         TRUE
+52   Spades King    13         TRUE</code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('solution-button4-3', 'solution4-3');
+</script></section></section><section id="conclusion" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="conclusion">
+<span class="header-section-number">3.5</span> Conclusion</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Takeaways
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In this chapter, we’ve covered:</p>
+<ul>
+<li>Creating and manipulating data frames in R</li>
+<li>Understanding different R data types</li>
+<li>Building a virtual deck of cards</li>
+<li>Accessing and modifying data within data frames</li>
+<li>Performing simple analyses on our card deck</li>
+</ul>
+</div>
+</div>
+</div>
+<p>These skills form an essential foundation for working with structured data in R. As we progress in our digital humanities journey, we’ll build upon these concepts to perform more complex data manipulations and analyses.</p>
+<div class="topic-flow">
+<div class="topic-box highlight-blue">
+<p>Data Types</p>
+</div>
+<div class="topic-box highlight-green">
+<p>Data Frames</p>
+</div>
+<div class="topic-box highlight-yellow">
+<p>Data Access</p>
+</div>
+<div class="topic-box highlight-pink">
+<p>Data Analysis</p>
+</div>
+</div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

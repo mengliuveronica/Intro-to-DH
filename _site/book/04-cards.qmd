@@ -17,7 +17,7 @@ execute:
   freeze: auto
 ---
 
-Welcome to your second project with R! We'll create a virtual deck of poker cards to explore more advanced R concepts. Just as historians analyze artifacts or literary scholars examine texts, we'll be examining different ways to structure and manipulate data in R.
+Welcome to your second project with R! We'll create a virtual deck of poker cards to explore more advanced R concepts. 
 
 ::: {.callout-tip}
 ## Learning Objectives
@@ -30,6 +30,15 @@ Welcome to your second project with R! We'll create a virtual deck of poker card
 # R Data Types 🧱
 
 In R, just as in language, we have different types of information. Let's explore some common data types:
+
+::: {.callout-note}
+## Basic Data Types
+- Numeric: For numbers (integers and decimals)
+- Character: For text data
+- Logical: For true/false values
+- Factor: For categorical data
+Each type serves a specific purpose in organizing and analyzing information.
+:::
 
 ## Numeric
 We've already seen this with our dice. It includes both integers and decimal numbers:
@@ -72,8 +81,28 @@ class(genres)
 ```
 
 
-::: {.callout-note}
-Factors are useful for representing data that falls into distinct categories, like genres, time periods, or author nationalities in literary studies.
+::: {.callout-tip}
+## What is the Difference Between Factor and Character?
+
+Character and factor may seem similar, but they serve different purposes:
+
+1. [Character]{.highlight-blue}
+   - This is simply text data.
+   - It can be any combination of letters, numbers, or symbols.
+   - Examples: `"apple"`, `"banana"`, `"cherry123"`
+
+2. [Factor]{.highlight-green}
+   - This is for categorical data, made up of distinct levels or categories.
+   - It's used when data falls into a limited number of specific groups.
+   - Examples: Days of the week, book genres, or rating scales
+
+
+**Key differences:**
+
+- Characters can be any text, while factors consist of predefined levels or categories.
+- Each level in a factor is assigned a unique integer behind the scenes, making factors more efficient for certain analyses.
+- Factors are ideal for data with a fixed set of possible values or categories.
+
 :::
 
 ## Learning Check 🏁 
@@ -161,25 +190,93 @@ print(books)
 ```
 
 
-::: {.callout-tip}
-Data frames are crucial in data analysis. They allow you to store different types of data (like numbers and text) together in a structured format.
-:::
-
 ## Accessing Data in a Data Frame
 
-You can access specific parts of a data frame using various methods:
+You can access specific parts of a data frame using various methods.
+
+::: {.callout-note}
+## `$` and `[row_number, column_number]`
+
+1. **Columns**: Use `$` followed by the column name (e.g., `books$title`).
+   - This gives you all the values in that column.
+
+2. **Rows**: Use `[row_number, ]` (e.g., `books[2, ]`).
+   - The comma is important! It means "all columns".
+   - This gives you all the data in that specific row.
+
+3. **Individual Cells**: Use `[row_number, column_number]` (e.g., `books[1, 2]`).
+   - This gives you the value in a specific row and column.
+
+:::
+
+::: {.callout-tip}
+## Acessing the `books` Data Frame
+Data frames are essentially just spread sheet tables. Our `books` data frame looks like this:
+
+| title               | author    | year |
+|---------------------|-----------|------|
+| 1984                | Orwell    | 1949 |
+| Pride and Prejudice | Austen    | 1813 |
+| The Great Gatsby    | Fitzgerald| 1925 |
+
+- `books$title` would give: `1984`, `Pride and Prejudice`, `The Great Gatsby`
+- `books[2, ]` would give: `Pride and Prejudice`, `Austen`, `1813`
+- `books[1, 2]` would give: `Orwell`
+:::
+
 
 ```{r}
 # Get a specific column
 books$title
 
-#Get a specific row
+# Get a specific row
 books[2, ]
 
-#Get a specific cell
+# Get a specific cell
 books[1, 2]
+
+# Get a specific cell using row number and column name
+books[2, "title"] # Get the second title
+
+# Get the record based on a specific value
+books[books$author == "Austen", ] # Get all records by Austen
 ```
 
+::: {.callout-note}
+## Understanding Nested Functions
+The line `books[books$author == "Austen", ]` might look complex, but let's break it down:
+
+1. `books$author`: This part gets the `author` column from our books data frame.
+2. `books$author == "Austen"`: This compares each author name to "Austen".
+- It creates a list of TRUE/FALSE values (TRUE where the author is Austen, FALSE otherwise).
+- For example, if we had 3 books and only the second was by Austen, this would give: [FALSE, TRUE, FALSE]
+3. `books[...]`: This is like asking R to look inside the books data frame.
+4. `books[books$author == "Austen", ]`: This combines steps 2 and 3.
+- It tells R: "From the books data frame, give me all rows where the author is Austen".
+- The comma at the end means "give me all columns for these rows".
+
+Think of it like a librarian (R) searching through a catalog (the data frame):
+
+- You ask: "Can you find all books by Austen?"
+- The librarian checks each book's author (TRUE/FALSE for Austen).
+- Then returns all information about the books that matched.
+:::
+
+::: {.callout-tip}
+## Filtering Data Based on Conditions
+This example demonstrates a powerful technique called "filtering":
+
+1. Creating a condition: `books$author == "Austen"` creates a logical vector (TRUE/FALSE) for each row where the author is Austen.
+2. Using the condition: We use this vector inside the square brackets `[ ]` to select only those rows that meet our condition.
+3. Selecting columns: The comma after the condition (`books [condition, ]`) means "select all columns for these rows".
+
+This method allows you to extract specific records based on any condition you specify. For example:
+
+- Find all books published after 1900: books[books$year > 1900, ]
+- Find all books with "War" in the title: books[grepl("War", books$title), ]
+
+Filtering is a crucial skill in data manipulation and analysis, allowing you to focus on specific subsets of your data.
+:::
 
 ## Learning Check 🏁
 
@@ -200,58 +297,92 @@ createQuiz({
     {
       text: "How would you access the 'author' column in a data frame called 'books'?",
       options: [
-        "books[author]",
-        "books$author",
-        "author(books)",
-        "books.author"
+        "`books[author]`",
+        "`books$author`",
+        "`author(books)`",
+        "`books.author`"
       ]
     },
     {
-      text: "What does books[2, ] return?",
+      text: "What does `books[2, ]` return?",
       options: [
         "The second column of the 'books' data frame",
         "The second row of the 'books' data frame",
         "The second cell of the 'books' data frame",
         "An error"
       ]
+    },
+    {
+      text: "In the expression `books[books$year > 1900, ]`, what does `books$year > 1900` do?",
+      options: [
+        "It selects all books published after 1900",
+        "It creates a logical vector (TRUE/FALSE) for each row",
+        "It returns an error because you can't compare a column to a number",
+        "It modifies the 'year' column in the books data frame"
+      ]
+    },
+    {
+      text: "Which of the following would correctly filter the 'books' data frame to show only books by 'Austen'?",
+      options: [
+        "`books$author == 'Austen'`",
+        "`books[books$author = 'Austen']`",
+        "`books[books$author == 'Austen', ]`",
+        "`filter(books, author == 'Austen')`"
+      ]
     }
   ],
-  answers: [1, 1, 1]
+  answers: [1, 1, 1, 1, 2]
 }, "quiz2");
 </script>
 
 ## Hands-On Coding 💻
 
-Let's create a data frame for a deck of cards:
+Let's apply our data frame skills to a new context: famous paintings. We'll create a data frame of artworks and practice accessing its data in various ways.
 
-1. Create three vectors: `suit` (Hearts, Diamonds, Clubs, Spades), `rank` (Ace, 2-10, Jack, Queen, King), and `value` (1-13).
-2. Use these vectors to create a data frame called `deck`.
-3. Print the first few rows of your deck using the `head()` function.
-4. Access all the hearts in your deck.
-5. Find the value of the King of Spades.
+Try the following exercises:
+
+1. Create a data frame called `paintings` with columns for title, artist, and year_created.
+
+::: {.callout-note}
+## Example Data
+
+Feel free to use your own favorite paintings for this exercise! If you prefer, you can use the following information:
+
+| Title                   | Artist            | Year Created |
+|-------------------------|-------------------|--------------|
+| Mona Lisa               | Leonardo da Vinci | 1503         |
+| The Starry Night        | Vincent van Gogh  | 1889         |
+| The Persistence of Memory | Salvador Dali   | 1931         |
+
+:::
+
+2. Access the 'artist' column of the data frame.
+3. Get the third row of the data frame.
+4. Find the year the second painting in the data frame was created.
+5. (Optional challenge) Add a new column called 'style' to the data frame (e.g., "Renaissance", "Post-Impressionism", "Surrealism").
+
 
 <div id="hidden-content2" style="display: none;">
 
-
 ```{r}
-# Create vectors
-suit <- rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = 13)
-rank <- rep(c("Ace", 2:10, "Jack", "Queen", "King"), times = 4)
-value <- rep(1:13, times = 4)
-
-# Create data frame
-deck <- data.frame(suit, rank, value)
-
-# Print first few rows
-head(deck)
-
-# Access all hearts
-hearts <- deck[deck$suit == "Hearts", ]
-
-# Find value of King of Spades
-king_of_spades <- deck[deck$suit == "Spades" & deck$rank == "King", "value"]
-print(king_of_spades)
+# 1. Create the paintings data frame
+paintings <- data.frame(
+    title = c("Mona Lisa", "The Starry Night", "The Persistence of Memory"),
+    artist = c("Leonardo da Vinci", "Vincent van Gogh", "Salvador Dali"),
+    year_created = c(1503, 1889, 1931)
+)
+# 2. Access the 'artist' column
+paintings$artist
+# 3. Get the third row
+paintings[3, ]
+# 4. Find the year the second painting was created
+paintings[2, "year_created"]
+# 5. Add a new 'style' column
+paintings$style <- c("Renaissance", "Post-Impressionism", "Surrealism")
+# View the updated data frame
+print(paintings)
 ```
+
 
 </div>
 
@@ -259,108 +390,601 @@ print(king_of_spades)
 createToggleSection('button2', 'hidden-content2');
 </script>
 
-# Building Our Deck of Cards 🃏
+# Building Your Deck of Cards 🃏
 
-Now that we understand data frames, let's build our full deck of cards:
+Now that you have learned about different data types and how to work with data frames, let's put your skills to the test by creating a virtual deck of cards!
 
-```{r}
-# Create the deck
-deck <- data.frame(
-suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = 13),
-rank = rep(c("Ace", 2:10, "Jack", "Queen", "King"), times = 4),
-value = rep(1:13, times = 4)
-)
+::: {.info-section}
+### How to Use This Section {.unnumbered}
 
-# View the first few cards
-head(deck)
-```
+1. Read each task carefully.
+2. Try solving it on your own first.
+3. Use support tools if needed:
+   - "Show Hint" 💡: For a gentle nudge 
+   - "Show Template" 🧩: For a fill-in-the-blank version
+   - "Show Solution" ✅: For the complete answer
+
+   ::: {.callout-tip}
+   ## Progressive Hints
+   For some tasks, there are multiple hints available. For example, `Hint 1/3` means this the first out of three hints in total. Click on the `Show Hint` button will reveal one hint at a time.
+   :::
+
+### Tips for Success {.unnumbered}
+
+- Type out the code yourself, even when using solutions.
+- Experiment with small code changes to learn more.
+- Take your time and review earlier sections if needed.
+
+### Workflow Recommendations {.unnumbered}
+[New coders]{.highlight-green}:
+
+1. Read the task carefully
+2. Review the template for structure
+3. Copy template to your file and fill in blanks
+4. Use hints/solutions if needed, typing out the code
+5. Experiment with small changes
+
+[Experienced coders]{.highlight-blue}:
+
+1. Attempt task independently
+2. Use hints progressively if stuck
+3. Compare your solution to the provided one
+4. Try alternative approaches
 
 
+### Remember {.unnumbered}
 
-This deck is now a structured data set that we can manipulate and analyze, just like any other data set in R!
+- Everyone starts as a beginner
+- Mistakes are part of learning
+- Focus on learning and improving, not perfection
 
-## Learning Check 🏁
+Happy coding! 🚀
+:::
 
-<div id="quiz3"></div>
+
+## Create the Deck
+
+::: {.callout-note}
+## Structure of a Deck
+Remember, a standard deck of cards consists of:
+
+- 4 suits: Hearts♥️, Diamonds♦️, Clubs♣️, and Spades♠️
+- 13 ranks in each suit: Ace, 2, 3, ..., 10, Jack, Queen, King
+- A total of 52 cards (4 suits × 13 ranks)
+:::
+
+Create a data frame called `deck` with three columns: `suit`, `rank`, and `value`. 
+
+- `suit` should contain all four suits, repeated 13 times each.
+- `rank` should contain all 13 ranks, repeated for each suit.
+- `value` should assign numeric values to the ranks (Ace = 1, Jack = 11, Queen = 12, King = 13, others as their numeric value).
+
+<div id="hint1-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint 1/3
+Recall how we created the `books` data frame. You can adapt it here. 
+
+Instead of listing all cards one by one, you can use `rep()` function to create repeating patterns. Type `?rep()` in your console to learn how to use it. 
+:::
+</div>
+
+<div id="hint1-2" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint 2/3
+Use the `rep()` function to repeat values. For example, `rep(c("A", "B"), each = 3)` gives `"A" "A" "A" "B" "B" "B"`. rep(c("A", "B"), times = 3)` gives `"A" "B" "A" "B" "A" "B"`.
+
+:::
+</div>
+
+<div id="hint1-3" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint 3/3
+For the `suit` column, you'll need to repeat each suit 13 times. Try: 
+`suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = 13)`
+
+For the `rank` column, you need to repeat the sequence of ranks 4 times. Use:
+`rank = rep(c("Ace", 2:10, "Jack", "Queen", "King"), times = 4)`
+
+For the `value` column, create a sequence from 1 to 13 and repeat it 4 times:
+`value = rep(1:13, times = 4)`
+:::
+</div>
 
 <script>
-createQuiz({
-  questions: [
-    {
-      text: "How many rows does our deck data frame have?",
-      options: [
-        "13",
-        "4",
-        "52",
-        "26"
-      ]
-    },
-    {
-      text: "What function would you use to see the structure of the deck?",
-      options: [
-        "structure(deck)",
-        "str(deck)",
-        "summary(deck)",
-        "view(deck)"
-      ]
-    },
-    {
-      text: "How would you access all the Aces in the deck?",
-      options: [
-        "deck[deck$value == 1, ]",
-        "deck$Ace",
-        "deck[1, ]",
-        "deck[deck$rank == 'Ace', ]"
-      ]
-    }
-  ],
-  answers: [2, 1, 3]
-}, "quiz3");
+createProgressiveHints('hint1', 3);
 </script>
 
-## Hands-On Coding 💻
 
-Let's practice working with our deck:
+<div id="template1" style="display: none;">
 
-1. Use the `str()` function to examine the structure of the deck.
-2. Find all the face cards (Jack, Queen, King) in the deck.
-3. Calculate the average value of all cards in the deck.
-4. Create a new column in the deck called `color`, where Hearts and Diamonds are "Red" and Clubs and Spades are "Black".
-5. (Optional challenge) Create a function that randomly "draws" a card from the deck and prints its description (e.g., "You drew the King of Hearts").
-
-<div id="hidden-content3" style="display: none;">
-
-
-```{r}
-# Examine structure
-str(deck)
-
-# Find face cards
-face_cards <- deck[deck$rank %in% c("Jack", "Queen", "King"), ]
-
-# Calculate average value
-average_value <- mean(deck$value)
-
-# Add color column
-deck$color <- ifelse(deck$suit %in% c("Hearts", "Diamonds"), "Red", "Black")
-
-# (Optional) Draw a card function
-draw_card <- function() {
-card <- deck[sample(nrow(deck), 1), ]
-print(paste("You drew the", card$rank, "of", card$suit))
-}
-draw_card()
+```
+deck <- data.frame(
+    suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = _),
+    rank = rep(c("Ace", _, "Jack", "Queen", "King"), times = _),
+    value = rep(_, times = 4)
+)
 ```
 
 </div>
 
 <script>
-createToggleSection('button3', 'hidden-content3');
+createToggleSection('template-button1', 'template1', 'Show Template');
 </script>
 
-# Conclusion
+<div id="solution1" style="display: none;">
 
-In this chapter, we've explored different data types in R and learned how to create and manipulate data frames. We've applied these concepts to build a virtual deck of cards, demonstrating how R can be used to represent and analyze real-world objects.
 
-These skills form the foundation for more advanced data manipulation and analysis techniques. In the next chapter, we'll learn how to write functions to deal and shuffle our deck, bringing our virtual cards to life!
+```{r}
+deck <- data.frame(
+suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = 13),
+rank = rep(c("Ace", 2:10, "Jack", "Queen", "King"), times = 4),
+value = rep(c(1:13), times = 4)
+)
+# View the first few rows
+head(deck)
+```
 
+
+</div>
+
+<script>
+createToggleSection('solution-button1', 'solution1');
+</script>
+
+## Accessing Information
+
+Now that we have our deck, let's practice accessing information from it.
+
+### How many cards are in the deck?
+<div id="hint2-1-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+To find the number of cards, think about how you'd check the structure of a data frame. 
+:::
+</div>
+
+<script>
+createProgressiveHints('hint2-1', 1);
+</script>
+
+<div id="template2-1" style="display: none;">
+
+```
+# View the structure of the deck
+_(deck)
+
+# Count the number of cards (rows) in the deck
+_(deck)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button2', 'template2-1', 'Show Template');
+</script>
+
+<div id="solution2" style="display: none;">
+```{r}
+str(deck)
+nrow(deck)
+```
+
+::: {.callout-note}
+## `nrow()` and Related Functions
+
+`nrow()` is a useful function for working with data frames:
+
+- `nrow(df)`: Returns the number of rows in a data frame
+- `ncol(df)`: Returns the number of columns in a data frame
+- `dim(df)`: Returns both the number of rows and columns as a vector
+- `length(df)`: Returns the number of columns (as data frames are lists of vectors)
+
+These functions are essential for understanding the size and structure of your data. For example, `nrow(deck)` tells you how many cards are in the deck.
+:::
+
+</div>
+
+<script>
+createToggleSection('solution-button2', 'solution2');
+</script>
+
+### What are all the unique suits in the deck?
+<div id="hint2-2-1" style="display: none;">
+::: {.callout-tip collapse="false"} 
+## Hint
+Check out the `unique()` function. This is useful when you want to see how many categories are in a factor or categorical variable.
+:::
+</div>
+
+<div id="template2-2" style="display: none;">
+
+```
+unique(deck$_)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button2-2', 'template2-2', 'Show Template');
+</script>
+
+<script>
+createProgressiveHints('hint2-2', 1);
+</script>
+
+<div id="solution2-2" style="display: none;">
+
+```{r}
+unique(deck$suit)
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button2-2', 'solution2-2');
+</script>
+
+### How many hearts are in the deck?
+<div id="hint2-3-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+You can use logical indexing to select all hearts, then count them using `sum()`. How would you create a logical vector for hearts?
+:::
+</div>
+
+<script>
+createProgressiveHints('hint2-3', 1);
+</script>
+
+<div id="template2-3" style="display: none;">
+
+```
+sum(deck$_ == "_")
+```
+
+</div>
+
+<script>
+createToggleSection('template-button2-3', 'template2-3', 'Show Template');
+</script>
+
+<div id="solution2-3" style="display: none;">
+
+```{r}
+sum(deck$suit == "Hearts")
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button2-3', 'solution2-3');
+</script>
+
+### (Optional challenge) How to view all the face cards (Jack, Queen, King) in the deck?
+<div id="hint2-5-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+You need to do conditional filtering. You can use the `%in%` operator to check if values are in a set (i.e., multiple "OR" conditions). Check out the usage of this function from its help page.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint2-5', 1);
+</script>
+
+<div id="template2-5" style="display: none;">
+
+```
+deck[deck$rank _ c("_", "_", "_"), ]
+```
+
+</div>
+
+<script>
+createToggleSection('template-button2-5', 'template2-5', 'Show Template');
+</script>
+
+<div id="solution2-5" style="display: none;">
+
+```{r}
+deck[deck$rank %in% c("Jack", "Queen", "King"), ]
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button2-5', 'solution2-5');
+</script>
+
+## Modifying the Deck
+
+Let's make some changes to our deck:
+
+### Add a face card indicator
+
+Add a new column called `is_face_card` that is TRUE for Jack, Queen, and King, and FALSE for other cards.
+
+<div id="hint3-1-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Think about how we can check if a card's rank is Jack, Queen, or King. Remember the `%in%` operator we used earlier.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint3-1', 1);
+</script>
+
+<div id="template3-1" style="display: none;">
+
+```
+deck$is_face_card <- deck$rank %in% c("_", "_", "_")
+head(deck)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button3-1', 'template3-1', 'Show Template');
+</script>
+
+
+<div id="solution3-1" style="display: none;">
+
+```{r}
+deck$is_face_card <- deck$rank %in% c("Jack", "Queen", "King")
+head(deck)
+```
+
+
+</div>
+
+<script>
+createToggleSection('solution-button3-1', 'solution3-1');
+</script>
+
+### Create Jokers
+
+Change the suit of all Aces to "Joker" (creating wild cards).
+
+<div id="hint3-2-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Remember how we accessed specific rows in a data frame using `[,]`. How can we select all Aces and change their suit?
+:::
+</div>
+
+<script>
+createProgressiveHints('hint3-2', 1);
+</script>
+
+<div id="template3-2" style="display: none;">
+```
+deck$_[deck$_ == "_"] <- "_"
+deck[deck$_ == "_", ]
+```
+</div>
+
+<script>
+createToggleSection('template-button3-2', 'template3-2', 'Show Template');
+</script>
+
+<div id="solution3-2" style="display: none;">
+
+```{r}
+deck$suit[deck$rank == "Ace"] <- "Joker"
+deck[deck$rank == "Ace", ]
+```
+
+
+</div>
+
+<script>
+createToggleSection('solution-button3-2', 'solution3-2');
+</script>
+
+### View high value cards
+
+View only the cards with a value greater than 10.
+
+<div id="hint3-3-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Recall how we used logical conditions to filter data frames. We can use different symbols such as `<` `>` `==`. 
+:::
+</div>
+
+<script>
+createProgressiveHints('hint3-3', 1);
+</script>
+
+<div id="template3-3" style="display: none;">
+
+```
+high_value_cards <- deck[deck$_ _ _, ]
+print(high_value_cards)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button3-3', 'template3-3', 'Show Template');
+</script>
+
+<div id="solution3-3" style="display: none;">
+
+```{r}
+high_value_cards <- deck[deck$value > 10, ]
+print(high_value_cards)
+```
+
+
+</div>
+
+<script>
+createToggleSection('solution-button3-3', 'solution3-3');
+</script>
+
+## Analyzing the Deck
+
+Now that we've modified our deck, let's analyze it using the skills we've learned:
+
+### Count face cards
+
+Count how many face cards (Jack, Queen, King) are in the deck.
+
+<div id="hint4-1-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Remember the `is_face_card` column we created? How can we count the number of TRUE values? Try `sum()`.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint4-1', 1);
+</script>
+
+<div id="template4-1" style="display: none;">
+
+```
+face_card_count <- sum(deck$_)
+print(paste("Number of face cards:", _))
+```
+
+</div>
+
+<script>
+createToggleSection('template-button4-1', 'template4-1', 'Show Template');
+</script>
+
+<div id="solution4-1-1" style="display: none;">
+
+```{r}
+face_card_count <- sum(deck$is_face_card)
+print(paste("Number of face cards:", face_card_count))
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button4-1', 'solution4-1-1');
+</script>
+
+### Find average card value
+
+Calculate the average value of all cards in the deck.
+
+<div id="hint4-2-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+We can use `mean()` to calculate an average. Which column contains the card values?
+:::
+</div>
+
+<script>
+createProgressiveHints('hint4-2', 1);
+</script>
+
+<div id="template4-2" style="display: none;">
+
+```
+average_value <- _(deck$_)
+print(paste("Average card value:", round(_, 2)))
+```
+
+</div>
+
+<script>
+createToggleSection('template-button4-2', 'template4-2', 'Show Template');
+</script>
+
+<div id="solution4-2" style="display: none;">
+
+```{r}
+average_value <- mean(deck$value)
+print(paste("Average card value:", round(average_value, 2)))
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button4-2', 'solution4-2');
+</script>
+
+### Find highest value card
+
+Identify the card(s) with the highest value in the deck.
+
+<div id="hint4-3-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+How can we find the maximum value in the deck? Try `max()`.
+
+Once we have that, how can we select all cards with that value?
+:::
+</div>
+
+<script>
+createProgressiveHints('hint4-3', 1);
+</script>
+
+<div id="template4-3" style="display: none;">
+
+```
+max_value <- _(deck$value)
+highest_cards <- deck[deck$value == _, ]
+print(_)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button4-3', 'template4-3', 'Show Template');
+</script>
+
+<div id="solution4-3" style="display: none;">
+
+```{r}
+max_value <- max(deck$value)
+highest_cards <- deck[deck$value == max_value, ]
+print(highest_cards)
+```
+
+
+
+</div>
+
+<script>
+createToggleSection('solution-button4-3', 'solution4-3');
+</script>
+
+
+## Conclusion
+
+::: {.callout-note}
+## Key Takeaways
+In this chapter, we've covered:
+
+- Creating and manipulating data frames in R
+- Understanding different R data types
+- Building a virtual deck of cards
+- Accessing and modifying data within data frames
+- Performing simple analyses on our card deck
+:::
+
+These skills form an essential foundation for working with structured data in R. As we progress in our digital humanities journey, we'll build upon these concepts to perform more complex data manipulations and analyses.
+
+::: {.topic-flow}
+::: {.topic-box .highlight-blue}
+Data Types
+:::
+::: {.topic-box .highlight-green}
+Data Frames
+:::
+::: {.topic-box .highlight-yellow}
+Data Access
+:::
+::: {.topic-box .highlight-pink}
+Data Analysis
+:::
+:::

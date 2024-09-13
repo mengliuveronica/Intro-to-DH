@@ -80,9 +80,38 @@ h2 {
 
 /* Layout Components */
 .info-section {
-  background-color: #f9f9f9;
+  max-width: 100%;
+  width: 100%;
+  margin: 20px 0;
   padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
   border-radius: 5px;
+  font-size: 1.1em;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #0066cc;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.info-section p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.info-section ul {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.info-section li {
+  margin-bottom: 5px;
 }
 
 .topic-flow {
@@ -343,6 +372,7 @@ pre, code, .cell-code, .cell-output {
   border-radius: 5px;
   padding: 5px;
   margin-top: 10px;
+  margin-bottom: 20px;  /* Add this line */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -362,7 +392,7 @@ pre, code, .cell-code, .cell-output {
 }
 
 /* Inline Code Styles */
-code:not(pre code) {
+code:not(pre code),.quiz code {
   color: #0066cc;
   background-color: #dfecf2;
   padding: 2px 4px;

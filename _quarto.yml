@@ -31,6 +31,7 @@ website:
         - book/01-introduction.qmd
         - book/02-R.qmd
         - book/03-dice.qmd
+        - book/04-cards.qmd
 
 
 bibliography: book/references.bib

@@ -1,211 +1,167 @@
 [
   {
-    "objectID": "book/03-dice.html",
-    "href": "book/03-dice.html",
-    "title": "§3 Rolling the Dice 🎲",
+    "objectID": "book/04-cards.html",
+    "href": "book/04-cards.html",
+    "title": "§4 Dealing with Cards 🃏",
     "section": "",
-    "text": "Welcome to your first hands-on project with R! We’ll create a virtual pair of dice to learn fundamental R concepts. Just as historians analyze artifacts or literary scholars examine texts, we’ll be examining the building blocks of data analysis.",
+    "text": "Welcome to your second project with R! We’ll create a virtual deck of poker cards to explore more advanced R concepts.",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#understanding-the-rstudio-interface",
-    "href": "book/03-dice.html#understanding-the-rstudio-interface",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n1.1 Understanding the RStudio Interface 🖥️",
-    "text": "1.1 Understanding the RStudio Interface 🖥️\nWhen you open RStudio, you’ll see four main panes:\n\nConsole (usually bottom-left): This is where you type R commands and see results. Think of it as a conversation with R - you ask questions, and R answers.\nSource (usually top-left): Here you write and edit R scripts. It’s like a digital notebook for your code.\nEnvironment (usually top-right): This shows data and objects in R’s memory. Imagine it as a shelf where R stores all the information you’ve given it.\nFiles/Plots/Packages/Help (usually bottom-right): This multi-purpose pane is like a Swiss Army knife, offering file management, visualizations, add-ons, and documentation.",
+    "objectID": "book/04-cards.html#numeric",
+    "href": "book/04-cards.html#numeric",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n1.1 Numeric",
+    "text": "1.1 Numeric\nWe’ve already seen this with our dice. It includes both integers and decimal numbers:\n\nmy_integer &lt;- 42\nmy_deci &lt;- 3.14\nclass(my_integer)\n\n[1] \"numeric\"\n\nclass(my_deci)\n\n[1] \"numeric\"",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#running-r-code",
-    "href": "book/03-dice.html#running-r-code",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n1.2 Running R Code 🏃‍♂️",
-    "text": "1.2 Running R Code 🏃‍♂️\nThere are several ways to execute R code in RStudio:\n\n\nUsing the Console:\n\nType code directly into the Console and press Enter.\n\n\n\nUsing the Source Editor:\n\nWrite code in the Source Editor.\nRun a single line: Place cursor on the line and press Ctrl+Enter (Cmd+Enter on Mac).\nRun multiple lines: Highlight lines and press Ctrl+Enter (Cmd+Enter on Mac).\nRun entire script: Click “Run” button or press Ctrl+Shift+Enter (Cmd+Shift+Enter on Mac).\n\n\n\n\n\n\n\n\n\nPro Tip\n\n\n\n\n\nWriting code in the Source Editor allows you to save, edit, and rerun your entire analysis easily.",
+    "objectID": "book/04-cards.html#character",
+    "href": "book/04-cards.html#character",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n1.2 Character",
+    "text": "1.2 Character\nThis is used for text data, like words or sentences:\n\nmy_name &lt;- \"Shakespeare\"\nmy_quote &lt;- \"To be or not to be\"\nclass(my_name)\n\n[1] \"character\"\n\nclass(my_quote)\n\n[1] \"character\"",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#learning-check",
-    "href": "book/03-dice.html#learning-check",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n1.3 Learning Check 🏁",
-    "text": "1.3 Learning Check 🏁",
+    "objectID": "book/04-cards.html#logical",
+    "href": "book/04-cards.html#logical",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n1.3 Logical",
+    "text": "1.3 Logical\nThis represents true/false values:\n\nis_sunny &lt;- TRUE\nis_raining &lt;- FALSE\nclass(is_sunny)\n\n[1] \"logical\"\n\nclass(is_raining)\n\n[1] \"logical\"",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#hands-on-coding",
-    "href": "book/03-dice.html#hands-on-coding",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n1.4 Hands-On Coding 💻",
-    "text": "1.4 Hands-On Coding 💻\nTry the following:\n\nOpen RStudio and create a new R script named “my_first_script.R”\nIn the script, write a simple calculation (e.g., 5 * 7)\nRun this calculation using different methods:\n\nConsole\nRunning a single line\nRunning the entire script\n\n\nObserve where the result appears in the RStudio interface\n\n\n# In my_first_script.R\n5 * 7\n\n# In Console\n&gt; 5 * 7\n[1] 35",
+    "objectID": "book/04-cards.html#factor",
+    "href": "book/04-cards.html#factor",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n1.4 Factor",
+    "text": "1.4 Factor\nThis is used for categorical data, like genres in literature:\n\ngenres &lt;- factor(c(\"Poetry\", \"Prose\", \"Drama\"))\nclass(genres)\n\n[1] \"factor\"\n\n\n\n\n\n\n\n\nWhat is the Difference Between Factor and Character?\n\n\n\n\n\nCharacter and factor may seem similar, but they serve different purposes:\n\n\nCharacter\n\nThis is simply text data.\nIt can be any combination of letters, numbers, or symbols.\nExamples: \"apple\", \"banana\", \"cherry123\"\n\n\n\n\nFactor\n\nThis is for categorical data, made up of distinct levels or categories.\nIt’s used when data falls into a limited number of specific groups.\nExamples: Days of the week, book genres, or rating scales\n\n\n\nKey differences:\n\nCharacters can be any text, while factors consist of predefined levels or categories.\nEach level in a factor is assigned a unique integer behind the scenes, making factors more efficient for certain analyses.\nFactors are ideal for data with a fixed set of possible values or categories.",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#creating-a-die-as-an-object",
-    "href": "book/03-dice.html#creating-a-die-as-an-object",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n2.1 Creating a Die as an Object 🎲",
-    "text": "2.1 Creating a Die as an Object 🎲\nLet’s start by creating a single die:\n\ndie &lt;- 1:6\ndie\n\n[1] 1 2 3 4 5 6\n\n\n\n\n\n\n\n\nKey Concepts\n\n\n\n\n\n\n\nVector: A basic container that can hold multiple items of the same type.\n\n\n\n\n\n\n\n\n\n\nThe Colon Operator\n\n\n\n\n\nThe colon operator (:) returns every integer between two integers. It’s an easy way to create a sequence of numbers.\n\n\n\n🙋🏻‍♀️ What if I want to create a vector that’s not a sequence of numbers?\n\n2.1.1 Combining Data: c()\n\nIn R, c() stands for “combine” or “concatenate”. It’s used to create vectors, which are sequences of data elements of the same type. For example:\n\n# Creating a vector of numbers\nnumbers &lt;- c(2, 4, 6, 8, 10)\nnumbers\n\n[1]  2  4  6  8 10\n\n# Creating a vector of characters (text)\nfruits &lt;- c(\"apple\", \"banana\", \"cherry\")\nfruits\n\n[1] \"apple\"  \"banana\" \"cherry\"\n\n# Creating a vector of logical values\nlogical_values &lt;- c(TRUE, FALSE, TRUE, TRUE)\nlogical_values\n\n[1]  TRUE FALSE  TRUE  TRUE\n\n# You can also mix data types, but R will convert them to a single type\nmixed &lt;- c(1, \"two\", TRUE)\nmixed # R converts all to characters\n\n[1] \"1\"    \"two\"  \"TRUE\"\n\n\n The c() function is versatile and essential for creating custom datasets in R. You can use it to make lists of any kind of data you’re working with in your research.",
+    "objectID": "book/04-cards.html#learning-check",
+    "href": "book/04-cards.html#learning-check",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n1.5 Learning Check 🏁",
+    "text": "1.5 Learning Check 🏁",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#manipulating-objects",
-    "href": "book/03-dice.html#manipulating-objects",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n2.2 Manipulating Objects",
-    "text": "2.2 Manipulating Objects\nYou can perform various operations on your die object:\n\ndie - 1\n\n[1] 0 1 2 3 4 5\n\ndie * 2\n\n[1]  2  4  6  8 10 12\n\ndie / 2\n\n[1] 0.5 1.0 1.5 2.0 2.5 3.0\n\n\n 🤨 What do you notice about the results of the above operations?\n\n\n\n\n\n\nVectorized Operations in R\n\n\n\n\n\nR performs these operations element-wise on the die object because it uses vectorized operations. This means:\n\nEach element in the die vector is individually operated on.\nThe operation is applied to every element simultaneously.\nA new vector of the same length is returned as the result.\n\nThis vectorized approach makes R efficient for handling data and allows for concise, readable code when working with vectors or larger datasets.",
+    "objectID": "book/04-cards.html#hands-on-coding",
+    "href": "book/04-cards.html#hands-on-coding",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n1.6 Hands-On Coding 💻",
+    "text": "1.6 Hands-On Coding 💻\nTry the following:\n\nCreate a numeric variable called year_published and assign it the year your favorite book was published.\nCreate a character variable called book_title with the title of your favorite book.\nCreate a logical variable called is_fiction indicating whether your favorite book is fiction (TRUE) or non-fiction (FALSE).\nCreate a factor variable called book_genre with a few genres (e.g., “Mystery”, “Romance”, “Science Fiction”).\n\n\n\n# Year published\nyear_published &lt;- 1960\n# Book title\nbook_title &lt;- \"To Kill a Mockingbird\"\n# Fiction or non-fiction\nis_fiction &lt;- TRUE\n# Book genre\nbook_genre &lt;- factor(c(\"Mystery\", \"Romance\", \"Science Fiction\"))",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#learning-check-1",
-    "href": "book/03-dice.html#learning-check-1",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n2.3 Learning Check 🏁",
-    "text": "2.3 Learning Check 🏁",
+    "objectID": "book/04-cards.html#accessing-data-in-a-data-frame",
+    "href": "book/04-cards.html#accessing-data-in-a-data-frame",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n2.1 Accessing Data in a Data Frame",
+    "text": "2.1 Accessing Data in a Data Frame\nYou can access specific parts of a data frame using various methods.\n\n\n\n\n\n\n$ and [row_number, column_number]\n\n\n\n\n\n\n\nColumns: Use $ followed by the column name (e.g., books$title).\n\nThis gives you all the values in that column.\n\n\n\nRows: Use [row_number, ] (e.g., books[2, ]).\n\nThe comma is important! It means “all columns”.\nThis gives you all the data in that specific row.\n\n\n\nIndividual Cells: Use [row_number, column_number] (e.g., books[1, 2]).\n\nThis gives you the value in a specific row and column.\n\n\n\n\n\n\n\n\n\n\n\n\nAcessing the books Data Frame\n\n\n\n\n\nData frames are essentially just spread sheet tables. Our books data frame looks like this:\n\n\ntitle\nauthor\nyear\n\n\n\n1984\nOrwell\n1949\n\n\nPride and Prejudice\nAusten\n1813\n\n\nThe Great Gatsby\nFitzgerald\n1925\n\n\n\n\n\nbooks$title would give: 1984, Pride and Prejudice, The Great Gatsby\n\n\nbooks[2, ] would give: Pride and Prejudice, Austen, 1813\n\n\nbooks[1, 2] would give: Orwell\n\n\n\n\n\n\n# Get a specific column\nbooks$title\n\n[1] \"1984\"                \"Pride and Prejudice\" \"The Great Gatsby\"   \n\n# Get a specific row\nbooks[2, ]\n\n                title author year\n2 Pride and Prejudice Austen 1813\n\n# Get a specific cell\nbooks[1, 2]\n\n[1] \"Orwell\"\n\n# Get a specific cell using row number and column name\nbooks[2, \"title\"] # Get the second title\n\n[1] \"Pride and Prejudice\"\n\n# Get the record based on a specific value\nbooks[books$author == \"Austen\", ] # Get all records by Austen\n\n                title author year\n2 Pride and Prejudice Austen 1813\n\n\n\n\n\n\n\n\nUnderstanding Nested Functions\n\n\n\n\n\nThe line books[books$author == \"Austen\", ] might look complex, but let’s break it down:\n\n\nbooks$author: This part gets the author column from our books data frame.\n\nbooks$author == \"Austen\": This compares each author name to “Austen”.\n\n\nIt creates a list of TRUE/FALSE values (TRUE where the author is Austen, FALSE otherwise).\nFor example, if we had 3 books and only the second was by Austen, this would give: [FALSE, TRUE, FALSE]\n\n\n\nbooks[...]: This is like asking R to look inside the books data frame.\n\nbooks[books$author == \"Austen\", ]: This combines steps 2 and 3.\n\n\nIt tells R: “From the books data frame, give me all rows where the author is Austen”.\nThe comma at the end means “give me all columns for these rows”.\n\nThink of it like a librarian (R) searching through a catalog (the data frame):\n\nYou ask: “Can you find all books by Austen?”\nThe librarian checks each book’s author (TRUE/FALSE for Austen).\nThen returns all information about the books that matched.\n\n\n\n\n\n\n\n\n\n\nFiltering Data Based on Conditions\n\n\n\n\n\nThis example demonstrates a powerful technique called “filtering”:\n\nCreating a condition: books$author == \"Austen\" creates a logical vector (TRUE/FALSE) for each row where the author is Austen.\nUsing the condition: We use this vector inside the square brackets [ ] to select only those rows that meet our condition.\nSelecting columns: The comma after the condition (books [condition, ]) means “select all columns for these rows”.\n\nThis method allows you to extract specific records based on any condition you specify. For example:\n\nFind all books published after 1900: books[books$year &gt; 1900, ]\nFind all books with “War” in the title: books[grepl(“War”, books$title), ]\n\nFiltering is a crucial skill in data manipulation and analysis, allowing you to focus on specific subsets of your data.",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#hands-on-coding-1",
-    "href": "book/03-dice.html#hands-on-coding-1",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n2.4 Hands-On Coding 💻",
-    "text": "2.4 Hands-On Coding 💻\nTry the following:\n\nCreate an object called favorite_number and assign it your favorite number.\nCreate a vector called lucky_numbers with 3-5 numbers you consider lucky.\nUse the length() function to find out how many lucky numbers you have.\nCreate a new vector called unlucky_numbers by subtracting 1 from each of your lucky_numbers.\nCreate a vector called all_numbers that combines your lucky_numbers and unlucky_numbers.\n\n\n\n# 1. Create favorite_number\nfavorite_number &lt;- 7\n\n# 2. Create lucky_numbers\nlucky_numbers &lt;- c(3, 7, 13)\n\n# 3. Use length() function\nlength(lucky_numbers)\n\n[1] 3\n\n# 4. Create unlucky_numbers\nunlucky_numbers &lt;- lucky_numbers - 1\n\n# 5. Combine vectors\nall_numbers &lt;- c(lucky_numbers, unlucky_numbers)\nprint(all_numbers)\n\n[1]  3  7 13  2  6 12\n\n\n\n\n\n\n\n\nPrinting in R\n\n\n\n\n\nIn R, using print() is often optional when working in the console. Simply typing the object name (e.g., all_numbers) will automatically display its contents. However, print() is useful in functions or scripts where you want to ensure output is displayed. It’s also helpful for explicitly showing your intent to output a value.",
+    "objectID": "book/04-cards.html#learning-check-1",
+    "href": "book/04-cards.html#learning-check-1",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n2.2 Learning Check 🏁",
+    "text": "2.2 Learning Check 🏁",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#key-concepts-of-functions-in-r",
-    "href": "book/03-dice.html#key-concepts-of-functions-in-r",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n3.1 Key Concepts of Functions in R",
-    "text": "3.1 Key Concepts of Functions in R\n\nPurpose: Functions are reusable blocks of code that perform a specific task.\n\nStructure: A function typically has three parts:\n\n\nName: What you call the function (e.g., sum, mean, plot)\n\nArguments: Input values the function needs to do its job\n\nBody: The code that defines what the function does\n\nHere’s the generic structure of a function in R:\n\nname_of_function &lt;- function(argument1, argument2, ...) {\n  # Body of the function\n  # Perform operations using the arguments\n\n  return(result)  # Output of the function\n}\n\nIn this structure:\n\n\nname_of_function is where you specify the function’s name\n\nfunction() keyword defines it as a function\n\n(argument1, argument2, ...) are the inputs the function accepts\nThe code between { and } is the body of the function\n\nreturn() specifies what the function outputs\n\nNow, let’s look at a specific example:\n\ndouble_value &lt;- function(x) {\n  result &lt;- x * 2\n  return(result)\n}\n\nIn this example:\n\nThe function name is double_value\n\nIt has one argument: x\n\nThe body is the code between the curly braces { }\n\nThe return() statement specifies what the function outputs\n\nYou can use this function like this:\n\ndoubled_value &lt;- double_value(5)\ndoubled_value\n\n[1] 10\n\n\n\nInput and Output: Functions often take input (arguments) and return output (results).\nBuilt-in vs. Custom: R has many built-in functions, but you can also create your own. You can also set default values for the arguments so that the function can still run without input.\n\nSyntax: To use a function, type its name followed by parentheses containing any arguments:\nfunction_name(argument1, argument2, ...)\n\nDocumentation: You can learn about a function’s use and arguments with ?function_name in the console.\n\nRemember, functions are powerful tools that help you organize and streamline your code, making your analysis more efficient and readable.",
+    "objectID": "book/04-cards.html#hands-on-coding-1",
+    "href": "book/04-cards.html#hands-on-coding-1",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n2.3 Hands-On Coding 💻",
+    "text": "2.3 Hands-On Coding 💻\nLet’s apply our data frame skills to a new context: famous paintings. We’ll create a data frame of artworks and practice accessing its data in various ways.\nTry the following exercises:\n\nCreate a data frame called paintings with columns for title, artist, and year_created.\n\n\n\n\n\n\n\nExample Data\n\n\n\n\n\nFeel free to use your own favorite paintings for this exercise! If you prefer, you can use the following information:\n\n\nTitle\nArtist\nYear Created\n\n\n\nMona Lisa\nLeonardo da Vinci\n1503\n\n\nThe Starry Night\nVincent van Gogh\n1889\n\n\nThe Persistence of Memory\nSalvador Dali\n1931\n\n\n\n\n\n\n\nAccess the ‘artist’ column of the data frame.\nGet the third row of the data frame.\nFind the year the second painting in the data frame was created.\n(Optional challenge) Add a new column called ‘style’ to the data frame (e.g., “Renaissance”, “Post-Impressionism”, “Surrealism”).\n\n\n\n# 1. Create the paintings data frame\npaintings &lt;- data.frame(\n    title = c(\"Mona Lisa\", \"The Starry Night\", \"The Persistence of Memory\"),\n    artist = c(\"Leonardo da Vinci\", \"Vincent van Gogh\", \"Salvador Dali\"),\n    year_created = c(1503, 1889, 1931)\n)\n# 2. Access the 'artist' column\npaintings$artist\n\n[1] \"Leonardo da Vinci\" \"Vincent van Gogh\"  \"Salvador Dali\"    \n\n# 3. Get the third row\npaintings[3, ]\n\n                      title        artist year_created\n3 The Persistence of Memory Salvador Dali         1931\n\n# 4. Find the year the second painting was created\npaintings[2, \"year_created\"]\n\n[1] 1889\n\n# 5. Add a new 'style' column\npaintings$style &lt;- c(\"Renaissance\", \"Post-Impressionism\", \"Surrealism\")\n# View the updated data frame\nprint(paintings)\n\n                      title            artist year_created              style\n1                 Mona Lisa Leonardo da Vinci         1503        Renaissance\n2          The Starry Night  Vincent van Gogh         1889 Post-Impressionism\n3 The Persistence of Memory     Salvador Dali         1931         Surrealism",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#using-built-in-functions",
-    "href": "book/03-dice.html#using-built-in-functions",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n3.2 Using Built-in Functions",
-    "text": "3.2 Using Built-in Functions\nR comes with many built-in functions that you can use right away. These are like the basic tools that come in a starter toolkit. Let’s look at a few examples:\n\n# The round() function rounds numbers\nround(3.14159)\n\n[1] 3\n\n# The sum() function adds numbers together\nsum(1, 2, 3, 4, 5)\n\n[1] 15\n\n# The length() function tells you how many items are in a list or vector\nlength(die)\n\n[1] 6\n\n\nUsing a function is straightforward. You write the name of the function followed by parentheses. Inside the parentheses, you put the information (called “arguments”) that the function needs to do its job.\n\n\n\n\n\n\nComments in R\n\n\n\n\n\nDid you notice the # … part in the above code chunk?\nIn R, the # symbol is used to create comments. Anything after a # on a line is ignored by R when running the code. Comments are useful for:\n\nExplaining what your code does\nTemporarily disabling code without deleting it\nOrganizing your script into sections\n\n\n\n\n\n3.2.1 Simulating Randomness: sample()\n\nTo simulate rolling a die, we need a function that can randomly select a number. The sample() function is perfect for this task. It’s like reaching into a bag and pulling out a random item.\n\n# Roll the die once\nsample(x = die, size = 1)\n\n[1] 6\n\n# Roll the die again\nsample(x = die, size = 1)\n\n[1] 2\n\n\nIn this case, x = die tells the function what to choose from (our die object), and size = 1 says to pick one number.\n\n\n\n\n\n\nSampling With Replacement\n\n\n\n\n\nBy default, sample() doesn’t put the number back in the “bag” after selecting it. For dice rolling, we want to allow the same number to be selected multiple times. Use replace = TRUE in the sample() function to achieve this.\n\n\n\n\n# Roll two dice\nsample(die, size = 2, replace = TRUE)\n\n[1] 4 2",
+    "objectID": "book/04-cards.html#create-the-deck",
+    "href": "book/04-cards.html#create-the-deck",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n3.1 Create the Deck",
+    "text": "3.1 Create the Deck\n\n\n\n\n\n\nStructure of a Deck\n\n\n\n\n\nRemember, a standard deck of cards consists of:\n\n4 suits: Hearts♥️, Diamonds♦️, Clubs♣️, and Spades♠️\n13 ranks in each suit: Ace, 2, 3, …, 10, Jack, Queen, King\nA total of 52 cards (4 suits × 13 ranks)\n\n\n\n\nCreate a data frame called deck with three columns: suit, rank, and value.\n\n\nsuit should contain all four suits, repeated 13 times each.\n\nrank should contain all 13 ranks, repeated for each suit.\n\nvalue should assign numeric values to the ranks (Ace = 1, Jack = 11, Queen = 12, King = 13, others as their numeric value).\n\n\n\n\n\n\n\n\nHint 1/3\n\n\n\n\n\nRecall how we created the books data frame. You can adapt it here.\nInstead of listing all cards one by one, you can use rep() function to create repeating patterns. Type ?rep() in your console to learn how to use it.\n\n\n\n\n\n\n\n\n\n\n\nHint 2/3\n\n\n\n\n\nUse the rep() function to repeat values. For example, rep(c(\"A\", \"B\"), each = 3) gives \"A\" \"A\" \"A\" \"B\" \"B\" \"B\". rep(c(“A”, “B”), times = 3)gives“A” “B” “A” “B” “A” “B”`.\n\n\n\n\n\n\n\n\n\n\n\nHint 3/3\n\n\n\n\n\nFor the suit column, you’ll need to repeat each suit 13 times. Try: suit = rep(c(\"Hearts\", \"Diamonds\", \"Clubs\", \"Spades\"), each = 13)\nFor the rank column, you need to repeat the sequence of ranks 4 times. Use: rank = rep(c(\"Ace\", 2:10, \"Jack\", \"Queen\", \"King\"), times = 4)\nFor the value column, create a sequence from 1 to 13 and repeat it 4 times: value = rep(1:13, times = 4)\n\n\n\n\n\ndeck &lt;- data.frame(\n    suit = rep(c(\"Hearts\", \"Diamonds\", \"Clubs\", \"Spades\"), each = _),\n    rank = rep(c(\"Ace\", _, \"Jack\", \"Queen\", \"King\"), times = _),\n    value = rep(_, times = 4)\n)\n\n\n\ndeck &lt;- data.frame(\nsuit = rep(c(\"Hearts\", \"Diamonds\", \"Clubs\", \"Spades\"), each = 13),\nrank = rep(c(\"Ace\", 2:10, \"Jack\", \"Queen\", \"King\"), times = 4),\nvalue = rep(c(1:13), times = 4)\n)\n# View the first few rows\nhead(deck)\n\n    suit rank value\n1 Hearts  Ace     1\n2 Hearts    2     2\n3 Hearts    3     3\n4 Hearts    4     4\n5 Hearts    5     5\n6 Hearts    6     6",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#writing-your-own-functions",
-    "href": "book/03-dice.html#writing-your-own-functions",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n3.3 Writing Your Own Functions",
-    "text": "3.3 Writing Your Own Functions\nLet’s create a function to roll two dice:\n\nroll &lt;- function() {\n  dice &lt;- sample(die, size = 2, replace = TRUE)\n  sum(dice)\n}\n\nLet’s break this down:\n\n\nroll &lt;- function() { ... } creates a new function named roll.\nInside the curly braces { } is the “body” of the function - the instructions for what it should do.\n\ndice &lt;- sample(die, size = 2, replace = TRUE) rolls two dice.\n\nsum(dice) adds up the numbers rolled.\n\nNow, whenever you want to roll two dice and get the sum, you can simply use:\n\nroll()\n\n[1] 8\n\nroll()\n\n[1] 11",
+    "objectID": "book/04-cards.html#accessing-information",
+    "href": "book/04-cards.html#accessing-information",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n3.2 Accessing Information",
+    "text": "3.2 Accessing Information\nNow that we have our deck, let’s practice accessing information from it.\n\n3.2.1 How many cards are in the deck?\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nTo find the number of cards, think about how you’d check the structure of a data frame.\n\n\n\n\n\n# View the structure of the deck\n_(deck)\n\n# Count the number of cards (rows) in the deck\n_(deck)\n\n\n\nstr(deck)\n\n'data.frame':   52 obs. of  3 variables:\n $ suit : chr  \"Hearts\" \"Hearts\" \"Hearts\" \"Hearts\" ...\n $ rank : chr  \"Ace\" \"2\" \"3\" \"4\" ...\n $ value: int  1 2 3 4 5 6 7 8 9 10 ...\n\nnrow(deck)\n\n[1] 52\n\n\n\n\n\n\n\n\nnrow() and Related Functions\n\n\n\n\n\nnrow() is a useful function for working with data frames:\n\n\nnrow(df): Returns the number of rows in a data frame\n\nncol(df): Returns the number of columns in a data frame\n\ndim(df): Returns both the number of rows and columns as a vector\n\nlength(df): Returns the number of columns (as data frames are lists of vectors)\n\nThese functions are essential for understanding the size and structure of your data. For example, nrow(deck) tells you how many cards are in the deck.\n\n\n\n\n\n3.2.2 What are all the unique suits in the deck?\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nCheck out the unique() function. This is useful when you want to see how many categories are in a factor or categorical variable.\n\n\n\n\n\nunique(deck$_)\n\n\n\nunique(deck$suit)\n\n[1] \"Hearts\"   \"Diamonds\" \"Clubs\"    \"Spades\"  \n\n\n\n\n3.2.3 How many hearts are in the deck?\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nYou can use logical indexing to select all hearts, then count them using sum(). How would you create a logical vector for hearts?\n\n\n\n\n\nsum(deck$_ == \"_\")\n\n\n\nsum(deck$suit == \"Hearts\")\n\n[1] 13\n\n\n\n\n3.2.4 (Optional challenge) How to view all the face cards (Jack, Queen, King) in the deck?\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nYou need to do conditional filtering. You can use the %in% operator to check if values are in a set (i.e., multiple “OR” conditions). Check out the usage of this function from its help page.\n\n\n\n\n\ndeck[deck$rank _ c(\"_\", \"_\", \"_\"), ]\n\n\n\ndeck[deck$rank %in% c(\"Jack\", \"Queen\", \"King\"), ]\n\n       suit  rank value\n11   Hearts  Jack    11\n12   Hearts Queen    12\n13   Hearts  King    13\n24 Diamonds  Jack    11\n25 Diamonds Queen    12\n26 Diamonds  King    13\n37    Clubs  Jack    11\n38    Clubs Queen    12\n39    Clubs  King    13\n50   Spades  Jack    11\n51   Spades Queen    12\n52   Spades  King    13",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#learning-check-2",
-    "href": "book/03-dice.html#learning-check-2",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n3.4 Learning Check 🏁",
-    "text": "3.4 Learning Check 🏁",
+    "objectID": "book/04-cards.html#modifying-the-deck",
+    "href": "book/04-cards.html#modifying-the-deck",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n3.3 Modifying the Deck",
+    "text": "3.3 Modifying the Deck\nLet’s make some changes to our deck:\n\n3.3.1 Add a face card indicator\nAdd a new column called is_face_card that is TRUE for Jack, Queen, and King, and FALSE for other cards.\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nThink about how we can check if a card’s rank is Jack, Queen, or King. Remember the %in% operator we used earlier.\n\n\n\n\n\ndeck$is_face_card &lt;- deck$rank %in% c(\"_\", \"_\", \"_\")\nhead(deck)\n\n\n\ndeck$is_face_card &lt;- deck$rank %in% c(\"Jack\", \"Queen\", \"King\")\nhead(deck)\n\n    suit rank value is_face_card\n1 Hearts  Ace     1        FALSE\n2 Hearts    2     2        FALSE\n3 Hearts    3     3        FALSE\n4 Hearts    4     4        FALSE\n5 Hearts    5     5        FALSE\n6 Hearts    6     6        FALSE\n\n\n\n\n3.3.2 Create Jokers\nChange the suit of all Aces to “Joker” (creating wild cards).\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nRemember how we accessed specific rows in a data frame using [,]. How can we select all Aces and change their suit?\n\n\n\n\n\ndeck$_[deck$_ == \"_\"] &lt;- \"_\"\ndeck[deck$_ == \"_\", ]\n\n\n\ndeck$suit[deck$rank == \"Ace\"] &lt;- \"Joker\"\ndeck[deck$rank == \"Ace\", ]\n\n    suit rank value is_face_card\n1  Joker  Ace     1        FALSE\n14 Joker  Ace     1        FALSE\n27 Joker  Ace     1        FALSE\n40 Joker  Ace     1        FALSE\n\n\n\n\n3.3.3 View high value cards\nView only the cards with a value greater than 10.\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nRecall how we used logical conditions to filter data frames. We can use different symbols such as &lt; &gt; ==.\n\n\n\n\n\nhigh_value_cards &lt;- deck[deck$_ _ _, ]\nprint(high_value_cards)\n\n\n\nhigh_value_cards &lt;- deck[deck$value &gt; 10, ]\nprint(high_value_cards)\n\n       suit  rank value is_face_card\n11   Hearts  Jack    11         TRUE\n12   Hearts Queen    12         TRUE\n13   Hearts  King    13         TRUE\n24 Diamonds  Jack    11         TRUE\n25 Diamonds Queen    12         TRUE\n26 Diamonds  King    13         TRUE\n37    Clubs  Jack    11         TRUE\n38    Clubs Queen    12         TRUE\n39    Clubs  King    13         TRUE\n50   Spades  Jack    11         TRUE\n51   Spades Queen    12         TRUE\n52   Spades  King    13         TRUE",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#hands-on-coding-2",
-    "href": "book/03-dice.html#hands-on-coding-2",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n3.5 Hands-On Coding 💻",
-    "text": "3.5 Hands-On Coding 💻\nLet’s apply what we’ve learned to simulate flipping a coin. This is similar to rolling a die, but with only two possible outcomes.\n\nCreate an object called coin that represents the two sides of a coin (use the numbers 1 and 2).\nUse the sample() function to simulate flipping the coin once.\nCreate a function called flip_coin() that simulates flipping a coin and returns the result.\nModify your flip_coin() function to have an argument named n_flips so that the user could specify the number of time the coin is flipped.\n\n\n\n# 1. Create coin object\ncoin &lt;- 1:2\n# 2. Flip coin once using sample()\nsample(coin, 1)\n\n[1] 2\n\n# 3. Create flip_coin() function\nflip_coin &lt;- function() {\nsample(coin, size = 1)\n}\n# 4. Modify flip_coin() to have a n_flips argument\nflip_coin &lt;- function(n_flips) {\n  sample(coin, size = n_flips, replace = TRUE)\n}",
+    "objectID": "book/04-cards.html#analyzing-the-deck",
+    "href": "book/04-cards.html#analyzing-the-deck",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n3.4 Analyzing the Deck",
+    "text": "3.4 Analyzing the Deck\nNow that we’ve modified our deck, let’s analyze it using the skills we’ve learned:\n\n3.4.1 Count face cards\nCount how many face cards (Jack, Queen, King) are in the deck.\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nRemember the is_face_card column we created? How can we count the number of TRUE values? Try sum().\n\n\n\n\n\nface_card_count &lt;- sum(deck$_)\nprint(paste(\"Number of face cards:\", _))\n\n\n\nface_card_count &lt;- sum(deck$is_face_card)\nprint(paste(\"Number of face cards:\", face_card_count))\n\n[1] \"Number of face cards: 12\"\n\n\n\n\n3.4.2 Find average card value\nCalculate the average value of all cards in the deck.\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nWe can use mean() to calculate an average. Which column contains the card values?\n\n\n\n\n\naverage_value &lt;- _(deck$_)\nprint(paste(\"Average card value:\", round(_, 2)))\n\n\n\naverage_value &lt;- mean(deck$value)\nprint(paste(\"Average card value:\", round(average_value, 2)))\n\n[1] \"Average card value: 7\"\n\n\n\n\n3.4.3 Find highest value card\nIdentify the card(s) with the highest value in the deck.\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nHow can we find the maximum value in the deck? Try max().\nOnce we have that, how can we select all cards with that value?\n\n\n\n\n\nmax_value &lt;- _(deck$value)\nhighest_cards &lt;- deck[deck$value == _, ]\nprint(_)\n\n\n\nmax_value &lt;- max(deck$value)\nhighest_cards &lt;- deck[deck$value == max_value, ]\nprint(highest_cards)\n\n       suit rank value is_face_card\n13   Hearts King    13         TRUE\n26 Diamonds King    13         TRUE\n39    Clubs King    13         TRUE\n52   Spades King    13         TRUE",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
-    "objectID": "book/03-dice.html#why-use-quarto",
-    "href": "book/03-dice.html#why-use-quarto",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n4.1 Why Use Quarto?",
-    "text": "4.1 Why Use Quarto?\n\n\nReproducibility: Quarto documents contain both code and narrative that make it easy to reproduce your analyses.\n\nProfessional Presentation: Create polished, professional-looking documents.\n\nFlexibility: Output to various formats like HTML, PDF, or slideshows.\n\n\n\n\n\n\n\nThe Importance of Reproducibility\n\n\n\n\n\nIn the humanities, as in all academic fields, being able to reproduce the analytical process is crucial. When you write your R code in scripts, you’re creating a record of every step in your analysis. This is like creating detailed footnotes or citations in a research paper - it allows others (or future you!) to follow your work exactly.\nUsing scripts also makes it easy to make changes and rerun your entire analysis, which is much more efficient than trying to remember and retype everything in the console.",
+    "objectID": "book/04-cards.html#conclusion",
+    "href": "book/04-cards.html#conclusion",
+    "title": "§4 Dealing with Cards 🃏",
+    "section": "\n3.5 Conclusion",
+    "text": "3.5 Conclusion\n\n\n\n\n\n\nKey Takeaways\n\n\n\n\n\nIn this chapter, we’ve covered:\n\nCreating and manipulating data frames in R\nUnderstanding different R data types\nBuilding a virtual deck of cards\nAccessing and modifying data within data frames\nPerforming simple analyses on our card deck\n\n\n\n\nThese skills form an essential foundation for working with structured data in R. As we progress in our digital humanities journey, we’ll build upon these concepts to perform more complex data manipulations and analyses.\n\n\nData Types\n\n\nData Frames\n\n\nData Access\n\n\nData Analysis",
     "crumbs": [
       "Book",
-      "§3 Rolling the Dice 🎲"
-    ]
-  },
-  {
-    "objectID": "book/03-dice.html#quarto-document",
-    "href": "book/03-dice.html#quarto-document",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n4.2 Quarto Document",
-    "text": "4.2 Quarto Document\nA Quarto document has two main parts: - A header at the top (called YAML header) - The main content (text and code)\nBelow is an example:\nyaml\n---\ntitle: \"My First Quarto Document\"\nauthor: \"Your Name\"\nformat: html\n---\nThis is where you write your content.\n\nYou can use markdown to format your text or use the \"visual editing mode\" to have an experience similar to Microsoft Word editor.",
-    "crumbs": [
-      "Book",
-      "§3 Rolling the Dice 🎲"
-    ]
-  },
-  {
-    "objectID": "book/03-dice.html#essential-quarto-concepts",
-    "href": "book/03-dice.html#essential-quarto-concepts",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n4.3 Essential Quarto Concepts",
-    "text": "4.3 Essential Quarto Concepts\n\n4.3.1 Editing Quarto Files: Source vs. Visual Editor\nQuarto documents can be edited in two modes: Source and Visual.\n\n\nSource Editor: This mode shows you the raw Markdown and YAML content of your document. It’s great for:\n\nPrecise control over your document’s structure\nEditing code chunks directly\nWorking with advanced Quarto features\n\n\n\nVisual Editor: This mode provides a WYSIWYG (What You See Is What You Get) interface, similar to word processors like Microsoft Word. It’s useful for:\n\nFormatting text without knowing Markdown syntax\nEasily inserting tables, images, and other elements\nCollaborating with team members who may not be familiar with Markdown\n\n\n\n\n\n\n\n\n\nMarkdown Basics\n\n\n\n\n\nMarkdown is a lightweight markup language used in Quarto documents. Here are some basic syntax examples:\n\n\n# Heading 1, ## Heading 2, ### Heading 3, etc. for headings\n\n*italic* or _italic_ for italic text\n\n\n**bold** or __bold__ for bold text\n\n\n- item for unordered lists\n\n1. item for ordered lists\n\n[link text](URL) for links\n\n\n![alt text](image.jpg) for images\n\nFor a more comprehensive guide, check out Quarto’s Markdown Basics.\n\n\n\n\n4.3.2 Rendering\nRendering is the process of converting your Quarto document into its final output format (e.g., HTML, PDF, or Word). To render your document:\n\nClick the “Render” button in RStudio, or\nUse the keyboard shortcut Ctrl+Shift+K (Cmd+Shift+K on Mac)\n\nWhen you render, Quarto executes all the code in your document and combines the results with your text to create the final output.\n\n4.3.3 (Optional) Code Chunk Options\nCode chunks in Quarto can be customized using options. These options control how the code is executed and displayed. Here are some common options:\n```{r}\n#| label: chunk-name\n#| echo: true\n#| eval: true\n#| warning: false\n#| message: false\n\n# Your R code here\n```\n\n\nlabel: Gives the chunk a unique name\n\necho: Controls whether the code is displayed in the output (true/false)\n\neval: Determines if the code should be executed (true/false)\n\nwarning: Shows or hides warnings (true/false)\n\nmessage: Shows or hides messages (true/false)\n\nYou can set these options globally in the YAML header or for individual chunks.\n\n\n\n\n\n\nPro Tip\n\n\n\n\n\nUse code chunk options to control what your readers see. For example, you might hide code for complex calculations but show the results.",
-    "crumbs": [
-      "Book",
-      "§3 Rolling the Dice 🎲"
-    ]
-  },
-  {
-    "objectID": "book/03-dice.html#learning-check-3",
-    "href": "book/03-dice.html#learning-check-3",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n4.4 Learning Check 🏁",
-    "text": "4.4 Learning Check 🏁",
-    "crumbs": [
-      "Book",
-      "§3 Rolling the Dice 🎲"
-    ]
-  },
-  {
-    "objectID": "book/03-dice.html#hands-on-coding-3",
-    "href": "book/03-dice.html#hands-on-coding-3",
-    "title": "§3 Rolling the Dice 🎲",
-    "section": "\n4.5 Hands-On Coding 💻",
-    "text": "4.5 Hands-On Coding 💻\nLet’s practice creating a simple Quarto document about our coin flipping simulation:\n\nCreate a new Quarto document in RStudio.\nAdd a title “Coin Flipping Simulation” and your name as the author.\nWrite a brief introduction about coin flipping simulations.\nInsert a code chunk that defines your coin object and flip_coin() function.\nAdd another code chunk that uses your flip_coin() function to simulate flipping a coin 10 times.\nAdd some text explaining the results.\nRender it as an html file.\n\n\n---\ntitle: \"Coin Flipping Simulation\"\nauthor: \"Your Name\"\nformat: html\n---\n# Introduction\nIn this document, we'll simulate flipping coins using R functions we've created.\n\n# Defining Our Coin and Flip Function\nFirst, let's define our coin and create a function to flip it:\n\n\ncoin &lt;- 1:2   \n\nflip_coin &lt;- function(n_flips) {\n  sample(coin, size = n_flips, replace = TRUE)\n}\n\n# Flipping a Coin 10 Times\nNow, let's flip our coin 10 times:\n\nten_flips &lt;- flip_coin(10)\nprint(ten_flips)\n\n [1] 2 2 2 1 2 1 2 1 1 2\n\n\nThis simulates flipping a coin 10 times. Each 1 represents heads, and each 2 represents tails. We then count how many times we got heads.\nCongratulations! 🎉 You’ve just created your first Quarto document combining narrative text and code analysis. This is an important step in your journey of digital humanities, as it allows you to present your research and analysis in a clear, reproducible format. As you continue to explore, you’ll find that Quarto is a powerful tool for integrating your humanities insights with computational methods.",
-    "crumbs": [
-      "Book",
-      "§3 Rolling the Dice 🎲"
+      "§4 Dealing with Cards 🃏"
     ]
   },
   {
@@ -570,87 +526,212 @@
     "text": "4.1 Hands-On Coding 💻\nLet’s explore our slot machine simulation with some simple exercises:\n\nCount how many times each symbol appears in the first reel (symbol1) after 100 spins.\nCalculate the percentage of wins in 100 spins.\n\n\n\n# Simulate 100 spins\nset.seed(123) # For reproducibility\nresults &lt;- play_slot_machine(100)\n\n# 1. Count symbols in the first reel\nsymbol_counts &lt;- results %&gt;%\n    count(symbol1, name = \"frequency\") %&gt;%\n    arrange(desc(frequency))\n\nprint(\"Symbol counts in the first reel:\")\n\n[1] \"Symbol counts in the first reel:\"\n\nprint(symbol_counts)\n\n# A tibble: 6 × 2\n  symbol1 frequency\n  &lt;chr&gt;       &lt;int&gt;\n1 💎             21\n2 🍒             19\n3 🍊             18\n4 🔔             16\n5 🍋             15\n6 🍇             11\n\n# 2. Calculate win percentage\nwin_percentage &lt;- results %&gt;%\n    summarise(win_percent = mean(win)*100) %&gt;%\n    pull(win_percent)\nprint(paste(\"Win percentage:\", round(win_percentage, 2), \"%\"))\n\n[1] \"Win percentage: 1 %\""
   },
   {
-    "objectID": "book/04-cards.html",
-    "href": "book/04-cards.html",
-    "title": "§4 Dealing with Cards 🃏",
+    "objectID": "book/03-dice.html",
+    "href": "book/03-dice.html",
+    "title": "§3 Rolling the Dice 🎲",
     "section": "",
-    "text": "Welcome to your second project with R! We’ll create a virtual deck of poker cards to explore more advanced R concepts. Just as historians analyze artifacts or literary scholars examine texts, we’ll be examining different ways to structure and manipulate data in R."
+    "text": "Welcome to your first hands-on project with R! We’ll create a virtual pair of dice to learn fundamental R concepts. Just as historians analyze artifacts or literary scholars examine texts, we’ll be examining the building blocks of data analysis.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#numeric",
-    "href": "book/04-cards.html#numeric",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n1.1 Numeric",
-    "text": "1.1 Numeric\nWe’ve already seen this with our dice. It includes both integers and decimal numbers:\n\nmy_integer &lt;- 42\nmy_deci &lt;- 3.14\nclass(my_integer)\n\n[1] \"numeric\"\n\nclass(my_deci)\n\n[1] \"numeric\""
+    "objectID": "book/03-dice.html#understanding-the-rstudio-interface",
+    "href": "book/03-dice.html#understanding-the-rstudio-interface",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n1.1 Understanding the RStudio Interface 🖥️",
+    "text": "1.1 Understanding the RStudio Interface 🖥️\nWhen you open RStudio, you’ll see four main panes:\n\nConsole (usually bottom-left): This is where you type R commands and see results. Think of it as a conversation with R - you ask questions, and R answers.\nSource (usually top-left): Here you write and edit R scripts. It’s like a digital notebook for your code.\nEnvironment (usually top-right): This shows data and objects in R’s memory. Imagine it as a shelf where R stores all the information you’ve given it.\nFiles/Plots/Packages/Help (usually bottom-right): This multi-purpose pane is like a Swiss Army knife, offering file management, visualizations, add-ons, and documentation.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#character",
-    "href": "book/04-cards.html#character",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n1.2 Character",
-    "text": "1.2 Character\nThis is used for text data, like words or sentences:\n\nmy_name &lt;- \"Shakespeare\"\nmy_quote &lt;- \"To be or not to be\"\nclass(my_name)\n\n[1] \"character\"\n\nclass(my_quote)\n\n[1] \"character\""
+    "objectID": "book/03-dice.html#running-r-code",
+    "href": "book/03-dice.html#running-r-code",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n1.2 Running R Code 🏃‍♂️",
+    "text": "1.2 Running R Code 🏃‍♂️\nThere are several ways to execute R code in RStudio:\n\n\nUsing the Console:\n\nType code directly into the Console and press Enter.\n\n\n\nUsing the Source Editor:\n\nWrite code in the Source Editor.\nRun a single line: Place cursor on the line and press Ctrl+Enter (Cmd+Enter on Mac).\nRun multiple lines: Highlight lines and press Ctrl+Enter (Cmd+Enter on Mac).\nRun entire script: Click “Run” button or press Ctrl+Shift+Enter (Cmd+Shift+Enter on Mac).\n\n\n\n\n\n\n\n\n\nPro Tip\n\n\n\n\n\nWriting code in the Source Editor allows you to save, edit, and rerun your entire analysis easily.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#logical",
-    "href": "book/04-cards.html#logical",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n1.3 Logical",
-    "text": "1.3 Logical\nThis represents true/false values:\n\nis_sunny &lt;- TRUE\nis_raining &lt;- FALSE\nclass(is_sunny)\n\n[1] \"logical\"\n\nclass(is_raining)\n\n[1] \"logical\""
+    "objectID": "book/03-dice.html#learning-check",
+    "href": "book/03-dice.html#learning-check",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n1.3 Learning Check 🏁",
+    "text": "1.3 Learning Check 🏁",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#factor",
-    "href": "book/04-cards.html#factor",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n1.4 Factor",
-    "text": "1.4 Factor\nThis is used for categorical data, like genres in literature:\n\ngenres &lt;- factor(c(\"Poetry\", \"Prose\", \"Drama\"))\nclass(genres)\n\n[1] \"factor\"\n\n\n\n\n\n\n\n\nNote\n\n\n\n\n\nFactors are useful for representing data that falls into distinct categories, like genres, time periods, or author nationalities in literary studies."
+    "objectID": "book/03-dice.html#hands-on-coding",
+    "href": "book/03-dice.html#hands-on-coding",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n1.4 Hands-On Coding 💻",
+    "text": "1.4 Hands-On Coding 💻\nTry the following:\n\nOpen RStudio and create a new R script named “my_first_script.R”\nIn the script, write a simple calculation (e.g., 5 * 7)\nRun this calculation using different methods:\n\nConsole\nRunning a single line\nRunning the entire script\n\n\nObserve where the result appears in the RStudio interface\n\n\n# In my_first_script.R\n5 * 7\n\n# In Console\n&gt; 5 * 7\n[1] 35",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#learning-check",
-    "href": "book/04-cards.html#learning-check",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n1.5 Learning Check 🏁",
-    "text": "1.5 Learning Check 🏁"
+    "objectID": "book/03-dice.html#creating-a-die-as-an-object",
+    "href": "book/03-dice.html#creating-a-die-as-an-object",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n2.1 Creating a Die as an Object 🎲",
+    "text": "2.1 Creating a Die as an Object 🎲\nLet’s start by creating a single die:\n\ndie &lt;- 1:6\ndie\n\n[1] 1 2 3 4 5 6\n\n\n\n\n\n\n\n\nKey Concepts\n\n\n\n\n\n\n\nVector: A basic container that can hold multiple items of the same type.\n\n\n\n\n\n\n\n\n\n\nThe Colon Operator\n\n\n\n\n\nThe colon operator (:) returns every integer between two integers. It’s an easy way to create a sequence of numbers.\n\n\n\n🙋🏻‍♀️ What if I want to create a vector that’s not a sequence of numbers?\n\n2.1.1 Combining Data: c()\n\nIn R, c() stands for “combine” or “concatenate”. It’s used to create vectors, which are sequences of data elements of the same type. For example:\n\n# Creating a vector of numbers\nnumbers &lt;- c(2, 4, 6, 8, 10)\nnumbers\n\n[1]  2  4  6  8 10\n\n# Creating a vector of characters (text)\nfruits &lt;- c(\"apple\", \"banana\", \"cherry\")\nfruits\n\n[1] \"apple\"  \"banana\" \"cherry\"\n\n# Creating a vector of logical values\nlogical_values &lt;- c(TRUE, FALSE, TRUE, TRUE)\nlogical_values\n\n[1]  TRUE FALSE  TRUE  TRUE\n\n# You can also mix data types, but R will convert them to a single type\nmixed &lt;- c(1, \"two\", TRUE)\nmixed # R converts all to characters\n\n[1] \"1\"    \"two\"  \"TRUE\"\n\n\nThe c() function is versatile and essential for creating custom datasets in R. You can use it to make lists of any kind of data you’re working with in your research.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#hands-on-coding",
-    "href": "book/04-cards.html#hands-on-coding",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n1.6 Hands-On Coding 💻",
-    "text": "1.6 Hands-On Coding 💻\nTry the following:\n\nCreate a numeric variable called year_published and assign it the year your favorite book was published.\nCreate a character variable called book_title with the title of your favorite book.\nCreate a logical variable called is_fiction indicating whether your favorite book is fiction (TRUE) or non-fiction (FALSE).\nCreate a factor variable called book_genre with a few genres (e.g., “Mystery”, “Romance”, “Science Fiction”).\n\n\n\n# Year published\nyear_published &lt;- 1960\n# Book title\nbook_title &lt;- \"To Kill a Mockingbird\"\n# Fiction or non-fiction\nis_fiction &lt;- TRUE\n# Book genre\nbook_genre &lt;- factor(c(\"Mystery\", \"Romance\", \"Science Fiction\"))"
+    "objectID": "book/03-dice.html#manipulating-objects",
+    "href": "book/03-dice.html#manipulating-objects",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n2.2 Manipulating Objects",
+    "text": "2.2 Manipulating Objects\nYou can perform various operations on your die object:\n\ndie - 1\n\n[1] 0 1 2 3 4 5\n\ndie * 2\n\n[1]  2  4  6  8 10 12\n\ndie / 2\n\n[1] 0.5 1.0 1.5 2.0 2.5 3.0\n\n\n🤨 What do you notice about the results of the above operations?\n\n\n\n\n\n\nVectorized Operations in R\n\n\n\n\n\nR performs these operations element-wise on the die object because it uses vectorized operations. This means:\n\nEach element in the die vector is individually operated on.\nThe operation is applied to every element simultaneously.\nA new vector of the same length is returned as the result.\n\nThis vectorized approach makes R efficient for handling data and allows for concise, readable code when working with vectors or larger datasets.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#accessing-data-in-a-data-frame",
-    "href": "book/04-cards.html#accessing-data-in-a-data-frame",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n2.1 Accessing Data in a Data Frame",
-    "text": "2.1 Accessing Data in a Data Frame\nYou can access specific parts of a data frame using various methods:\n\n# Get a specific column\nbooks$title\n\n[1] \"1984\"                \"Pride and Prejudice\" \"The Great Gatsby\"   \n\n#Get a specific row\nbooks[2, ]\n\n                title author year\n2 Pride and Prejudice Austen 1813\n\n#Get a specific cell\nbooks[1, 2]\n\n[1] \"Orwell\""
+    "objectID": "book/03-dice.html#learning-check-1",
+    "href": "book/03-dice.html#learning-check-1",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n2.3 Learning Check 🏁",
+    "text": "2.3 Learning Check 🏁",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#learning-check-1",
-    "href": "book/04-cards.html#learning-check-1",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n2.2 Learning Check 🏁",
-    "text": "2.2 Learning Check 🏁"
+    "objectID": "book/03-dice.html#hands-on-coding-1",
+    "href": "book/03-dice.html#hands-on-coding-1",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n2.4 Hands-On Coding 💻",
+    "text": "2.4 Hands-On Coding 💻\nTry the following:\n\nCreate an object called favorite_number and assign it your favorite number.\nCreate a vector called lucky_numbers with 3-5 numbers you consider lucky.\nUse the length() function to find out how many lucky numbers you have.\nCreate a new vector called unlucky_numbers by subtracting 1 from each of your lucky_numbers.\nCreate a vector called all_numbers that combines your lucky_numbers and unlucky_numbers.\n\n\n\n# 1. Create favorite_number\nfavorite_number &lt;- 7\n\n# 2. Create lucky_numbers\nlucky_numbers &lt;- c(3, 7, 13)\n\n# 3. Use length() function\nlength(lucky_numbers)\n\n[1] 3\n\n# 4. Create unlucky_numbers\nunlucky_numbers &lt;- lucky_numbers - 1\n\n# 5. Combine vectors\nall_numbers &lt;- c(lucky_numbers, unlucky_numbers)\nprint(all_numbers)\n\n[1]  3  7 13  2  6 12\n\n\n\n\n\n\n\n\nPrinting in R\n\n\n\n\n\nIn R, using print() is often optional when working in the console. Simply typing the object name (e.g., all_numbers) will automatically display its contents. However, print() is useful in functions or scripts where you want to ensure output is displayed. It’s also helpful for explicitly showing your intent to output a value.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#hands-on-coding-1",
-    "href": "book/04-cards.html#hands-on-coding-1",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n2.3 Hands-On Coding 💻",
-    "text": "2.3 Hands-On Coding 💻\nLet’s create a data frame for a deck of cards:\n\nCreate three vectors: suit (Hearts, Diamonds, Clubs, Spades), rank (Ace, 2-10, Jack, Queen, King), and value (1-13).\nUse these vectors to create a data frame called deck.\nPrint the first few rows of your deck using the head() function.\nAccess all the hearts in your deck.\nFind the value of the King of Spades.\n\n\n\n# Create vectors\nsuit &lt;- rep(c(\"Hearts\", \"Diamonds\", \"Clubs\", \"Spades\"), each = 13)\nrank &lt;- rep(c(\"Ace\", 2:10, \"Jack\", \"Queen\", \"King\"), times = 4)\nvalue &lt;- rep(1:13, times = 4)\n\n# Create data frame\ndeck &lt;- data.frame(suit, rank, value)\n\n# Print first few rows\nhead(deck)\n\n    suit rank value\n1 Hearts  Ace     1\n2 Hearts    2     2\n3 Hearts    3     3\n4 Hearts    4     4\n5 Hearts    5     5\n6 Hearts    6     6\n\n# Access all hearts\nhearts &lt;- deck[deck$suit == \"Hearts\", ]\n\n# Find value of King of Spades\nking_of_spades &lt;- deck[deck$suit == \"Spades\" & deck$rank == \"King\", \"value\"]\nprint(king_of_spades)\n\n[1] 13"
+    "objectID": "book/03-dice.html#key-concepts-of-functions-in-r",
+    "href": "book/03-dice.html#key-concepts-of-functions-in-r",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n3.1 Key Concepts of Functions in R",
+    "text": "3.1 Key Concepts of Functions in R\n\nPurpose: Functions are reusable blocks of code that perform a specific task.\n\nStructure: A function typically has three parts:\n\n\nName: What you call the function (e.g., sum, mean, plot)\n\nArguments: Input values the function needs to do its job\n\nBody: The code that defines what the function does\n\nHere’s the generic structure of a function in R:\n\nname_of_function &lt;- function(argument1, argument2, ...) {\n  # Body of the function\n  # Perform operations using the arguments\n\n  return(result)  # Output of the function\n}\n\nIn this structure:\n\n\nname_of_function is where you specify the function’s name\n\nfunction() keyword defines it as a function\n\n(argument1, argument2, ...) are the inputs the function accepts\nThe code between { and } is the body of the function\n\nreturn() specifies what the function outputs\n\nNow, let’s look at a specific example:\n\ndouble_value &lt;- function(x) {\n  result &lt;- x * 2\n  return(result)\n}\n\nIn this example:\n\nThe function name is double_value\n\nIt has one argument: x\n\nThe body is the code between the curly braces { }\n\nThe return() statement specifies what the function outputs\n\nYou can use this function like this:\n\ndoubled_value &lt;- double_value(5)\ndoubled_value\n\n[1] 10\n\n\n\nInput and Output: Functions often take input (arguments) and return output (results).\nBuilt-in vs. Custom: R has many built-in functions, but you can also create your own. You can also set default values for the arguments so that the function can still run without input.\n\nSyntax: To use a function, type its name followed by parentheses containing any arguments:\nfunction_name(argument1, argument2, ...)\n\nDocumentation: You can learn about a function’s use and arguments with ?function_name in the console.\n\nRemember, functions are powerful tools that help you organize and streamline your code, making your analysis more efficient and readable.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#learning-check-2",
-    "href": "book/04-cards.html#learning-check-2",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n3.1 Learning Check 🏁",
-    "text": "3.1 Learning Check 🏁"
+    "objectID": "book/03-dice.html#using-built-in-functions",
+    "href": "book/03-dice.html#using-built-in-functions",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n3.2 Using Built-in Functions",
+    "text": "3.2 Using Built-in Functions\nR comes with many built-in functions that you can use right away. These are like the basic tools that come in a starter toolkit. Let’s look at a few examples:\n\n# The round() function rounds numbers\nround(3.14159)\n\n[1] 3\n\n# The sum() function adds numbers together\nsum(1, 2, 3, 4, 5)\n\n[1] 15\n\n# The length() function tells you how many items are in a list or vector\nlength(die)\n\n[1] 6\n\n\nUsing a function is straightforward. You write the name of the function followed by parentheses. Inside the parentheses, you put the information (called “arguments”) that the function needs to do its job.\n\n\n\n\n\n\nComments in R\n\n\n\n\n\nDid you notice the # … part in the above code chunk?\nIn R, the # symbol is used to create comments. Anything after a # on a line is ignored by R when running the code. Comments are useful for:\n\nExplaining what your code does\nTemporarily disabling code without deleting it\nOrganizing your script into sections\n\n\n\n\n\n3.2.1 Simulating Randomness: sample()\n\nTo simulate rolling a die, we need a function that can randomly select a number. The sample() function is perfect for this task. It’s like reaching into a bag and pulling out a random item.\n\n# Roll the die once\nsample(x = die, size = 1)\n\n[1] 3\n\n# Roll the die again\nsample(x = die, size = 1)\n\n[1] 3\n\n\nIn this case, x = die tells the function what to choose from (our die object), and size = 1 says to pick one number.\n\n\n\n\n\n\nSampling With Replacement\n\n\n\n\n\nBy default, sample() doesn’t put the number back in the “bag” after selecting it. For dice rolling, we want to allow the same number to be selected multiple times. Use replace = TRUE in the sample() function to achieve this.\n\n\n\n\n# Roll two dice\nsample(die, size = 2, replace = TRUE)\n\n[1] 4 5",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   },
   {
-    "objectID": "book/04-cards.html#hands-on-coding-2",
-    "href": "book/04-cards.html#hands-on-coding-2",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n3.2 Hands-On Coding 💻",
-    "text": "3.2 Hands-On Coding 💻\nLet’s practice working with our deck:\n\nUse the str() function to examine the structure of the deck.\nFind all the face cards (Jack, Queen, King) in the deck.\nCalculate the average value of all cards in the deck.\nCreate a new column in the deck called color, where Hearts and Diamonds are “Red” and Clubs and Spades are “Black”.\n(Optional challenge) Create a function that randomly “draws” a card from the deck and prints its description (e.g., “You drew the King of Hearts”).\n\n\n\n# Examine structure\nstr(deck)\n\n'data.frame':   52 obs. of  3 variables:\n $ suit : chr  \"Hearts\" \"Hearts\" \"Hearts\" \"Hearts\" ...\n $ rank : chr  \"Ace\" \"2\" \"3\" \"4\" ...\n $ value: int  1 2 3 4 5 6 7 8 9 10 ...\n\n# Find face cards\nface_cards &lt;- deck[deck$rank %in% c(\"Jack\", \"Queen\", \"King\"), ]\n\n# Calculate average value\naverage_value &lt;- mean(deck$value)\n\n# Add color column\ndeck$color &lt;- ifelse(deck$suit %in% c(\"Hearts\", \"Diamonds\"), \"Red\", \"Black\")\n\n# (Optional) Draw a card function\ndraw_card &lt;- function() {\ncard &lt;- deck[sample(nrow(deck), 1), ]\nprint(paste(\"You drew the\", card$rank, \"of\", card$suit))\n}\ndraw_card()\n\n[1] \"You drew the 7 of Hearts\""
+    "objectID": "book/03-dice.html#writing-your-own-functions",
+    "href": "book/03-dice.html#writing-your-own-functions",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n3.3 Writing Your Own Functions",
+    "text": "3.3 Writing Your Own Functions\nLet’s create a function to roll two dice:\n\nroll &lt;- function() {\n  dice &lt;- sample(die, size = 2, replace = TRUE)\n  sum(dice)\n}\n\nLet’s break this down:\n\n\nroll &lt;- function() { ... } creates a new function named roll.\nInside the curly braces { } is the “body” of the function - the instructions for what it should do.\n\ndice &lt;- sample(die, size = 2, replace = TRUE) rolls two dice.\n\nsum(dice) adds up the numbers rolled.\n\nNow, whenever you want to roll two dice and get the sum, you can simply use:\n\nroll()\n\n[1] 6\n\nroll()\n\n[1] 11",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
+  },
+  {
+    "objectID": "book/03-dice.html#learning-check-2",
+    "href": "book/03-dice.html#learning-check-2",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n3.4 Learning Check 🏁",
+    "text": "3.4 Learning Check 🏁",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
+  },
+  {
+    "objectID": "book/03-dice.html#hands-on-coding-2",
+    "href": "book/03-dice.html#hands-on-coding-2",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n3.5 Hands-On Coding 💻",
+    "text": "3.5 Hands-On Coding 💻\nLet’s apply what we’ve learned to simulate flipping a coin. This is similar to rolling a die, but with only two possible outcomes.\n\nCreate an object called coin that represents the two sides of a coin (use the numbers 1 and 2).\nUse the sample() function to simulate flipping the coin once.\nCreate a function called flip_coin() that simulates flipping a coin and returns the result.\nModify your flip_coin() function to have an argument named n_flips so that the user could specify the number of time the coin is flipped.\n\n\n\n# 1. Create coin object\ncoin &lt;- 1:2\n# 2. Flip coin once using sample()\nsample(coin, 1)\n\n[1] 1\n\n# 3. Create flip_coin() function\nflip_coin &lt;- function() {\nsample(coin, size = 1)\n}\n# 4. Modify flip_coin() to have a n_flips argument\nflip_coin &lt;- function(n_flips) {\n  sample(coin, size = n_flips, replace = TRUE)\n}",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
+  },
+  {
+    "objectID": "book/03-dice.html#why-use-quarto",
+    "href": "book/03-dice.html#why-use-quarto",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n4.1 Why Use Quarto?",
+    "text": "4.1 Why Use Quarto?\n\n\nReproducibility: Quarto documents contain both code and narrative that make it easy to reproduce your analyses.\n\nProfessional Presentation: Create polished, professional-looking documents.\n\nFlexibility: Output to various formats like HTML, PDF, or slideshows.\n\n\n\n\n\n\n\nThe Importance of Reproducibility\n\n\n\n\n\nIn the humanities, as in all academic fields, being able to reproduce the analytical process is crucial. When you write your R code in scripts, you’re creating a record of every step in your analysis. This is like creating detailed footnotes or citations in a research paper - it allows others (or future you!) to follow your work exactly.\nUsing scripts also makes it easy to make changes and rerun your entire analysis, which is much more efficient than trying to remember and retype everything in the console.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
+  },
+  {
+    "objectID": "book/03-dice.html#quarto-document",
+    "href": "book/03-dice.html#quarto-document",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n4.2 Quarto Document",
+    "text": "4.2 Quarto Document\nA Quarto document has two main parts: - A header at the top (called YAML header) - The main content (text and code)\nBelow is an example:\nyaml\n---\ntitle: \"My First Quarto Document\"\nauthor: \"Your Name\"\nformat: html\n---\nThis is where you write your content.\n\nYou can use markdown to format your text or use the \"visual editing mode\" to have an experience similar to Microsoft Word editor.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
+  },
+  {
+    "objectID": "book/03-dice.html#essential-quarto-concepts",
+    "href": "book/03-dice.html#essential-quarto-concepts",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n4.3 Essential Quarto Concepts",
+    "text": "4.3 Essential Quarto Concepts\n\n4.3.1 Editing Quarto Files: Source vs. Visual Editor\nQuarto documents can be edited in two modes: Source and Visual.\n\n\nSource Editor: This mode shows you the raw Markdown and YAML content of your document. It’s great for:\n\nPrecise control over your document’s structure\nEditing code chunks directly\nWorking with advanced Quarto features\n\n\n\nVisual Editor: This mode provides a WYSIWYG (What You See Is What You Get) interface, similar to word processors like Microsoft Word. It’s useful for:\n\nFormatting text without knowing Markdown syntax\nEasily inserting tables, images, and other elements\nCollaborating with team members who may not be familiar with Markdown\n\n\n\n\n\n\n\n\n\nMarkdown Basics\n\n\n\n\n\nMarkdown is a lightweight markup language used in Quarto documents. Here are some basic syntax examples:\n\n\n# Heading 1, ## Heading 2, ### Heading 3, etc. for headings\n\n*italic* or _italic_ for italic text\n\n\n**bold** or __bold__ for bold text\n\n\n- item for unordered lists\n\n1. item for ordered lists\n\n[link text](URL) for links\n\n\n![alt text](image.jpg) for images\n\nFor a more comprehensive guide, check out Quarto’s Markdown Basics.\n\n\n\n\n4.3.2 Rendering\nRendering is the process of converting your Quarto document into its final output format (e.g., HTML, PDF, or Word). To render your document:\n\nClick the “Render” button in RStudio, or\nUse the keyboard shortcut Ctrl+Shift+K (Cmd+Shift+K on Mac)\n\nWhen you render, Quarto executes all the code in your document and combines the results with your text to create the final output.\n\n4.3.3 (Optional) Code Chunk Options\nCode chunks in Quarto can be customized using options. These options control how the code is executed and displayed. Here are some common options:\n```{r}\n#| label: chunk-name\n#| echo: true\n#| eval: true\n#| warning: false\n#| message: false\n\n# Your R code here\n```\n\n\nlabel: Gives the chunk a unique name\n\necho: Controls whether the code is displayed in the output (true/false)\n\neval: Determines if the code should be executed (true/false)\n\nwarning: Shows or hides warnings (true/false)\n\nmessage: Shows or hides messages (true/false)\n\nYou can set these options globally in the YAML header or for individual chunks.\n\n\n\n\n\n\nPro Tip\n\n\n\n\n\nUse code chunk options to control what your readers see. For example, you might hide code for complex calculations but show the results.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
+  },
+  {
+    "objectID": "book/03-dice.html#learning-check-3",
+    "href": "book/03-dice.html#learning-check-3",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n4.4 Learning Check 🏁",
+    "text": "4.4 Learning Check 🏁",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
+  },
+  {
+    "objectID": "book/03-dice.html#hands-on-coding-3",
+    "href": "book/03-dice.html#hands-on-coding-3",
+    "title": "§3 Rolling the Dice 🎲",
+    "section": "\n4.5 Hands-On Coding 💻",
+    "text": "4.5 Hands-On Coding 💻\nLet’s practice creating a simple Quarto document about our coin flipping simulation:\n\nCreate a new Quarto document in RStudio.\nAdd a title “Coin Flipping Simulation” and your name as the author.\nWrite a brief introduction about coin flipping simulations.\nInsert a code chunk that defines your coin object and flip_coin() function.\nAdd another code chunk that uses your flip_coin() function to simulate flipping a coin 10 times.\nAdd some text explaining the results.\nRender it as an html file.\n\n\n---\ntitle: \"Coin Flipping Simulation\"\nauthor: \"Your Name\"\nformat: html\n---\n# Introduction\nIn this document, we'll simulate flipping coins using R functions we've created.\n\n# Defining Our Coin and Flip Function\nFirst, let's define our coin and create a function to flip it:\n\n\ncoin &lt;- 1:2   \n\nflip_coin &lt;- function(n_flips) {\n  sample(coin, size = n_flips, replace = TRUE)\n}\n\n# Flipping a Coin 10 Times\nNow, let's flip our coin 10 times:\n\nten_flips &lt;- flip_coin(10)\nprint(ten_flips)\n\n [1] 2 2 1 2 2 1 1 2 1 1\n\n\nThis simulates flipping a coin 10 times. Each 1 represents heads, and each 2 represents tails. We then count how many times we got heads.\nCongratulations! 🎉 You’ve just created your first Quarto document combining narrative text and code analysis. This is an important step in your journey of digital humanities, as it allows you to present your research and analysis in a clear, reproducible format. As you continue to explore, you’ll find that Quarto is a powerful tool for integrating your humanities insights with computational methods.",
+    "crumbs": [
+      "Book",
+      "§3 Rolling the Dice 🎲"
+    ]
   }
 ]

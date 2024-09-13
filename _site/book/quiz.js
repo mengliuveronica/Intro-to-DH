@@ -1,14 +1,18 @@
+function convertBackticksToCode(text) {
+  return text.replace(/`([^`]+)`/g, '<code>$1</code>');
+}
+
 function createQuiz(quizData, quizId) {
   const quizContainer = document.getElementById(quizId);
   let quizHTML = '<div class="quiz">';
   
   quizData.questions.forEach((q, i) => {
     quizHTML += `<div class="question">
-      <p>${i + 1}. ${q.text}</p>
+      <p>${i + 1}. ${convertBackticksToCode(q.text)}</p>
       ${q.options.map((opt, j) => `
         <label>
           <input type="radio" name="q${i}" value="${j}">
-          ${opt}
+          ${convertBackticksToCode(opt)}
         </label><br>
       `).join('')}
     </div>`;
@@ -51,3 +55,4 @@ function submitQuiz(quizId) {
   `;
   resultContainer.querySelector('.result-quiz').classList.add('show');
 }
+

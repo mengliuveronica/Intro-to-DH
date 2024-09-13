@@ -209,7 +209,6 @@ mixed <- c(1, "two", TRUE)
 mixed # R converts all to characters
 ```
 
-<br>
 The `c()` function is versatile and essential for creating custom datasets in R. You can use it to make lists of any kind of data you're working with in your research.
 
 
@@ -223,7 +222,6 @@ die * 2
 die / 2
 ```
 
-<br>
 🤨 What do you notice about the results of the above operations?
 
 ::: {.callout-note}

@@ -41,11 +41,25 @@ function toggleContent(buttonId, contentId) {
   }
 }
 
-function createToggleSection(buttonId, contentId) {
+function createToggleSection(buttonId, contentId, buttonText) {
   var button = document.createElement("button");
   button.id = buttonId;
-  button.textContent = "View Answer";
+  button.textContent = buttonText || "Show Solution"; // Use provided text or default to "Show Solution"
   button.onclick = function() { toggleContent(buttonId, contentId); };
   
   document.currentScript.parentNode.insertBefore(button, document.currentScript);
+}
+
+function createProgressiveHints(hintPrefix, numHints) {
+  let currentHint = 0;
+  const hintButton = document.createElement('button');
+  hintButton.textContent = 'Show Hint';
+  hintButton.onclick = function() {
+    currentHint++;
+    document.getElementById(`${hintPrefix}-${currentHint}`).style.display = 'block';
+    if (currentHint === numHints) {
+      hintButton.style.display = 'none';
+    }
+  };
+  document.getElementById(`${hintPrefix}-1`).parentNode.insertBefore(hintButton, document.getElementById(`${hintPrefix}-1`));
 }
