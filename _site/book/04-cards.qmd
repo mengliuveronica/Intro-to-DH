@@ -416,7 +416,7 @@ Now that you have learned about different data types and how to work with data f
 - Take your time and review earlier sections if needed.
 
 ### Workflow Recommendations {.unnumbered}
-[Explorers]{.highlight-green} (for those who prefer more guidance):
+[Explorers (for those who prefer more guidance)]{.highlight-green}:
 
 1. Read the task carefully
 2. Review the template for structure
@@ -424,7 +424,7 @@ Now that you have learned about different data types and how to work with data f
 4. Use hints/solutions if needed, typing out the code
 5. Experiment with small changes
 
-[Adventurers]{.highlight-blue} (for those ready for more challenge):
+[Adventurers (for those ready for more challenge)]{.highlight-blue}:
 
 1. Attempt task independently
 2. Use hints progressively if stuck
