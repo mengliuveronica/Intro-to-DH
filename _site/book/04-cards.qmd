@@ -959,7 +959,7 @@ createToggleSection('solution-button4-3', 'solution4-3');
 </script>
 
 
-## Conclusion
+# Conclusion
 
 ::: {.callout-note}
 ## Key Takeaways
