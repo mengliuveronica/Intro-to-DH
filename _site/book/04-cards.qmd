@@ -394,7 +394,7 @@ createToggleSection('button2', 'hidden-content2');
 
 Now that you have learned about different data types and how to work with data frames, let's put your skills to the test by creating a virtual deck of cards!
 
-::: {.info-section}
+::: {.callout-tip collapse="false"}
 ### How to Use This Section {.unnumbered}
 
 1. Read each task carefully.
