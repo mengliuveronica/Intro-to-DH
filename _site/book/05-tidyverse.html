@@ -185,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><p>Welcome to the exciting world of tidyverse! In this chapter, we’ll build on our knowledge of R by exploring the tidyverse, a collection of R packages designed for data science. We’ll create a virtual slot machine to demonstrate the power and simplicity of tidyverse functions.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -194,7 +194,7 @@ Learning Objectives
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ul>
 <li>📦 Understand the basics of tidyverse and its core packages</li>
@@ -385,26 +385,26 @@ createQuiz({
 <pre><code># A tibble: 20 × 6
     play symbol1 symbol2 symbol3 win   result
    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt; 
- 1     1 🍇      🔔      🍒      FALSE 😢    
- 2     2 🍋      🍒      🔔      FALSE 😢    
- 3     3 🍇      🍒      💎      FALSE 😢    
- 4     4 🔔      🍋      🍒      FALSE 😢    
- 5     5 🍋      🔔      💎      FALSE 😢    
- 6     6 🔔      🍇      🍋      FALSE 😢    
- 7     7 🍋      🔔      🍒      FALSE 😢    
- 8     8 🍇      🍒      🍋      FALSE 😢    
- 9     9 💎      🍋      💎      FALSE 😢    
-10    10 🍒      🍋      🍋      FALSE 😢    
-11    11 🍊      🍇      🍇      FALSE 😢    
-12    12 💎      🍇      🍇      FALSE 😢    
-13    13 🔔      🔔      🔔      TRUE  💰    
-14    14 🍋      🍇      🍊      FALSE 😢    
-15    15 🔔      🍇      🍇      FALSE 😢    
-16    16 🍒      🍊      🍊      FALSE 😢    
-17    17 🔔      🍒      🍇      FALSE 😢    
-18    18 💎      🍒      🍊      FALSE 😢    
-19    19 🍇      💎      🍇      FALSE 😢    
-20    20 🔔      💎      💎      FALSE 😢    </code></pre>
+ 1     1 🍋      🔔      🍇      FALSE 😢    
+ 2     2 🍒      🍋      🍊      FALSE 😢    
+ 3     3 🍇      🍊      🍊      FALSE 😢    
+ 4     4 🍊      🍇      🍊      FALSE 😢    
+ 5     5 🔔      🍋      🍒      FALSE 😢    
+ 6     6 💎      🔔      🔔      FALSE 😢    
+ 7     7 🍇      🍒      🍇      FALSE 😢    
+ 8     8 🍊      🔔      💎      FALSE 😢    
+ 9     9 🍒      🍒      🍒      TRUE  💰    
+10    10 🍒      🍊      🍇      FALSE 😢    
+11    11 🍇      🍒      💎      FALSE 😢    
+12    12 🍋      🍋      🍒      FALSE 😢    
+13    13 🍇      🍊      🍋      FALSE 😢    
+14    14 🍇      🍒      💎      FALSE 😢    
+15    15 🍒      🍒      🔔      FALSE 😢    
+16    16 💎      🍇      🔔      FALSE 😢    
+17    17 💎      🍊      🍒      FALSE 😢    
+18    18 💎      🍋      🍇      FALSE 😢    
+19    19 🍊      🔔      💎      FALSE 😢    
+20    20 🔔      🍇      🍒      FALSE 😢    </code></pre>
 </div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Summarize wins</span></span>
 <span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -494,6 +494,10 @@ createQuiz({
 <span class="header-section-number">5</span> Conclusion</h1>
 <p>In this chapter, we’ve introduced the tidyverse and applied its powerful functions to manipulate and visualize data. We’ve built on our previous knowledge of dice and cards to create a virtual slot machine, demonstrating how tidyverse can be used for more complex data operations and analysis.</p>
 <p>These skills will be invaluable as you continue your journey in data analysis and visualization with R. In the next chapter, we’ll explore more advanced tidyverse functions and apply them to real-world datasets in digital humanities!</p>
+<iframe src="float_traffic.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;" scrolling="no">
+</iframe>
+<iframe src="float_dash.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;" scrolling="no">
+</iframe>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

@@ -154,17 +154,6 @@
     ]
   },
   {
-    "objectID": "book/04-cards.html#conclusion",
-    "href": "book/04-cards.html#conclusion",
-    "title": "§4 Dealing with Cards 🃏",
-    "section": "\n3.5 Conclusion",
-    "text": "3.5 Conclusion\n\n\n\n\n\n\nKey Takeaways\n\n\n\n\n\nIn this chapter, we’ve covered:\n\nCreating and manipulating data frames in R\nUnderstanding different R data types\nBuilding a virtual deck of cards\nAccessing and modifying data within data frames\nPerforming simple analyses on our card deck\n\n\n\n\nThese skills form an essential foundation for working with structured data in R. As we progress in our digital humanities journey, we’ll build upon these concepts to perform more complex data manipulations and analyses.\n\n\nData Types\n\n\nData Frames\n\n\nData Access\n\n\nData Analysis",
-    "crumbs": [
-      "Book",
-      "§4 Dealing with Cards 🃏"
-    ]
-  },
-  {
     "objectID": "book/01-introduction.html#digital-humanities-analysis-with-r",
     "href": "book/01-introduction.html#digital-humanities-analysis-with-r",
     "title": "§1 Introduction to Digital Humanities",
@@ -194,18 +183,25 @@
     "text": "🃏 Poker Card Ballot Drawer"
   },
   {
+    "objectID": "toolbox.html#real-time-feedback-system",
+    "href": "toolbox.html#real-time-feedback-system",
+    "title": "Toybox",
+    "section": "🚥 Real-Time Feedback System",
+    "text": "🚥 Real-Time Feedback System\n\nReal-Time Personal Status ✅⏳🆘\nThe floating traffic light 🚥 in the bottom-right corner is your personal status indicator. Here’s how to use it:\n\nHover over the traffic light icon to expand it.\nEnter your name when using it for the first time. You only need to input it once. 请按数北选课系统的姓名填写\nClick on one of the three status icons to update your status:\n\n✅ “Got it! 😎” - You’re understanding and progressing well.\n⏳ “Hold on… 🤔” - You need a moment to process or feel a little bit confused.\n🆘 “Stuck…Help! 😵‍💫” - You’re stuck and need assistance.\n\n\nRemember to update it when your status changes!\n\n\nReal-Time Class Status Overview 📊\nThe floating chart 📊 in the bottom-left corner shows the overall class status:\n\nHover over the chart icon to expand it.\nIt displays the percentage of students in each status.\nThe bars and percentages update automatically every 10 seconds during class time.\nYou can see when the data was last updated at the bottom of the chart.\n\nThis tool helps all of us understand the overall class progress in real-time."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Introduction to Digital Humanities",
     "section": "",
-    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
+    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n🕰️ Office Hours: Wednesday 3:20-4:20 pm | SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
   },
   {
     "objectID": "index.html#course-information",
     "href": "index.html#course-information",
     "title": "Introduction to Digital Humanities",
     "section": "",
-    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
+    "text": "Introduction to Digital Humanitites 数字人文导论 • 2024 Fall 秋\nSEIS 英语学院 • BFSU 北京外国语大学\n\n\n\n\n\nDr Meng Liu 刘梦\n\n🏢 Office: SEIS 202\n🕰️ Office Hours: Wednesday 3:20-4:20 pm | SEIS 202\n📧 Email: mengliu@bfsu.edu.cn\n🌐 Website: mengliu.info\n\n\n\n\n\n🗓️ Class Days/Times: Monday/Wednesday 13:30 - 15:05\n🏛️ Format: In-person\n📍 Location: 逸夫二阶\n\n\n\n\n\n💬 Wechat (group)\n📧 Email\n\n\n\n\n\n\n\n平台1：微信\n\n课堂互动：微助教\n课后沟通及消息发布：微信群\n\n平台2：课程网站\n\n课堂资料信息\n\n\n\n\n\n\nAnonymous Feedback Form"
   },
   {
     "objectID": "index.html#course-overview",
@@ -640,7 +636,7 @@
     "href": "book/03-dice.html#using-built-in-functions",
     "title": "§3 Rolling the Dice 🎲",
     "section": "\n3.2 Using Built-in Functions",
-    "text": "3.2 Using Built-in Functions\nR comes with many built-in functions that you can use right away. These are like the basic tools that come in a starter toolkit. Let’s look at a few examples:\n\n# The round() function rounds numbers\nround(3.14159)\n\n[1] 3\n\n# The sum() function adds numbers together\nsum(1, 2, 3, 4, 5)\n\n[1] 15\n\n# The length() function tells you how many items are in a list or vector\nlength(die)\n\n[1] 6\n\n\nUsing a function is straightforward. You write the name of the function followed by parentheses. Inside the parentheses, you put the information (called “arguments”) that the function needs to do its job.\n\n\n\n\n\n\nComments in R\n\n\n\n\n\nDid you notice the # … part in the above code chunk?\nIn R, the # symbol is used to create comments. Anything after a # on a line is ignored by R when running the code. Comments are useful for:\n\nExplaining what your code does\nTemporarily disabling code without deleting it\nOrganizing your script into sections\n\n\n\n\n\n3.2.1 Simulating Randomness: sample()\n\nTo simulate rolling a die, we need a function that can randomly select a number. The sample() function is perfect for this task. It’s like reaching into a bag and pulling out a random item.\n\n# Roll the die once\nsample(x = die, size = 1)\n\n[1] 3\n\n# Roll the die again\nsample(x = die, size = 1)\n\n[1] 3\n\n\nIn this case, x = die tells the function what to choose from (our die object), and size = 1 says to pick one number.\n\n\n\n\n\n\nSampling With Replacement\n\n\n\n\n\nBy default, sample() doesn’t put the number back in the “bag” after selecting it. For dice rolling, we want to allow the same number to be selected multiple times. Use replace = TRUE in the sample() function to achieve this.\n\n\n\n\n# Roll two dice\nsample(die, size = 2, replace = TRUE)\n\n[1] 4 5",
+    "text": "3.2 Using Built-in Functions\nR comes with many built-in functions that you can use right away. These are like the basic tools that come in a starter toolkit. Let’s look at a few examples:\n\n# The round() function rounds numbers\nround(3.14159)\n\n[1] 3\n\n# The sum() function adds numbers together\nsum(1, 2, 3, 4, 5)\n\n[1] 15\n\n# The length() function tells you how many items are in a list or vector\nlength(die)\n\n[1] 6\n\n\nUsing a function is straightforward. You write the name of the function followed by parentheses. Inside the parentheses, you put the information (called “arguments”) that the function needs to do its job.\n\n\n\n\n\n\nComments in R\n\n\n\n\n\nDid you notice the # … part in the above code chunk?\nIn R, the # symbol is used to create comments. Anything after a # on a line is ignored by R when running the code. Comments are useful for:\n\nExplaining what your code does\nTemporarily disabling code without deleting it\nOrganizing your script into sections\n\n\n\n\n\n3.2.1 Simulating Randomness: sample()\n\nTo simulate rolling a die, we need a function that can randomly select a number. The sample() function is perfect for this task. It’s like reaching into a bag and pulling out a random item.\n\n# Roll the die once\nsample(x = die, size = 1)\n\n[1] 5\n\n# Roll the die again\nsample(x = die, size = 1)\n\n[1] 4\n\n\nIn this case, x = die tells the function what to choose from (our die object), and size = 1 says to pick one number.\n\n\n\n\n\n\nSampling With Replacement\n\n\n\n\n\nBy default, sample() doesn’t put the number back in the “bag” after selecting it. For dice rolling, we want to allow the same number to be selected multiple times. Use replace = TRUE in the sample() function to achieve this.\n\n\n\n\n# Roll two dice\nsample(die, size = 2, replace = TRUE)\n\n[1] 3 4",
     "crumbs": [
       "Book",
       "§3 Rolling the Dice 🎲"
@@ -651,7 +647,7 @@
     "href": "book/03-dice.html#writing-your-own-functions",
     "title": "§3 Rolling the Dice 🎲",
     "section": "\n3.3 Writing Your Own Functions",
-    "text": "3.3 Writing Your Own Functions\nLet’s create a function to roll two dice:\n\nroll &lt;- function() {\n  dice &lt;- sample(die, size = 2, replace = TRUE)\n  sum(dice)\n}\n\nLet’s break this down:\n\n\nroll &lt;- function() { ... } creates a new function named roll.\nInside the curly braces { } is the “body” of the function - the instructions for what it should do.\n\ndice &lt;- sample(die, size = 2, replace = TRUE) rolls two dice.\n\nsum(dice) adds up the numbers rolled.\n\nNow, whenever you want to roll two dice and get the sum, you can simply use:\n\nroll()\n\n[1] 6\n\nroll()\n\n[1] 11",
+    "text": "3.3 Writing Your Own Functions\nLet’s create a function to roll two dice:\n\nroll &lt;- function() {\n  dice &lt;- sample(die, size = 2, replace = TRUE)\n  sum(dice)\n}\n\nLet’s break this down:\n\n\nroll &lt;- function() { ... } creates a new function named roll.\nInside the curly braces { } is the “body” of the function - the instructions for what it should do.\n\ndice &lt;- sample(die, size = 2, replace = TRUE) rolls two dice.\n\nsum(dice) adds up the numbers rolled.\n\nNow, whenever you want to roll two dice and get the sum, you can simply use:\n\nroll()\n\n[1] 9\n\nroll()\n\n[1] 6",
     "crumbs": [
       "Book",
       "§3 Rolling the Dice 🎲"
@@ -728,7 +724,7 @@
     "href": "book/03-dice.html#hands-on-coding-3",
     "title": "§3 Rolling the Dice 🎲",
     "section": "\n4.5 Hands-On Coding 💻",
-    "text": "4.5 Hands-On Coding 💻\nLet’s practice creating a simple Quarto document about our coin flipping simulation:\n\nCreate a new Quarto document in RStudio.\nAdd a title “Coin Flipping Simulation” and your name as the author.\nWrite a brief introduction about coin flipping simulations.\nInsert a code chunk that defines your coin object and flip_coin() function.\nAdd another code chunk that uses your flip_coin() function to simulate flipping a coin 10 times.\nAdd some text explaining the results.\nRender it as an html file.\n\n\n---\ntitle: \"Coin Flipping Simulation\"\nauthor: \"Your Name\"\nformat: html\n---\n# Introduction\nIn this document, we'll simulate flipping coins using R functions we've created.\n\n# Defining Our Coin and Flip Function\nFirst, let's define our coin and create a function to flip it:\n\n\ncoin &lt;- 1:2   \n\nflip_coin &lt;- function(n_flips) {\n  sample(coin, size = n_flips, replace = TRUE)\n}\n\n# Flipping a Coin 10 Times\nNow, let's flip our coin 10 times:\n\nten_flips &lt;- flip_coin(10)\nprint(ten_flips)\n\n [1] 2 2 1 2 2 1 1 2 1 1\n\n\nThis simulates flipping a coin 10 times. Each 1 represents heads, and each 2 represents tails. We then count how many times we got heads.\nCongratulations! 🎉 You’ve just created your first Quarto document combining narrative text and code analysis. This is an important step in your journey of digital humanities, as it allows you to present your research and analysis in a clear, reproducible format. As you continue to explore, you’ll find that Quarto is a powerful tool for integrating your humanities insights with computational methods.",
+    "text": "4.5 Hands-On Coding 💻\nLet’s practice creating a simple Quarto document about our coin flipping simulation:\n\nCreate a new Quarto document in RStudio.\nAdd a title “Coin Flipping Simulation” and your name as the author.\nWrite a brief introduction about coin flipping simulations.\nInsert a code chunk that defines your coin object and flip_coin() function.\nAdd another code chunk that uses your flip_coin() function to simulate flipping a coin 10 times.\nAdd some text explaining the results.\nRender it as an html file.\n\n\n---\ntitle: \"Coin Flipping Simulation\"\nauthor: \"Your Name\"\nformat: html\n---\n# Introduction\nIn this document, we'll simulate flipping coins using R functions we've created.\n\n# Defining Our Coin and Flip Function\nFirst, let's define our coin and create a function to flip it:\n\n\ncoin &lt;- 1:2   \n\nflip_coin &lt;- function(n_flips) {\n  sample(coin, size = n_flips, replace = TRUE)\n}\n\n# Flipping a Coin 10 Times\nNow, let's flip our coin 10 times:\n\nten_flips &lt;- flip_coin(10)\nprint(ten_flips)\n\n [1] 2 1 1 1 2 2 2 2 2 1\n\n\nThis simulates flipping a coin 10 times. Each 1 represents heads, and each 2 represents tails. We then count how many times we got heads.\nCongratulations! 🎉 You’ve just created your first Quarto document combining narrative text and code analysis. This is an important step in your journey of digital humanities, as it allows you to present your research and analysis in a clear, reproducible format. As you continue to explore, you’ll find that Quarto is a powerful tool for integrating your humanities insights with computational methods.",
     "crumbs": [
       "Book",
       "§3 Rolling the Dice 🎲"

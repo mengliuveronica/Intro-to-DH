@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Traffic Light</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        #floating-traffic-light {
+            position: fixed;
+            bottom: 0.5em;
+            right: 0.5em;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ccc;
+            border-radius: 0.5em;
+            box-shadow: 0 0.1em 0.5em rgba(0,0,0,0.1);
+            width: 2.5em;
+            height: 2.5em;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        #floating-traffic-light.expanded {
+            width: 10em;
+            height: auto;
+            padding: 0.5em;
+        }
+        #floating-traffic-light.expanded #content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+        #floating-traffic-light.expanded #current-status {
+            display: none;
+        }
+        #current-status {
+            font-size: 1.2em;
+        }
+        #content {
+            display: none;
+            width: 100%;
+            text-align: center;
+        }
+        .traffic-light {
+            display: flex;
+            justify-content: space-around;
+            margin: 0.5em 0;
+        }
+        .light {
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+        .light:hover, .light.active {
+            opacity: 1;
+        }
+        #status-message {
+            text-align: center;
+            font-size: 0.8em;
+            color: #333;
+            min-height: 1.2em;
+        }
+        #name-input {
+            width: 100%;
+            padding: 0.3em;
+            border: 1px solid #ccc;
+            border-radius: 0.25em;
+            font-size: 0.8em;
+            box-sizing: border-box;
+        }
+        #name-display {
+            font-size: 0.8em;
+            color: #4a4a4a;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+            border-radius: 1em;
+            padding: 0.3em 0.7em;
+            margin-top: 0.3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        #name-display:hover {
+            border-color: #c0c0c0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        #name-display::before {
+            content: '👤';
+            margin-right: 0.3em;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="floating-traffic-light">
+        <div id="current-status">🚥</div>
+        <div id="content">
+            <input type="text" id="name-input" placeholder="Your name">
+            <div id="name-display" style="display: none;"></div>
+            <div class="traffic-light">
+                <div class="light" data-status="Green" data-message="Got it!😎">✅</div>
+                <div class="light" data-status="Yellow" data-message="Hold on...🤔">⏳</div>
+                <div class="light" data-status="Red" data-message="Stuck...Help!😵‍💫">🆘</div>
+            </div>
+            <div id="status-message"></div>
+        </div>
+    </div>
+
+    <script>
+        const AIRTABLE_BASE_ID = 'appkIFRKGG6cHGW1K';
+        const AIRTABLE_TABLE_NAME = 'Table 1';
+        const AIRTABLE_USERS_TABLE_NAME = 'Users';
+        const AIRTABLE_API_KEY = 'patIi26p44lAC1Pe6.eefdb4a277315ebcf280cfd2a82aef511257ab5fdd8850269fbcc83680de478b';
+        const API_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`;
+        const USERS_API_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_USERS_TABLE_NAME)}`;
+
+        const currentStatus = document.getElementById('current-status');
+        const floatingTrafficLight = document.getElementById('floating-traffic-light');
+        const content = document.getElementById('content');
+        const statusMessage = document.getElementById('status-message');
+        const nameInput = document.getElementById('name-input');
+        const nameDisplay = document.getElementById('name-display');
+
+        let lastStatus = '🚥';
+
+        // Add this function to save the last status
+        function saveLastStatus(status) {
+            localStorage.setItem('lastStatus', status);
+        }
+
+        // Add this function to load the last status
+        function loadLastStatus() {
+            return localStorage.getItem('lastStatus') || '🚥';
+        }
+
+        const statusMessages = {
+            'Green': "Got it!",
+            'Yellow': "Hold on...",
+            'Red': "Stuck...Help!"
+        };
+
+        const statusEmojis = {
+            'Green': "✅",
+            'Yellow': "⏳",
+            'Red': "🆘"
+        };
+
+        // Cache valid users
+        let cachedValidUsers = null;
+        const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+        let lastCacheTime = 0;
+
+        async function loadValidUsers() {
+            const now = Date.now();
+            if (cachedValidUsers && now - lastCacheTime < CACHE_DURATION) {
+                return cachedValidUsers;
+            }
+
+            try {
+                // First, try to load from localStorage
+                const storedCache = localStorage.getItem('validUsersCache');
+                const storedCacheTime = localStorage.getItem('validUsersCacheTime');
+                
+                if (storedCache && storedCacheTime) {
+                    const cacheAge = now - parseInt(storedCacheTime, 10);
+                    if (cacheAge < CACHE_DURATION) {
+                        cachedValidUsers = JSON.parse(storedCache);
+                        lastCacheTime = parseInt(storedCacheTime, 10);
+                        console.log('Valid users loaded from localStorage cache');
+                        return cachedValidUsers;
+                    }
+                }
+
+                // If not in localStorage or expired, fetch from API
+                let allUsers = [];
+                let offset = null;
+                do {
+                    let url = USERS_API_URL;
+                    if (offset) {
+                        url += `?offset=${offset}`;
+                    }
+                    const data = await fetchWithRetry(url, {
+                        headers: {
+                            'Authorization': `Bearer ${AIRTABLE_API_KEY}`
+                        }
+                    });
+                    allUsers = allUsers.concat(data.records.map(record => record.fields.Name));
+                    offset = data.offset;
+                } while (offset);
+
+                cachedValidUsers = allUsers;
+                lastCacheTime = now;
+                
+                // Store in localStorage
+                localStorage.setItem('validUsersCache', JSON.stringify(cachedValidUsers));
+                localStorage.setItem('validUsersCacheTime', lastCacheTime.toString());
+                
+                console.log('Valid users loaded from API and cached');
+                return cachedValidUsers;
+            } catch (error) {
+                console.error('Error loading valid users:', error);
+                return [];
+            }
+        }
+
+        // Add this function to clear the cache if needed
+        function clearValidUsersCache() {
+            cachedValidUsers = null;
+            lastCacheTime = 0;
+            localStorage.removeItem('validUsersCache');
+            localStorage.removeItem('validUsersCacheTime');
+            console.log('Valid users cache cleared');
+        }
+
+        function loadNameFromStorage() {
+            const savedName = localStorage.getItem('userName');
+            if (savedName) {
+                nameInput.value = savedName;
+                nameDisplay.textContent = savedName;
+                nameInput.style.display = 'none';
+                nameDisplay.style.display = 'flex';
+            }
+        }
+
+        function saveNameToStorage(name) {
+            localStorage.setItem('userName', name);
+        }
+
+        // Modify the updateFloatingStatus function
+        async function updateFloatingStatus(status) {
+            const name = nameInput.value.trim() || nameDisplay.textContent;
+            console.log('Entered name:', name);
+
+            if (!name) {
+                statusMessage.textContent = 'Please enter your name';
+                nameInput.style.display = 'block';
+                nameDisplay.style.display = 'none';
+                nameInput.focus();
+                return;
+            }
+
+            if (document.activeElement === nameInput) {
+                statusMessage.textContent = 'Press Enter or click outside to confirm name';
+                return;
+            }
+
+            const validUsers = await loadValidUsers();
+            if (!validUsers.some(user => user.localeCompare(name, 'zh', { sensitivity: 'base' }) === 0)) {
+                statusMessage.textContent = 'Invalid name';
+                console.log('Name not found in valid users');
+                return;
+            }
+
+            console.log('Name is valid, proceeding with status update');
+
+            try {
+                const recentRecord = await getRecentRecord(name);
+                
+                const requestBody = {
+                    fields: {
+                        Name: name,
+                        Status: statusMessages[status]
+                    }
+                };
+
+                let url = API_URL;
+                let method = 'POST';
+
+                if (recentRecord) {
+                    url = `${API_URL}/${recentRecord.id}`;
+                    method = 'PATCH';
+                }
+
+                await fetchWithRetry(url, {
+                    method: method,
+                    headers: {
+                        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                document.querySelectorAll('.light').forEach(light => {
+                    light.classList.remove('active');
+                });
+                document.querySelector(`.light[data-status="${status}"]`).classList.add('active');
+                
+                lastStatus = statusEmojis[status];
+                currentStatus.textContent = lastStatus;
+                statusMessage.textContent = statusMessages[status];
+                nameDisplay.textContent = name;
+                nameInput.style.display = 'none';
+                nameDisplay.style.display = 'flex';
+                saveNameToStorage(name);
+                saveLastStatus(status); // Save the last status
+
+                isExpanded = false;
+                collapseFloatingObject();
+            } catch (error) {
+                console.error('Error updating status:', error);
+                statusMessage.textContent = 'Error updating status';
+            }
+        }
+
+        async function getRecentRecord(name) {
+            const encodedName = encodeURIComponent(name);
+            const url = `${API_URL}?filterByFormula=Name%3D%27${encodedName}%27&sort%5B0%5D%5Bfield%5D=Created&sort%5B0%5D%5Bdirection%5D=desc&maxRecords=1`;
+
+            try {
+                const data = await fetchWithRetry(url, {
+                    headers: {
+                        'Authorization': `Bearer ${AIRTABLE_API_KEY}`
+                    }
+                });
+                if (data.records.length > 0) {
+                    const record = data.records[0];
+                    const createdTime = new Date(record.fields.Created);
+                    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+                    if (createdTime > fiveMinutesAgo) {
+                        return record;
+                    }
+                }
+                return null;
+            } catch (error) {
+                console.error('Error getting recent record:', error);
+                return null;
+            }
+        }
+
+        // Add these variable declarations at the beginning of your script
+        let isExpanded = false;
+        let isHovering = false;
+        let hoverTimeout;
+
+        function addEventListeners() {
+            document.querySelectorAll('.light').forEach(light => {
+                light.addEventListener('click', function() {
+                    const status = this.getAttribute('data-status');
+                    updateFloatingStatus(status);
+                });
+                light.addEventListener('mouseenter', function() {
+                    statusMessage.textContent = this.getAttribute('data-message');
+                });
+                light.addEventListener('mouseleave', function() {
+                    statusMessage.textContent = statusMessages[lastStatus] || '';
+                });
+            });
+
+            nameDisplay.addEventListener('dblclick', function() {
+                this.style.display = 'none';
+                nameInput.value = this.textContent;
+                nameInput.style.display = 'block';
+                nameInput.focus();
+            });
+
+            nameInput.addEventListener('blur', function() {
+                if (this.value.trim()) {
+                    nameDisplay.textContent = this.value.trim();
+                    this.style.display = 'none';
+                    nameDisplay.style.display = 'flex';
+                    saveNameToStorage(this.value.trim());
+                    isExpanded = true;
+                }
+            });
+
+            nameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    this.blur();
+                }
+            });
+
+            nameInput.addEventListener('focus', function() {
+                statusMessage.textContent = 'Enter your name and press Enter';
+            });
+
+            nameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    this.blur();
+                    const activeLight = document.querySelector('.light.active');
+                    if (activeLight) {
+                        updateFloatingStatus(activeLight.getAttribute('data-status'));
+                    }
+                }
+            });
+
+            floatingTrafficLight.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                expandFloatingObject();
+                statusMessage.textContent = statusMessages[lastStatus] || '';
+            });
+
+            floatingTrafficLight.addEventListener('mouseleave', () => {
+                isHovering = false;
+                if (!isExpanded) {
+                    hoverTimeout = setTimeout(() => {
+                        collapseFloatingObject();
+                    }, 2000);
+                }
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isExpanded && !floatingTrafficLight.contains(e.target)) {
+                    isExpanded = false;
+                    collapseFloatingObject();
+                }
+            });
+        }
+
+        function expandFloatingObject() {
+            floatingTrafficLight.classList.add('expanded');
+            isHovering = true;
+            isExpanded = true;
+        }
+
+        function collapseFloatingObject() {
+            if (!isHovering && !isExpanded) {
+                floatingTrafficLight.classList.remove('expanded');
+            }
+        }
+
+        // Implement exponential backoff for API requests
+        async function fetchWithRetry(url, options, maxRetries = 3) {
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    if (i === maxRetries - 1) throw error;
+                    await new Promise(resolve => setTimeout(resolve, 2 ** i * 1000));
+                }
+            }
+        }
+
+        // Modify the initialization to include an option to clear the cache
+        function initialize() {
+            loadValidUsers().then(() => {
+                loadNameFromStorage();
+                addEventListeners();
+                
+                // Load and set the last status
+                const savedStatus = loadLastStatus();
+                lastStatus = savedStatus;
+                currentStatus.textContent = statusEmojis[savedStatus] || '🚥';
+                
+                // Set the active light based on the saved status
+                document.querySelectorAll('.light').forEach(light => {
+                    if (light.getAttribute('data-status') === savedStatus) {
+                        light.classList.add('active');
+                    }
+                });
+                
+                console.log('Initialization complete');
+            });
+        }
+
+        // Call the initialize function
+        initialize();
+
+        // You can call this function when you need to force a refresh of the user list
+        // clearValidUsersCache();
+    </script>
+</body>
+</html>

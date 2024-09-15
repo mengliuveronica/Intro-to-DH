@@ -122,6 +122,11 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#student-leaderboard" id="toc-student-leaderboard" class="nav-link active" data-scroll-target="#student-leaderboard">🏆 Student Leaderboard</a></li>
   <li><a href="#poker-card-ballot-drawer" id="toc-poker-card-ballot-drawer" class="nav-link" data-scroll-target="#poker-card-ballot-drawer">🃏 Poker Card Ballot Drawer</a></li>
+  <li><a href="#real-time-feedback-system" id="toc-real-time-feedback-system" class="nav-link" data-scroll-target="#real-time-feedback-system">🚥 Real-Time Feedback System</a>
+  <ul class="collapse">
+  <li><a href="#real-time-personal-status" id="toc-real-time-personal-status" class="nav-link" data-scroll-target="#real-time-personal-status">Real-Time Personal Status ✅⏳🆘</a></li>
+  <li><a href="#real-time-class-status-overview" id="toc-real-time-class-status-overview" class="nav-link" data-scroll-target="#real-time-class-status-overview">Real-Time Class Status Overview 📊</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -149,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="student-leaderboard" class="level2">
 <h2 class="anchored" data-anchor-id="student-leaderboard">🏆 Student Leaderboard</h2>
-<iframe src="leaderboard.html" width="100%" height="500px" frameborder="0" sandbox="allow-scripts allow-forms allow-same-origin">
+<iframe src="leaderboard.html" width="100%" height="900px" frameborder="0" sandbox="allow-scripts allow-forms allow-same-origin">
 </iframe>
 </section>
 <section id="poker-card-ballot-drawer" class="level2">
@@ -163,8 +168,42 @@ ul.task-list li input[type="checkbox"] {
     BallotDrawer.init('ballot-drawer');
   });
 </script>
+<p><br> <br></p>
+</section>
+<section id="real-time-feedback-system" class="level2">
+<h2 class="anchored" data-anchor-id="real-time-feedback-system">🚥 Real-Time Feedback System</h2>
+<section id="real-time-personal-status" class="level3">
+<h3 class="anchored" data-anchor-id="real-time-personal-status">Real-Time Personal Status ✅⏳🆘</h3>
+<p>The floating traffic light 🚥 in the <code>bottom-right corner</code> is your personal status indicator. Here’s how to use it:</p>
+<ol type="1">
+<li><strong>Hover</strong> over the traffic light icon to expand it.</li>
+<li><strong>Enter your name</strong> when using it for the first time. You only need to input it once. <em>请按数北选课系统的姓名填写</em></li>
+<li><strong>Click</strong> on one of the three status icons to update your status:
+<ul>
+<li>✅ “Got it! 😎” - You’re understanding and progressing well.</li>
+<li>⏳ “Hold on… 🤔” - You need a moment to process or feel a little bit confused.</li>
+<li>🆘 “Stuck…Help! 😵‍💫” - You’re stuck and need assistance.</li>
+</ul></li>
+</ol>
+<p>Remember to update it when your status changes!</p>
+</section>
+<section id="real-time-class-status-overview" class="level3">
+<h3 class="anchored" data-anchor-id="real-time-class-status-overview">Real-Time Class Status Overview 📊</h3>
+<p>The floating chart 📊 in the <code>bottom-left corner</code> shows the overall class status:</p>
+<ol type="1">
+<li><strong>Hover</strong> over the chart icon to expand it.</li>
+<li>It displays the percentage of students in each status.</li>
+<li>The bars and percentages update automatically every 10 seconds during class time.</li>
+<li>You can see when the data was last updated at the bottom of the chart.</li>
+</ol>
+<p>This tool helps all of us understand the overall class progress in real-time.</p>
+<iframe src="book/float_traffic.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;" scrolling="no">
+</iframe>
+<iframe src="book/float_dash.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;" scrolling="no">
+</iframe>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

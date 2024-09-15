@@ -988,3 +988,9 @@ Data Access
 Data Analysis
 :::
 :::
+
+<iframe src="float_traffic.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;" scrolling="no"></iframe>
+
+
+<iframe src="float_dash.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;" scrolling="no"></iframe>
+

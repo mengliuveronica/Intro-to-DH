@@ -20,7 +20,7 @@ execute:
 
 Welcome to your first hands-on project with R! We'll create a virtual pair of dice to learn fundamental R concepts. Just as historians analyze artifacts or literary scholars examine texts, we'll be examining the building blocks of data analysis.
 
-::: {.callout-note collapse="true"}
+::: {.callout-note collapse="false"}
 ## Why Dice?
 Dice serve as an excellent starting point for learning R basics because:
 
@@ -29,7 +29,7 @@ Dice serve as an excellent starting point for learning R basics because:
 3. Results are easily verifiable, helping you build confidence in your code.
 :::
 
-::: {.callout-tip collapse="true"}
+::: {.callout-tip collapse="false"}
 ## Learning Objectives
 - 🖥️ Get comfortable with the RStudio interface - your new digital work space
 - 🧱 Learn to create and manipulate R objects - the building blocks of R
@@ -781,6 +781,11 @@ Functions
 Quarto
 :::
 :::
+
+<iframe src="float_traffic.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;" scrolling="no"></iframe>
+
+
+<iframe src="float_dash.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;" scrolling="no"></iframe>
 
 
 

@@ -8,7 +8,7 @@ format:
 
 ## 🏆 Student Leaderboard
 
-<iframe src="leaderboard.html" width="100%" height="500px" frameborder="0" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
+<iframe src="leaderboard.html" width="100%" height="900px" frameborder="0" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
 
 ## 🃏 Poker Card Ballot Drawer
 
@@ -20,4 +20,40 @@ format:
     BallotDrawer.init('ballot-drawer');
   });
 </script>
+
+<br>
+<br>
+
+## 🚥 Real-Time Feedback System   
+
+### Real-Time Personal Status ✅⏳🆘 
+
+The floating traffic light 🚥 in the `bottom-right corner` is your personal status indicator. Here's how to use it:
+
+1. **Hover** over the traffic light icon to expand it.
+2. **Enter your name** when using it for the first time. You only need to input it once. *请按数北选课系统的姓名填写*
+3. **Click** on one of the three status icons to update your status:
+   - ✅ "Got it! 😎" - You're understanding and progressing well.
+   - ⏳ "Hold on... 🤔" - You need a moment to process or feel a little bit confused.
+   - 🆘 "Stuck...Help! 😵‍💫" - You're stuck and need assistance.
+
+Remember to update it when your status changes!
+
+### Real-Time Class Status Overview 📊 
+
+The floating chart 📊 in the `bottom-left corner` shows the overall class status:
+
+1. **Hover** over the chart icon to expand it.
+2. It displays the percentage of students in each status.
+3. The bars and percentages update automatically every 10 seconds during class time.
+4. You can see when the data was last updated at the bottom of the chart.
+
+This tool helps all of us understand the overall class progress in real-time.
+
+
+<iframe src="book/float_traffic.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;" scrolling="no"></iframe>
+
+
+<iframe src="book/float_dash.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;" scrolling="no"></iframe>
+
 

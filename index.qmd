@@ -27,6 +27,7 @@ format:
 Dr Meng Liu 刘梦
 
 - 🏢 Office: SEIS 202
+- 🕰️ Office Hours: Wednesday 3:20-4:20 pm | SEIS 202
 - 📧 Email: [mengliu@bfsu.edu.cn](mailto:mengliu@bfsu.edu.cn)
 - 🌐 Website: [mengliu.info](https://mengliu.info)
 :::

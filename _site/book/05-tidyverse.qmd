@@ -260,3 +260,8 @@ print(paste("Win percentage:", round(win_percentage, 2), "%"))
 In this chapter, we've introduced the tidyverse and applied its powerful functions to manipulate and visualize data. We've built on our previous knowledge of dice and cards to create a virtual slot machine, demonstrating how tidyverse can be used for more complex data operations and analysis.
 
 These skills will be invaluable as you continue your journey in data analysis and visualization with R. In the next chapter, we'll explore more advanced tidyverse functions and apply them to real-world datasets in digital humanities!
+
+<iframe src="float_traffic.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;" scrolling="no"></iframe>
+
+
+<iframe src="float_dash.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;" scrolling="no"></iframe>

@@ -2,7 +2,7 @@ function Callout(el)
   if quarto.doc.isFormat("html") then
     -- Set default collapse to true if unset
     if not el.collapse then
-      el.collapse = true
+      el.collapse = false
     end
     return el
   end

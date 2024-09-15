@@ -289,8 +289,8 @@ h2 {
 /* Ballot Drawer Styles */
 .ballot-drawer {
   font-family: Arial, sans-serif;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 20px;
   text-align: center;
   background-color: white;
