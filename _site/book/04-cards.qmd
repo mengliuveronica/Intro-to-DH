@@ -187,7 +187,36 @@ author = c("Orwell", "Austen", "Fitzgerald"),
 year = c(1949, 1813, 1925)
 )
 print(books)
+str(books)
 ```
+
+::: {.callout-note}
+## `str()`
+The `str()` function in R stands for "structure". It's a very useful tool for quickly examining the structure of any R object, especially data frames. Here's what it shows you:
+
+1. The type of object (e.g., data frame, list, vector)
+2. The number of observations (rows) and variables (columns) for data frames
+3. The name and type of each variable (column)
+4. A preview of the data in each variable
+
+For example, when we use `str(books)`, it might show:
+```
+'data.frame': 3 obs. of 3 variables:
+$ title : chr "1984" "Pride and Prejudice" "The Great Gatsby"
+$ author: chr "Orwell" "Austen" "Fitzgerald"
+$ year : num 1949 1813 1925
+```
+
+This tells us:
+- We have a data frame
+- It has 3 observations (rows) and 3 variables (columns)
+- The variables are:
+  - `title`: character type (text)
+  - `author`: character type (text)
+  - `year`: numeric type (numbers)
+
+Using `str()` is a quick way to get an overview of your data, which is especially helpful when working with large datasets.
+:::
 
 
 ## Accessing Data in a Data Frame
@@ -497,7 +526,8 @@ createProgressiveHints('hint1', 3);
 
 <div id="template1" style="display: none;">
 
-```
+```{r, eval=FALSE}
+
 deck <- data.frame(
     suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = _),
     rank = rep(c("Ace", _, "Jack", "Queen", "King"), times = _),
@@ -549,12 +579,12 @@ createProgressiveHints('hint2-1', 1);
 
 <div id="template2-1" style="display: none;">
 
-```
+```{r, eval=FALSE}
 # View the structure of the deck
 _(deck)
 
 # Count the number of cards (rows) in the deck
-_(deck)
+nrow(_)
 ```
 
 </div>
@@ -598,7 +628,7 @@ Check out the `unique()` function. This is useful when you want to see how many 
 
 <div id="template2-2" style="display: none;">
 
-```
+```{r, eval=FALSE}
 unique(deck$_)
 ```
 
@@ -638,7 +668,7 @@ createProgressiveHints('hint2-3', 1);
 
 <div id="template2-3" style="display: none;">
 
-```
+```{r, eval=FALSE}
 sum(deck$_ == "_")
 ```
 
@@ -674,7 +704,7 @@ createProgressiveHints('hint2-5', 1);
 
 <div id="template2-5" style="display: none;">
 
-```
+```{r, eval=FALSE}
 deck[deck$rank _ c("_", "_", "_"), ]
 ```
 
@@ -717,7 +747,7 @@ createProgressiveHints('hint3-1', 1);
 
 <div id="template3-1" style="display: none;">
 
-```
+```{r, eval=FALSE}
 deck$is_face_card <- deck$rank %in% c("_", "_", "_")
 head(deck)
 ```
@@ -759,7 +789,7 @@ createProgressiveHints('hint3-2', 1);
 </script>
 
 <div id="template3-2" style="display: none;">
-```
+```{r, eval=FALSE}
 deck$_[deck$_ == "_"] <- "_"
 deck[deck$_ == "_", ]
 ```
@@ -800,7 +830,7 @@ createProgressiveHints('hint3-3', 1);
 
 <div id="template3-3" style="display: none;">
 
-```
+```{r, eval=FALSE}
 high_value_cards <- deck[deck$_ _ _, ]
 print(high_value_cards)
 ```
@@ -846,7 +876,7 @@ createProgressiveHints('hint4-1', 1);
 
 <div id="template4-1" style="display: none;">
 
-```
+```{r, eval=FALSE}
 face_card_count <- sum(deck$_)
 print(paste("Number of face cards:", _))
 ```
@@ -887,7 +917,7 @@ createProgressiveHints('hint4-2', 1);
 
 <div id="template4-2" style="display: none;">
 
-```
+```{r, eval=FALSE}
 average_value <- _(deck$_)
 print(paste("Average card value:", round(_, 2)))
 ```
@@ -930,7 +960,7 @@ createProgressiveHints('hint4-3', 1);
 
 <div id="template4-3" style="display: none;">
 
-```
+```{r, eval=FALSE}
 max_value <- _(deck$value)
 highest_cards <- deck[deck$value == _, ]
 print(_)

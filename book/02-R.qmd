@@ -61,6 +61,15 @@ Next, you need to install RStudio, the nicer graphical user interface (GUI) for 
 
 Double click on RStudio to run it (check your applications folder or start menu).
 
+### FAQs 常见安装问题
+1. 打开RStudio，出现弹窗让我选择R的版本（如下图）:
+![](images/choose_R.png)
+这说明你的R的安装路径无法被RStudio自动找到，需要点击browse按钮手动选择R.exe的位置：
+请找到并点击R安装文件夹(如文件名为R 4.4.1的文件夹)中的bin文件夹，即可看到R.exe，选中即可。
+
+2. 报错消息中说缺少RTools:
+请到RTools网站下载并安装RTools https://cran.r-project.org/bin/windows/Rtools/
+
 
 ### Install `tidyverse`
 

@@ -181,8 +181,9 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#install-r" id="toc-install-r" class="nav-link" data-scroll-target="#install-r"><span class="header-section-number">3.1</span> Install R</a></li>
   <li><a href="#install-rstudio" id="toc-install-rstudio" class="nav-link" data-scroll-target="#install-rstudio"><span class="header-section-number">3.2</span> Install RStudio</a></li>
-  <li><a href="#install-tidyverse" id="toc-install-tidyverse" class="nav-link" data-scroll-target="#install-tidyverse"><span class="header-section-number">3.3</span> Install <code>tidyverse</code></a></li>
-  <li><a href="#install-tinytex-optional-this-is-for-rendering-pdf-files" id="toc-install-tinytex-optional-this-is-for-rendering-pdf-files" class="nav-link" data-scroll-target="#install-tinytex-optional-this-is-for-rendering-pdf-files"><span class="header-section-number">3.4</span> Install <code>tinytex</code> (Optional, this is for rendering PDF files)</a></li>
+  <li><a href="#faqs-常见安装问题" id="toc-faqs-常见安装问题" class="nav-link" data-scroll-target="#faqs-常见安装问题"><span class="header-section-number">3.3</span> FAQs 常见安装问题</a></li>
+  <li><a href="#install-tidyverse" id="toc-install-tidyverse" class="nav-link" data-scroll-target="#install-tidyverse"><span class="header-section-number">3.4</span> Install <code>tidyverse</code></a></li>
+  <li><a href="#install-tinytex-optional-this-is-for-rendering-pdf-files" id="toc-install-tinytex-optional-this-is-for-rendering-pdf-files" class="nav-link" data-scroll-target="#install-tinytex-optional-this-is-for-rendering-pdf-files"><span class="header-section-number">3.5</span> Install <code>tinytex</code> (Optional, this is for rendering PDF files)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -252,15 +253,22 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>Double click on RStudio to run it (check your applications folder or start menu).</p>
 </section>
-<section id="install-tidyverse" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="install-tidyverse"><span class="header-section-number">3.3</span> Install <code>tidyverse</code></h3>
+<section id="faqs-常见安装问题" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="faqs-常见安装问题"><span class="header-section-number">3.3</span> FAQs 常见安装问题</h3>
+<ol type="1">
+<li><p>打开RStudio，出现弹窗让我选择R的版本（如下图）: <img src="images/choose_R.png" class="img-fluid"> 这说明你的R的安装路径无法被RStudio自动找到，需要点击browse按钮手动选择R.exe的位置： 请找到并点击R安装文件夹(如文件名为R 4.4.1的文件夹)中的bin文件夹，即可看到R.exe，选中即可。</p></li>
+<li><p>报错消息中说缺少RTools: 请到RTools网站下载并安装RTools https://cran.r-project.org/bin/windows/Rtools/</p></li>
+</ol>
+</section>
+<section id="install-tidyverse" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="install-tidyverse"><span class="header-section-number">3.4</span> Install <code>tidyverse</code></h3>
 <p>R packages are easy to install with RStudio. Select the packages panel, click on “Install,” type the name of the package you want to install, and press enter. <img src="images//install-r-package-panel.png" class="img-fluid" style="width:40.0%"></p>
 <p>This can sometimes be tedious when you’re installing lots of packages, though. <a href="https://www.tidyverse.org/">The tidyverse</a>, for instance, consists of dozens of packages (including {ggplot2}) that all work together. Rather than install each individually, you can install a single magical package and get them all at the same time.</p>
 <p>Go to the packages panel in RStudio, click on “Install,” type “tidyverse”, and press enter. You’ll see a bunch of output in the RStudio console as all the tidyverse packages are installed. <img src="images//install-r-tidyverse.png" class="img-fluid" style="width:50.0%"></p>
 <p>Notice also that RStudio will generate a line of code for you and run it: <code>install.packages("tidyverse")</code>. You can also just paste and run this instead of using the packages panel.</p>
 </section>
-<section id="install-tinytex-optional-this-is-for-rendering-pdf-files" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="install-tinytex-optional-this-is-for-rendering-pdf-files"><span class="header-section-number">3.4</span> Install <code>tinytex</code> (Optional, this is for rendering PDF files)</h3>
+<section id="install-tinytex-optional-this-is-for-rendering-pdf-files" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="install-tinytex-optional-this-is-for-rendering-pdf-files"><span class="header-section-number">3.5</span> Install <code>tinytex</code> (Optional, this is for rendering PDF files)</h3>
 <p>When you knit to PDF, R uses a special scientific typesetting program named LaTeX (pronounced “lay-tek” or “lah-tex”; for goofy nerdy reasons, the x is technically the “ch” sound in “Bach”, but most people just say it as “k”—saying “layteks” is frowned on for whatever reason).</p>
 <p>LaTeX is neat and makes pretty documents, but it’s a huge program—<a href="https://tug.org/mactex/mactex-download.html">the macOS version, for instance, is nearly 4 GB</a>! To make life easier, there’s <a href="https://yihui.org/tinytex/">an R package named {tinytex}</a> that installs a minimal LaTeX program and that automatically deals with differences between macOS and Windows.</p>
 <p>Here’s how to install {tinytex} so you can knit to pretty PDFs:</p>

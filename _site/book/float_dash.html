@@ -283,7 +283,7 @@
 
         // Set interval for updates only during class time or testing mode
         if (isClassInSession() || isTestingMode) {
-            setInterval(updateDashboard, 10 * 1000); // Update every 10 seconds
+            setInterval(updateDashboard, 5 * 1000); // Update every 10 seconds
         } else {
             console.log('Not in class time or testing mode. Dashboard will not update automatically.');
         }

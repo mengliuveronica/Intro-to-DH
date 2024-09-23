@@ -981,11 +981,13 @@ Hint 3/3
 <script>
 createProgressiveHints('hint1', 3);
 </script><div id="template1" style="display: none;">
-<pre><code>deck &lt;- data.frame(
-    suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = _),
-    rank = rep(c("Ace", _, "Jack", "Queen", "King"), times = _),
-    value = rep(_, times = 4)
-)</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>deck <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">suit =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Hearts"</span>, <span class="st">"Diamonds"</span>, <span class="st">"Clubs"</span>, <span class="st">"Spades"</span>), <span class="at">each =</span> _),</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">rank =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Ace"</span>, _, <span class="st">"Jack"</span>, <span class="st">"Queen"</span>, <span class="st">"King"</span>), <span class="at">times =</span> _),</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">rep</span>(_, <span class="at">times =</span> <span class="dv">4</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button1', 'template1', 'Show Template');
@@ -1037,11 +1039,13 @@ Hint
 <script>
 createProgressiveHints('hint2-1', 1);
 </script><div id="template2-1" style="display: none;">
-<pre><code># View the structure of the deck
-_(deck)
-
-# Count the number of cards (rows) in the deck
-_(deck)</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the structure of the deck</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">_</span>(deck)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of cards (rows) in the deck</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">_</span>(deck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button2', 'template2-1', 'Show Template');
@@ -1110,7 +1114,9 @@ Hint
 </div>
 </div>
 <div id="template2-2" style="display: none;">
-<pre><code>unique(deck$_)</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(deck<span class="sc">$</span>_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button2-2', 'template2-2', 'Show Template');
@@ -1149,7 +1155,9 @@ Hint
 <script>
 createProgressiveHints('hint2-3', 1);
 </script><div id="template2-3" style="display: none;">
-<pre><code>sum(deck$_ == "_")</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(deck<span class="sc">$</span>_ <span class="sc">==</span> <span class="st">"_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button2-3', 'template2-3', 'Show Template');
@@ -1186,7 +1194,9 @@ Hint
 <script>
 createProgressiveHints('hint2-5', 1);
 </script><div id="template2-5" style="display: none;">
-<pre><code>deck[deck$rank _ c("_", "_", "_"), ]</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>deck[deck<span class="sc">$</span>rank _ <span class="fu">c</span>(<span class="st">"_"</span>, <span class="st">"_"</span>, <span class="st">"_"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button2-5', 'template2-5', 'Show Template');
@@ -1239,8 +1249,10 @@ Hint
 <script>
 createProgressiveHints('hint3-1', 1);
 </script><div id="template3-1" style="display: none;">
-<pre><code>deck$is_face_card &lt;- deck$rank %in% c("_", "_", "_")
-head(deck)</code></pre>
+<div class="cell">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">deck</span><span class="op">$</span><span class="va">is_face_card</span> <span class="op">&lt;-</span> <span class="va">deck</span><span class="op">$</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="st">"_"</span>, <span class="st">"_"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">deck</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button3-1', 'template3-1', 'Show Template');
@@ -1285,8 +1297,10 @@ Hint
 <script>
 createProgressiveHints('hint3-2', 1);
 </script><div id="template3-2" style="display: none;">
-<pre><code>deck$_[deck$_ == "_"] &lt;- "_"
-deck[deck$_ == "_", ]</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>deck<span class="sc">$</span>_[deck<span class="sc">$</span>_ <span class="sc">==</span> <span class="st">"_"</span>] <span class="ot">&lt;-</span> <span class="st">"_"</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>deck[deck<span class="sc">$</span>_ <span class="sc">==</span> <span class="st">"_"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button3-2', 'template3-2', 'Show Template');
@@ -1329,8 +1343,10 @@ Hint
 <script>
 createProgressiveHints('hint3-3', 1);
 </script><div id="template3-3" style="display: none;">
-<pre><code>high_value_cards &lt;- deck[deck$_ _ _, ]
-print(high_value_cards)</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>high_value_cards <span class="ot">&lt;-</span> deck[deck<span class="sc">$</span>_ _ _, ]</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(high_value_cards)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button3-3', 'template3-3', 'Show Template');
@@ -1384,8 +1400,10 @@ Hint
 <script>
 createProgressiveHints('hint4-1', 1);
 </script><div id="template4-1" style="display: none;">
-<pre><code>face_card_count &lt;- sum(deck$_)
-print(paste("Number of face cards:", _))</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>face_card_count <span class="ot">&lt;-</span> <span class="fu">sum</span>(deck<span class="sc">$</span>_)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Number of face cards:"</span>, _))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button4-1', 'template4-1', 'Show Template');
@@ -1424,8 +1442,10 @@ Hint
 <script>
 createProgressiveHints('hint4-2', 1);
 </script><div id="template4-2" style="display: none;">
-<pre><code>average_value &lt;- _(deck$_)
-print(paste("Average card value:", round(_, 2)))</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>average_value <span class="ot">&lt;-</span> <span class="fu">_</span>(deck<span class="sc">$</span>_)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Average card value:"</span>, <span class="fu">round</span>(_, <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button4-2', 'template4-2', 'Show Template');
@@ -1465,9 +1485,11 @@ Hint
 <script>
 createProgressiveHints('hint4-3', 1);
 </script><div id="template4-3" style="display: none;">
-<pre><code>max_value &lt;- _(deck$value)
-highest_cards &lt;- deck[deck$value == _, ]
-print(_)</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>max_value <span class="ot">&lt;-</span> <span class="fu">_</span>(deck<span class="sc">$</span>value)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>highest_cards <span class="ot">&lt;-</span> deck[deck<span class="sc">$</span>value <span class="sc">==</span> _, ]</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <script>
 createToggleSection('template-button4-3', 'template4-3', 'Show Template');
