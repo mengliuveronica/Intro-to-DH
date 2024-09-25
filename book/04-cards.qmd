@@ -131,7 +131,7 @@ createQuiz({
       ]
     },
     {
-      text: "Which data type would you use to represent whether a book is fiction or non-fiction?",
+      text: "Which data type would you use to represent whether a book is fiction, poetry, or documentary?",
       options: [
         "Numeric",
         "Character",
