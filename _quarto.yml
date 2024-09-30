@@ -32,6 +32,7 @@ website:
         - book/02-R.qmd
         - book/03-dice.qmd
         - book/04-cards.qmd
+        - book/05-tidyverse.qmd
 
 
 bibliography: book/references.bib

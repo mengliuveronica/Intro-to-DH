@@ -4,119 +4,187 @@
     "href": "book/05-tidyverse.html",
     "title": "§5 Spinning the Reels 🎰",
     "section": "",
-    "text": "Welcome to the exciting world of tidyverse! In this chapter, we’ll build on our knowledge of R by exploring the tidyverse, a collection of R packages designed for data science. We’ll create a virtual slot machine to demonstrate the power and simplicity of tidyverse functions."
+    "text": "Welcome to the exciting world of tidyverse! In this chapter, we’ll build on our knowledge of R by exploring the tidyverse, a collection of R packages designed for data science. We’ll create a virtual slot machine to demonstrate the power and simplicity of tidyverse functions.",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#learning-check",
     "href": "book/05-tidyverse.html#learning-check",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n1.1 Learning Check 🏁",
-    "text": "1.1 Learning Check 🏁"
+    "text": "1.1 Learning Check 🏁",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#filter-subset-rows",
     "href": "book/05-tidyverse.html#filter-subset-rows",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n2.1 filter(): Subset Rows",
-    "text": "2.1 filter(): Subset Rows\n\n# Find all books published after 1900\nbooks %&gt;% \nfilter(year &gt; 1900)\n\n# A tibble: 4 × 5\n  title                  author      year genre         pages\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 1984                   Orwell      1949 Dystopian       328\n2 The Great Gatsby       Fitzgerald  1925 Modernist       180\n3 To Kill a Mockingbird  Lee         1960 Coming-of-age   281\n4 The Catcher in the Rye Salinger    1951 Coming-of-age   234\n\n\n\n\n\n\n\n\nThe Pipe Operator %&gt;%\n\n\n\n\n\nThe %&gt;% operator is called the “pipe” operator. It takes the output of one function and passes it as the first argument to the next function. This allows us to chain multiple operations together, making our code more readable and intuitive.\nFor example, books %&gt;% filter(year &gt; 1900) can be read as “Take the books data, then filter it to keep only books published after 1900”."
+    "text": "2.1 filter(): Subset Rows\n\n# Find all books published after 1900\nbooks %&gt;% \nfilter(year &gt; 1900)\n\n# A tibble: 4 × 5\n  title                  author      year genre         pages\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 1984                   Orwell      1949 Dystopian       328\n2 The Great Gatsby       Fitzgerald  1925 Modernist       180\n3 To Kill a Mockingbird  Lee         1960 Coming-of-age   281\n4 The Catcher in the Rye Salinger    1951 Coming-of-age   234\n\n\n\n\n\n\n\n\nThe Pipe Operator %&gt;%\n\n\n\n\n\nThe %&gt;% operator is called the “pipe” operator. It takes the output of one function and passes it as the first argument to the next function. This allows us to chain multiple operations together, making our code more readable and intuitive.\nFor example, books %&gt;% filter(year &gt; 1900) can be read as “Take the books data, then filter it to keep only books published after 1900”.",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#select-choose-columns",
     "href": "book/05-tidyverse.html#select-choose-columns",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n2.2 select(): Choose Columns",
-    "text": "2.2 select(): Choose Columns\n\n# Select only title and author columns\nbooks %&gt;%\nselect(title, author)\n\n# A tibble: 5 × 2\n  title                  author    \n  &lt;chr&gt;                  &lt;chr&gt;     \n1 1984                   Orwell    \n2 Pride and Prejudice    Austen    \n3 The Great Gatsby       Fitzgerald\n4 To Kill a Mockingbird  Lee       \n5 The Catcher in the Rye Salinger"
+    "text": "2.2 select(): Choose Columns\n\n# Select only title and author columns\nbooks %&gt;%\nselect(title, author)\n\n# A tibble: 5 × 2\n  title                  author    \n  &lt;chr&gt;                  &lt;chr&gt;     \n1 1984                   Orwell    \n2 Pride and Prejudice    Austen    \n3 The Great Gatsby       Fitzgerald\n4 To Kill a Mockingbird  Lee       \n5 The Catcher in the Rye Salinger",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#mutate-add-new-variables",
     "href": "book/05-tidyverse.html#mutate-add-new-variables",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n2.3 mutate(): Add New Variables",
-    "text": "2.3 mutate(): Add New Variables\n\n# Add a new column for the book's age\nbooks %&gt;%\nmutate(age = 2024 - year)\n\n# A tibble: 5 × 6\n  title                  author      year genre         pages   age\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;\n1 1984                   Orwell      1949 Dystopian       328    75\n2 Pride and Prejudice    Austen      1813 Romance         432   211\n3 The Great Gatsby       Fitzgerald  1925 Modernist       180    99\n4 To Kill a Mockingbird  Lee         1960 Coming-of-age   281    64\n5 The Catcher in the Rye Salinger    1951 Coming-of-age   234    73"
+    "text": "2.3 mutate(): Add New Variables\n\n# Add a new column for the book's age\nbooks %&gt;%\nmutate(age = 2024 - year)\n\n# A tibble: 5 × 6\n  title                  author      year genre         pages   age\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;\n1 1984                   Orwell      1949 Dystopian       328    75\n2 Pride and Prejudice    Austen      1813 Romance         432   211\n3 The Great Gatsby       Fitzgerald  1925 Modernist       180    99\n4 To Kill a Mockingbird  Lee         1960 Coming-of-age   281    64\n5 The Catcher in the Rye Salinger    1951 Coming-of-age   234    73",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#arrange-sort-rows",
     "href": "book/05-tidyverse.html#arrange-sort-rows",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n2.4 arrange(): Sort Rows",
-    "text": "2.4 arrange(): Sort Rows\n\n# Sort books by year, oldest first\nbooks %&gt;%\narrange(year)\n\n# A tibble: 5 × 5\n  title                  author      year genre         pages\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 Pride and Prejudice    Austen      1813 Romance         432\n2 The Great Gatsby       Fitzgerald  1925 Modernist       180\n3 1984                   Orwell      1949 Dystopian       328\n4 The Catcher in the Rye Salinger    1951 Coming-of-age   234\n5 To Kill a Mockingbird  Lee         1960 Coming-of-age   281\n\n\n\n\n\n\n\n\nComparing arrange() and order()\n\n\n\n\n\nIn Tidyverse, we use arrange() to sort data frames, which is often more intuitive and easier to use with multiple columns. In Base R, you typically use order() within square brackets or sort() for vectors.\nFor example:\nTidyverse: data %&gt;% arrange(column_name)\nBase R: data[order(data$column_name), ]\nThe Tidyverse method is more readable, especially when sorting by multiple columns or in descending order."
+    "text": "2.4 arrange(): Sort Rows\n\n# Sort books by year, oldest first\nbooks %&gt;%\narrange(year)\n\n# A tibble: 5 × 5\n  title                  author      year genre         pages\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 Pride and Prejudice    Austen      1813 Romance         432\n2 The Great Gatsby       Fitzgerald  1925 Modernist       180\n3 1984                   Orwell      1949 Dystopian       328\n4 The Catcher in the Rye Salinger    1951 Coming-of-age   234\n5 To Kill a Mockingbird  Lee         1960 Coming-of-age   281\n\n\n\n\n\n\n\n\nComparing arrange() and order()\n\n\n\n\n\nIn Tidyverse, we use arrange() to sort data frames, which is often more intuitive and easier to use with multiple columns. In Base R, you typically use order() within square brackets or sort() for vectors.\nFor example:\nTidyverse: data %&gt;% arrange(column_name)\nBase R: data[order(data$column_name), ]\nThe Tidyverse method is more readable, especially when sorting by multiple columns or in descending order.",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#summarise-summarize-data",
     "href": "book/05-tidyverse.html#summarise-summarize-data",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n2.5 summarise(): Summarize Data",
-    "text": "2.5 summarise(): Summarize Data\n\n# Calculate average number of pages\nbooks %&gt;%\nsummarise(avg_pages = mean(pages))\n\n# A tibble: 1 × 1\n  avg_pages\n      &lt;dbl&gt;\n1       291"
+    "text": "2.5 summarise(): Summarize Data\n\n# Calculate average number of pages\nbooks %&gt;%\nsummarise(avg_pages = mean(pages))\n\n# A tibble: 1 × 1\n  avg_pages\n      &lt;dbl&gt;\n1       291",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#group_by-group-data-for-operations",
     "href": "book/05-tidyverse.html#group_by-group-data-for-operations",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n2.6 group_by(): Group Data for Operations",
-    "text": "2.6 group_by(): Group Data for Operations\n\n# Average pages by genre\nbooks %&gt;%\ngroup_by(genre) %&gt;%\nsummarise(avg_pages = mean(pages))\n\n# A tibble: 4 × 2\n  genre         avg_pages\n  &lt;chr&gt;             &lt;dbl&gt;\n1 Coming-of-age      258.\n2 Dystopian          328 \n3 Modernist          180 \n4 Romance            432"
+    "text": "2.6 group_by(): Group Data for Operations\n\n# Average pages by genre\nbooks %&gt;%\ngroup_by(genre) %&gt;%\nsummarise(avg_pages = mean(pages))\n\n# A tibble: 4 × 2\n  genre         avg_pages\n  &lt;chr&gt;             &lt;dbl&gt;\n1 Coming-of-age      258.\n2 Dystopian          328 \n3 Modernist          180 \n4 Romance            432",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#learning-check-1",
     "href": "book/05-tidyverse.html#learning-check-1",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n2.7 Learning Check 🏁",
-    "text": "2.7 Learning Check 🏁"
+    "text": "2.7 Learning Check 🏁",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#hands-on-coding",
     "href": "book/05-tidyverse.html#hands-on-coding",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n2.8 Hands-On Coding 💻",
-    "text": "2.8 Hands-On Coding 💻\nTry the following exercises:\n\nUse filter() to find all books written by Austen or Orwell.\nUse arrange() to sort the books by number of pages, from longest to shortest.\nUse mutate() to add a new column called words, assuming an average of 250 words per page.\nUse group_by() and summarise() to find the earliest publication year for each genre.\n\n\n\n# 1. Books by Austen or Orwell\nbooks %&gt;%\nfilter(author %in% c(\"Austen\", \"Orwell\"))\n\n# A tibble: 2 × 5\n  title               author  year genre     pages\n  &lt;chr&gt;               &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;\n1 1984                Orwell  1949 Dystopian   328\n2 Pride and Prejudice Austen  1813 Romance     432\n\n# 2. Sort by pages, longest to shortest\nbooks %&gt;%\narrange(desc(pages))\n\n# A tibble: 5 × 5\n  title                  author      year genre         pages\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 Pride and Prejudice    Austen      1813 Romance         432\n2 1984                   Orwell      1949 Dystopian       328\n3 To Kill a Mockingbird  Lee         1960 Coming-of-age   281\n4 The Catcher in the Rye Salinger    1951 Coming-of-age   234\n5 The Great Gatsby       Fitzgerald  1925 Modernist       180\n\n# 3. Add words column\nbooks %&gt;%\nmutate(words = pages*250)\n\n# A tibble: 5 × 6\n  title                  author      year genre         pages  words\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;\n1 1984                   Orwell      1949 Dystopian       328  82000\n2 Pride and Prejudice    Austen      1813 Romance         432 108000\n3 The Great Gatsby       Fitzgerald  1925 Modernist       180  45000\n4 To Kill a Mockingbird  Lee         1960 Coming-of-age   281  70250\n5 The Catcher in the Rye Salinger    1951 Coming-of-age   234  58500\n\n# 4. Earliest publication year by genre\nbooks %&gt;%\ngroup_by(genre) %&gt;%\nsummarise(earliest_year = min(year))\n\n# A tibble: 4 × 2\n  genre         earliest_year\n  &lt;chr&gt;                 &lt;dbl&gt;\n1 Coming-of-age          1951\n2 Dystopian              1949\n3 Modernist              1925\n4 Romance                1813"
+    "text": "2.8 Hands-On Coding 💻\nTry the following exercises:\n\nUse filter() to find all books written by Austen or Orwell.\nUse arrange() to sort the books by number of pages, from longest to shortest.\nUse mutate() to add a new column called words, assuming an average of 250 words per page.\nUse group_by() and summarise() to find the earliest publication year for each genre.\n\n\n\n# 1. Books by Austen or Orwell\nbooks %&gt;%\nfilter(author %in% c(\"Austen\", \"Orwell\"))\n\n# A tibble: 2 × 5\n  title               author  year genre     pages\n  &lt;chr&gt;               &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;\n1 1984                Orwell  1949 Dystopian   328\n2 Pride and Prejudice Austen  1813 Romance     432\n\n# 2. Sort by pages, longest to shortest\nbooks %&gt;%\narrange(desc(pages))\n\n# A tibble: 5 × 5\n  title                  author      year genre         pages\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 Pride and Prejudice    Austen      1813 Romance         432\n2 1984                   Orwell      1949 Dystopian       328\n3 To Kill a Mockingbird  Lee         1960 Coming-of-age   281\n4 The Catcher in the Rye Salinger    1951 Coming-of-age   234\n5 The Great Gatsby       Fitzgerald  1925 Modernist       180\n\n# 3. Add words column\nbooks %&gt;%\nmutate(words = pages*250)\n\n# A tibble: 5 × 6\n  title                  author      year genre         pages  words\n  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;\n1 1984                   Orwell      1949 Dystopian       328  82000\n2 Pride and Prejudice    Austen      1813 Romance         432 108000\n3 The Great Gatsby       Fitzgerald  1925 Modernist       180  45000\n4 To Kill a Mockingbird  Lee         1960 Coming-of-age   281  70250\n5 The Catcher in the Rye Salinger    1951 Coming-of-age   234  58500\n\n# 4. Earliest publication year by genre\nbooks %&gt;%\ngroup_by(genre) %&gt;%\nsummarise(earliest_year = min(year))\n\n# A tibble: 4 × 2\n  genre         earliest_year\n  &lt;chr&gt;                 &lt;dbl&gt;\n1 Coming-of-age          1951\n2 Dystopian              1949\n3 Modernist              1925\n4 Romance                1813",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#expand-the-books-dataset",
     "href": "book/05-tidyverse.html#expand-the-books-dataset",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n3.1 Expand the Books Dataset",
-    "text": "3.1 Expand the Books Dataset\nLet’s expand the books dataset to include some more variables for visualization purposes:\n\nnovels &lt;- books %&gt;%\n  mutate(\n    words = pages*250, # Estimating word count based on pages\n    characters = c(30, 25, 15, 20, 10), # Number of named characters (estimated)\n    rating = c(4.2, 4.5, 4.0, 4.3, 4.1), # Modern reader ratings (out of 5)\n    male_chars = c(20, 10, 10, 12, 7), # Number of male characters (estimated)\n    female_chars = c(10, 15, 5, 8, 3) # Number of female characters (estimated)\n  )\n# View the dataset\nnovels\n\n# A tibble: 5 × 10\n  title             author  year genre pages  words characters rating male_chars\n  &lt;chr&gt;             &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 1984              Orwell  1949 Dyst…   328  82000         30    4.2         20\n2 Pride and Prejud… Austen  1813 Roma…   432 108000         25    4.5         10\n3 The Great Gatsby  Fitzg…  1925 Mode…   180  45000         15    4           10\n4 To Kill a Mockin… Lee     1960 Comi…   281  70250         20    4.3         12\n5 The Catcher in t… Salin…  1951 Comi…   234  58500         10    4.1          7\n# ℹ 1 more variable: female_chars &lt;dbl&gt;\n\n\nThis dataset gives us a rich set of variables to explore, including publication year, word count, genre, character gender representation, and modern reader ratings."
+    "text": "3.1 Expand the Books Dataset\nLet’s expand the books dataset to include some more variables for visualization purposes:\n\nnovels &lt;- books %&gt;%\n  mutate(\n    words = pages*250, # Estimating word count based on pages\n    characters = c(30, 25, 15, 20, 10), # Number of named characters (estimated)\n    rating = c(4.2, 4.5, 4.0, 4.3, 4.1), # Modern reader ratings (out of 5)\n    male_chars = c(20, 10, 10, 12, 7), # Number of male characters (estimated)\n    female_chars = c(10, 15, 5, 8, 3) # Number of female characters (estimated)\n  )\n# View the dataset\nnovels\n\n# A tibble: 5 × 10\n  title             author  year genre pages  words characters rating male_chars\n  &lt;chr&gt;             &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 1984              Orwell  1949 Dyst…   328  82000         30    4.2         20\n2 Pride and Prejud… Austen  1813 Roma…   432 108000         25    4.5         10\n3 The Great Gatsby  Fitzg…  1925 Mode…   180  45000         15    4           10\n4 To Kill a Mockin… Lee     1960 Comi…   281  70250         20    4.3         12\n5 The Catcher in t… Salin…  1951 Comi…   234  58500         10    4.1          7\n# ℹ 1 more variable: female_chars &lt;dbl&gt;\n\n\nThis dataset gives us a rich set of variables to explore, including publication year, word count, genre, character gender representation, and modern reader ratings.",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#the-basic-structure-of-a-ggplot",
     "href": "book/05-tidyverse.html#the-basic-structure-of-a-ggplot",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n3.2 1. The Basic Structure of a ggplot",
-    "text": "3.2 1. The Basic Structure of a ggplot\nEvery ggplot2 plot starts with the ggplot() function and uses + to add layers. The basic structure is:\n\nggplot(data = &lt;DATA&gt;) +\n&lt;GEOM_FUNCTION&gt;(mapping = aes(&lt;MAPPINGS&gt;))\n\nLet’s create a simple scatter plot of publication year vs. word count:\n\nggplot(data = novels) +\ngeom_point(mapping = aes(x = year, y = words))\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey Concepts\n\n\n\n\n\n\n\nggplot(data = novels): Initializes the plot with our dataset\n\ngeom_point(): Adds a layer of points (for a scatter plot)\n\naes(x = year, y = words): Maps variables to aesthetic properties (here, x and y positions)"
+    "text": "3.2 1. The Basic Structure of a ggplot\nEvery ggplot2 plot starts with the ggplot() function and uses + to add layers. The basic structure is:\n\nggplot(data = &lt;DATA&gt;) +\n&lt;GEOM_FUNCTION&gt;(mapping = aes(&lt;MAPPINGS&gt;))\n\nLet’s create a simple scatter plot of publication year vs. word count:\n\nggplot(data = novels) +\ngeom_point(mapping = aes(x = year, y = words))\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey Concepts\n\n\n\n\n\n\n\nggplot(data = novels): Initializes the plot with our dataset\n\ngeom_point(): Adds a layer of points (for a scatter plot)\n\naes(x = year, y = words): Maps variables to aesthetic properties (here, x and y positions)",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#aesthetic-mappings",
     "href": "book/05-tidyverse.html#aesthetic-mappings",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n3.3 2. Aesthetic Mappings",
-    "text": "3.3 2. Aesthetic Mappings\nAesthetics are visual properties of the objects in your plot. Common aesthetics include: - x and y positions - color - size - shape\nLet’s map the rating to the color of the points:\n\nggplot(data = novels) +\ngeom_point(mapping = aes(x = year, y = words, color = rating))"
+    "text": "3.3 2. Aesthetic Mappings\nAesthetics are visual properties of the objects in your plot. Common aesthetics include: - x and y positions - color - size - shape\nLet’s map the rating to the color of the points:\n\nggplot(data = novels) +\ngeom_point(mapping = aes(x = year, y = words, color = rating))",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#adding-labels-with-labs",
     "href": "book/05-tidyverse.html#adding-labels-with-labs",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n3.4 3. Adding Labels with labs()",
-    "text": "3.4 3. Adding Labels with labs()\nWe can improve our plot by adding informative labels:\n\nggplot(data = novels) +\ngeom_point(mapping = aes(x = year, y = words, color = rating)) +\nlabs(title = \"Classic Novels: Publication Year vs. Word Count\",\n     x = \"Year of Publication\",\n     y = \"Number of Words\",\n     color = \"Rating\")"
+    "text": "3.4 3. Adding Labels with labs()\nWe can improve our plot by adding informative labels:\n\nggplot(data = novels) +\ngeom_point(mapping = aes(x = year, y = words, color = rating)) +\nlabs(title = \"Classic Novels: Publication Year vs. Word Count\",\n     x = \"Year of Publication\",\n     y = \"Number of Words\",\n     color = \"Rating\")",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#geometric-objects-geoms",
     "href": "book/05-tidyverse.html#geometric-objects-geoms",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n3.5 4. Geometric Objects (geoms)",
-    "text": "3.5 4. Geometric Objects (geoms)\nDifferent geom functions create different types of plots. Let’s create a bar plot of character counts:\n\nggplot(data = novels) +\ngeom_col(mapping = aes(x = title, y = characters)) +\ntheme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n\n\n\n\n\n\n\n\n\n\n\n\nCommon geoms\n\n\n\n\n\n\n\ngeom_point(): Scatter plots\n\ngeom_line(): Line graphs\n\ngeom_col() or geom_bar(): Bar charts\n\ngeom_boxplot(): Box plots"
+    "text": "3.5 4. Geometric Objects (geoms)\nDifferent geom functions create different types of plots. Let’s create a bar plot of character counts:\n\nggplot(data = novels) +\ngeom_col(mapping = aes(x = title, y = characters)) +\ntheme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n\n\n\n\n\n\n\n\n\n\n\n\nCommon geoms\n\n\n\n\n\n\n\ngeom_point(): Scatter plots\n\ngeom_line(): Line graphs\n\ngeom_col() or geom_bar(): Bar charts\n\ngeom_boxplot(): Box plots",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#learning-check-2",
     "href": "book/05-tidyverse.html#learning-check-2",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n3.6 Learning Check 🏁",
-    "text": "3.6 Learning Check 🏁"
+    "text": "3.6 Learning Check 🏁",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/05-tidyverse.html#hands-on-coding-1",
     "href": "book/05-tidyverse.html#hands-on-coding-1",
     "title": "§5 Spinning the Reels 🎰",
     "section": "\n4.1 Hands-On Coding 💻",
-    "text": "4.1 Hands-On Coding 💻\nLet’s explore our slot machine simulation with some exercises:\n\nModify the play_slot_machine() function to include a bet amount for each play.\nCalculate the total winnings (assume a win pays 3 times the bet).\nVisualize the distribution of symbols in all plays.\n\n\n\n# Modified play_slot_machine function\nplay_slot_machine &lt;- function(n_plays = 10, min_bet = 1, max_bet = 10) {\n  tibble(\n    play = 1:n_plays,\n    bet = sample(min_bet:max_bet, n_plays, replace = TRUE),\n    symbol1 = sample(symbols, n_plays, replace = TRUE),\n    symbol2 = sample(symbols, n_plays, replace = TRUE),\n    symbol3 = sample(symbols, n_plays, replace = TRUE)\n  ) %&gt;%\n  mutate(\n    win = symbol1 == symbol2 & symbol2 == symbol3,\n    result = if_else(win, \"💰\", \"😢\"),\n    winnings = if_else(win, bet*3, 0)\n  )\n}\n# Simulate 100 plays\nresults &lt;- play_slot_machine(100)\n# Calculate total winnings\ntotal_winnings &lt;- results %&gt;%\nsummarise(\ntotal_bet = sum(bet),\ntotal_won = sum(winnings),\nnet_profit = total_won - total_bet\n)\nprint(total_winnings)\n\n# A tibble: 1 × 3\n  total_bet total_won net_profit\n      &lt;int&gt;     &lt;dbl&gt;      &lt;dbl&gt;\n1       591       108       -483\n\n# Visualize symbol distribution\nresults %&gt;%\n  pivot_longer(cols = starts_with(\"symbol\"), names_to = \"reel\", values_to = \"symbol\") %&gt;%\n  ggplot(aes(x = symbol, fill = symbol)) +\n  geom_bar() +\n  facet_wrap(~reel) +\n  labs(title = \"Distribution of Symbols\", x = \"Symbol\", y = \"Count\") +\n  theme_minimal()"
+    "text": "4.1 Hands-On Coding 💻\nLet’s explore our slot machine simulation with some exercises:\n\nModify the play_slot_machine() function to include a bet amount for each play.\nCalculate the total winnings (assume a win pays 3 times the bet).\nVisualize the distribution of symbols in all plays.\n\n\n\n# Modified play_slot_machine function\nplay_slot_machine &lt;- function(n_plays = 10, min_bet = 1, max_bet = 10) {\n  tibble(\n    play = 1:n_plays,\n    bet = sample(min_bet:max_bet, n_plays, replace = TRUE),\n    symbol1 = sample(symbols, n_plays, replace = TRUE),\n    symbol2 = sample(symbols, n_plays, replace = TRUE),\n    symbol3 = sample(symbols, n_plays, replace = TRUE)\n  ) %&gt;%\n  mutate(\n    win = symbol1 == symbol2 & symbol2 == symbol3,\n    result = if_else(win, \"💰\", \"😢\"),\n    winnings = if_else(win, bet*3, 0)\n  )\n}\n# Simulate 100 plays\nresults &lt;- play_slot_machine(100)\n# Calculate total winnings\ntotal_winnings &lt;- results %&gt;%\nsummarise(\ntotal_bet = sum(bet),\ntotal_won = sum(winnings),\nnet_profit = total_won - total_bet\n)\nprint(total_winnings)\n\n# A tibble: 1 × 3\n  total_bet total_won net_profit\n      &lt;int&gt;     &lt;dbl&gt;      &lt;dbl&gt;\n1       591       108       -483\n\n# Visualize symbol distribution\nresults %&gt;%\n  pivot_longer(cols = starts_with(\"symbol\"), names_to = \"reel\", values_to = \"symbol\") %&gt;%\n  ggplot(aes(x = symbol, fill = symbol)) +\n  geom_bar() +\n  facet_wrap(~reel) +\n  labs(title = \"Distribution of Symbols\", x = \"Symbol\", y = \"Count\") +\n  theme_minimal()",
+    "crumbs": [
+      "Book",
+      "§5 Spinning the Reels 🎰"
+    ]
   },
   {
     "objectID": "book/03-dice.html",
