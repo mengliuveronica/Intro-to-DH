@@ -148,13 +148,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#data-manipulation-with-dplyr" id="toc-data-manipulation-with-dplyr" class="nav-link" data-scroll-target="#data-manipulation-with-dplyr"><span class="header-section-number">2</span> Data Manipulation with dplyr 🔄</a>
   <ul class="collapse">
-<li><a href="#hands-on-coding" id="toc-hands-on-coding" class="nav-link" data-scroll-target="#hands-on-coding"><span class="header-section-number">2.1</span> Hands-On Coding 💻</a></li>
+<li><a href="#filter-subset-rows" id="toc-filter-subset-rows" class="nav-link" data-scroll-target="#filter-subset-rows"><span class="header-section-number">2.1</span> <code>filter()</code>: Subset Rows</a></li>
+  <li><a href="#select-choose-columns" id="toc-select-choose-columns" class="nav-link" data-scroll-target="#select-choose-columns"><span class="header-section-number">2.2</span> <code>select()</code>: Choose Columns</a></li>
+  <li><a href="#mutate-add-new-variables" id="toc-mutate-add-new-variables" class="nav-link" data-scroll-target="#mutate-add-new-variables"><span class="header-section-number">2.3</span> <code>mutate()</code>: Add New Variables</a></li>
+  <li><a href="#arrange-sort-rows" id="toc-arrange-sort-rows" class="nav-link" data-scroll-target="#arrange-sort-rows"><span class="header-section-number">2.4</span> <code>arrange()</code>: Sort Rows</a></li>
+  <li><a href="#summarise-summarize-data" id="toc-summarise-summarize-data" class="nav-link" data-scroll-target="#summarise-summarize-data"><span class="header-section-number">2.5</span> <code>summarise()</code>: Summarize Data</a></li>
+  <li><a href="#group_by-group-data-for-operations" id="toc-group_by-group-data-for-operations" class="nav-link" data-scroll-target="#group_by-group-data-for-operations"><span class="header-section-number">2.6</span> <code>group_by()</code>: Group Data for Operations</a></li>
+  <li><a href="#learning-check-1" id="toc-learning-check-1" class="nav-link" data-scroll-target="#learning-check-1"><span class="header-section-number">2.7</span> Learning Check 🏁</a></li>
+  <li><a href="#hands-on-coding" id="toc-hands-on-coding" class="nav-link" data-scroll-target="#hands-on-coding"><span class="header-section-number">2.8</span> Hands-On Coding 💻</a></li>
   </ul>
 </li>
   <li>
 <a href="#data-visualization-with-ggplot2" id="toc-data-visualization-with-ggplot2" class="nav-link" data-scroll-target="#data-visualization-with-ggplot2"><span class="header-section-number">3</span> Data Visualization with ggplot2 📊</a>
   <ul class="collapse">
-<li><a href="#learning-check-1" id="toc-learning-check-1" class="nav-link" data-scroll-target="#learning-check-1"><span class="header-section-number">3.1</span> Learning Check 🏁</a></li>
+<li><a href="#expand-the-books-dataset" id="toc-expand-the-books-dataset" class="nav-link" data-scroll-target="#expand-the-books-dataset"><span class="header-section-number">3.1</span> Expand the Books Dataset</a></li>
+  <li><a href="#the-basic-structure-of-a-ggplot" id="toc-the-basic-structure-of-a-ggplot" class="nav-link" data-scroll-target="#the-basic-structure-of-a-ggplot"><span class="header-section-number">3.2</span> 1. The Basic Structure of a ggplot</a></li>
+  <li><a href="#aesthetic-mappings" id="toc-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetic-mappings"><span class="header-section-number">3.3</span> 2. Aesthetic Mappings</a></li>
+  <li><a href="#adding-labels-with-labs" id="toc-adding-labels-with-labs" class="nav-link" data-scroll-target="#adding-labels-with-labs"><span class="header-section-number">3.4</span> 3. Adding Labels with labs()</a></li>
+  <li><a href="#geometric-objects-geoms" id="toc-geometric-objects-geoms" class="nav-link" data-scroll-target="#geometric-objects-geoms"><span class="header-section-number">3.5</span> 4. Geometric Objects (geoms)</a></li>
+  <li><a href="#learning-check-2" id="toc-learning-check-2" class="nav-link" data-scroll-target="#learning-check-2"><span class="header-section-number">3.6</span> Learning Check 🏁</a></li>
   </ul>
 </li>
   <li>
@@ -184,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p>Welcome to the exciting world of tidyverse! In this chapter, we’ll build on our knowledge of R by exploring the tidyverse, a collection of R packages designed for data science. We’ll create a virtual slot machine to demonstrate the power and simplicity of tidyverse functions.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -207,7 +219,33 @@ Learning Objectives
 </div>
 <section id="introduction-to-tidyverse" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> Introduction to Tidyverse 📦</h1>
-<p>Tidyverse is a collection of R packages that work together harmoniously for data manipulation, exploration, and visualization. Let’s start by loading the tidyverse:</p>
+<p>Tidyverse is a collection of R packages that work together harmoniously for data manipulation, exploration, and visualization.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tidyverse vs.&nbsp;Base R?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>You might wonder why we’re learning Tidyverse when R already has built-in functions (known as Base R). Here’s why:</p>
+<ol type="1">
+<li><p>Readability: Tidyverse code is often easier to read and understand, especially for beginners. It uses a consistent style and vocabulary across its packages.</p></li>
+<li><p>Workflow: Tidyverse functions work well together, creating a smooth “pipeline” for data analysis. This makes it easier to perform complex operations step-by-step.</p></li>
+<li><p>Modern approach: Tidyverse incorporates more recent developments in R programming, addressing some limitations of Base R.</p></li>
+<li><p>Consistency: Tidyverse functions behave predictably, reducing unexpected outcomes that sometimes occur with Base R functions.</p></li>
+<li><p>Community support: Tidyverse has a large, active community, which means more resources, tutorials, and help are available online.</p></li>
+</ol>
+<p>While Base R is still important and powerful, Tidyverse provides a more accessible entry point for beginners and a efficient toolkit for data analysis tasks common in Digital Humanities.</p>
+<p>Remember, you’re not choosing one over the other permanently. As you grow more comfortable with R, you’ll likely use both Tidyverse and Base R, selecting the best tool for each specific task.</p>
+</div>
+</div>
+</div>
+<p>Let’s start by loading the tidyverse:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install.packages('tidyverse')</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -225,6 +263,32 @@ Learning Objectives
 </div>
 </div>
 <p>The core tidyverse includes packages like dplyr (for data manipulation) and ggplot2 (for data visualization).</p>
+<p><img src="images/tidyverse.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Core Tidyverse Packages
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>The core tidyverse includes several packages, each with a specific purpose:</p>
+<ol type="1">
+<li>dplyr: for data manipulation (like sorting, filtering, and summarizing data)</li>
+<li>ggplot2: for data visualization (creating graphs and charts)</li>
+<li>tidyr: for tidying data (organizing data into a consistent format)</li>
+<li>readr: for reading rectangular data (importing data from files)</li>
+<li>purrr: for functional programming (applying functions to data)</li>
+<li>tibble: for modern data frames (an enhanced version of R’s traditional data structure)</li>
+</ol>
+<p>For routine data analysis tasks, we mainly use dplyr and ggplot2, which is what we will focus on in this chapter.</p>
+</div>
+</div>
+</div>
 <section id="learning-check" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="learning-check">
 <span class="header-section-number">1.1</span> Learning Check 🏁</h2>
 <div id="quiz1">
@@ -256,163 +320,538 @@ createQuiz({
 }, "quiz1");
 </script></section></section><section id="data-manipulation-with-dplyr" class="level1" data-number="2"><h1 data-number="2">
 <span class="header-section-number">2</span> Data Manipulation with dplyr 🔄</h1>
-<p>Let’s revisit our deck of cards from the previous chapter, but this time using dplyr functions:</p>
+<p>Let’s look at a <em>mock</em> book dataset again, but this time using dplyr functions:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the deck</span></span>
-<span><span class="va">deck</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>    suit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hearts"</span>, <span class="st">"Diamonds"</span>, <span class="st">"Clubs"</span>, <span class="st">"Spades"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>,</span>
-<span>    rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Ace"</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"Jack"</span>, <span class="st">"Queen"</span>, <span class="st">"King"</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span>
-<span>    value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span>, times <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create the books dataset</span></span>
+<span><span class="va">books</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1984"</span>, <span class="st">"Pride and Prejudice"</span>, <span class="st">"The Great Gatsby"</span>, <span class="st">"To Kill a Mockingbird"</span>, <span class="st">"The Catcher in the Rye"</span><span class="op">)</span>,</span>
+<span>  author <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Orwell"</span>, <span class="st">"Austen"</span>, <span class="st">"Fitzgerald"</span>, <span class="st">"Lee"</span>, <span class="st">"Salinger"</span><span class="op">)</span>,</span>
+<span>  year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1949</span>, <span class="fl">1813</span>, <span class="fl">1925</span>, <span class="fl">1960</span>, <span class="fl">1951</span><span class="op">)</span>,</span>
+<span>  genre <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dystopian"</span>, <span class="st">"Romance"</span>, <span class="st">"Modernist"</span>, <span class="st">"Coming-of-age"</span>, <span class="st">"Coming-of-age"</span><span class="op">)</span>,</span>
+<span>  pages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">328</span>, <span class="fl">432</span>, <span class="fl">180</span>, <span class="fl">281</span>, <span class="fl">234</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co"># View the first few cards</span></span>
-<span><span class="va">deck</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span></span>
+<span><span class="co"># View the books</span></span>
+<span><span class="va">books</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  suit   rank  value
-  &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;
-1 Hearts Ace       1
-2 Hearts 2         2
-3 Hearts 3         3
-4 Hearts 4         4
-5 Hearts 5         5
-6 Hearts 6         6</code></pre>
+<pre><code># A tibble: 5 × 5
+  title                  author      year genre         pages
+  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+1 1984                   Orwell      1949 Dystopian       328
+2 Pride and Prejudice    Austen      1813 Romance         432
+3 The Great Gatsby       Fitzgerald  1925 Modernist       180
+4 To Kill a Mockingbird  Lee         1960 Coming-of-age   281
+5 The Catcher in the Rye Salinger    1951 Coming-of-age   234</code></pre>
 </div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Find all face cards</span></span>
-<span><span class="va">face_cards</span> <span class="op">&lt;-</span> <span class="va">deck</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jack"</span>, <span class="st">"Queen"</span>, <span class="st">"King"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># Calculate average value</span></span>
-<span><span class="va">avg_value</span> <span class="op">&lt;-</span> <span class="va">deck</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># Add color column</span></span>
-<span><span class="va">deck</span> <span class="op">&lt;-</span> <span class="va">deck</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">suit</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Hearts"</span>, <span class="st">"Diamonds"</span><span class="op">)</span>, <span class="st">"Red"</span>, <span class="st">"Black"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="hands-on-coding" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="hands-on-coding">
-<span class="header-section-number">2.1</span> Hands-On Coding 💻</h2>
-<p>Try the following:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tibbles vs.&nbsp;Data Frames
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>You might notice we used <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> instead of <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>. Tibbles are modern data frames that are part of the tidyverse. They have some advantages over traditional data frames:</p>
 <ol type="1">
-<li>Use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to find all the Aces in the deck.</li>
-<li>Use <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> to sort the deck by suit, then by value.</li>
-<li>Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to find the average value for each suit.</li>
+<li>They have a cleaner print method</li>
+<li>They don’t change column types</li>
+<li>They don’t create row names</li>
+<li>They warn you when a column doesn’t exist</li>
 </ol>
-<div id="hidden-content1" style="display: none;">
+<p>For most purpose you can use them interchangeably with data frames, but the Tidyverse version is often easier and more inuitive to use and we would recommend using Tidyverse versions over Base R versions.</p>
+<p>Below are more examples of Tidyverse alternaties to Base R (the built-in functions of R):</p>
+<ul>
+<li>Reading data: <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> (Tidyverse) vs.&nbsp;<code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> (Base R)</li>
+<li>Filtering data: <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> (Tidyverse) vs.&nbsp;<code><a href="https://rdrr.io/r/base/subset.html">subset()</a></code> (Base R)</li>
+<li>Plotting: <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> (Tidyverse) vs.&nbsp;<code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> (Base R)</li>
+<li>Sorting: <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> (Tidyverse) vs.&nbsp;<code><a href="https://rdrr.io/r/base/order.html">order()</a></code> or <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> (Base R)</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Now, let’s explore some key dplyr functions:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Core Functions in <code>dplyr</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>dplyr provides a set of powerful functions for manipulating data:</p>
+<ol type="1">
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>: Subset rows based on conditions. This function allows you to keep only the data rows that meet specific criteria, like selecting books published after a certain year.</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>: Choose specific columns. Use this when you want to focus on particular variables in your dataset, similar to picking certain columns in a spreadsheet.</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>: Add new variables or modify existing ones. This function lets you create new columns based on calculations from existing data, or change values in current columns.</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>: Sort rows. When you need to order your data based on one or more variables, such as sorting books by publication date, use this function.</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>: Compute summary statistics. This function is useful for calculating things like averages, totals, or counts across your entire dataset or within groups.</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>: Group data for operations. Use this to divide your data into groups before applying other functions, allowing you to perform calculations within each group separately.</p></li>
+<li><p><code>join()</code>: Combine data from multiple tables. When your data is split across different tables or datasets, this function helps you merge them together based on common variables.</p></li>
+</ol>
+<p>These functions are designed to work together, allowing you to perform complex data manipulations step by step. As you practice, you’ll find yourself combining these functions to answer increasingly sophisticated questions about your data.</p>
+<section id="cheat-sheet" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="cheat-sheet">Cheat Sheet</h4>
+<p>For quick reference, here’s a handy cheat sheet summarizing the key dplyr functions. Most tidyverse packages have corresponding cheat sheets. Just google the package name + cheat sheet and download it yourself.</p>
+<p><a href="https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf">Dplyr Cheet Sheet</a></p>
+</section>
+</div>
+</div>
+</div>
+<section id="filter-subset-rows" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="filter-subset-rows">
+<span class="header-section-number">2.1</span> <code>filter()</code>: Subset Rows</h2>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Find all Aces</span></span>
-<span><span class="va">aces</span> <span class="op">&lt;-</span> <span class="va">deck</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rank</span> <span class="op">==</span> <span class="st">"Ace"</span><span class="op">)</span></span>
-<span><span class="co"># Sort deck</span></span>
-<span><span class="va">sorted_deck</span> <span class="op">&lt;-</span> <span class="va">deck</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">suit</span>, <span class="va">value</span><span class="op">)</span></span>
-<span><span class="co"># Average value by suit</span></span>
-<span><span class="va">avg_by_suit</span> <span class="op">&lt;-</span> <span class="va">deck</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">suit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Find all books published after 1900</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">&gt;</span> <span class="fl">1900</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  title                  author      year genre         pages
+  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+1 1984                   Orwell      1949 Dystopian       328
+2 The Great Gatsby       Fitzgerald  1925 Modernist       180
+3 To Kill a Mockingbird  Lee         1960 Coming-of-age   281
+4 The Catcher in the Rye Salinger    1951 Coming-of-age   234</code></pre>
 </div>
 </div>
-<script>
-createToggleSection('button1', 'hidden-content1');
-</script></section></section><section id="data-visualization-with-ggplot2" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> Data Visualization with ggplot2 📊</h1>
-<p>Now, let’s visualize our deck using ggplot2:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The Pipe Operator <code>%&gt;%</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>The <code>%&gt;%</code> operator is called the “pipe” operator. It takes the output of one function and passes it as the first argument to the next function. This allows us to chain multiple operations together, making our code more readable and intuitive.</p>
+<p>For example, <code>books %&gt;% filter(year &gt; 1900)</code> can be read as “Take the books data, then filter it to keep only books published after 1900”.</p>
+</div>
+</div>
+</div>
+</section><section id="select-choose-columns" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="select-choose-columns">
+<span class="header-section-number">2.2</span> <code>select()</code>: Choose Columns</h2>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">deck</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">suit</span>, fill <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of Cards by Suit"</span>,</span>
-<span>    x <span class="op">=</span> <span class="st">"Suit"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span><span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Select only title and author columns</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">title</span>, <span class="va">author</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  title                  author    
+  &lt;chr&gt;                  &lt;chr&gt;     
+1 1984                   Orwell    
+2 Pride and Prejudice    Austen    
+3 The Great Gatsby       Fitzgerald
+4 To Kill a Mockingbird  Lee       
+5 The Catcher in the Rye Salinger  </code></pre>
+</div>
+</div>
+</section><section id="mutate-add-new-variables" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="mutate-add-new-variables">
+<span class="header-section-number">2.3</span> <code>mutate()</code>: Add New Variables</h2>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Add a new column for the book's age</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age <span class="op">=</span> <span class="fl">2024</span> <span class="op">-</span> <span class="va">year</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  title                  author      year genre         pages   age
+  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+1 1984                   Orwell      1949 Dystopian       328    75
+2 Pride and Prejudice    Austen      1813 Romance         432   211
+3 The Great Gatsby       Fitzgerald  1925 Modernist       180    99
+4 To Kill a Mockingbird  Lee         1960 Coming-of-age   281    64
+5 The Catcher in the Rye Salinger    1951 Coming-of-age   234    73</code></pre>
+</div>
+</div>
+</section><section id="arrange-sort-rows" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="arrange-sort-rows">
+<span class="header-section-number">2.4</span> <code>arrange()</code>: Sort Rows</h2>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Sort books by year, oldest first</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  title                  author      year genre         pages
+  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+1 Pride and Prejudice    Austen      1813 Romance         432
+2 The Great Gatsby       Fitzgerald  1925 Modernist       180
+3 1984                   Orwell      1949 Dystopian       328
+4 The Catcher in the Rye Salinger    1951 Coming-of-age   234
+5 To Kill a Mockingbird  Lee         1960 Coming-of-age   281</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Comparing <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> and <code><a href="https://rdrr.io/r/base/order.html">order()</a></code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>In Tidyverse, we use <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> to sort data frames, which is often more intuitive and easier to use with multiple columns. In Base R, you typically use <code><a href="https://rdrr.io/r/base/order.html">order()</a></code> within square brackets or <code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code> for vectors.</p>
+<p>For example:</p>
+<p>Tidyverse: <code>data %&gt;% arrange(column_name)</code></p>
+<p>Base R: <code>data[order(data$column_name), ]</code></p>
+<p>The Tidyverse method is more readable, especially when sorting by multiple columns or in descending order.</p>
 </div>
 </div>
 </div>
-<section id="learning-check-1" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="learning-check-1">
-<span class="header-section-number">3.1</span> Learning Check 🏁</h2>
-<div id="quiz2">
+</section><section id="summarise-summarize-data" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="summarise-summarize-data">
+<span class="header-section-number">2.5</span> <code>summarise()</code>: Summarize Data</h2>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate average number of pages</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg_pages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">pages</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  avg_pages
+      &lt;dbl&gt;
+1       291</code></pre>
+</div>
+</div>
+</section><section id="group_by-group-data-for-operations" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="group_by-group-data-for-operations">
+<span class="header-section-number">2.6</span> <code>group_by()</code>: Group Data for Operations</h2>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Average pages by genre</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">genre</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg_pages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">pages</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  genre         avg_pages
+  &lt;chr&gt;             &lt;dbl&gt;
+1 Coming-of-age      258.
+2 Dystopian          328 
+3 Modernist          180 
+4 Romance            432 </code></pre>
+</div>
+</div>
+</section><section id="learning-check-1" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="learning-check-1">
+<span class="header-section-number">2.7</span> Learning Check 🏁</h2>
+<div id="quiz-dplyr">
 
 </div>
 <script>
 createQuiz({
   questions: [
     {
-      text: "Which function is used to create a new variable in dplyr?",
+      text: "Which dplyr function would you use to select specific columns from a dataset?",
       options: [
         "filter()",
+        "select()",
         "mutate()",
-        "summarise()",
         "arrange()"
       ]
     },
     {
-      text: "What does the %>% operator do in tidyverse?",
+      text: "If you want to create a new column based on existing data, which function should you use?",
       options: [
-        "Multiplies values",
-        "Pipes the output of one function to the input of another",
-        "Creates a new data frame",
-        "Filters data"
+        "summarise()",
+        "group_by()",
+        "mutate()",
+        "filter()"
+      ]
+    },
+    {
+      text: "Which function allows you to perform operations on grouped data?",
+      options: [
+        "arrange()",
+        "select()",
+        "filter()",
+        "group_by()"
+      ]
+    },
+    {
+      text: "To sort a dataset based on one or more variables, which dplyr function would you use?",
+      options: [
+        "arrange()",
+        "sort()",
+        "order()",
+        "filter()"
       ]
     }
   ],
-  answers: [1, 1]
-}, "quiz2");
-</script></section></section><section id="building-a-simple-slot-machine" class="level1" data-number="4"><h1 data-number="4">
-<span class="header-section-number">4</span> Building a Simple Slot Machine 🎰</h1>
-<p>Let’s use our tidyverse skills to create a simple virtual slot machine!</p>
+  answers: [1, 2, 3, 0]
+}, "quiz-dplyr");
+</script></section><section id="hands-on-coding" class="level2" data-number="2.8"><h2 data-number="2.8" class="anchored" data-anchor-id="hands-on-coding">
+<span class="header-section-number">2.8</span> Hands-On Coding 💻</h2>
+<p>Try the following exercises:</p>
+<ol type="1">
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to find all books written by Austen or Orwell.</li>
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> to sort the books by number of pages, from longest to shortest.</li>
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> to add a new column called <code>words</code>, assuming an average of 250 words per page.</li>
+<li>Use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to find the earliest publication year for each genre.</li>
+</ol>
+<div id="hidden-content1" style="display: none;">
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 1. Books by Austen or Orwell</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">author</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Austen"</span>, <span class="st">"Orwell"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  title               author  year genre     pages
+  &lt;chr&gt;               &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 1984                Orwell  1949 Dystopian   328
+2 Pride and Prejudice Austen  1813 Romance     432</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 2. Sort by pages, longest to shortest</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">pages</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  title                  author      year genre         pages
+  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+1 Pride and Prejudice    Austen      1813 Romance         432
+2 1984                   Orwell      1949 Dystopian       328
+3 To Kill a Mockingbird  Lee         1960 Coming-of-age   281
+4 The Catcher in the Rye Salinger    1951 Coming-of-age   234
+5 The Great Gatsby       Fitzgerald  1925 Modernist       180</code></pre>
+</div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 3. Add words column</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>words <span class="op">=</span> <span class="va">pages</span><span class="op">*</span><span class="fl">250</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  title                  author      year genre         pages  words
+  &lt;chr&gt;                  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+1 1984                   Orwell      1949 Dystopian       328  82000
+2 Pride and Prejudice    Austen      1813 Romance         432 108000
+3 The Great Gatsby       Fitzgerald  1925 Modernist       180  45000
+4 To Kill a Mockingbird  Lee         1960 Coming-of-age   281  70250
+5 The Catcher in the Rye Salinger    1951 Coming-of-age   234  58500</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 4. Earliest publication year by genre</span></span>
+<span><span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">genre</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>earliest_year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  genre         earliest_year
+  &lt;chr&gt;                 &lt;dbl&gt;
+1 Coming-of-age          1951
+2 Dystopian              1949
+3 Modernist              1925
+4 Romance                1813</code></pre>
+</div>
+</div>
+</div>
+<script>
+createToggleSection('button1', 'hidden-content1');
+</script></section></section><section id="data-visualization-with-ggplot2" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> Data Visualization with ggplot2 📊</h1>
+<p>ggplot2 is a powerful package for creating beautiful and informative visualizations, especially useful for exploring data.</p>
+<section id="expand-the-books-dataset" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="expand-the-books-dataset">
+<span class="header-section-number">3.1</span> Expand the Books Dataset</h2>
+<p>Let’s expand the books dataset to include some more variables for visualization purposes:</p>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">novels</span> <span class="op">&lt;-</span> <span class="va">books</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    words <span class="op">=</span> <span class="va">pages</span><span class="op">*</span><span class="fl">250</span>, <span class="co"># Estimating word count based on pages</span></span>
+<span>    characters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">10</span><span class="op">)</span>, <span class="co"># Number of named characters (estimated)</span></span>
+<span>    rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4.2</span>, <span class="fl">4.5</span>, <span class="fl">4.0</span>, <span class="fl">4.3</span>, <span class="fl">4.1</span><span class="op">)</span>, <span class="co"># Modern reader ratings (out of 5)</span></span>
+<span>    male_chars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">7</span><span class="op">)</span>, <span class="co"># Number of male characters (estimated)</span></span>
+<span>    female_chars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">3</span><span class="op">)</span> <span class="co"># Number of female characters (estimated)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co"># View the dataset</span></span>
+<span><span class="va">novels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 10
+  title             author  year genre pages  words characters rating male_chars
+  &lt;chr&gt;             &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+1 1984              Orwell  1949 Dyst…   328  82000         30    4.2         20
+2 Pride and Prejud… Austen  1813 Roma…   432 108000         25    4.5         10
+3 The Great Gatsby  Fitzg…  1925 Mode…   180  45000         15    4           10
+4 To Kill a Mockin… Lee     1960 Comi…   281  70250         20    4.3         12
+5 The Catcher in t… Salin…  1951 Comi…   234  58500         10    4.1          7
+# ℹ 1 more variable: female_chars &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>This dataset gives us a rich set of variables to explore, including publication year, word count, genre, character gender representation, and modern reader ratings.</p>
+</section><section id="the-basic-structure-of-a-ggplot" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="the-basic-structure-of-a-ggplot">
+<span class="header-section-number">3.2</span> 1. The Basic Structure of a ggplot</h2>
+<p>Every ggplot2 plot starts with the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> function and uses <code>+</code> to add layers. The basic structure is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s create a simple scatter plot of publication year vs.&nbsp;word count:</p>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">novels</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">words</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Concepts
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li>
+<code>ggplot(data = novels)</code>: Initializes the plot with our dataset</li>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>: Adds a layer of points (for a scatter plot)</li>
+<li>
+<code>aes(x = year, y = words)</code>: Maps variables to aesthetic properties (here, x and y positions)</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section id="aesthetic-mappings" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="aesthetic-mappings">
+<span class="header-section-number">3.3</span> 2. Aesthetic Mappings</h2>
+<p>Aesthetics are visual properties of the objects in your plot. Common aesthetics include: - x and y positions - color - size - shape</p>
+<p>Let’s map the rating to the color of the points:</p>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">novels</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">words</span>, color <span class="op">=</span> <span class="va">rating</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="adding-labels-with-labs" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="adding-labels-with-labs">
+<span class="header-section-number">3.4</span> 3. Adding Labels with labs()</h2>
+<p>We can improve our plot by adding informative labels:</p>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">novels</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">words</span>, color <span class="op">=</span> <span class="va">rating</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Classic Novels: Publication Year vs. Word Count"</span>,</span>
+<span>     x <span class="op">=</span> <span class="st">"Year of Publication"</span>,</span>
+<span>     y <span class="op">=</span> <span class="st">"Number of Words"</span>,</span>
+<span>     color <span class="op">=</span> <span class="st">"Rating"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="geometric-objects-geoms" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="geometric-objects-geoms">
+<span class="header-section-number">3.5</span> 4. Geometric Objects (geoms)</h2>
+<p>Different geom functions create different types of plots. Let’s create a bar plot of character counts:</p>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">novels</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">title</span>, y <span class="op">=</span> <span class="va">characters</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Common geoms
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>: Scatter plots</li>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>: Line graphs</li>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>: Bar charts</li>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>: Box plots</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section id="learning-check-2" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="learning-check-2">
+<span class="header-section-number">3.6</span> Learning Check 🏁</h2>
+</section></section><section id="building-a-simple-slot-machine" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> Building a Simple Slot Machine 🎰</h1>
+<p>Now, let’s use our tidyverse skills to create a simple virtual slot machine!</p>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="co"># Define slot machine symbols</span></span>
 <span><span class="va">symbols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"🍒"</span>, <span class="st">"🍋"</span>, <span class="st">"🍊"</span>, <span class="st">"🍇"</span>, <span class="st">"🔔"</span>, <span class="st">"💎"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># Function to play the slot machine</span></span>
 <span><span class="va">play_slot_machine</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n_plays</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>        play <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">n_plays</span>,</span>
-<span>        symbol1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">symbols</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>        symbol2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">symbols</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>        symbol3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">symbols</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span>    <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>        win <span class="op">=</span> <span class="va">symbol1</span> <span class="op">==</span> <span class="va">symbol2</span> <span class="op">&amp;</span> <span class="va">symbol2</span> <span class="op">==</span> <span class="va">symbol3</span>,</span>
-<span>        result <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">win</span>, <span class="st">"💰"</span>, <span class="st">"😢"</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>    play <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">n_plays</span>,</span>
+<span>    symbol1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">symbols</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    symbol2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">symbols</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    symbol3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">symbols</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    win <span class="op">=</span> <span class="va">symbol1</span> <span class="op">==</span> <span class="va">symbol2</span> <span class="op">&amp;</span> <span class="va">symbol2</span> <span class="op">==</span> <span class="va">symbol3</span>,</span>
+<span>    result <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">win</span>, <span class="st">"💰"</span>, <span class="st">"😢"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span>
+<span></span>
 <span><span class="co"># Simulate 20 plays</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">play_slot_machine</span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span>
-<span><span class="co"># Display results</span></span>
+<span></span>
+<span><span class="co">#Display results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 6
     play symbol1 symbol2 symbol3 win   result
    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt; 
- 1     1 🍋      🔔      🍇      FALSE 😢    
- 2     2 🍒      🍋      🍊      FALSE 😢    
- 3     3 🍇      🍊      🍊      FALSE 😢    
- 4     4 🍊      🍇      🍊      FALSE 😢    
- 5     5 🔔      🍋      🍒      FALSE 😢    
- 6     6 💎      🔔      🔔      FALSE 😢    
- 7     7 🍇      🍒      🍇      FALSE 😢    
- 8     8 🍊      🔔      💎      FALSE 😢    
- 9     9 🍒      🍒      🍒      TRUE  💰    
-10    10 🍒      🍊      🍇      FALSE 😢    
-11    11 🍇      🍒      💎      FALSE 😢    
-12    12 🍋      🍋      🍒      FALSE 😢    
-13    13 🍇      🍊      🍋      FALSE 😢    
-14    14 🍇      🍒      💎      FALSE 😢    
-15    15 🍒      🍒      🔔      FALSE 😢    
-16    16 💎      🍇      🔔      FALSE 😢    
-17    17 💎      🍊      🍒      FALSE 😢    
-18    18 💎      🍋      🍇      FALSE 😢    
-19    19 🍊      🔔      💎      FALSE 😢    
-20    20 🔔      🍇      🍒      FALSE 😢    </code></pre>
+ 1     1 💎      💎      🔔      FALSE 😢    
+ 2     2 🍋      🍊      🍋      FALSE 😢    
+ 3     3 🍊      🍊      🍒      FALSE 😢    
+ 4     4 🍋      🍇      🔔      FALSE 😢    
+ 5     5 🍊      💎      🔔      FALSE 😢    
+ 6     6 🍇      🍇      🍋      FALSE 😢    
+ 7     7 🍊      🍊      🍇      FALSE 😢    
+ 8     8 💎      🍊      🍇      FALSE 😢    
+ 9     9 🍋      🍇      🍒      FALSE 😢    
+10    10 🍋      🍒      🍊      FALSE 😢    
+11    11 🍊      🍊      🍊      TRUE  💰    
+12    12 🍊      🍊      💎      FALSE 😢    
+13    13 🍒      🍇      🔔      FALSE 😢    
+14    14 🍊      🍇      🍒      FALSE 😢    
+15    15 🔔      🔔      🍒      FALSE 😢    
+16    16 🍒      🍊      🍋      FALSE 😢    
+17    17 🍋      🍊      🍋      FALSE 😢    
+18    18 💎      🔔      🍋      FALSE 😢    
+19    19 🍒      🍊      🍋      FALSE 😢    
+20    20 🍊      🔔      🍊      FALSE 😢    </code></pre>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Summarize wins</span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Summarize wins</span></span>
 <span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
 <span>    total_plays <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    wins <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">win</span><span class="op">)</span>,</span>
 <span>    win_percentage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">win</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span></span>
-<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">summary</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
@@ -420,19 +859,19 @@ createQuiz({
         &lt;int&gt; &lt;int&gt;          &lt;dbl&gt;
 1          20     1              5</code></pre>
 </div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Visualize results</span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Visualize results</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">results</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">result</span>, fill <span class="op">=</span> <span class="va">result</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Slot Machine Results"</span>, x <span class="op">=</span> <span class="st">"Outcome"</span>, y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span></span>
-<span>        values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"💰"</span> <span class="op">=</span> <span class="st">"green"</span>, <span class="st">"😢"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span>        labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"💰"</span> <span class="op">=</span> <span class="st">"Win"</span>, <span class="st">"😢"</span> <span class="op">=</span> <span class="st">"Lose"</span><span class="op">)</span></span>
-<span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Result"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Slot Machine Results"</span>, x <span class="op">=</span> <span class="st">"Outcome"</span>, y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"💰"</span> <span class="op">=</span> <span class="st">"green"</span>, <span class="st">"😢"</span> <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"💰"</span> <span class="op">=</span> <span class="st">"Win"</span>, <span class="st">"😢"</span> <span class="op">=</span> <span class="st">"Lose"</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Result"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -448,52 +887,103 @@ createQuiz({
 </ol>
 <section id="hands-on-coding-1" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="hands-on-coding-1">
 <span class="header-section-number">4.1</span> Hands-On Coding 💻</h2>
-<p>Let’s explore our slot machine simulation with some simple exercises:</p>
+<p>Let’s explore our slot machine simulation with some exercises:</p>
 <ol type="1">
-<li><p>Count how many times each symbol appears in the first reel (symbol1) after 100 spins.</p></li>
-<li><p>Calculate the percentage of wins in 100 spins.</p></li>
+<li>Modify the <code>play_slot_machine()</code> function to include a <code>bet</code> amount for each play.</li>
+<li>Calculate the total winnings (assume a win pays 3 times the bet).</li>
+<li>Visualize the distribution of symbols in all plays.</li>
 </ol>
 <div id="hidden-content2" style="display: none;">
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Simulate 100 spins</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span> <span class="co"># For reproducibility</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Modified play_slot_machine function</span></span>
+<span><span class="va">play_slot_machine</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n_plays</span> <span class="op">=</span> <span class="fl">10</span>, <span class="va">min_bet</span> <span class="op">=</span> <span class="fl">1</span>, <span class="va">max_bet</span> <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>    play <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">n_plays</span>,</span>
+<span>    bet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">min_bet</span><span class="op">:</span><span class="va">max_bet</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    symbol1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">symbols</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    symbol2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">symbols</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    symbol3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">symbols</span>, <span class="va">n_plays</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    win <span class="op">=</span> <span class="va">symbol1</span> <span class="op">==</span> <span class="va">symbol2</span> <span class="op">&amp;</span> <span class="va">symbol2</span> <span class="op">==</span> <span class="va">symbol3</span>,</span>
+<span>    result <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">win</span>, <span class="st">"💰"</span>, <span class="st">"😢"</span><span class="op">)</span>,</span>
+<span>    winnings <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">win</span>, <span class="va">bet</span><span class="op">*</span><span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co"># Simulate 100 plays</span></span>
 <span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">play_slot_machine</span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># 1. Count symbols in the first reel</span></span>
-<span><span class="va">symbol_counts</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">symbol1</span>, name <span class="op">=</span> <span class="st">"frequency"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">frequency</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Symbol counts in the first reel:"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co"># Calculate total winnings</span></span>
+<span><span class="va">total_winnings</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>total_bet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">bet</span><span class="op">)</span>,</span>
+<span>total_won <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">winnings</span><span class="op">)</span>,</span>
+<span>net_profit <span class="op">=</span> <span class="va">total_won</span> <span class="op">-</span> <span class="va">total_bet</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">total_winnings</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Symbol counts in the first reel:"</code></pre>
+<pre><code># A tibble: 1 × 3
+  total_bet total_won net_profit
+      &lt;int&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+1       591       108       -483</code></pre>
 </div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">symbol_counts</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  symbol1 frequency
-  &lt;chr&gt;       &lt;int&gt;
-1 💎             21
-2 🍒             19
-3 🍊             18
-4 🔔             16
-5 🍋             15
-6 🍇             11</code></pre>
-</div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 2. Calculate win percentage</span></span>
-<span><span class="va">win_percentage</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>win_percent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">win</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">win_percent</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Win percentage:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">win_percentage</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Win percentage: 1 %"</code></pre>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Visualize symbol distribution</span></span>
+<span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"symbol"</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"reel"</span>, values_to <span class="op">=</span> <span class="st">"symbol"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">symbol</span>, fill <span class="op">=</span> <span class="va">symbol</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">reel</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of Symbols"</span>, x <span class="op">=</span> <span class="st">"Symbol"</span>, y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
 </div>
-</section></section><section id="conclusion" class="level1" data-number="5"><h1 data-number="5">
+</div>
+<script>
+createToggleSection('button2', 'hidden-content2');
+</script></section></section><section id="conclusion" class="level1" data-number="5"><h1 data-number="5">
 <span class="header-section-number">5</span> Conclusion</h1>
-<p>In this chapter, we’ve introduced the tidyverse and applied its powerful functions to manipulate and visualize data. We’ve built on our previous knowledge of dice and cards to create a virtual slot machine, demonstrating how tidyverse can be used for more complex data operations and analysis.</p>
-<p>These skills will be invaluable as you continue your journey in data analysis and visualization with R. In the next chapter, we’ll explore more advanced tidyverse functions and apply them to real-world datasets in digital humanities!</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Takeaways
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>In this chapter, we’ve covered:</p>
+<ul>
+<li>The basics of tidyverse and its core packages</li>
+<li>Data manipulation with dplyr functions</li>
+<li>Data visualization with ggplot2</li>
+<li>Applied tidyverse concepts to analyze our books dataset</li>
+<li>Built a virtual slot machine using tidyverse functions</li>
+</ul>
+</div>
+</div>
+</div>
+<p>These skills form an essential foundation for working with data in R using the tidyverse. As we progress in our digital humanities journey, we’ll build upon these concepts to perform more complex data manipulations and analyses.</p>
+<div class="topic-flow">
+<div class="topic-box highlight-blue">
+<p>Tidyverse Basics</p>
+</div>
+<div class="topic-box highlight-green">
+<p>Data Manipulation</p>
+</div>
+<div class="topic-box highlight-yellow">
+<p>Data Visualization</p>
+</div>
+<div class="topic-box highlight-pink">
+<p>Practical Application</p>
+</div>
+</div>
 <iframe src="float_traffic.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;" scrolling="no">
 </iframe>
 <iframe src="float_dash.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;" scrolling="no">

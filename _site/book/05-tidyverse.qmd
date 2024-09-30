@@ -19,7 +19,7 @@ execute:
 
 Welcome to the exciting world of tidyverse! In this chapter, we'll build on our knowledge of R by exploring the tidyverse, a collection of R packages designed for data science. We'll create a virtual slot machine to demonstrate the power and simplicity of tidyverse functions.
 
-::: {.callout-tip}
+::: {.callout-note}
 ## Learning Objectives
 - 📦 Understand the basics of tidyverse and its core packages
 - 🔄 Learn to manipulate data with dplyr functions
@@ -29,7 +29,29 @@ Welcome to the exciting world of tidyverse! In this chapter, we'll build on our 
 
 # Introduction to Tidyverse 📦
 
-Tidyverse is a collection of R packages that work together harmoniously for data manipulation, exploration, and visualization. Let's start by loading the tidyverse:
+Tidyverse is a collection of R packages that work together harmoniously for data manipulation, exploration, and visualization. 
+
+::: {.callout-tip}
+## Tidyverse vs. Base R?
+
+You might wonder why we're learning Tidyverse when R already has built-in functions (known as Base R). Here's why:
+
+1. Readability: Tidyverse code is often easier to read and understand, especially for beginners. It uses a consistent style and vocabulary across its packages.
+
+2. Workflow: Tidyverse functions work well together, creating a smooth "pipeline" for data analysis. This makes it easier to perform complex operations step-by-step.
+
+3. Modern approach: Tidyverse incorporates more recent developments in R programming, addressing some limitations of Base R.
+
+4. Consistency: Tidyverse functions behave predictably, reducing unexpected outcomes that sometimes occur with Base R functions.
+
+5. Community support: Tidyverse has a large, active community, which means more resources, tutorials, and help are available online.
+
+While Base R is still important and powerful, Tidyverse provides a more accessible entry point for beginners and a efficient toolkit for data analysis tasks common in Digital Humanities.
+
+Remember, you're not choosing one over the other permanently. As you grow more comfortable with R, you'll likely use both Tidyverse and Base R, selecting the best tool for each specific task.
+:::
+
+Let's start by loading the tidyverse:
 
 ```{r}
 # install.packages('tidyverse')
@@ -38,6 +60,25 @@ library(tidyverse)
 
 
 The core tidyverse includes packages like dplyr (for data manipulation) and ggplot2 (for data visualization).
+
+![](images/tidyverse.png)
+
+::: {.callout-note}
+## Core Tidyverse Packages
+The core tidyverse includes several packages, each with a specific purpose:
+
+1. dplyr: for data manipulation (like sorting, filtering, and summarizing data)
+2. ggplot2: for data visualization (creating graphs and charts)
+3. tidyr: for tidying data (organizing data into a consistent format)
+4. readr: for reading rectangular data (importing data from files)
+5. purrr: for functional programming (applying functions to data)
+6. tibble: for modern data frames (an enhanced version of R's traditional data structure)
+
+For routine data analysis tasks, we mainly use dplyr and ggplot2, which is what we will focus on in this chapter.
+:::
+
+
+
 
 ## Learning Check 🏁 
 
@@ -69,53 +110,304 @@ createQuiz({
 }, "quiz1");
 </script>
 
-# Data Manipulation with dplyr 🔄
+# Data Manipulation with `dplyr` 🔄
 
-Let's revisit our deck of cards from the previous chapter, but this time using dplyr functions:
-
+Let's look at a *mock* book dataset again, but this time using dplyr functions:
 
 ```{r}
-# Create the deck
-deck <- tibble(
-    suit = rep(c("Hearts", "Diamonds", "Clubs", "Spades"), each = 13),
-    rank = rep(c("Ace", 2:10, "Jack", "Queen", "King"), times = 4),
-    value = rep(1:13, times = 4)
+# Create the books dataset
+books <- tibble(
+  title = c("1984", "Pride and Prejudice", "The Great Gatsby", "To Kill a Mockingbird", "The Catcher in the Rye"),
+  author = c("Orwell", "Austen", "Fitzgerald", "Lee", "Salinger"),
+  year = c(1949, 1813, 1925, 1960, 1951),
+  genre = c("Dystopian", "Romance", "Modernist", "Coming-of-age", "Coming-of-age"),
+  pages = c(328, 432, 180, 281, 234)
 )
-# View the first few cards
-deck %>% head()
-# Find all face cards
-face_cards <- deck %>%
-    filter(rank %in% c("Jack", "Queen", "King"))
-# Calculate average value
-avg_value <- deck %>%
-    summarise(mean_value = mean(value))
-# Add color column
-deck <- deck %>%
-    mutate(color = if_else(suit %in% c("Hearts", "Diamonds"), "Red", "Black"))
+
+# View the books
+books
 ```
+
+
+::: {.callout-tip}
+## Tibbles vs. Data Frames
+You might notice we used `tibble()` instead of `data.frame()`. Tibbles are modern data frames that are part of the tidyverse. They have some advantages over traditional data frames:
+
+1. They have a cleaner print method
+2. They don't change column types
+3. They don't create row names
+4. They warn you when a column doesn't exist
+
+For most purpose you can use them interchangeably with data frames, but the Tidyverse version is often easier and more inuitive to use and we would recommend using Tidyverse versions over Base R versions. 
+
+Below are more examples of Tidyverse alternaties to Base R (the built-in functions of R):
+
+- Reading data: `read_csv()` (Tidyverse) vs. `read.csv()` (Base R)
+- Filtering data: `filter()` (Tidyverse) vs. `subset()` (Base R)
+- Plotting: `ggplot()` (Tidyverse) vs. `plot()` (Base R)
+- Sorting: `arrange()` (Tidyverse) vs. `order()` or `sort()` (Base R)
+
+:::
+
+Now, let's explore some key dplyr functions:
+
+::: {.callout-note}
+## Core Functions in `dplyr`
+
+dplyr provides a set of powerful functions for manipulating data:
+
+1. `filter()`: Subset rows based on conditions. 
+   This function allows you to keep only the data rows that meet specific criteria, like selecting books published after a certain year.
+
+2. `select()`: Choose specific columns. 
+   Use this when you want to focus on particular variables in your dataset, similar to picking certain columns in a spreadsheet.
+
+3. `mutate()`: Add new variables or modify existing ones. 
+   This function lets you create new columns based on calculations from existing data, or change values in current columns.
+
+4. `arrange()`: Sort rows. 
+   When you need to order your data based on one or more variables, such as sorting books by publication date, use this function.
+
+5. `summarise()`: Compute summary statistics. 
+   This function is useful for calculating things like averages, totals, or counts across your entire dataset or within groups.
+
+6. `group_by()`: Group data for operations. 
+   Use this to divide your data into groups before applying other functions, allowing you to perform calculations within each group separately.
+
+7. `join()`: Combine data from multiple tables. 
+   When your data is split across different tables or datasets, this function helps you merge them together based on common variables.
+
+These functions are designed to work together, allowing you to perform complex data manipulations step by step. As you practice, you'll find yourself combining these functions to answer increasingly sophisticated questions about your data.
+
+#### Cheat Sheet {.unnumbered}
+
+For quick reference, here's a handy cheat sheet summarizing the key dplyr functions:
+
+[Dplyr Cheet Sheet](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf)
+
+Most tidyverse packages have corresponding cheat sheets. You can google the package name + cheat sheet to download them yourself. 
+
+:::
+
+## `filter()`: Subset Rows
+
+```{r}
+# Find all books published after 1900
+books %>% 
+filter(year > 1900)
+```
+
+
+::: {.callout-note}
+## The Pipe Operator `%>%`
+
+The `%>%` operator is called the "pipe" operator. It's a fundamental concept in the tidyverse that greatly enhances code readability and workflow. Here's how it works:
+
+1. Function chaining: The pipe takes the output of one function and passes it as the first argument to the next function. This allows us to chain multiple operations together in a logical sequence.
+
+2. Left-to-right reading: Instead of nesting functions within each other, which can be hard to read, the pipe allows us to read our code from left to right, much like we read English.
+
+3. Improved readability: By using the pipe, we can break down complex operations into a series of smaller, more manageable steps.
+
+For example, let's compare these two equivalent operations:
+
+Without pipe:
+
+```{r}
+filter(books, year > 1900)
+```
+
+With pipe:
+
+```{r}
+books %>% filter(year > 1900)
+```
+
+The piped version can be read as "Take the books data, then filter it to keep only books published after 1900".
+
+For more complex operations, the benefits become even clearer, which we will see in a moment.
+
+:::
+
+
+## `select()`: Choose Columns
+
+```{r}
+# Select only title and author columns
+books %>%
+select(title, author)
+```
+
+
+## `mutate()`: Add New Variables
+
+```{r}
+# Add a new column for the book's age
+books %>%
+mutate(age = 2024 - year)
+```
+
+
+## `arrange()`: Sort Rows
+
+```{r}
+# Sort books by year, oldest first
+books %>%
+arrange(year)
+```
+
+::: {.callout-tip}
+#### Comparing `arrange()` and `order()`
+In Tidyverse, we use `arrange()` to sort data frames, which is often more intuitive and easier to use with multiple columns. In Base R, you typically use `order()` within square brackets or `sort()` for vectors.
+  
+For example:
+
+Tidyverse: `data %>% arrange(column_name)`
+
+Base R: `data[order(data$column_name), ]`
+
+The Tidyverse method is more readable, especially when sorting by multiple columns or in descending order.
+
+:::
+
+## `summarise()`: Summarize Data
+
+```{r}
+# Calculate average number of pages
+books %>%
+summarise(avg_pages = mean(pages))
+```
+
+
+## `group_by()`: Group Data for Operations
+
+```{r}
+# Average pages by genre
+books %>%
+group_by(genre) %>%
+summarise(avg_pages = mean(pages))
+```
+
+
+## Chaining Multiple Actions 
+
+One of the key advantages of Tidyverse is the ability to chain multiple actions together using the pipe operator (`%>%`). Let's compare how we can perform a series of data manipulations using both Tidyverse and Base R.
+
+Let's say we want to:
+1. Filter books published after 1900
+2. Select only the title, author, and year columns
+3. Sort the results by year
+4. Get the first 3 entries
+
+### Tidyverse Approach
+
+```{r}
+books %>%
+filter(year > 1900) %>%
+select(title, author, year) %>%
+arrange(year) %>%
+head(3)
+```
+
+
+In this Tidyverse approach, we can read the code from left to right, following the logical flow of operations. Each step is clearly defined, and the pipe operator (`%>%`) passes the result of each operation to the next.
+
+### Base R Approach
+
+```{r}
+# Filter books published after 1900
+filtered_books <- books[books$year > 1900, ]
+# Select only title, author, and year columns
+selected_books <- filtered_books[, c("title", "author", "year")]
+# Sort by year
+sorted_books <- selected_books[order(selected_books$year), ]
+# Get the first 3 entries
+result <- head(sorted_books, 3)
+# View the result
+result
+```
+
+
+In the Base R approach, we need to create intermediate variables at each step. The code reads from top to bottom, with each line representing a separate operation.
+
+## Learning Check 🏁
+
+<div id="quiz-dplyr"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "Which dplyr function would you use to select specific columns from a dataset?",
+      options: [
+        "filter()",
+        "select()",
+        "mutate()",
+        "arrange()"
+      ]
+    },
+    {
+      text: "If you want to create a new column based on existing data, which function should you use?",
+      options: [
+        "summarise()",
+        "group_by()",
+        "mutate()",
+        "filter()"
+      ]
+    },
+    {
+      text: "Which function allows you to perform operations on grouped data?",
+      options: [
+        "arrange()",
+        "select()",
+        "filter()",
+        "group_by()"
+      ]
+    },
+    {
+      text: "To sort a dataset based on one or more variables, which dplyr function would you use?",
+      options: [
+        "arrange()",
+        "sort()",
+        "order()",
+        "filter()"
+      ]
+    }
+  ],
+  answers: [1, 2, 3, 0]
+}, "quiz-dplyr");
+</script>
+
 
 
 ## Hands-On Coding 💻
 
-Try the following:
+Try the following exercises:
 
-1. Use `filter()` to find all the Aces in the deck.
-2. Use `arrange()` to sort the deck by suit, then by value.
-3. Use `group_by()` and `summarise()` to find the average value for each suit.
+1. Use `filter()` to find all books written by Austen or Orwell.
+2. Use `arrange()` to sort the books by number of pages, from longest to shortest.
+3. Use `mutate()` to add a new column called `words`, assuming an average of 250 words per page.
+4. Use `group_by()` and `summarise()` to find the earliest publication year for each genre.
 
 <div id="hidden-content1" style="display: none;">
 
 ```{r}
-# Find all Aces
-aces <- deck %>%
-    filter(rank == "Ace")
-# Sort deck
-sorted_deck <- deck %>%
-    arrange(suit, value)
-# Average value by suit
-avg_by_suit <- deck %>%
-    group_by(suit) %>%
-    summarise(avg_value = mean(value))
+# 1. Books by Austen or Orwell
+books %>%
+filter(author %in% c("Austen", "Orwell"))
+
+# 2. Sort by pages, longest to shortest
+books %>%
+arrange(desc(pages))
+
+# 3. Add words column
+books %>%
+mutate(words = pages*250)
+
+# 4. Earliest publication year by genre
+books %>%
+group_by(genre) %>%
+summarise(earliest_year = min(year))
 ```
 
 
@@ -127,91 +419,211 @@ createToggleSection('button1', 'hidden-content1');
 
 # Data Visualization with ggplot2 📊
 
-Now, let's visualize our deck using ggplot2:
+ggplot2 is a powerful package for creating beautiful and informative visualizations, especially useful for exploring data. 
+
+
+## Expand the Books Dataset
+
+Let's expand the books dataset to include some more variables for visualization purposes:
+
 
 ```{r}
-ggplot(deck, aes(x = suit, fill = color)) +
-    geom_bar() +
-    labs(title = "Distribution of Cards by Suit",
-    x = "Suit",
-    y = "Count")+
-    theme_minimal()
+novels <- books %>%
+  mutate(
+    words = pages*250, # Estimating word count based on pages
+    characters = c(30, 25, 15, 20, 10), # Number of named characters (estimated)
+    rating = c(4.2, 4.5, 4.0, 4.3, 4.1), # Modern reader ratings (out of 5)
+    male_chars = c(20, 10, 10, 12, 7), # Number of male characters (estimated)
+    female_chars = c(10, 15, 5, 8, 3) # Number of female characters (estimated)
+  )
+# View the dataset
+novels
 ```
+
+
+This dataset gives us a rich set of variables to explore, including publication year, word count, genre, character gender representation, and modern reader ratings.
+
+
+## 1. The Basic Structure of a ggplot
+
+Every ggplot2 plot starts with the `ggplot()` function and uses `+` to add layers. The basic structure is:
+
+```{r eval=FALSE}
+ggplot(data = <DATA>) +
+<GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
+
+
+Let's create a simple scatter plot of publication year vs. word count:
+
+```{r}
+ggplot(data = novels) +
+geom_point(mapping = aes(x = year, y = words))
+```
+
+
+
+::: {.callout-note}
+## Key Concepts
+- `ggplot(data = novels)`: Initializes the plot with our dataset
+- `geom_point()`: Adds a layer of points (for a scatter plot)
+- `aes(x = year, y = words)`: Maps variables to aesthetic properties (here, x and y positions)
+:::
+
+## 2. Aesthetic Mappings
+
+Aesthetics are visual properties of the objects in your plot. Common aesthetics include:
+- x and y positions
+- color
+- size
+- shape
+
+Let's map the rating to the color of the points:
+
+```{r}
+ggplot(data = novels) +
+geom_point(mapping = aes(x = year, y = words, color = rating))
+```
+
+
+
+## 3. Adding Labels with labs()
+
+We can improve our plot by adding informative labels:
+
+
+```{r}
+ggplot(data = novels) +
+geom_point(mapping = aes(x = year, y = words, color = rating)) +
+labs(title = "Classic Novels: Publication Year vs. Word Count",
+     x = "Year of Publication",
+     y = "Number of Words",
+     color = "Rating")
+```
+
+
+
+## 4. Geometric Objects (geoms)
+
+Different geom functions create different types of plots. Let's create a bar plot of character counts:
+
+
+```{r}
+ggplot(data = novels) +
+geom_col(mapping = aes(x = title, y = characters)) +
+theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+
+::: {.callout-note}
+## Common geoms
+- `geom_point()`: Scatter plots
+- `geom_line()`: Line graphs
+- `geom_col()` or `geom_bar()`: Bar charts
+- `geom_boxplot()`: Box plots
+:::
+
 
 
 ## Learning Check 🏁
 
-<div id="quiz2"></div>
+<div id="quiz-ggplot"></div>
 
 <script>
 createQuiz({
   questions: [
     {
-      text: "Which function is used to create a new variable in dplyr?",
+      text: "Which function is used to initialize a ggplot?",
       options: [
-        "filter()",
-        "mutate()",
-        "summarise()",
-        "arrange()"
+        "geom_point()",
+        "ggplot()",
+        "aes()",
+        "labs()"
       ]
     },
     {
-      text: "What does the %>% operator do in tidyverse?",
+      text: "What does 'aes()' stand for in ggplot2?",
       options: [
-        "Multiplies values",
-        "Pipes the output of one function to the input of another",
-        "Creates a new data frame",
-        "Filters data"
+        "Aesthetic mappings",
+        "Axis settings",
+        "Advanced elements",
+        "Automated editing system"
+      ]
+    },
+    {
+      text: "Which geom function would you use to create a scatter plot?",
+      options: [
+        "geom_bar()",
+        "geom_line()",
+        "geom_point()",
+        "geom_boxplot()"
+      ]
+    },
+    {
+      text: "Which function is used to add labels to a ggplot?",
+      options: [
+        "add_labels()",
+        "title()",
+        "labs()",
+        "text()"
       ]
     }
   ],
-  answers: [1, 1]
-}, "quiz2");
+  answers: [1, 0, 2, 2]
+}, "quiz-ggplot");
 </script>
+
 
 # Building a Simple Slot Machine 🎰
 
-Let's use our tidyverse skills to create a simple virtual slot machine!
+Now, let's use our tidyverse skills to create a simple virtual slot machine!
 
 ```{r}
 library(tidyverse)
 # Define slot machine symbols
 symbols <- c("🍒", "🍋", "🍊", "🍇", "🔔", "💎")
+
 # Function to play the slot machine
 play_slot_machine <- function(n_plays = 10) {
-    tibble(
-        play = 1:n_plays,
-        symbol1 = sample(symbols, n_plays, replace = TRUE),
-        symbol2 = sample(symbols, n_plays, replace = TRUE),
-        symbol3 = sample(symbols, n_plays, replace = TRUE)
-    ) %>%
-    mutate(
-        win = symbol1 == symbol2 & symbol2 == symbol3,
-        result = if_else(win, "💰", "😢")
-    )
+  tibble(
+    play = 1:n_plays,
+    symbol1 = sample(symbols, n_plays, replace = TRUE),
+    symbol2 = sample(symbols, n_plays, replace = TRUE),
+    symbol3 = sample(symbols, n_plays, replace = TRUE)
+  ) %>%
+  mutate(
+    win = symbol1 == symbol2 & symbol2 == symbol3,
+    result = if_else(win, "💰", "😢")
+  )
 }
+
 # Simulate 20 plays
 results <- play_slot_machine(20)
-# Display results
+
+#Display results
 print(results)
+
 # Summarize wins
 summary <- results %>%
-    summarise(
+  summarise(
     total_plays = n(),
     wins = sum(win),
     win_percentage = mean(win)*100
-    )
+  )
 print(summary)
-#Visualize results
+
+# Visualize results
 ggplot(results, aes(x = result, fill = result)) +
-    geom_bar() +
-    labs(title = "Slot Machine Results", x = "Outcome", y = "Count") +
-    theme_minimal() +
-    scale_fill_manual(
-        values = c("💰" = "green", "😢" = "red"),
-        labels = c("💰" = "Win", "😢" = "Lose")
-    ) +
-    guides(fill = guide_legend(title = "Result"))
+geom_bar() +
+labs(title = "Slot Machine Results", x = "Outcome", y = "Count") +
+theme_minimal() +
+scale_fill_manual(
+  values = c("💰" = "green", "😢" = "red"),
+  labels = c("💰" = "Win", "😢" = "Lose")
+) +
+guides(fill = guide_legend(title = "Result"))
+
 ```
 
 
@@ -225,43 +637,88 @@ This simplified slot machine simulation demonstrates several key tidyverse conce
 
 ## Hands-On Coding 💻
 
-Let's explore our slot machine simulation with some simple exercises:
+Let's explore our slot machine simulation with some exercises:
 
-1. Count how many times each symbol appears in the first reel (symbol1) after 100 spins.
-
-2. Calculate the percentage of wins in 100 spins.
+1. Modify the `play_slot_machine()` function to include a `bet` amount for each play.
+2. Calculate the total winnings (assume a win pays 3 times the bet).
+3. Visualize the distribution of symbols in all plays.
 
 <div id="hidden-content2" style="display: none;">
 
 ```{r}
-# Simulate 100 spins
-set.seed(123) # For reproducibility
+# Modified play_slot_machine function
+play_slot_machine <- function(n_plays = 10, min_bet = 1, max_bet = 10) {
+  tibble(
+    play = 1:n_plays,
+    bet = sample(min_bet:max_bet, n_plays, replace = TRUE),
+    symbol1 = sample(symbols, n_plays, replace = TRUE),
+    symbol2 = sample(symbols, n_plays, replace = TRUE),
+    symbol3 = sample(symbols, n_plays, replace = TRUE)
+  ) %>%
+  mutate(
+    win = symbol1 == symbol2 & symbol2 == symbol3,
+    result = if_else(win, "💰", "😢"),
+    winnings = if_else(win, bet*3, 0)
+  )
+}
+# Simulate 100 plays
 results <- play_slot_machine(100)
+# Calculate total winnings
+total_winnings <- results %>%
+summarise(
+total_bet = sum(bet),
+total_won = sum(winnings),
+net_profit = total_won - total_bet
+)
+print(total_winnings)
+# Visualize symbol distribution
+results %>%
+  pivot_longer(cols = starts_with("symbol"), names_to = "reel", values_to = "symbol") %>%
+  ggplot(aes(x = symbol, fill = symbol)) +
+  geom_bar() +
+  facet_wrap(~reel) +
+  labs(title = "Distribution of Symbols", x = "Symbol", y = "Count") +
+  theme_minimal()
 
-# 1. Count symbols in the first reel
-symbol_counts <- results %>%
-    count(symbol1, name = "frequency") %>%
-    arrange(desc(frequency))
-
-print("Symbol counts in the first reel:")
-print(symbol_counts)
-
-# 2. Calculate win percentage
-win_percentage <- results %>%
-    summarise(win_percent = mean(win)*100) %>%
-    pull(win_percent)
-print(paste("Win percentage:", round(win_percentage, 2), "%"))
 ```
+
 
 </div>
 
+<script>
+createToggleSection('button2', 'hidden-content2');
+</script>
+
 # Conclusion
 
-In this chapter, we've introduced the tidyverse and applied its powerful functions to manipulate and visualize data. We've built on our previous knowledge of dice and cards to create a virtual slot machine, demonstrating how tidyverse can be used for more complex data operations and analysis.
+::: {.callout-note}
+## Key Takeaways
+In this chapter, we've covered:
 
-These skills will be invaluable as you continue your journey in data analysis and visualization with R. In the next chapter, we'll explore more advanced tidyverse functions and apply them to real-world datasets in digital humanities!
+- The basics of tidyverse and its core packages
+- Data manipulation with dplyr functions
+- Data visualization with ggplot2
+- Applied tidyverse concepts to analyze our books dataset
+- Built a virtual slot machine using tidyverse functions
+:::
+
+These skills form an essential foundation for working with data in R using the tidyverse. As we progress in our digital humanities journey, we'll build upon these concepts to perform more complex data manipulations and analyses.
+
+::: {.topic-flow}
+::: {.topic-box .highlight-blue}
+Tidyverse Basics
+:::
+::: {.topic-box .highlight-green}
+Data Manipulation
+:::
+::: {.topic-box .highlight-yellow}
+Data Visualization
+:::
+::: {.topic-box .highlight-pink}
+Practical Application
+:::
+:::
 
 <iframe src="float_traffic.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;" scrolling="no"></iframe>
-
 
 <iframe src="float_dash.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;" scrolling="no"></iframe>
