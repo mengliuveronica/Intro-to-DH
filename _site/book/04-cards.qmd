@@ -1,5 +1,5 @@
 ---
-title: "§4 Dealing with Cards 🃏"
+title: "§4 Dealing With Cards 🃏"
 subtitle: "R Objects and Data Frames"
 format:
   html:
