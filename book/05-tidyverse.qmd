@@ -365,7 +365,7 @@ createQuiz({
       ]
     },
     {
-      text: "To sort a dataset based on one or more variables, which dplyr function would you use?",
+      text: "To sort a dataset based on one or more variables, which `dplyr` function would you use?",
       options: [
         "arrange()",
         "sort()",
@@ -389,33 +389,164 @@ Try the following exercises:
 3. Use `mutate()` to add a new column called `words`, assuming an average of 250 words per page.
 4. Use `group_by()` and `summarise()` to find the earliest publication year for each genre.
 
-<div id="hidden-content1" style="display: none;">
+### Exercise 1: Filter books by Austen or Orwell
 
-```{r}
-# 1. Books by Austen or Orwell
-books %>%
-filter(author %in% c("Austen", "Orwell"))
+<div id="hint1-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use the `%in%` operator within `filter()` to check if the author is in a vector of names.
+:::
+</div>
 
-# 2. Sort by pages, longest to shortest
-books %>%
-arrange(desc(pages))
+<script>
+createProgressiveHints('hint1', 1);
+</script>
 
-# 3. Add words column
-books %>%
-mutate(words = pages*250)
+<div id="template1" style="display: none;">
 
-# 4. Earliest publication year by genre
+```{r, eval=FALSE}
 books %>%
-group_by(genre) %>%
-summarise(earliest_year = min(year))
+  filter(author _ c("Austen", "Orwell"))
 ```
-
 
 </div>
 
 <script>
-createToggleSection('button1', 'hidden-content1');
+createToggleSection('template-button1', 'template1', 'Show Template');
 </script>
+
+<div id="solution1" style="display: none;">
+
+```{r}
+books %>%
+  filter(author %in% c("Austen", "Orwell"))
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button1', 'solution1');
+</script>
+
+### Exercise 2: Sort books by pages, longest to shortest
+
+<div id="hint2-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use `arrange()` with `desc()` to sort in descending order.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint2', 1);
+</script>
+
+<div id="template2" style="display: none;">
+
+```{r, eval=FALSE}
+books %>%
+  arrange(_(_))
+```
+
+</div>
+
+<script>
+createToggleSection('template-button2', 'template2', 'Show Template');
+</script>
+
+<div id="solution2" style="display: none;">
+
+```{r}
+books %>%
+  arrange(desc(pages))
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button2', 'solution2');
+</script>
+
+### Exercise 3: Add words column
+
+<div id="hint3-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use `mutate()` to create a new column. Multiply the 'pages' column by 250.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint3', 1);
+</script>
+
+<div id="template3" style="display: none;">
+
+```{r, eval=FALSE}
+books %>%
+  mutate(words = _ * _)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button3', 'template3', 'Show Template');
+</script>
+
+<div id="solution3" style="display: none;">
+
+```{r}
+books %>%
+  mutate(words = pages * 250)
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button3', 'solution3');
+</script>
+
+### Exercise 4: Find earliest publication year by genre
+
+<div id="hint4-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use `group_by()` followed by `summarise()`. Within `summarise()`, use `min()` to find the earliest year.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint4', 1);
+</script>
+
+<div id="template4" style="display: none;">
+
+```{r, eval=FALSE}
+books %>%
+  group_by(_) %>%
+  summarise(earliest_year = _(_))
+```
+
+</div>
+
+<script>
+createToggleSection('template-button4', 'template4', 'Show Template');
+</script>
+
+<div id="solution4" style="display: none;">
+
+```{r}
+books %>%
+  group_by(genre) %>%
+  summarise(earliest_year = min(year))
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button4', 'solution4');
+</script>
+
 
 # Data Visualization with ggplot2 📊
 
@@ -450,15 +581,15 @@ Every ggplot2 plot starts with the `ggplot()` function and uses `+` to add layer
 
 ```{r eval=FALSE}
 ggplot(data = <DATA>) +
-<GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+GEOM_FUNCTION(mapping = aes(<MAPPINGS>))
 ```
 
 
-Let's create a simple scatter plot of publication year vs. word count:
+Let's create a simple scatter plot of publication year vs. word count (thousands):
 
 ```{r}
 ggplot(data = novels) +
-geom_point(mapping = aes(x = year, y = words))
+geom_point(mapping = aes(x = year, y = words / 1000))
 ```
 
 
@@ -485,6 +616,13 @@ ggplot(data = novels) +
 geom_point(mapping = aes(x = year, y = words, color = rating))
 ```
 
+Alternatively, we can also use the size of the points to indicate the rating:
+
+```{r}
+ggplot(data = novels) +
+geom_point(mapping = aes(x = year, y = words, size = rating))
+```
+
 
 
 ## 3. Adding Labels with labs()
@@ -494,11 +632,11 @@ We can improve our plot by adding informative labels:
 
 ```{r}
 ggplot(data = novels) +
-geom_point(mapping = aes(x = year, y = words, color = rating)) +
+geom_point(mapping = aes(x = year, y = words/1000, size = rating)) +
 labs(title = "Classic Novels: Publication Year vs. Word Count",
      x = "Year of Publication",
-     y = "Number of Words",
-     color = "Rating")
+     y = "Number of Words (thousands)",
+     size = "Rating")
 ```
 
 
@@ -524,7 +662,18 @@ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 - `geom_boxplot()`: Box plots
 :::
 
+::: {.callout-tip}
+## R Graph Gallery: Inspiration for Your Visualizations
 
+For more inspiration and examples of what's possible with ggplot2, check out the [R Graph Gallery](https://r-graph-gallery.com/). This fantastic resource offers:
+
+- A wide variety of chart types and styles
+- Reproducible code for each graph
+- Explanations and use cases for different visualizations
+- Advanced techniques and customizations
+
+Exploring the R Graph Gallery can help you discover new ways to visualize your data and improve your ggplot2 skills!
+:::
 
 ## Learning Check 🏁
 
@@ -577,10 +726,34 @@ createQuiz({
 
 # Building a Simple Slot Machine 🎰
 
-Now, let's use our tidyverse skills to create a simple virtual slot machine!
+Now, let's use our tidyverse skills to create and analyze a simple virtual slot machine! 
+
+::: {.callout-tip}
+## What is a slot machine and how does it work
+
+A slot machine is a game you might see in a casino. Here's how it works:
+
+1. **Look**: It usually has three or more spinning wheels with pictures on them.
+
+2. **Symbols**: In our game, we use fruit (🍒, 🍋, 🍊, 🍇) and other symbols (🔔, 💎).
+
+3. **How to play**: You press a button to make the wheels spin.
+
+4. **Winning**: You win if the pictures line up in a certain way when the wheels stop. For example, you win if all three symbols are the same (e.g., 🍋🍋🍋).
+
+5. **Random**: Each spin is random - you can't predict what will come up. But in real casinos, not all outcomes have the same chance. Casinos set the odds to make sure they make money over time.
+
+Slot machines are often used to teach math and probability. In our case, we're using it to learn about data analysis. It's a fun way to practice with numbers and see patterns. 
+
+In real life, it's wise to stay away from slot machines. The odds are set so that *the casino always wins* in the long run. Our virtual slot machine lets us explore data without any risk!
+:::
+
+First, let's create our slot machine. The code has been provided for you. Take a moment to read through the script below and see if you can understand what each part does. Don't worry if you don't understand everything - we'll break it down together afterwards.
+
 
 ```{r}
 library(tidyverse)
+
 # Define slot machine symbols
 symbols <- c("🍒", "🍋", "🍊", "🍇", "🔔", "💎")
 
@@ -598,98 +771,301 @@ play_slot_machine <- function(n_plays = 10) {
   )
 }
 
-# Simulate 20 plays
-results <- play_slot_machine(20)
+# Simulate 100 plays
+results <- play_slot_machine(100)
 
-#Display results
-print(results)
-
-# Summarize wins
-summary <- results %>%
-  summarise(
-    total_plays = n(),
-    wins = sum(win),
-    win_percentage = mean(win)*100
-  )
-print(summary)
-
-# Visualize results
-ggplot(results, aes(x = result, fill = result)) +
-geom_bar() +
-labs(title = "Slot Machine Results", x = "Outcome", y = "Count") +
-theme_minimal() +
-scale_fill_manual(
-  values = c("💰" = "green", "😢" = "red"),
-  labels = c("💰" = "Win", "😢" = "Lose")
-) +
-guides(fill = guide_legend(title = "Result"))
-
+# Display the first few results
+head(results)
 ```
 
 
-This simplified slot machine simulation demonstrates several key tidyverse concepts:
+After you've had a chance to examine the code, click "Show Solution" below to see a detailed, line-by-line explanation of what's happening in this script.
 
-1. Using `tibble()` to create a data frame
-2. Utilizing `sample()` for random selection
-3. Employing `mutate()` to add new columns based on conditions
-4. Using `summarise()` to calculate summary statistics
-5. Visualizing results with `ggplot2`
+<div id="solution-slot" style="display: none;">
 
-## Hands-On Coding 💻
+Here's a detailed breakdown of our slot machine script:
 
-Let's explore our slot machine simulation with some exercises:
-
-1. Modify the `play_slot_machine()` function to include a `bet` amount for each play.
-2. Calculate the total winnings (assume a win pays 3 times the bet).
-3. Visualize the distribution of symbols in all plays.
-
-<div id="hidden-content2" style="display: none;">
 
 ```{r}
-# Modified play_slot_machine function
-play_slot_machine <- function(n_plays = 10, min_bet = 1, max_bet = 10) {
+# Define a function called play_slot_machine
+# It takes one argument, n_plays, with a default value of 10
+play_slot_machine <- function(n_plays = 10) {
+  # Create a tibble (a modern version of a data frame) with our results
   tibble(
+    # Create a column 'play' with numbers from 1 to n_plays
     play = 1:n_plays,
-    bet = sample(min_bet:max_bet, n_plays, replace = TRUE),
+    # Create three columns (symbol1, symbol2, symbol3) with random symbols
+    # sample() picks random elements from symbols, n_plays times, with replacement
     symbol1 = sample(symbols, n_plays, replace = TRUE),
     symbol2 = sample(symbols, n_plays, replace = TRUE),
     symbol3 = sample(symbols, n_plays, replace = TRUE)
   ) %>%
+  # Use mutate to add two new columns based on our existing data
   mutate(
+    # 'win' is TRUE if all three symbols are the same, FALSE otherwise
     win = symbol1 == symbol2 & symbol2 == symbol3,
-    result = if_else(win, "💰", "😢"),
-    winnings = if_else(win, bet*3, 0)
+    # 'result' shows 💰 for a win, 😢 for a loss
+    result = if_else(win, "💰", "😢")
   )
 }
-# Simulate 100 plays
-results <- play_slot_machine(100)
-# Calculate total winnings
-total_winnings <- results %>%
-summarise(
-total_bet = sum(bet),
-total_won = sum(winnings),
-net_profit = total_won - total_bet
-)
-print(total_winnings)
-# Visualize symbol distribution
-results %>%
-  pivot_longer(cols = starts_with("symbol"), names_to = "reel", values_to = "symbol") %>%
-  ggplot(aes(x = symbol, fill = symbol)) +
-  geom_bar() +
-  facet_wrap(~reel) +
-  labs(title = "Distribution of Symbols", x = "Symbol", y = "Count") +
-  theme_minimal()
 
+# Use our function to simulate 100 plays of the slot machine
+# The results are stored in the 'results' variable
+results <- play_slot_machine(100)
+
+# Display the first few rows of our results
+# This helps us quickly check that our function is working as expected
+head(results)
+
+```
+
+
+
+
+This script demonstrates several key concepts:
+
+1. Using tidyverse functions like `tibble()` and `mutate()`
+2. Creating a custom function in R
+3. Using `sample()` for random selection
+4. Logical operations and conditional statements in R
+5. The pipe operator `%>%` for chaining operations
+
+By understanding this script, you're getting a great introduction to data manipulation with tidyverse!
+
+</div>
+
+<script>
+createToggleSection('solution-button-slot', 'solution-slot');
+</script>
+
+Now that we understand how our slot machine works, let's move on to analyzing its results!
+
+
+## Hands-On Coding 💻
+
+Let's explore our slot machine results with some exercises. Remember to use tidyverse functions like `filter()`, `summarise()`, `group_by()`, and `ggplot()`.
+
+### Exercise 1: Summarize the Results
+
+Calculate the total number of plays, number of wins, and the win percentage.
+
+<div id="hint-slot1-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use `summarise()` with `n()`, `sum()` functions.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint-slot1', 1);
+</script>
+
+<div id="template-slot1" style="display: none;">
+
+```{r eval=FALSE}
+results %>%
+  summarise(
+    total_plays = _(),
+    wins = _(win),
+    win_percentage = wins/ _ *100
+)
+
+results %>%summarise(n())
 ```
 
 
 </div>
 
 <script>
-createToggleSection('button2', 'hidden-content2');
+createToggleSection('template-button-slot1', 'template-slot1', 'Show Template');
 </script>
 
-# Conclusion
+<div id="solution-slot1" style="display: none;">
+
+```{r}
+results %>%
+  summarise(
+    total_plays = n(),
+    wins = sum(win),
+    win_percentage = wins / total_plays * 100
+  )
+```
+
+
+::: {.callout-tip}
+## `n()` vs. `nrow()`
+
+1. n() is a dplyr function:
+
+- It's designed to work seamlessly within dplyr verbs like summarise(), mutate(), and filter().
+
+- It's particularly useful when working with grouped data.
+
+2. nrow() is a base R function:
+
+- It works on data frames and matrices, but not directly within dplyr pipelines.
+
+- It doesn't automatically respect grouping in dplyr operations.
+
+3. Behavior with grouped data:
+
+- n() will give you the count for each group when used with group_by().
+
+- nrow() will always return the total number of rows in the entire data frame.
+
+4. Syntax in dplyr operations:
+
+- n() can be used directly: summarise(count = n())
+
+- nrow() typically needs to be wrapped: summarise(count = nrow(.))
+
+5. Performance:
+- n() is optimized for dplyr operations and can be faster in some cases.
+
+:::
+
+</div>
+
+<script>
+createToggleSection('solution-button-slot1', 'solution-slot1');
+</script>
+
+### Exercise 2: Find Winning Combinations
+
+Create a new data frame showing only the winning plays and their symbol combinations.
+
+<div id="hint-slot2-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use `filter()` to select winning plays, then `select()` to choose the columns you want to display.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint-slot2', 1);
+</script>
+
+<div id="template-slot2" style="display: none;">
+
+```{r eval=FALSE}
+winning_plays <- results %>%
+  filter(_ == TRUE) %>%
+  select(play, symbol1, symbol2, symbol3)
+
+print(winning_plays)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button-slot2', 'template-slot2', 'Show Template');
+</script>
+
+<div id="solution-slot2" style="display: none;">
+
+```{r}
+winning_plays <- results %>%
+  filter(win == TRUE) %>%
+  select(play, symbol1, symbol2, symbol3)
+print(winning_plays)
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button-slot2', 'solution-slot2');
+</script>
+
+### Exercise 3: Visualize Symbol Distribution
+
+Create a bar plot showing the distribution of symbols in the first reel (symbol1 column).
+
+Emojis often can't be rendered directly in plots. While there are packages like `emojifont` or `ggtext` that can handle emoji rendering, for simplicity, we'll use a text representation of the symbols.
+
+```{r}
+results <- results %>%
+  mutate(symbol1_text = case_when(
+    symbol1 == "🍒" ~ "Cherry",
+    symbol1 == "🍋" ~ "Lemon",
+    symbol1 == "🍊" ~ "Orange",
+    symbol1 == "🍇" ~ "Grapes",
+    symbol1 == "🔔" ~ "Bell",
+    symbol1 == "💎" ~ "Diamond"
+  ))
+```
+
+<div id="hint-slot3-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint 1/2
+Use `ggplot()` with `geom_bar()` to create a bar chart of symbol1.
+:::
+</div>
+
+<div id="hint-slot3-2" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint 2/2
+In `aes()`, map symbol1 to both x and fill for a colored bar chart.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint-slot3', 2);
+</script>
+
+<div id="template-slot3" style="display: none;">
+
+```{r, eval=FALSE}
+ggplot(results, aes(x = _, fill = _)) +
+  geom_bar() +
+  labs(title = "Distribution of Symbols in First Reel", x = "Symbol", y = "Count") +
+  theme_minimal()
+```
+
+</div>
+
+<script>
+createToggleSection('template-button-slot3', 'template-slot3', 'Show Template');
+</script>
+
+<div id="solution-slot3" style="display: none;">
+
+### A Simple Plot {.unnumbered}
+```{r}
+ggplot(results, aes(x = symbol1_text, fill = symbol1_text)) +
+  geom_bar() +
+  labs(title = "Distribution of Symbols in First Reel", x = "Symbol", y = "Count") 
+```
+
+### A Customized Plot {.unnumbered}
+A strength of `ggplot2` is that it allows various cutomizations of the plot. Below is an example where we manually set the fill colors of the bar plot. You can also check out packages such as `RColorBrewer` for presets of color pallettes. `ggplot2` also has preset themes that you can use to immediately give the plot a cleaner or more professional look (e.g., the `theme_minimal()` used in the following example).
+
+```{r}
+# Define a custom color palette
+symbol_colors <- c(
+  "Cherry" = "#D2042D",  # Red
+  "Lemon" = "#FFF700",   # Yellow
+  "Orange" = "#FFA500",  # Orange
+  "Grapes" = "#6F2DA8",  # Purple
+  "Bell" = "#FFD700",    # Gold
+  "Diamond" = "#B9F2FF"  # Light Blue
+)
+
+ggplot(results, aes(x = symbol1_text, fill = symbol1_text)) +
+  geom_bar() +
+  scale_fill_manual(values = symbol_colors) +
+  labs(title = "Distribution of Symbols in First Reel", x = "Symbol", y = "Count") +
+  theme_minimal() +
+  theme(legend.position = "none")  # Remove legend as it's redundant
+```
+
+
+</div>
+
+<script>
+createToggleSection('solution-button-slot3', 'solution-slot3');
+</script>
+
+Congratulations! You've now practiced using various tidyverse functions to analyze and visualize data from our virtual slot machine. These skills are fundamental in data manipulation and analysis, which are crucial in many digital humanities projects.
 
 ::: {.callout-note}
 ## Key Takeaways
