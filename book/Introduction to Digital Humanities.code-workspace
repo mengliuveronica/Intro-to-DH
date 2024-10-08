@@ -7,5 +7,7 @@
 			"path": "../../../Downloads/hopr-master"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Introduction to Digital Humanities"
+	}
 }

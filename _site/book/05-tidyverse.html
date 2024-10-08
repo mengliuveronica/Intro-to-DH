@@ -1222,12 +1222,12 @@ What is a slot machine and how does it work
 <pre><code># A tibble: 6 × 6
    play symbol1 symbol2 symbol3 win   result
   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt; 
-1     1 🔔      💎      🔔      FALSE 😢    
-2     2 🍇      🍋      🍇      FALSE 😢    
-3     3 🍋      💎      🔔      FALSE 😢    
-4     4 🍊      🍒      🔔      FALSE 😢    
-5     5 🍊      🍇      🔔      FALSE 😢    
-6     6 🍇      🍊      💎      FALSE 😢    </code></pre>
+1     1 🍊      🔔      🍇      FALSE 😢    
+2     2 🍒      🔔      🍒      FALSE 😢    
+3     3 🔔      🍇      🍊      FALSE 😢    
+4     4 🍒      🍋      💎      FALSE 😢    
+5     5 🍇      🍋      🍒      FALSE 😢    
+6     6 🔔      🍇      🍋      FALSE 😢    </code></pre>
 </div>
 </div>
 <p>After you’ve had a chance to examine the code, click “Show Solution” below to see a detailed, line-by-line explanation of what’s happening in this script.</p>
@@ -1267,12 +1267,12 @@ What is a slot machine and how does it work
 <pre><code># A tibble: 6 × 6
    play symbol1 symbol2 symbol3 win   result
   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt; 
-1     1 🍇      💎      🍋      FALSE 😢    
-2     2 🔔      🔔      🔔      TRUE  💰    
-3     3 🍒      🍋      🍋      FALSE 😢    
-4     4 💎      🍊      🍒      FALSE 😢    
-5     5 🍒      🔔      🔔      FALSE 😢    
-6     6 🍇      🍋      🍒      FALSE 😢    </code></pre>
+1     1 💎      💎      🍋      FALSE 😢    
+2     2 🍇      💎      💎      FALSE 😢    
+3     3 🍒      🍇      🍋      FALSE 😢    
+4     4 🍇      💎      🔔      FALSE 😢    
+5     5 💎      🍇      🍋      FALSE 😢    
+6     6 🍇      🍇      🍇      TRUE  💰    </code></pre>
 </div>
 </div>
 <p>This script demonstrates several key concepts:</p>
@@ -1308,7 +1308,7 @@ Hint
 </div>
 <div id="callout-16" class="callout-16-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>Use <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> with <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>, and <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> functions.</p>
+<p>Use <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> with <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>, <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> functions.</p>
 </div>
 </div>
 </div>
@@ -1322,7 +1322,9 @@ createProgressiveHints('hint-slot1', 1);
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_plays =</span> <span class="fu">_</span>(),</span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wins =</span> <span class="fu">_</span>(win),</span>
 <span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">win_percentage =</span> wins<span class="sc">/</span> _ <span class="sc">*</span><span class="dv">100</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>results <span class="sc">%&gt;%</span><span class="fu">summarise</span>(<span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <script>
@@ -1333,13 +1335,62 @@ createToggleSection('template-button-slot1', 'template-slot1', 'Show Template');
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
 <span>    total_plays <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    wins <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">win</span><span class="op">)</span>,</span>
-<span>    win_percentage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">win</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span></span>
+<span>    win_percentage <span class="op">=</span> <span class="va">wins</span> <span class="op">/</span> <span class="va">total_plays</span> <span class="op">*</span> <span class="fl">100</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   total_plays  wins win_percentage
         &lt;int&gt; &lt;int&gt;          &lt;dbl&gt;
-1         100     3              3</code></pre>
+1         100     6              6</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> vs.&nbsp;<code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>n() is a dplyr function:</li>
+</ol>
+<ul>
+<li><p>It’s designed to work seamlessly within dplyr verbs like summarise(), mutate(), and filter().</p></li>
+<li><p>It’s particularly useful when working with grouped data.</p></li>
+</ul>
+<ol start="2" type="1">
+<li>nrow() is a base R function:</li>
+</ol>
+<ul>
+<li><p>It works on data frames and matrices, but not directly within dplyr pipelines.</p></li>
+<li><p>It doesn’t automatically respect grouping in dplyr operations.</p></li>
+</ul>
+<ol start="3" type="1">
+<li>Behavior with grouped data:</li>
+</ol>
+<ul>
+<li><p>n() will give you the count for each group when used with group_by().</p></li>
+<li><p>nrow() will always return the total number of rows in the entire data frame.</p></li>
+</ul>
+<ol start="4" type="1">
+<li>Syntax in dplyr operations:</li>
+</ol>
+<ul>
+<li><p>n() can be used directly: summarise(count = n())</p></li>
+<li><p>nrow() typically needs to be wrapped: summarise(count = nrow(.))</p></li>
+</ul>
+<ol start="5" type="1">
+<li>Performance:</li>
+</ol>
+<ul>
+<li>n() is optimized for dplyr operations and can be faster in some cases.</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1350,7 +1401,7 @@ createToggleSection('solution-button-slot1', 'solution-slot1');
 <p>Create a new data frame showing only the winning plays and their symbol combinations.</p>
 <div id="hint-slot2-1" style="display: none;">
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1359,7 +1410,7 @@ Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>Use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to select winning plays, then <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> to choose the columns you want to display.</p>
 </div>
@@ -1386,12 +1437,15 @@ createToggleSection('template-button-slot2', 'template-slot2', 'Show Template');
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">play</span>, <span class="va">symbol1</span>, <span class="va">symbol2</span>, <span class="va">symbol3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">winning_plays</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 4
+<pre><code># A tibble: 6 × 4
    play symbol1 symbol2 symbol3
   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
-1     2 🔔      🔔      🔔     
-2    14 🍒      🍒      🍒     
-3    98 🍇      🍇      🍇     </code></pre>
+1     6 🍇      🍇      🍇     
+2    13 🍋      🍋      🍋     
+3    61 🍇      🍇      🍇     
+4    67 💎      💎      💎     
+5    88 🍇      🍇      🍇     
+6    92 🔔      🔔      🔔     </code></pre>
 </div>
 </div>
 </div>
@@ -1400,9 +1454,21 @@ createToggleSection('solution-button-slot2', 'solution-slot2');
 </script></section><section id="exercise-3-visualize-symbol-distribution" class="level3" data-number="4.1.3"><h3 data-number="4.1.3" class="anchored" data-anchor-id="exercise-3-visualize-symbol-distribution">
 <span class="header-section-number">4.1.3</span> Exercise 3: Visualize Symbol Distribution</h3>
 <p>Create a bar plot showing the distribution of symbols in the first reel (symbol1 column).</p>
+<p>Emojis often can’t be rendered directly in plots. While there are packages like <code>emojifont</code> or <code>ggtext</code> that can handle emoji rendering, for simplicity, we’ll use a text representation of the symbols.</p>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>symbol1_text <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">symbol1</span> <span class="op">==</span> <span class="st">"🍒"</span> <span class="op">~</span> <span class="st">"Cherry"</span>,</span>
+<span>    <span class="va">symbol1</span> <span class="op">==</span> <span class="st">"🍋"</span> <span class="op">~</span> <span class="st">"Lemon"</span>,</span>
+<span>    <span class="va">symbol1</span> <span class="op">==</span> <span class="st">"🍊"</span> <span class="op">~</span> <span class="st">"Orange"</span>,</span>
+<span>    <span class="va">symbol1</span> <span class="op">==</span> <span class="st">"🍇"</span> <span class="op">~</span> <span class="st">"Grapes"</span>,</span>
+<span>    <span class="va">symbol1</span> <span class="op">==</span> <span class="st">"🔔"</span> <span class="op">~</span> <span class="st">"Bell"</span>,</span>
+<span>    <span class="va">symbol1</span> <span class="op">==</span> <span class="st">"💎"</span> <span class="op">~</span> <span class="st">"Diamond"</span></span>
+<span>  <span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div id="hint-slot3-1" style="display: none;">
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1411,7 +1477,7 @@ Hint 1/2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>Use <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> with <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> to create a bar chart of symbol1.</p>
 </div>
@@ -1420,7 +1486,7 @@ Hint 1/2
 </div>
 <div id="hint-slot3-2" style="display: none;">
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1429,7 +1495,7 @@ Hint 2/2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>In <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>, map symbol1 to both x and fill for a colored bar chart.</p>
 </div>
@@ -1440,33 +1506,59 @@ Hint 2/2
 createProgressiveHints('hint-slot3', 2);
 </script><div id="template-slot3" style="display: none;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> _, <span class="at">fill =</span> _)) <span class="sc">+</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Symbols in First Reel"</span>, <span class="at">x =</span> <span class="st">"Symbol"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> _, <span class="at">fill =</span> _)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Symbols in First Reel"</span>, <span class="at">x =</span> <span class="st">"Symbol"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <script>
 createToggleSection('template-button-slot3', 'template-slot3', 'Show Template');
-</script><div id="solution-slot3" style="display: none;">
+</script></section><div id="solution-slot3" style="display: none;">
+<section id="a-simple-plot" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="a-simple-plot">A Simple Plot</h3>
 <div class="cell">
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">results</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">symbol1</span>, fill <span class="op">=</span> <span class="va">symbol1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">results</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">symbol1_text</span>, fill <span class="op">=</span> <span class="va">symbol1_text</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of Symbols in First Reel"</span>, x <span class="op">=</span> <span class="st">"Symbol"</span>, y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of Symbols in First Reel"</span>, x <span class="op">=</span> <span class="st">"Symbol"</span>, y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+</section><section id="a-customized-plot" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="a-customized-plot">A Customized Plot</h3>
+<p>A strength of <code>ggplot2</code> is that it allows various cutomizations of the plot. Below is an example where we manually set the fill colors of the bar plot. You can also check out packages such as <code>RColorBrewer</code> for presets of color pallettes. <code>ggplot2</code> also has preset themes that you can use to immediately give the plot a cleaner or more professional look (e.g., the <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> used in the following example).</p>
+<div class="cell">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define a custom color palette</span></span>
+<span><span class="va">symbol_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Cherry"</span> <span class="op">=</span> <span class="st">"#D2042D"</span>,  <span class="co"># Red</span></span>
+<span>  <span class="st">"Lemon"</span> <span class="op">=</span> <span class="st">"#FFF700"</span>,   <span class="co"># Yellow</span></span>
+<span>  <span class="st">"Orange"</span> <span class="op">=</span> <span class="st">"#FFA500"</span>,  <span class="co"># Orange</span></span>
+<span>  <span class="st">"Grapes"</span> <span class="op">=</span> <span class="st">"#6F2DA8"</span>,  <span class="co"># Purple</span></span>
+<span>  <span class="st">"Bell"</span> <span class="op">=</span> <span class="st">"#FFD700"</span>,    <span class="co"># Gold</span></span>
+<span>  <span class="st">"Diamond"</span> <span class="op">=</span> <span class="st">"#B9F2FF"</span>  <span class="co"># Light Blue</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">results</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">symbol1_text</span>, fill <span class="op">=</span> <span class="va">symbol1_text</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">symbol_colors</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Distribution of Symbols in First Reel"</span>, x <span class="op">=</span> <span class="st">"Symbol"</span>, y <span class="op">=</span> <span class="st">"Count"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>  <span class="co"># Remove legend as it's redundant</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="05-tidyverse_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </div>
 <script>
 createToggleSection('solution-button-slot3', 'solution-slot3');
 </script><p>Congratulations! You’ve now practiced using various tidyverse functions to analyze and visualize data from our virtual slot machine. These skills are fundamental in data manipulation and analysis, which are crucial in many digital humanities projects.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1475,7 +1567,7 @@ Key Takeaways
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>In this chapter, we’ve covered:</p>
 <ul>
@@ -1509,7 +1601,7 @@ Key Takeaways
 </iframe>
 
 
-</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
