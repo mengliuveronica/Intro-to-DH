@@ -1017,8 +1017,7 @@ createProgressiveHints('hint-slot3', 2);
 ```{r, eval=FALSE}
 ggplot(results, aes(x = _, fill = _)) +
   geom_bar() +
-  labs(title = "Distribution of Symbols in First Reel", x = "Symbol", y = "Count") +
-  theme_minimal()
+  labs(title = "Distribution of Symbols in First Reel", x = "Symbol", y = "Count") 
 ```
 
 </div>

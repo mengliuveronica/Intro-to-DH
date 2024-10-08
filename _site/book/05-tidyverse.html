@@ -1222,12 +1222,12 @@ What is a slot machine and how does it work
 <pre><code># A tibble: 6 × 6
    play symbol1 symbol2 symbol3 win   result
   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt; 
-1     1 🍊      🍒      🍊      FALSE 😢    
-2     2 🔔      🍊      💎      FALSE 😢    
-3     3 🍒      💎      🍊      FALSE 😢    
-4     4 🍇      🍒      🍋      FALSE 😢    
-5     5 🍋      🍊      🍒      FALSE 😢    
-6     6 🍊      🍒      💎      FALSE 😢    </code></pre>
+1     1 🔔      💎      🔔      FALSE 😢    
+2     2 🍇      🍋      🍇      FALSE 😢    
+3     3 🍋      💎      🔔      FALSE 😢    
+4     4 🍊      🍒      🔔      FALSE 😢    
+5     5 🍊      🍇      🔔      FALSE 😢    
+6     6 🍇      🍊      💎      FALSE 😢    </code></pre>
 </div>
 </div>
 <p>After you’ve had a chance to examine the code, click “Show Solution” below to see a detailed, line-by-line explanation of what’s happening in this script.</p>
@@ -1267,12 +1267,12 @@ What is a slot machine and how does it work
 <pre><code># A tibble: 6 × 6
    play symbol1 symbol2 symbol3 win   result
   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt; 
-1     1 🍊      💎      🔔      FALSE 😢    
-2     2 🍒      🔔      🍇      FALSE 😢    
-3     3 🍋      🍇      🍒      FALSE 😢    
-4     4 🔔      💎      🍋      FALSE 😢    
-5     5 🍒      🍒      🍇      FALSE 😢    
-6     6 🔔      🍊      🔔      FALSE 😢    </code></pre>
+1     1 🍇      💎      🍋      FALSE 😢    
+2     2 🔔      🔔      🔔      TRUE  💰    
+3     3 🍒      🍋      🍋      FALSE 😢    
+4     4 💎      🍊      🍒      FALSE 😢    
+5     5 🍒      🔔      🔔      FALSE 😢    
+6     6 🍇      🍋      🍒      FALSE 😢    </code></pre>
 </div>
 </div>
 <p>This script demonstrates several key concepts:</p>
@@ -1389,9 +1389,9 @@ createToggleSection('template-button-slot2', 'template-slot2', 'Show Template');
 <pre><code># A tibble: 3 × 4
    play symbol1 symbol2 symbol3
   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
-1     7 🍊      🍊      🍊     
-2    30 🍒      🍒      🍒     
-3    69 🍒      🍒      🍒     </code></pre>
+1     2 🔔      🔔      🔔     
+2    14 🍒      🍒      🍒     
+3    98 🍇      🍇      🍇     </code></pre>
 </div>
 </div>
 </div>
