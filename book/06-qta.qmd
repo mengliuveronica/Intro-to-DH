@@ -150,12 +150,14 @@ Now, let's explore how computers "read" and prepare texts for analysis. This pro
 Text preprocessing is the crucial first step in quantitative text analysis. It involves cleaning and standardizing raw text data to make it suitable for computational analysis.
 
 **Why is it important?**
+
 - Improves data quality and consistency
 - Reduces noise and irrelevant information
 - Enhances the accuracy of subsequent analyses
 - Makes text data more manageable for computational processing
 
 **Fundamental considerations:**
+
 1. **Purpose**: The preprocessing steps you choose should align with your research questions and analysis goals.
 2. **Language**: Different languages may require specific preprocessing techniques.
 3. **Domain**: The nature of your texts (e.g., literary, social media, historical) may influence preprocessing decisions.
