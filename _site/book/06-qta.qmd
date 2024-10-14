@@ -92,7 +92,7 @@ Alternatively, you can also download it directly here:
 
 [Download Pride and Prejudice dataset](data/pride_and_prejudice.csv)
 
-You can load the data with the following command:
+You can create a folder named "data" in save the csv file in your working directorya and load the data with the following command:
 
 ```{r}
 pride_and_prejudice <- read_csv("data/pride_and_prejudice.csv")

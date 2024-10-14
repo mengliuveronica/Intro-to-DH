@@ -433,7 +433,7 @@
     "href": "book/06-qta.html#install-package-manager-pacman",
     "title": "§6 Quantitative Text Analysis Basics 📊",
     "section": "\n2.1 Install Package Manager pacman\n",
-    "text": "2.1 Install Package Manager pacman\n\nBefore we begin our text analysis, let’s introduce a helpful tool for managing R packages: pacman. The pacman package is a convenient package management tool for R that simplifies the process of loading and installing multiple packages.\nKey features of pacman:\n\nIt combines the functionality of install.packages() and library() into a single function p_load().\nIt automatically installs packages if they’re not already installed.\nIt can load multiple packages with a single line of code.\n\nLet’s install and load pacman:\n\nif (!require(\"pacman\")) install.packages(\"pacman\")\n\nLoading required package: pacman\n\nlibrary(pacman)\n\nNow we can use p_load() to efficiently load (and install if necessary) the packages we’ll need for our text analysis:\n\np_load(janeaustenr, tidyverse)\n\nThis single line will ensure all the packages we need are installed and loaded, streamlining our setup process.\n\npride_and_prejudice &lt;- austen_books() %&gt;%\n  filter(book == \"Pride & Prejudice\")\n\npride_and_prejudice\n\nAlternatively, if you have trouble downloading the data with R, you can download it here:For this chapter, we’ll use Jane Austen’s “Pride and Prejudice” to demonstrate text analysis techniques. You can download the dataset we’ll be using here:\nDownload Pride and Prejudice dataset\nYou can load the data with the following command:\n\npride_and_prejudice &lt;- read_csv(\"data/pride_and_prejudice.csv\")\n\nRows: 13030 Columns: 2\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (2): text, book\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\npride_and_prejudice\n\n# A tibble: 13,030 × 2\n   text                                                                    book \n   &lt;chr&gt;                                                                   &lt;chr&gt;\n 1 PRIDE AND PREJUDICE                                                     Prid…\n 2 &lt;NA&gt;                                                                    Prid…\n 3 By Jane Austen                                                          Prid…\n 4 &lt;NA&gt;                                                                    Prid…\n 5 &lt;NA&gt;                                                                    Prid…\n 6 &lt;NA&gt;                                                                    Prid…\n 7 Chapter 1                                                               Prid…\n 8 &lt;NA&gt;                                                                    Prid…\n 9 &lt;NA&gt;                                                                    Prid…\n10 It is a truth universally acknowledged, that a single man in possession Prid…\n# ℹ 13,020 more rows\n\n\nThis gives us the full text of “Pride and Prejudice” in a tidy format, with one line per row.",
+    "text": "2.1 Install Package Manager pacman\n\nBefore we begin our text analysis, let’s introduce a helpful tool for managing R packages: pacman. The pacman package is a convenient package management tool for R that simplifies the process of loading and installing multiple packages.\nKey features of pacman:\n\nIt combines the functionality of install.packages() and library() into a single function p_load().\nIt automatically installs packages if they’re not already installed.\nIt can load multiple packages with a single line of code.\n\nLet’s install and load pacman:\n\nif (!require(\"pacman\")) install.packages(\"pacman\")\n\nLoading required package: pacman\n\nlibrary(pacman)\n\nNow we can use p_load() to efficiently load (and install if necessary) the packages we’ll need for our text analysis:\n\np_load(janeaustenr, tidyverse)\n\nThis single line will ensure all the packages we need are installed and loaded, streamlining our setup process.\nFor this chapter, we’ll use Jane Austen’s “Pride and Prejudice” to demonstrate text analysis techniques. To download the book dataset, run the following command:\n\npride_and_prejudice &lt;- austen_books() %&gt;%\n  filter(book == \"Pride & Prejudice\")\n\npride_and_prejudice\n\nAlternatively, you can also download it directly here:\nDownload Pride and Prejudice dataset\nYou can create a folder named “data” in save the csv file in your working directorya and load the data with the following command:\n\npride_and_prejudice &lt;- read_csv(\"data/pride_and_prejudice.csv\")\n\nRows: 13030 Columns: 2\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (2): text, book\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\npride_and_prejudice\n\n# A tibble: 13,030 × 2\n   text                                                                    book \n   &lt;chr&gt;                                                                   &lt;chr&gt;\n 1 PRIDE AND PREJUDICE                                                     Prid…\n 2 &lt;NA&gt;                                                                    Prid…\n 3 By Jane Austen                                                          Prid…\n 4 &lt;NA&gt;                                                                    Prid…\n 5 &lt;NA&gt;                                                                    Prid…\n 6 &lt;NA&gt;                                                                    Prid…\n 7 Chapter 1                                                               Prid…\n 8 &lt;NA&gt;                                                                    Prid…\n 9 &lt;NA&gt;                                                                    Prid…\n10 It is a truth universally acknowledged, that a single man in possession Prid…\n# ℹ 13,020 more rows\n\n\nThis gives us the full text of “Pride and Prejudice” in a tidy format, with one line per row.",
     "crumbs": [
       "Book",
       "§6 Quantitative Text Analysis Basics 📊"
@@ -444,7 +444,7 @@
     "href": "book/06-qta.html#lowercasing",
     "title": "§6 Quantitative Text Analysis Basics 📊",
     "section": "\n3.1 1. Lowercasing",
-    "text": "3.1 1. Lowercasing\n[Explanation and example of lowercasing]",
+    "text": "3.1 1. Lowercasing\nLowercasing converts all text to lowercase, which helps standardize the text and ensures that words like “The” and “the” are treated as the same word.\n\n# Lowercasing\nlowercased_text &lt;- pride_and_prejudice %&gt;%\n  mutate(text = tolower(text))\n\n# Display a few rows to see the effect\nlowercased_text %&gt;%\n  slice_head(n = 5) %&gt;%\n  select(text)\n\n# A tibble: 5 × 1\n  text               \n  &lt;chr&gt;              \n1 pride and prejudice\n2 &lt;NA&gt;               \n3 by jane austen     \n4 &lt;NA&gt;               \n5 &lt;NA&gt;",
     "crumbs": [
       "Book",
       "§6 Quantitative Text Analysis Basics 📊"
@@ -455,95 +455,18 @@
     "href": "book/06-qta.html#removing-punctuation",
     "title": "§6 Quantitative Text Analysis Basics 📊",
     "section": "\n3.2 2. Removing Punctuation",
-    "text": "3.2 2. Removing Punctuation\n[Explanation and example of punctuation removal]",
+    "text": "3.2 2. Removing Punctuation\nRemoving punctuation can help in word-based analyses by separating words that might be connected by punctuation.\n\n# Removing punctuation\nno_punctuation &lt;- pride_and_prejudice %&gt;%\n  mutate(text = str_replace_all(text, \"[[:punct:]]\", \"\"))\n\n# Display a few rows to see the effect\nno_punctuation %&gt;%\n  slice_head(n = 20) %&gt;%\n  select(text)\n\n# A tibble: 20 × 1\n   text                                                                   \n   &lt;chr&gt;                                                                  \n 1 PRIDE AND PREJUDICE                                                    \n 2 &lt;NA&gt;                                                                   \n 3 By Jane Austen                                                         \n 4 &lt;NA&gt;                                                                   \n 5 &lt;NA&gt;                                                                   \n 6 &lt;NA&gt;                                                                   \n 7 Chapter 1                                                              \n 8 &lt;NA&gt;                                                                   \n 9 &lt;NA&gt;                                                                   \n10 It is a truth universally acknowledged that a single man in possession \n11 of a good fortune must be in want of a wife                            \n12 &lt;NA&gt;                                                                   \n13 However little known the feelings or views of such a man may be on his \n14 first entering a neighbourhood this truth is so well fixed in the minds\n15 of the surrounding families that he is considered the rightful property\n16 of some one or other of their daughters                                \n17 &lt;NA&gt;                                                                   \n18 My dear Mr Bennet said his lady to him one day have you heard that     \n19 Netherfield Park is let at last                                        \n20 &lt;NA&gt;                                                                   \n\n\n\n\n\n\n\n\nstr_replace_all and regex\n\n\n\n\n\nstr_replace_all() is a function from the stringr package (part of the tidyverse) that replaces all occurrences of a pattern in a string with another string. Common functions that are useful for working with text are:\n\nDetecting text: str_detect(), str_count()\n\nExtracting text: str_extract(), str_extract_all()\n\nReplacing text: str_replace(), str_replace_all()\n\nRemoving text: str_remove(), str_remove_all()\n\n\nRegex (regular expressions) are powerful tools for pattern matching in strings. Here’s a breakdown of the regex used in our example:\n\n\n\"[[:punct:]]\": This pattern matches any punctuation character.\n\n\n[] defines a character set\n\n[:punct:] is a POSIX character class representing all punctuation\n\n\n\n\"\\\\d+\": This pattern matches one or more digits.\n\n\n\\\\d represents any digit (equivalent to [0-9])\n\n+ means “one or more” of the preceding element\n\n\n\n\"[^[:alnum:][:space:]]\": This pattern matches any character that is not alphanumeric or whitespace.\n\n\n^ inside [] means “not”\n\n[:alnum:] matches any alphanumeric character\n\n[:space:] matches any whitespace character\n\n\n\nUsing these patterns with str_replace_all(), we can effectively clean our text by removing punctuation, numbers, and special characters.\nExample:\n\nstr_replace_all(\"Hello, world! 123\", \"[[:punct:]]\", \"\")\n\n[1] \"Hello world 123\"\n\nstr_replace_all(\"Hello, world! 123\", \"\\\\d+\", \"\")\n\n[1] \"Hello, world! \"\n\nstr_replace_all(\"Hello, world! 123 @#$\", \"[^[:alnum:][:space:]]\", \"\")\n\n[1] \"Hello world 123 \"\n\n# Example of str_trim()\nstr_trim(\"  Hello, world!  \")\n\n[1] \"Hello, world!\"\n\n# Example of str_squish()\nstr_squish(\"Hello,   world!  How   are  you?\")\n\n[1] \"Hello, world! How are you?\"\n\n# Combining str_trim() and str_squish()\nstr_squish(str_trim(\"  Hello,   world!  How   are  you?  \"))\n\n[1] \"Hello, world! How are you?\"\n\n# Example of removing special characters\nstr_replace_all(\"Hello, world! 123 @#$ ñ € ß\", \"[^[:alnum:][:space:]]\", \"\")\n\n[1] \"Hello world 123  ñ  ß\"\n\n\nYou can check out this blogpost for a good variety of examples of how to use regular expressions to prepare text for analysis. Remember, the choice of regex patterns depends on your specific text cleaning needs.\n\n\n\nThese preprocessing steps can be combined for a more comprehensive text cleaning:\n\n# Combining all preprocessing steps\nfully_preprocessed &lt;- pride_and_prejudice %&gt;%\n  mutate(\n    text = tolower(text),\n    text = str_replace_all(text, \"[[:punct:]]\", \"\"),\n    text = str_replace_all(text, \"\\\\d+\", \"\"),\n    text = str_trim(text),\n    text = str_squish(text),\n    text = str_replace_all(text, \"[^[:alnum:][:space:]]\", \"\")\n  )\n\n# Display a few rows to see the combined effect\nfully_preprocessed %&gt;%\n  slice_head(n = 20) %&gt;%\n  select(text)\n\n# A tibble: 20 × 1\n   text                                                                   \n   &lt;chr&gt;                                                                  \n 1 pride and prejudice                                                    \n 2 &lt;NA&gt;                                                                   \n 3 by jane austen                                                         \n 4 &lt;NA&gt;                                                                   \n 5 &lt;NA&gt;                                                                   \n 6 &lt;NA&gt;                                                                   \n 7 chapter                                                                \n 8 &lt;NA&gt;                                                                   \n 9 &lt;NA&gt;                                                                   \n10 it is a truth universally acknowledged that a single man in possession \n11 of a good fortune must be in want of a wife                            \n12 &lt;NA&gt;                                                                   \n13 however little known the feelings or views of such a man may be on his \n14 first entering a neighbourhood this truth is so well fixed in the minds\n15 of the surrounding families that he is considered the rightful property\n16 of some one or other of their daughters                                \n17 &lt;NA&gt;                                                                   \n18 my dear mr bennet said his lady to him one day have you heard that     \n19 netherfield park is let at last                                        \n20 &lt;NA&gt;                                                                   \n\n\nEach of these preprocessing steps serves a specific purpose in preparing the text for analysis. The choice of which steps to apply depends on the specific goals of your analysis and the nature of your text data.\n\n\n\n\n\n\nUnderstanding the Implications of Preprocessing\n\n\n\n\n\nIt’s crucial to carefully consider and document each preprocessing step you apply to your text data. These decisions can significantly impact your analysis results:\n\n\nInformation Loss: Some preprocessing steps (like removing punctuation or lowercasing) can remove potentially important information.\n\nAnalysis Bias: Certain preprocessing choices might inadvertently introduce bias into your analysis.\n\nInterpretability: Your preprocessing decisions affect how you can interpret your results later.\n\nReproducibility: Documenting your preprocessing steps is essential for others to reproduce or build upon your work.\n\nDomain Specificity: The appropriate preprocessing steps can vary depending on your field of study and the specific texts you’re analyzing.\n\nAlways think critically about why you’re applying each preprocessing step and how it might affect your analysis outcomes. When in doubt, it’s often helpful to try multiple preprocessing approaches and compare the results.",
     "crumbs": [
       "Book",
       "§6 Quantitative Text Analysis Basics 📊"
     ]
   },
   {
-    "objectID": "book/06-qta.html#removing-numbers",
-    "href": "book/06-qta.html#removing-numbers",
+    "objectID": "book/06-qta.html#learning-check",
+    "href": "book/06-qta.html#learning-check",
     "title": "§6 Quantitative Text Analysis Basics 📊",
-    "section": "\n3.3 3. Removing Numbers",
-    "text": "3.3 3. Removing Numbers\n[Explanation and example of number removal]",
-    "crumbs": [
-      "Book",
-      "§6 Quantitative Text Analysis Basics 📊"
-    ]
-  },
-  {
-    "objectID": "book/06-qta.html#removing-whitespace",
-    "href": "book/06-qta.html#removing-whitespace",
-    "title": "§6 Quantitative Text Analysis Basics 📊",
-    "section": "\n3.4 4. Removing Whitespace",
-    "text": "3.4 4. Removing Whitespace\n[Explanation and example of whitespace removal]",
-    "crumbs": [
-      "Book",
-      "§6 Quantitative Text Analysis Basics 📊"
-    ]
-  },
-  {
-    "objectID": "book/06-qta.html#removing-special-characters",
-    "href": "book/06-qta.html#removing-special-characters",
-    "title": "§6 Quantitative Text Analysis Basics 📊",
-    "section": "\n3.5 5. Removing Special Characters",
-    "text": "3.5 5. Removing Special Characters\n[Explanation and example of special character removal]",
-    "crumbs": [
-      "Book",
-      "§6 Quantitative Text Analysis Basics 📊"
-    ]
-  },
-  {
-    "objectID": "book/06-qta.html#tokenization",
-    "href": "book/06-qta.html#tokenization",
-    "title": "§6 Quantitative Text Analysis Basics 📊",
-    "section": "\n4.1 1. Tokenization",
-    "text": "4.1 1. Tokenization\n[Explanation of tokenization with word and sentence examples]",
-    "crumbs": [
-      "Book",
-      "§6 Quantitative Text Analysis Basics 📊"
-    ]
-  },
-  {
-    "objectID": "book/06-qta.html#stopword-removal",
-    "href": "book/06-qta.html#stopword-removal",
-    "title": "§6 Quantitative Text Analysis Basics 📊",
-    "section": "\n4.2 2. Stopword Removal",
-    "text": "4.2 2. Stopword Removal\n[Explanation of stopwords and their removal]",
-    "crumbs": [
-      "Book",
-      "§6 Quantitative Text Analysis Basics 📊"
-    ]
-  },
-  {
-    "objectID": "book/06-qta.html#word-frequency-analysis",
-    "href": "book/06-qta.html#word-frequency-analysis",
-    "title": "§6 Quantitative Text Analysis Basics 📊",
-    "section": "\n4.3 3. Word Frequency Analysis",
-    "text": "4.3 3. Word Frequency Analysis\n[Introduction to word frequency analysis with examples]",
-    "crumbs": [
-      "Book",
-      "§6 Quantitative Text Analysis Basics 📊"
-    ]
-  },
-  {
-    "objectID": "book/06-qta.html#word-clouds",
-    "href": "book/06-qta.html#word-clouds",
-    "title": "§6 Quantitative Text Analysis Basics 📊",
-    "section": "\n5.1 1. Word Clouds",
-    "text": "5.1 1. Word Clouds\n[Introduction to word clouds with an example using our novel dataset]",
-    "crumbs": [
-      "Book",
-      "§6 Quantitative Text Analysis Basics 📊"
-    ]
-  },
-  {
-    "objectID": "book/06-qta.html#bar-charts-of-word-frequency",
-    "href": "book/06-qta.html#bar-charts-of-word-frequency",
-    "title": "§6 Quantitative Text Analysis Basics 📊",
-    "section": "\n5.2 2. Bar Charts of Word Frequency",
-    "text": "5.2 2. Bar Charts of Word Frequency\n[Creating a simple bar chart of most frequent words]",
+    "section": "\n3.3 Learning Check 🏁",
+    "text": "3.3 Learning Check 🏁",
     "crumbs": [
       "Book",
       "§6 Quantitative Text Analysis Basics 📊"
