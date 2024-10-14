@@ -188,6 +188,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">§5 Spinning the Reels 🎰</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../book/06-qta.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">§6 Quantitative Text Analysis Basics 📊</span></a>
+  </div>
+</li>
     </ul>
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
@@ -1222,12 +1228,12 @@ What is a slot machine and how does it work
 <pre><code># A tibble: 6 × 6
    play symbol1 symbol2 symbol3 win   result
   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt; 
-1     1 🍊      🔔      🍇      FALSE 😢    
-2     2 🍒      🔔      🍒      FALSE 😢    
-3     3 🔔      🍇      🍊      FALSE 😢    
-4     4 🍒      🍋      💎      FALSE 😢    
-5     5 🍇      🍋      🍒      FALSE 😢    
-6     6 🔔      🍇      🍋      FALSE 😢    </code></pre>
+1     1 🔔      🍋      🔔      FALSE 😢    
+2     2 🔔      🔔      🔔      TRUE  💰    
+3     3 💎      🍒      🍊      FALSE 😢    
+4     4 🍊      🍊      🍊      TRUE  💰    
+5     5 🍒      🍋      🍇      FALSE 😢    
+6     6 🔔      🍇      💎      FALSE 😢    </code></pre>
 </div>
 </div>
 <p>After you’ve had a chance to examine the code, click “Show Solution” below to see a detailed, line-by-line explanation of what’s happening in this script.</p>
@@ -1267,12 +1273,12 @@ What is a slot machine and how does it work
 <pre><code># A tibble: 6 × 6
    play symbol1 symbol2 symbol3 win   result
   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt; 
-1     1 💎      💎      🍋      FALSE 😢    
-2     2 🍇      💎      💎      FALSE 😢    
-3     3 🍒      🍇      🍋      FALSE 😢    
-4     4 🍇      💎      🔔      FALSE 😢    
-5     5 💎      🍇      🍋      FALSE 😢    
-6     6 🍇      🍇      🍇      TRUE  💰    </code></pre>
+1     1 🍊      🍊      🍋      FALSE 😢    
+2     2 🍇      🍋      🍇      FALSE 😢    
+3     3 🍒      🍇      🔔      FALSE 😢    
+4     4 🍒      🔔      🍊      FALSE 😢    
+5     5 🔔      🍋      🍒      FALSE 😢    
+6     6 🍊      🔔      🍋      FALSE 😢    </code></pre>
 </div>
 </div>
 <p>This script demonstrates several key concepts:</p>
@@ -1341,7 +1347,7 @@ createToggleSection('template-button-slot1', 'template-slot1', 'Show Template');
 <pre><code># A tibble: 1 × 3
   total_plays  wins win_percentage
         &lt;int&gt; &lt;int&gt;          &lt;dbl&gt;
-1         100     6              6</code></pre>
+1         100     1              1</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1437,15 +1443,10 @@ createToggleSection('template-button-slot2', 'template-slot2', 'Show Template');
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">play</span>, <span class="va">symbol1</span>, <span class="va">symbol2</span>, <span class="va">symbol3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">winning_plays</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
+<pre><code># A tibble: 1 × 4
    play symbol1 symbol2 symbol3
   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
-1     6 🍇      🍇      🍇     
-2    13 🍋      🍋      🍋     
-3    61 🍇      🍇      🍇     
-4    67 💎      💎      💎     
-5    88 🍇      🍇      🍇     
-6    92 🔔      🔔      🔔     </code></pre>
+1    28 🍋      🍋      🍋     </code></pre>
 </div>
 </div>
 </div>

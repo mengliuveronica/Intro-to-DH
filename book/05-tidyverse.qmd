@@ -994,6 +994,7 @@ results <- results %>%
   ))
 ```
 
+
 <div id="hint-slot3-1" style="display: none;">
 ::: {.callout-tip collapse="false"}
 ## Hint 1/2

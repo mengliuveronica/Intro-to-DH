@@ -43,5 +43,8 @@
   },
   "book/05-tidyverse.qmd": {
     "05-tidyverse.html": "62244491"
+  },
+  "book/06-qta.qmd": {
+    "06-qta.html": "399d5028"
   }
 }

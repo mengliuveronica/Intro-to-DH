@@ -5,7 +5,12 @@
 		},
 		{
 			"path": "../../../Downloads/hopr-master"
+		},
+		{
+			"path": "../../../Downloads/refs"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Introduction to Digital Humanities"
+	}
 }

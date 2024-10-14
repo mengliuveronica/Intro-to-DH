@@ -1,0 +1,70 @@
+# Basic Text Analysis Concepts 🔤
+
+## 1. Tokenization
+
+[Explanation of tokenization with word and sentence examples]
+
+## 2. Stopword Removal
+
+[Explanation of stopwords and their removal]
+
+## 3. Word Frequency Analysis
+
+[Introduction to word frequency analysis with examples]
+
+# Visualizing Text Data 📊
+
+## 1. Word Clouds
+
+[Introduction to word clouds with an example using our novel dataset]
+
+## 2. Bar Charts of Word Frequency
+
+[Creating a simple bar chart of most frequent words]
+
+# Hands-On Coding 💻
+
+[A series of exercises for students to practice the concepts learned, similar to the slot machine exercises in the Tidyverse chapter]
+
+# Learning Check 🏁
+
+[A quiz to test understanding of the key concepts covered in the chapter]
+
+::: {.callout-note}
+## Key Takeaways
+[Summary of the main points covered in the chapter]
+:::
+
+::: {.topic-flow}
+[Visual representation of the chapter's flow, similar to the Tidyverse chapter]
+:::
+
+[Include the floating traffic and dashboard iframes as in the Tidyverse chapter]
+
+# Conclusion
+
+[Summary of key takeaways from the chapter]
+
+::: {.callout-note}
+## Key Takeaways
+- The importance of text preprocessing in quantitative text analysis
+- Techniques for analyzing word frequencies and relationships
+- Basic approaches to authorship attribution
+- The process of extracting and interpreting stylometric features
+- Limitations and ethical considerations in text analysis
+:::
+
+::: {.topic-flow}
+::: {.topic-box .highlight-blue}
+Text Preprocessing
+:::
+::: {.topic-box .highlight-green}
+Word Frequency Analysis
+:::
+::: {.topic-box .highlight-yellow}
+Stylometric Features
+:::
+::: {.topic-box .highlight-pink}
+Author Attribution
+:::
+:::

@@ -1,0 +1,38 @@
+1. Introduction to Text Analysis and Preprocessing
+   - Basic concepts: corpus, document, token
+   - Preprocessing techniques:
+     - Lowercasing, punctuation removal, tokenization
+     - Stopword removal, stemming/lemmatization
+   - Simple analysis:
+     - Word frequency, n-grams, word clouds
+   - Introduction to Bag of Words (basic word count)
+
+3. Sentiment Analysis
+   - Lexicon-based approaches:
+     - Using pre-built sentiment lexicons
+     - Creating custom lexicons
+   - Basic machine learning approaches:
+     - Using simple BoW for classification
+   - Applications:
+     - Analyzing sentiment in literary texts
+     - Tracking emotional arcs in narratives
+   - Limitations of simple approaches (segue to next chapter)
+
+2. Advanced Text Representation Methods
+   - Bag of Words (BoW) in depth:
+     - Document-term matrix
+     - TF-IDF
+   - Word and Document Embeddings:
+     - Word2Vec, GloVe
+     - Doc2Vec
+   - Revisiting sentiment analysis with advanced representations
+   - Applications:
+     - Document similarity
+     - Author style analysis
+     - Diachronic language analysis
+
+4. Topic Modeling
+   - Latent Dirichlet Allocation (LDA)
+   - Interpreting and visualizing topics
+   - Applications in humanities research
+   - Other topic modeling techniques and variations
