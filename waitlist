@@ -45,6 +45,13 @@
 
 [Summary of key takeaways from the chapter]
 
+
+
+
+
+
+
+
 ::: {.callout-note}
 ## Key Takeaways
 - The importance of text preprocessing in quantitative text analysis
@@ -68,3 +75,77 @@ Stylometric Features
 Author Attribution
 :::
 :::
+
+## Our Dataset: Pride and Prejudice 📚
+
+For this chapter, we'll use Jane Austen's "Pride and Prejudice" to demonstrate text analysis techniques. We'll access this novel using the `janeaustenr` package.
+
+For this chapter, we'll use Jane Austen's "Pride and Prejudice" to demonstrate text analysis techniques. To download the book dataset, run the following command:
+
+```{r eval=FALSE}
+
+pride_and_prejudice <- austen_books() %>%
+  filter(book == "Pride & Prejudice")
+
+pride_and_prejudice
+```
+
+Alternatively, you can also download it directly here:
+
+[Download Pride and Prejudice dataset](data/pride_and_prejudice.csv)
+
+You can create a folder named "data" in save the csv file in your working directorya and load the data with the following command:
+
+```{r}
+# Load required packages
+p_load(readr)
+
+# Now read the CSV file
+pride_and_prejudice <- read_csv("data/pride_and_prejudice.csv")
+
+pride_and_prejudice
+
+```
+
+This gives us the full text of "Pride and Prejudice" in a tidy format, with one line per row.
+
+
+Before we dive into the technical aspects of preparing text for analysis, let's take a moment to think about how we interact with text in our everyday lives.
+
+::: {.callout-tip}
+## Reflection
+
+Imagine you're reading a book and taking notes for a literature class. You might underline important passages, write summaries in the margins, or create a list of key themes.
+
+- What kinds of information do you focus on?
+- What do you tend to ignore or skim over?
+- How might your note-taking process change if you want to read hundreds of books instead of just one?
+
+Take a few minutes to jot down your thoughts or discuss with a classmate. These reflections can help us understand the choices we make when preparing texts for computational analysis.
+:::
+
+<div id="reflection-insights" style="display: none;">
+::: {.callout-note}
+## Reflection Insights
+
+When we read and take notes, we often:
+
+1. Focus on: main ideas, character development, plot points, themes, and notable quotes.
+2. Skim over: common words, detailed descriptions, or repetitive information.
+3. For analyzing many books: we might create more structured notes, use consistent categories across books, and focus on comparing and contrasting elements.
+
+These human reading strategies have parallels in computational text analysis:
+
+- Focusing on key information → Extracting features or topics
+- Skimming common words → Removing stopwords
+- Structured note-taking → Creating consistent data formats
+
+As we explore text preprocessing techniques, we'll see how these human reading strategies are adapted for computational analysis.
+:::
+</div>
+
+<script>
+createToggleSection('reflection-insights-button', 'reflection-insights', 'Show Insights');
+</script>
+
+Now, let's explore how computers "read" and prepare texts for analysis. This process, known as text preprocessing, is a crucial first step in quantitative text analysis.

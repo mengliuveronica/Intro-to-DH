@@ -16,6 +16,42 @@ execute:
   freeze: auto
 ---
 
+```{r setup, include=FALSE}
+# Load required packages
+library(here)
+library(readr)
+
+# Function to find the project root
+find_root <- function() {
+  if (file.exists("_quarto.yml")) {
+    return(".")
+  } else if (file.exists("../_quarto.yml")) {
+    return("..")
+  } else {
+    stop("Cannot find _quarto.yml in current or parent directory")
+  }
+}
+
+# Set the project root directory
+root <- find_root()
+here::i_am(file.path(root, "_quarto.yml"))
+
+# Print current working directory and project root for verification
+print(getwd())
+print(here())
+print(list.files(here()))
+
+# If we're in the 'book' subdirectory, set the working directory accordingly
+if (basename(getwd()) == "book") {
+  knitr::opts_knit$set(root.dir = here())
+} else {
+  knitr::opts_knit$set(root.dir = here("book"))
+}
+
+# Verify the contents of the current working directory
+print(list.files())
+```
+
 Welcome to the world of quantitative text analysis! In this chapter, we'll explore the fundamental concepts and techniques used to prepare text data for analysis. We'll use a collection of classic novels as our dataset to demonstrate these concepts.
 
 ::: {.callout-note}
@@ -48,14 +84,46 @@ In Digital Humanities, QTA offers powerful tools for exploring large text corpor
 
 QTA complements traditional close reading, offering Digital Humanities scholars new perspectives on cultural, historical, and literary phenomena.
 
+## QTA Workflow
 
-# Our Dataset: Pride and Prejudice 📚
+![](images/QTA%20workflow.png)
 
-For this chapter, we'll use Jane Austen's "Pride and Prejudice" to demonstrate text analysis techniques. We'll access this novel using the `janeaustenr` package.
+::: {.callout-note}
+## QTA Workflow
 
+The Quantitative Text Analysis (QTA) workflow illustrates the systematic process of analyzing textual data using computational methods. This workflow can be divided into two main stages: Preprocessing Steps and Quantitative Text Analysis.
+
+**Preprocessing Steps**:
+This initial stage is crucial for preparing raw text data for analysis. It involves several operations:
+
+- *Tidy Structure*: Organizing the data into a consistent, clean format. Tidy format refers to one observation/value per row. 
+- *Lowercase Conversion*: Transforming all text to lowercase for uniformity.
+- *Punctuation and/or Special Character Removal*: Eliminating punctuation marks and/or special characters that might interfere with analysis.
+- *Numbers Removal*: Deleting numerical digits if they're not relevant to the study.
+- *Tokenization*: Breaking down the text into individual units (usually words).
+- *Normalization*: Standardizing text to a more consistent form (e.g., handling special characters, expanding contractions).
+- *Stopwords Removal*: Eliminating common words that typically don't carry significant meaning.
+- *Stemming/Lemmatization*: Reducing words to their root form to group similar words together.
+
+[These steps are not always applied in a fixed order and may be selectively used depending on the specific requirements of the analysis.]{.highlight-blue} The output of this stage is processed text ready for analysis.
+
+**Quantitative Text Analysis**:
+
+This stage involves applying various analytical techniques to the preprocessed text. Some common methods include:
+
+- *Word Frequency Analysis*: Counting and analyzing the occurrence of words.
+- *N-gram Analysis*: Examining sequences of N words to understand context and phrases.
+- *Topic Modeling*: Discovering abstract topics that occur in a collection of documents.
+- *Sentiment Analysis*: Determining the emotional tone behind a body of text.
+- And more...
+
+This workflow emphasizes the importance of proper text preprocessing before conducting any advanced analysis. It provides a framework for researchers to follow, ensuring that their textual data is appropriately prepared and analyzed using quantitative methods. The diagram's structure, with its clear progression from preprocessing to analysis, highlights the sequential nature of the QTA process while also indicating the flexibility within each stage.
+:::
+
+:::{.callout-tip}
 ## Install Package Manager `pacman`
 
-Before we begin our text analysis, let's introduce a helpful tool for managing R packages: `pacman`. The `pacman` package is a convenient package management tool for R that simplifies the process of loading and installing multiple packages.
+We will be using some new packages that you probably haven't installed. To streamline the process of package installation, let's introduce a helpful tool for managing R packages: `pacman`. The `pacman` package is a convenient package management tool for R that simplifies the process of loading and installing multiple packages.
 
 Key features of `pacman`:
 
@@ -63,86 +131,26 @@ Key features of `pacman`:
 2. It automatically installs packages if they're not already installed.
 3. It can load multiple packages with a single line of code.
 
-Let's install and load `pacman`:
+Let's install `pacman`:
 
 ```{r}
 if (!require("pacman")) install.packages("pacman")
-library(pacman)
+
 ```
 
-Now we can use `p_load()` to efficiently load (and install if necessary) the packages we'll need for our text analysis:
+Once we load the `pacman` library, we can use `p_load()` to efficiently load (and install if necessary) the packages we'll need:
 
 ```{r}
-p_load(janeaustenr, tidyverse)
+library(pacman)
+p_load(tidyverse, tidytext)
 ```
 
 This single line will ensure all the packages we need are installed and loaded, streamlining our setup process.
+:::
 
-For this chapter, we'll use Jane Austen's "Pride and Prejudice" to demonstrate text analysis techniques. To download the book dataset, run the following command:
 
-```{r eval=FALSE}
-
-pride_and_prejudice <- austen_books() %>%
-  filter(book == "Pride & Prejudice")
-
-pride_and_prejudice
-```
-
-Alternatively, you can also download it directly here:
-
-[Download Pride and Prejudice dataset](data/pride_and_prejudice.csv)
-
-You can create a folder named "data" in save the csv file in your working directorya and load the data with the following command:
-
-```{r}
-pride_and_prejudice <- read_csv("data/pride_and_prejudice.csv")
-
-pride_and_prejudice
-```
-
-This gives us the full text of "Pride and Prejudice" in a tidy format, with one line per row.
 
 # Text Preprocessing Techniques 🧹
-
-Before we dive into the technical aspects of preparing text for analysis, let's take a moment to think about how we interact with text in our everyday lives.
-
-::: {.callout-tip}
-## Reflection
-
-Imagine you're reading a book and taking notes for a literature class. You might underline important passages, write summaries in the margins, or create a list of key themes.
-
-- What kinds of information do you focus on?
-- What do you tend to ignore or skim over?
-- How might your note-taking process change if you want to read hundreds of books instead of just one?
-
-Take a few minutes to jot down your thoughts or discuss with a classmate. These reflections can help us understand the choices we make when preparing texts for computational analysis.
-:::
-
-<div id="reflection-insights" style="display: none;">
-::: {.callout-note}
-## Reflection Insights
-
-When we read and take notes, we often:
-
-1. Focus on: main ideas, character development, plot points, themes, and notable quotes.
-2. Skim over: common words, detailed descriptions, or repetitive information.
-3. For analyzing many books: we might create more structured notes, use consistent categories across books, and focus on comparing and contrasting elements.
-
-These human reading strategies have parallels in computational text analysis:
-
-- Focusing on key information → Extracting features or topics
-- Skimming common words → Removing stopwords
-- Structured note-taking → Creating consistent data formats
-
-As we explore text preprocessing techniques, we'll see how these human reading strategies are adapted for computational analysis.
-:::
-</div>
-
-<script>
-createToggleSection('reflection-insights-button', 'reflection-insights', 'Show Insights');
-</script>
-
-Now, let's explore how computers "read" and prepare texts for analysis. This process, known as text preprocessing, is a crucial first step in quantitative text analysis.
 
 ::: {.callout-note}
 ## Understanding Text Preprocessing
@@ -167,131 +175,273 @@ Text preprocessing is the crucial first step in quantitative text analysis. It i
 Remember, there's no one-size-fits-all approach to preprocessing. The techniques you apply should be carefully considered based on your specific research context.
 :::
 
-## 1. Lowercasing
-
-Lowercasing converts all text to lowercase, which helps standardize the text and ensures that words like "The" and "the" are treated as the same word.
+To showcase the various techniques for text preprocessing, let's first create a mock dataset:
 
 ```{r}
-# Lowercasing
-lowercased_text <- pride_and_prejudice %>%
-  mutate(text = tolower(text))
-
-# Display a few rows to see the effect
-lowercased_text %>%
-  slice_head(n = 5) %>%
-  select(text)
-```
-
-## 2. Removing Punctuation
-
-Removing punctuation can help in word-based analyses by separating words that might be connected by punctuation.
-
-```{r}
-# Removing punctuation
-no_punctuation <- pride_and_prejudice %>%
-  mutate(text = str_replace_all(text, "[[:punct:]]", ""))
-
-# Display a few rows to see the effect
-no_punctuation %>%
-  slice_head(n = 20) %>%
-  select(text)
-```
-
-:::{.callout-tip}
-## `str_replace_all` and regex
-
-`str_replace_all()` is a function from the `stringr` package (part of the tidyverse) that replaces all occurrences of a pattern in a string with another string. Common functions that are useful for working with text are:
-
-- Detecting text: `str_detect()`, `str_count()`
-- Extracting text: `str_extract()`, `str_extract_all()`
-- Replacing text: `str_replace()`, `str_replace_all()`
-- Removing text: `str_remove()`, `str_remove_all()`
-
-Regex (regular expressions) are powerful tools for pattern matching in strings. Here's a breakdown of the regex used in our example:
-
-1. `"[[:punct:]]"`: This pattern matches any punctuation character.
-   - `[]` defines a character set
-   - `[:punct:]` is a POSIX character class representing all punctuation
-
-2. `"\\d+"`: This pattern matches one or more digits.
-   - `\\d` represents any digit (equivalent to `[0-9]`)
-   - `+` means "one or more" of the preceding element
-
-3. `"[^[:alnum:][:space:]]"`: This pattern matches any character that is not alphanumeric or whitespace.
-   - `^` inside `[]` means "not"
-   - `[:alnum:]` matches any alphanumeric character
-   - `[:space:]` matches any whitespace character
-
-Using these patterns with `str_replace_all()`, we can effectively clean our text by removing punctuation, numbers, and special characters.
-
-Example:
-```{r}
-str_replace_all("Hello, world! 123", "[[:punct:]]", "")
- 
-
-str_replace_all("Hello, world! 123", "\\d+", "")
- 
-
-str_replace_all("Hello, world! 123 @#$", "[^[:alnum:][:space:]]", "")
- 
-
-# Example of str_trim()
-str_trim("  Hello, world!  ")
- 
-
-# Example of str_squish()
-str_squish("Hello,   world!  How   are  you?")
- 
-
-# Combining str_trim() and str_squish()
-str_squish(str_trim("  Hello,   world!  How   are  you?  "))
- 
-
-# Example of removing special characters
-str_replace_all("Hello, world! 123 @#$ ñ € ß", "[^[:alnum:][:space:]]", "")
- 
-```
-
-
-You can check out [this blogpost](https://jfjelstul.github.io/regular-expressions-tutorial/) for a good variety of examples of how to use regular expressions to prepare text for analysis. Remember, the choice of regex patterns depends on your specific text cleaning needs.
-:::
-
-
-These preprocessing steps can be combined for a more comprehensive text cleaning:
-
-```{r}
-# Combining all preprocessing steps
-fully_preprocessed <- pride_and_prejudice %>%
-  mutate(
-    text = tolower(text),
-    text = str_replace_all(text, "[[:punct:]]", ""),
-    text = str_replace_all(text, "\\d+", ""),
-    text = str_trim(text),
-    text = str_squish(text),
-    text = str_replace_all(text, "[^[:alnum:][:space:]]", "")
+mock_data <- tibble(
+  text = c(
+    "The Quick Brown Fox Jumps Over the Lazy Dog! Data Science meets Cultural Studies.",
+    "Digital Humanities 101: An Introduction (2024); Exploring Big Data in Literature & History",
+    "R Programming for Text Analysis - Chapter 3. Machine Learning for Textual Analysis",
+    "NLP techniques & their applications in DH research; Computational Methods in Humanities Research?",
+    "20+ ways to visualize data: graphs, charts, and more! Digital Archives and Text Mining Techniques."
   )
+)
 
-# Display a few rows to see the combined effect
-fully_preprocessed %>%
-  slice_head(n = 20) %>%
-  select(text)
 ```
 
-Each of these preprocessing steps serves a specific purpose in preparing the text for analysis. The choice of which steps to apply depends on the specific goals of your analysis and the nature of your text data. 
+Let's take a closer look at our mock dataset:
 
-::: {.callout-tip}
-## Understanding the Implications of Preprocessing
+```{r}
+print(mock_data)
+```
 
-It's crucial to carefully consider and document each preprocessing step you apply to your text data. These decisions can significantly impact your analysis results:
+::: {.callout-note}
+## Reflection 🤔
 
-1. **Information Loss**: Some preprocessing steps (like removing punctuation or lowercasing) can remove potentially important information.
-2. **Analysis Bias**: Certain preprocessing choices might inadvertently introduce bias into your analysis.
-3. **Interpretability**: Your preprocessing decisions affect how you can interpret your results later.
-4. **Reproducibility**: Documenting your preprocessing steps is essential for others to reproduce or build upon your work.
-5. **Domain Specificity**: The appropriate preprocessing steps can vary depending on your field of study and the specific texts you're analyzing.
+Examine the mock dataset above and reflect on the following questions:
 
-*Always think critically about why you're applying each preprocessing step and how it might affect your analysis outcomes*. When in doubt, it's often helpful to try multiple preprocessing approaches and compare the results. 
+- What characteristics or elements do you notice that might need preprocessing for effective text analysis? 
+
+- What challenges might these elements pose for text analysis? How might preprocessing help address these challenges?
 :::
+
+<details>
+<summary>Click to Reveal Some Insights</summary>
+
+1. **Capitalization**: Words are inconsistently capitalized (e.g., "The Quick Brown Fox" vs. "Data Science"). This could lead to treating identical words as different entities.
+
+2. **Punctuation**: Various punctuation marks are present, including periods, exclamation marks, colons, and semicolons. These might interfere with word tokenization and analysis.
+
+3. **Numbers**: Some entries contain numbers (e.g., "101", "2024", "3", "20+"). Depending on the analysis goals, these might need to be removed or treated specially.
+
+4. **Special Characters**: There are ampersands (&) and hyphens (-) which might need special handling.
+
+5. **Sentence Structure**: Each row contains multiple sentences. For sentence-level analysis, we might need to split these.
+
+6. **Abbreviations**: "NLP" and "DH" are present. We might need to decide whether to expand these or treat them as single tokens.
+
+7. **Stop Words**: Common words like "the", "and", "for" are present. These might not contribute much meaning to the analysis.
+
+These observations highlight the need for various preprocessing steps, including:
+- Converting text to lowercase for consistency
+- Removing or standardizing punctuation
+- Handling numbers and special characters
+- Sentence or word tokenization
+- Removing stop words
+
+By addressing these elements through preprocessing, we can prepare our text data for more effective and accurate analysis.
+</details>
+
+## Understanding Regular Expressions
+
+Before we dive into analyzing our mock data, let's explore a powerful tool in text analysis: **Regular Expressions**. 
+
+Have you ever wondered how computer programs like Excel or Word can find the exact word or phrase you're searching for? Or how they can replace all instances of a word throughout a document in just seconds? These everyday text operations are powered by a concept called **pattern matching**, and regular expressions take this idea to a whole new level.
+
+Regular Expressions, often called **regex**, are like a special language for describing patterns in text. Imagine you're a librarian with a magical magnifying glass that can find not just specific words, but patterns in books.
+
+### Key Concepts
+
+1. **Pattern Matching**: Instead of searching for exact words, regex lets you search for patterns. For example, you could search for:
+   - All words that start with "pre"
+   - Any sequence of five letters
+   - All dates in a specific format
+
+2. **Text Processing**: Once you find these patterns, you can do things like:
+   - Highlight them
+   - Replace them with something else
+   - Extract them for further study
+
+### Examples of Regex
+To give you a better idea of what regular expressions look like and how they work, let's look at an example:
+
+```{r}
+p_load(stringr)
+
+# Sample text
+text <- "Jane Austen wrote Pride and Prejudice. Elizabeth Bennet is the protagonist."
+
+# Regex pattern for capitalized words
+pattern <- "\\b[A-Z][a-z]+\\b"
+
+# Find all matches
+matches <- str_extract_all(text, pattern)
+
+# Print the matches
+print(matches)
+
+# To see which words were matched in context
+str_view(text, pattern)
+```
+
+:::{.callout-note}
+## Regex breakdown
+
+Let's break down the regex pattern `\\b[A-Z][a-z]+\\b`:
+
+1. `\\b`: This represents a word boundary. In R, we need to escape the backslash, so we use two. It ensures we're matching whole words, not parts of words.
+
+2. `[A-Z]`: This character class matches any single uppercase letter from A to Z.
+
+3. `[a-z]+`: This matches one or more lowercase letters.
+   - `[a-z]` is a character class that matches any single lowercase letter.
+   - The `+` quantifier means "one or more" of the preceding element.
+
+4. `\\b`: Another word boundary to end the match.
+
+So, this pattern matches:
+- Words that start with a capital letter (like names or the first word of a sentence)
+- Followed by one or more lowercase letters
+- As whole words, not parts of larger words
+
+It won't match:
+- ALL CAPS words
+- words with numbers or symbols
+- Single-letter capitalized words like "I" or "A"
+
+This pattern is useful for finding proper nouns in the middle of sentences, like names of people or places.
+:::
+
+
+### POSIX Character Classes: A Friendly Starting Point
+
+You may find that regex can be quite hard to read for humans. POSIX character classes are pre-defined sets of characters that make regex more accessible and portable across different systems. They simplify regex patterns and address some common challenges in text processing:
+
+1. **Simplification**: POSIX classes provide easy-to-remember shorthand for common character groups. Instead of writing `[A-Za-z]` to match any letter, you can use `[:alpha:]`.
+
+2. **Consistency**: They ensure consistent behavior across different operating systems and programming languages. For example, `[A-Z]` might behave differently in some contexts depending on the locale settings, but `[:upper:]` is always consistent.
+
+3. **Internationalization**: POSIX classes can handle characters beyond the ASCII range, making them useful for working with texts in various languages.
+
+4. **Readability**: They make regex patterns more readable and self-explanatory, which is especially helpful when sharing code or working in teams.
+
+Here are some useful POSIX character classes:
+
+- `[:alpha:]`: Matches any alphabetic character (equivalent to `[A-Za-z]` in English texts)
+- `[:digit:]`: Matches any digit (equivalent to `[0-9]`)
+- `[:lower:]`: Matches any lowercase letter
+- `[:upper:]`: Matches any uppercase letter
+- `[:punct:]`: Matches any punctuation character
+- `[:space:]`: Matches any whitespace character (spaces, tabs, newlines)
+
+By using these classes, you can create more robust and readable regex patterns. For example, instead of `[A-Za-z0-9]` to match any alphanumeric character, you could use `[[:alpha:][:digit:]]`, which is clearer in its intent and works across different language settings.
+
+#### Examples in Humanities Context
+
+1. Finding capitalized words: 
+   - Pattern: `[[:upper:]][[:lower:]]+`
+   - This would match words like "Shakespeare", "London", "Renaissance"
+
+2. Identifying years:
+   - Pattern: `[[:digit:]]{4}`
+   - This would match years like "1564", "1616", "2023"
+
+3. Locating punctuation:
+   - Pattern: `[[:punct:]]`
+   - This would find all punctuation marks in a text
+
+Remember, regex is a tool that becomes more useful as you practice. Start simple, and you'll gradually be able to create more complex patterns for your research needs!
+
+
+## Learning Check 🏁 
+
+<div id="quiz-qta-intro"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "What is the primary purpose of Quantitative Text Analysis (QTA)?",
+      options: [
+        "To translate texts into different languages",
+        "To analyze large volumes of text data using computational techniques",
+        "To improve the grammar and style of written texts",
+        "To create new literary works using artificial intelligence"
+      ]
+    },
+    {
+      text: "Which of the following is NOT a benefit of QTA in Digital Humanities?",
+      options: [
+        "Analyzing vast collections of texts",
+        "Observing broader patterns in literature",
+        "Replacing close reading entirely",
+        "Empirically testing literary theories"
+      ]
+    },
+    {
+      text: "In the QTA workflow, what is typically the first stage?",
+      options: [
+        "Topic Modeling",
+        "Sentiment Analysis",
+        "Preprocessing Steps",
+        "Visualization"
+      ]
+    },
+    {
+      text: "What is the main purpose of regular expressions (regex) in text analysis?",
+      options: [
+        "To translate text between languages",
+        "To find and match patterns in text",
+        "To increase the font size of text",
+        "To create new words in a language"
+      ]
+    },
+    {
+      text: "Which POSIX character class would you use to match any punctuation mark?",
+      options: [
+        "[:alpha:]",
+        "[:digit:]",
+        "[:lower:]",
+        "[:punct:]"
+      ]
+    }
+  ],
+  answers: [1, 2, 2, 1, 3]
+}, "quiz-qta-intro");
+</script>
+
+
+Now let's proceed to preprocess the mock dataset!
+
+## Tidy Structure
+
+The first step in our preprocessing pipeline is to ensure our data is in a tidy format, with one sentence per row. We'll use `separate_rows()` with a regular expression (regex) pattern to achieve this:
+
+```{r}
+tidy_data <- mock_data %>%
+  separate_rows(text, sep = "(?<=[.!?])\\s+(?=[A-Z])")
+
+print(tidy_data)
+```
+
+
+
+
+
+::: {.callout-note}
+## Understanding `separate_rows()` 
+
+1. `separate_rows()` Function:
+   - Part of the tidyr package in tidyverse
+   - Separates a column into multiple rows based on a delimiter
+   - Syntax: `separate_rows(data, column, sep = delimiter)`
+
+2. Regular Expression (Regex) Pattern:
+   - `(?<=[.!?])`: Positive lookbehind, matches a position after a period, exclamation mark, or question mark
+   - `\\s+`: Matches one or more whitespace characters
+   - `(?=[A-Z])`: Positive lookahead, matches a position before an uppercase letter
+   - Combined, this pattern splits the text at sentence boundaries
+
+3. How it works:
+   - `separate_rows()` applies the regex pattern to split the 'text' column
+   - Each resulting sentence becomes a new row in the dataframe
+   - The original row's other columns (if any) are duplicated for each new sentence row
+:::
+
+
+
+
 
 ## Learning Check 🏁 
 
@@ -341,6 +491,590 @@ createQuiz({
 }, "quiz-qta");
 </script>
 
+
+## Hands-On Coding 💻
+
+Now, let's apply our text preprocessing skills to a real dataset. We'll use the answers submitted by you in response to the "what is digital humanities? write down three keywords that come to mind" question. Our goal is to clean and prepare this text data for analysis.
+
+First, let's download the dataset:
+
+[Download DH Keywords dataset](data/dh_keywords.csv)
+
+Save it in the folder name `data` in your working directory. 
+
+We can then load the csv file into RStudio:
+
+```{r}
+p_load(tidyverse)
+
+# Load the dataset
+dh_keywords <- read_csv("data/dh_keywords.csv", col_names = FALSE)
+colnames(dh_keywords) <- "keyword"
+
+# Display the first few rows
+head(dh_keywords)
+```
+
+### Exercise 1: Lowercase Conversion
+
+Convert all keywords to lowercase.
+
+<div id="hint-preprocess1-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use the `mutate()` function with `tolower()` to convert the text to lowercase.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint-preprocess1', 1);
+</script>
+
+<div id="template-preprocess1" style="display: none;">
+
+```{r eval=FALSE}
+dh_keywords_lower <- dh_keywords %>%
+  mutate(keyword = _(keyword))
+
+head(dh_keywords_lower)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button-preprocess1', 'template-preprocess1', 'Show Template');
+</script>
+
+<div id="solution-preprocess1" style="display: none;">
+
+```{r}
+dh_keywords_lower <- dh_keywords %>%
+  mutate(keyword = tolower(keyword))
+
+head(dh_keywords_lower)
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button-preprocess1', 'solution-preprocess1');
+</script>
+
+### Exercise 2: Remove Punctuation
+
+Remove all punctuation from the keywords.
+
+<div id="hint-preprocess2-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use `str_replace_all()` with a regular expression to remove punctuation.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint-preprocess2', 1);
+</script>
+
+<div id="template-preprocess2" style="display: none;">
+
+```{r eval=FALSE}
+dh_keywords_clean <- dh_keywords_lower %>%
+  mutate(keyword = str_replace_all(keyword, _, ""))
+
+head(dh_keywords_clean)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button-preprocess2', 'template-preprocess2', 'Show Template');
+</script>
+
+<div id="solution-preprocess2" style="display: none;">
+
+```{r}
+dh_keywords_clean <- dh_keywords_lower %>%
+  mutate(keyword = str_replace_all(keyword, "[[:punct:]]", ""))
+
+head(dh_keywords_clean)
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button-preprocess2', 'solution-preprocess2');
+</script>
+
+### Exercise 3: Remove Extra Whitespace
+
+Remove any leading, trailing, or extra whitespace from the keywords.
+
+<div id="hint-preprocess3-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use `str_trim()` to remove leading and trailing whitespace, and `str_squish()` to replace multiple spaces with a single space.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint-preprocess3', 1);
+</script>
+
+<div id="template-preprocess3" style="display: none;">
+
+```{r eval=FALSE}
+dh_keywords_trimmed <- dh_keywords_clean %>%
+  mutate(keyword = str_trim(_(_)))
+
+head(dh_keywords_trimmed)
+```
+
+</div>
+
+<script>
+createToggleSection('template-button-preprocess3', 'template-preprocess3', 'Show Template');
+</script>
+
+<div id="solution-preprocess3" style="display: none;">
+
+```{r}
+dh_keywords_trimmed <- dh_keywords_clean %>%
+  mutate(keyword = str_trim(str_squish(keyword)))
+
+head(dh_keywords_trimmed)
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button-preprocess3', 'solution-preprocess3');
+</script>
+
+### Exercise 4: Remove Empty Entries
+
+Remove any rows that are empty after our preprocessing steps.
+
+<div id="hint-preprocess4-1" style="display: none;">
+::: {.callout-tip collapse="false"}
+## Hint
+Use `filter()` with `nchar()` to keep only non-empty entries.
+:::
+</div>
+
+<script>
+createProgressiveHints('hint-preprocess4', 1);
+</script>
+
+<div id="template-preprocess4" style="display: none;">
+
+```{r eval=FALSE}
+dh_keywords_final <- dh_keywords_trimmed %>%
+  filter(_(keyword) > _)
+
+# Display the final result and the number of rows
+print(dh_keywords_final)
+paste("Number of keywords after preprocessing:", nrow(dh_keywords_final))
+```
+
+</div>
+
+<script>
+createToggleSection('template-button-preprocess4', 'template-preprocess4', 'Show Template');
+</script>
+
+<div id="solution-preprocess4" style="display: none;">
+
+```{r}
+dh_keywords_final <- dh_keywords_trimmed %>%
+  filter(nchar(keyword) > 0)
+
+# Display the final result and the number of rows
+print(dh_keywords_final)
+paste("Number of keywords after preprocessing:", nrow(dh_keywords_final))
+```
+
+Combined version of all the preprocessing steps:
+
+```{r}
+dh_keywords_final <- dh_keywords %>%
+  mutate(keyword = tolower(keyword),
+         keyword = str_replace_all(keyword, "[[:punct:]]", ""),
+         keyword = str_trim(str_squish(keyword))) %>%
+  filter(nchar(keyword) > 0)
+```
+
+</div>
+
+<script>
+createToggleSection('solution-button-preprocess4', 'solution-preprocess4');
+</script>
+
+Congratulations! You've successfully preprocessed the DH keywords dataset. These clean keywords are now ready for further analysis, such as frequency counting, visualization, or more advanced text analysis techniques.
+
+
+# Basic Text Analysis Concepts 🔤
+
+In this section, we'll explore fundamental concepts in text analysis that form the building blocks for more advanced techniques. These concepts are crucial for understanding how we can extract meaningful insights from textual data.
+
+
+
+## Tokenization
+
+Tokenization is a foundational step in text analysis, involving the process of breaking down text into smaller, meaningful units called tokens. These tokens can be words, phrases, or even sentences, depending on the level of analysis you're performing.
+
+### Word Tokenization
+
+Word tokenization is the most common form of tokenization, where text is split into individual words. This process allows us to analyze text at its most granular level. Let's use our preprocessed DH keywords dataset to demonstrate:
+
+```{r}
+p_load(tidytext, tidyverse)
+
+word_tokens <- dh_keywords_final %>%
+  unnest_tokens(word, keyword)
+
+# Display the first few tokens
+word_tokens %>%
+  slice_head(n = 10)
+```
+
+:: {.callout-tip}
+## The `unnest_tokens()` function
+The `unnest_tokens()` function from the tidytext package is particularly useful because it integrates seamlessly with the tidyverse ecosystem. It splits the text into tokens and transforms the data into a one-token-per-row format, which is ideal for further analysis using dplyr, ggplot2, and other tidy tools.
+:::
+
+In this example, our keywords are already individual words, so the tokenization might not show a significant difference. However, for longer texts like novels or articles, this process would break down sentences into individual words, allowing for more detailed analysis.
+
+## Stemming and Lemmatization
+
+Stemming and lemmatization are techniques used to reduce words to their base or root form. This process is crucial for grouping similar words together and reducing the vocabulary size, which can improve the efficiency and effectiveness of text analysis.
+
+### Stemming
+
+Stemming is a simple, rule-based approach to reduce words to their stem or root form. It typically involves removing the ends of words, which can sometimes result in stems that are not actual words.
+
+```{r}
+p_load(SnowballC)
+
+stemmed_words <- word_tokens %>%
+  mutate(stem = wordStem(word))
+
+# Display a few examples
+stemmed_words %>%
+  select(word, stem) %>%
+  distinct() %>%
+  slice_head(n = 10)
+```
+
+::: {.callout-tip}
+## The `wordStem()` function
+The `wordStem()` function from the SnowballC package implements the Porter stemming algorithm, which is widely used in text processing. While stemming is fast and easy to implement, it can sometimes produce stems that are not real words, which might be confusing in some contexts.
+:::
+
+### Lemmatization
+
+Lemmatization is a more sophisticated approach that considers the context and part of speech of a word to determine its base form or lemma. Unlike stemming, lemmatization always produces real words.
+
+```{r}
+p_load(textstem)
+
+lemmatized_words <- word_tokens %>%
+  mutate(lemma = lemmatize_words(word))
+
+# Display a few examples
+lemmatized_words %>%
+  select(word, lemma) %>%
+  distinct() %>%
+  slice_head(n = 10)
+```
+
+::: {.callout-tip}
+## The `lemmatize_words()` function
+The `lemmatize_words()` function from the textstem package uses a dictionary-based approach to find the lemma of each word. Lemmatization is generally more accurate than stemming but can be slower and more computationally intensive.
+:::
+
+::: {.callout-note}
+## How to Choose Between Stemming and Lemmatization?
+
+Choosing between stemming and lemmatization depends on your specific needs, resources, and the nature of your text analysis project:
+
+1. **Speed vs. Accuracy**: 
+
+   - Stemming is faster but can produce non-words or incorrect roots.
+   - Lemmatization is slower but more accurate, always producing real words.
+
+2. **Language Complexity**:
+
+   - For languages with simple morphology (like English), stemming might suffice.
+   - For languages with complex morphology (like German or Arabic), lemmatization is often preferred.
+   - For languages without clear word boundaries (like Chinese or Japanese):
+     * Neither traditional stemming nor lemmatization applies directly.
+     * Word segmentation is a crucial first step.
+     * After segmentation, techniques similar to lemmatization may be used to normalize words.
+
+3. **Domain Specificity**:
+
+   - In specialized fields (e.g., medical texts), lemmatization's accuracy can be crucial because it preserves the precise meanings of complex, domain-specific terms that might be lost or conflated through simpler stemming methods.
+   - For general-purpose analysis, stemming's speed might be more valuable.
+
+4. **Available Resources**:
+
+   - Stemming requires less computational power and no additional linguistic resources.
+   - Lemmatization often needs dictionaries and more processing power.
+
+5. **Project Goals**:
+
+   - For quick, exploratory analysis, stemming can be sufficient.
+   - For in-depth linguistic analysis or when meaning preservation is crucial, use lemmatization.
+
+6. **Text Quality**:
+
+   - For well-edited texts, both methods work well.
+   - For informal texts (e.g., social media), stemming might handle variations and misspellings better.
+
+7. **Interpretability**:
+
+   - Stemmed words can be harder for humans to interpret.
+   - Lemmatized words are always real words, making results more readable.
+
+In practice, many researchers try both methods and compare results. For humanities projects, especially those involving literary analysis or historical texts, lemmatization often provides more meaningful and interpretable results, despite the additional computational cost.
+:::
+
+## N-grams
+
+N-grams are contiguous sequences of n items from a given text. These items can be words, characters, or even syllables. N-grams help capture phrases and word associations, providing context that single words might miss.
+
+::: {.callout-note}
+## Understanding N-grams
+
+- Unigrams (n=1): Single words, e.g., "digital", "humanities"
+- Bigrams (n=2): Two consecutive words, e.g., "digital humanities"
+- Trigrams (n=3): Three consecutive words, e.g., "natural language processing"
+- And so on for larger n...
+
+N-grams preserve word order, which can be crucial for understanding meaning and context in text analysis.
+:::
+
+Let's create bigrams from our original (non-preprocessed) DH keywords dataset:
+
+```{r}
+bigrams <- dh_keywords %>%
+  unnest_tokens(bigram, keyword, token = "ngrams", n = 2)
+
+# Display the most common bigrams
+bigrams %>%
+  count(bigram, sort = TRUE) %>%
+  slice_head(n = 10)
+```
+
+::: {.callout-tip}
+## Why use bigrams?
+
+Bigrams can reveal common phrases and word pairs in the text that single words miss. For instance, "digital humanities" carries more specific meaning than "digital" and "humanities" separately. In literary analysis, bigrams like "stream consciousness" might indicate modernist writing techniques.
+:::
+
+N-grams are particularly useful for:
+
+1. **Phrase Detection**: Identifying common expressions or technical terms.
+2. **Contextual Analysis**: Understanding how words are used in context.
+3. **Language Modeling**: Predicting the next word based on previous words.
+4. **Stylometric Analysis**: Studying an author's writing style.
+
+::: {.callout-note}
+## Considering Multiple N-gram Sizes
+
+Researchers often use a combination of n-gram sizes (e.g., unigrams, bigrams, and trigrams) for several reasons:
+
+1. **Comprehensive Coverage**: Different n-gram sizes capture different aspects of language.
+2. **Balancing Specificity and Generality**: Larger n-grams are more specific but occur less frequently.
+3. **Handling Varied Phrases**: Some meaningful phrases are two words, others three or more.
+
+However, using multiple n-gram sizes also has challenges:
+- **Increased Complexity**: More data to process and analyze.
+- **Overlapping Information**: Bigrams and trigrams may contain redundant information.
+- **Sparse Data**: Larger n-grams may occur very infrequently, leading to sparse data issues.
+
+The choice depends on your research questions and the nature of your texts.
+:::
+
+Here's an example of how we might generate n-grams of different sizes:
+
+```{r eval=FALSE}
+library(tidytext)
+library(dplyr)
+
+# Function to generate n-grams
+generate_ngrams <- function(data, n) {
+  data %>%
+    unnest_tokens(ngram, keyword, token = "ngrams", n = n) %>%
+    count(ngram, sort = TRUE) %>%
+    mutate(n = n)
+}
+
+# Generate unigrams, bigrams, and trigrams
+unigrams <- generate_ngrams(dh_keywords, 1)
+bigrams <- generate_ngrams(dh_keywords, 2)
+trigrams <- generate_ngrams(dh_keywords, 3)
+
+# Combine the results
+all_ngrams <- bind_rows(unigrams, bigrams, trigrams)
+
+# Display the top 5 of each
+all_ngrams %>%
+  group_by(n) %>%
+  slice_head(n = 5) %>%
+  arrange(n, desc(nn))
+```
+
+This approach allows us to see the most common phrases of different lengths in our dataset, providing a more comprehensive view of the language used in digital humanities keywords.
+
+::: {.callout-warning}
+## Preprocessing Considerations
+
+When working with n-grams, it's often better to use non-preprocessed text:
+
+1. Punctuation and capitalization can be meaningful for phrase detection.
+2. Stopwords might be important parts of meaningful phrases.
+3. Word order matters, so stemming or lemmatization might obscure important distinctions.
+
+Preprocessing can be applied after n-gram generation if needed, but this allows for more nuanced analysis of phrases and expressions.
+:::
+
+By considering different n-gram sizes and using non-preprocessed text, we can gain richer insights into the language patterns and meaningful phrases in our digital humanities corpus.
+
+## Stopword Removal
+
+Stopwords are common words (like "the", "is", "at") that are often removed from text analysis because they typically don't carry much meaning on their own. Removing stopwords can help focus the analysis on more meaningful content words.
+
+```{r}
+p_load(tidytext)
+
+data(stop_words)
+
+words_without_stopwords <- word_tokens %>%
+  anti_join(stop_words)
+
+# Compare word counts before and after stopword removal
+paste("Words before stopword removal:", nrow(word_tokens))
+paste("Words after stopword removal:", nrow(words_without_stopwords))
+```
+
+::: {.callout-tip}
+## The `anti_join()` function
+The `anti_join()` function is used here to remove stopwords from our dataset. It keeps only the rows from the first dataset (word_tokens) that do not have a match in the second dataset (stop_words). This effectively removes all the stopwords from our text data.
+:::
+
+
+## Word Frequency Analysis
+
+Word frequency analysis involves counting how often each word appears in a text. This can give us insights into the most important or prevalent themes in the text.
+
+```{r}
+word_frequencies <- words_without_stopwords %>%
+  count(word, sort = TRUE)
+
+# Display the top 10 most frequent words
+word_frequencies %>%
+  slice_head(n = 10)
+```
+
+# Visualizing Text Data 📊
+
+## Word Clouds
+
+Word clouds are a popular way to visualize the most frequent words in a text, with the size of each word proportional to its frequency.
+
+```{r}
+p_load(wordcloud2)
+
+# Create a word cloud
+wordcloud2(data = word_frequencies %>% slice_head(n = 50), size = 0.5)
+
+# Make it more aesthetically pleasing
+p_load(RColorBrewer)
+
+# Create a color palette
+color_palette <- brewer.pal(8, "Dark2")
+
+wordcloud2(
+  data = word_frequencies %>% slice_head(n = 50),  # Use top 50 most frequent words
+  size = 0.6,                    # Increase text size for better readability
+  color = rep_len(color_palette, 50),  # Apply color palette to words
+  backgroundColor = "white",     # Set background color to white
+  rotateRatio = 0.3,             # Reduce word rotation for cleaner look
+  shape = "circle",              # Set overall shape of the word cloud
+  fontFamily = "Arial",          # Use Arial font for consistency
+  fontWeight = "bold",           # Make text bold for emphasis
+  minRotation = -pi/6,           # Set minimum rotation angle (30 degrees left)
+  maxRotation = pi/6             # Set maximum rotation angle (30 degrees right)
+)
+```
+
+## Bar Charts of Word Frequency
+
+Bar charts offer a more precise way to visualize word frequencies, especially for comparing the most common words.
+
+```{r}
+p_load(ggplot2)
+
+word_frequencies %>%
+  slice_head(n = 10) %>%
+  ggplot(aes(x = reorder(word, n), y = n, fill = desc(n))) +
+  geom_col() +
+  coord_flip() +
+  theme_minimal()+
+  theme(legend.position = "none") +
+  labs(x = "Word", y = "Frequency", title = "Top 10 Most Frequent DH Keywords")
+```
+
+## Learning Check 🏁
+
+<div id="quiz-text-analysis"></div>
+
+<script>
+createQuiz({
+  questions: [
+    {
+      text: "What is tokenization in text analysis?",
+      options: [
+        "The process of removing punctuation from text",
+        "Breaking down text into smaller units like words or sentences",
+        "Converting all text to lowercase",
+        "Removing common words from text"
+      ]
+    },
+    {
+      text: "What are stopwords in text analysis?",
+      options: [
+        "Words that appear most frequently in a text",
+        "Words that are misspelled in a text",
+        "Common words like 'the', 'is', 'at' that are often removed from analysis",
+        "Words that are unique to a specific text"
+      ]
+    },
+    {
+      text: "What does a word frequency analysis show?",
+      options: [
+        "The length of words in a text",
+        "The order of words in a text",
+        "How often each word appears in a text",
+        "The sentiment of words in a text"
+      ]
+    },
+    {
+      text: "In a word cloud visualization, what does the size of a word typically represent?",
+      options: [
+        "The length of the word",
+        "The alphabetical order of the word",
+        "The frequency of the word in the text",
+        "The sentiment of the word"
+      ]
+    }
+  ],
+  answers: [1, 2, 2, 2]
+}, "quiz-text-analysis");
+</script>
+
+This learning check will help reinforce the key concepts covered in this section on basic text analysis and visualization techniques.
 
 
 <iframe src="float_traffic.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; right: 10px; z-index: 9999;" scrolling="no"></iframe>
