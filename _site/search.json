@@ -356,14 +356,14 @@
     "href": "syllabus.html",
     "title": "Syllabus",
     "section": "",
-    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-5\n9.14, 9.23, 9.30, 10.7 (holiday), 10.14\nR Programming Basics\n\n\n5-8\n10.21, 10.28\nQuantitative Text Analysis Basics\n\n\n9-10\n10.28, 11.4\nSentiment Analysis\n\n\n10-12\n11.11, 11.18, 11.25\nTopic Modelling\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment\n\n\n\n\n\n\n\n\n\nSchedule Subject to Change\n\n\n\nPlease note that this schedule is tentative and may be adjusted as needed throughout the semester to accommodate our learning progress and any unforeseen circumstances."
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-6\n9.14, 9.23, 9.30, 10.7 (holiday), 10.14\nR Programming Basics\n\n\n7-8\n10.21, 10.28\nQuantitative Text Analysis Basics\n\n\n8-9\n10.28, 11.4\nSentiment Analysis\n\n\n10-12\n11.11, 11.18, 11.25\nTopic Modelling\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment\n\n\n\n\n\n\n\n\n\nSchedule Subject to Change\n\n\n\nPlease note that this schedule is tentative and may be adjusted as needed throughout the semester to accommodate our learning progress and any unforeseen circumstances."
   },
   {
     "objectID": "syllabus.html#course-schedule",
     "href": "syllabus.html#course-schedule",
     "title": "Syllabus",
     "section": "",
-    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-5\n9.14, 9.23, 9.30, 10.7 (holiday), 10.14\nR Programming Basics\n\n\n5-8\n10.21, 10.28\nQuantitative Text Analysis Basics\n\n\n9-10\n10.28, 11.4\nSentiment Analysis\n\n\n10-12\n11.11, 11.18, 11.25\nTopic Modelling\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment\n\n\n\n\n\n\n\n\n\nSchedule Subject to Change\n\n\n\nPlease note that this schedule is tentative and may be adjusted as needed throughout the semester to accommodate our learning progress and any unforeseen circumstances."
+    "text": "Welcome to Introduction to Digital Humanities! We will cover several key topics in digital humanities and R programming. Each topic will be covered in theoretical/conceptual lectures, followed by practical sessions.\nHere’s a breakdown of our semester:\n\n\n\n\n\n\n\n\nWeek\nDate\nContent\n\n\n\n\n1\n9.9\nOrientation: Introduction to Digital Humanities\n\n\n2-6\n9.14, 9.23, 9.30, 10.7 (holiday), 10.14\nR Programming Basics\n\n\n7-8\n10.21, 10.28\nQuantitative Text Analysis Basics\n\n\n8-9\n10.28, 11.4\nSentiment Analysis\n\n\n10-12\n11.11, 11.18, 11.25\nTopic Modelling\n\n\n13-15\n12.2, 12.9, 12.16\nSocial Network Analysis\n\n\n16\n12.23\nEthics, AI and Future of Digital Humanities\n\n\n17-18\nExam Weeks\nFinal Assessment\n\n\n\n\n\n\n\n\n\nSchedule Subject to Change\n\n\n\nPlease note that this schedule is tentative and may be adjusted as needed throughout the semester to accommodate our learning progress and any unforeseen circumstances."
   },
   {
     "objectID": "syllabus.html#assessment",
@@ -1073,7 +1073,7 @@
     "href": "book/06-qta.html#learning-check-1",
     "title": "§6 Quantitative Text Analysis Basics 📊",
     "section": "\n4.4 Learning Check 🏁",
-    "text": "4.4 Learning Check 🏁\n\n\n\nThis learning check will help reinforce the key concepts covered in this section on basic text analysis and visualization techniques.",
+    "text": "4.4 Learning Check 🏁",
     "crumbs": [
       "Book",
       "§6 Quantitative Text Analysis Basics 📊"

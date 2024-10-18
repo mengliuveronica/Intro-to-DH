@@ -1170,10 +1170,6 @@ createQuiz({
 }, "quiz-text-analysis");
 </script>
 
-This learning check will help reinforce the key concepts covered in this section on basic text analysis and visualization techniques.
-
-
-
 
 # Conclusion
 
