@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
     "mermaid": "^11.3.0"
   }
 }

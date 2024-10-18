@@ -1,3 +1,13 @@
+const SUPABASE_URL = 'https://zvuouirzacmtxsmglspc.supabase.co';
+const SUPABASE_API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2dW91aXJ6YWNtdHhzbWdsc3BjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkwODM2MDUsImV4cCI6MjA0NDY1OTYwNX0.BXSeXvqW558J4qHL9AmqXbJQs7rvBIuW_3L6_GsBkjM';
+const USERS_TABLE_NAME = 'users';
+const EXAM_RESULTS_TABLE_NAME = 'examresults';
+
+// Check if required global variables are defined
+if (typeof SUPABASE_URL === 'undefined' || typeof SUPABASE_API_KEY === 'undefined' || typeof USERS_TABLE_NAME === 'undefined' || typeof EXAM_RESULTS_TABLE_NAME === 'undefined') {
+  console.error('Required global variables are not defined. Make sure config.js is loaded before quiz.js');
+}
+
 function convertBackticksToCode(text) {
   return text.replace(/`([^`]+)`/g, '<code>$1</code>');
 }
@@ -81,50 +91,39 @@ function submitQuiz(quizId) {
 }
 
 async function fetchExamData(examId) {
-  const response = await fetch(`https://api.airtable.com/v0/appkIFRKGG6cHGW1K/Exams/${examId}`, {
+  const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Exams/${examId}`, {
     headers: {
-      'Authorization': 'Bearer patIi26p44lAC1Pe6.eefdb4a277315ebcf280cfd2a82aef511257ab5fdd8850269fbcc83680de478b'
+      'Authorization': `Bearer ${AIRTABLE_API_KEY}`
     }
   });
   return await response.json();
 }
 
-async function submitExamResults(student, score, answers) {
+async function submitExamResults(supabaseClient, student, score, answers) {
+  console.log('Submitting exam results:', { student, score, answers });
   try {
-    const now = new Date();
-    const isoDate = now.toISOString().split('T')[0];
+    const formattedAnswers = answers.map((answer, index) => 
+      answer === examAnswers[index] ? 'Correct' : `Wrong-${answer}`
+    );
 
-    const requestBody = {
-      fields: {
-        Name: student.fields.Name,
-        Score: Number(score), // Ensure score is a number
-        Answers: JSON.stringify(answers.map((answer, index) => {
-          if (answer === null) return 'Unanswered';
-          return answer === examAnswers[index] ? 'Correct' : `Wrong-${answer}`;
-        })),
-        Date: isoDate
-      }
-    };
+    const { data, error } = await supabaseClient
+      .from(EXAM_RESULTS_TABLE_NAME)
+      .insert({
+        name: student.name,
+        score: score,
+        answers: formattedAnswers,
+        date: new Date().toISOString()
+      });
 
-    console.log('Submitting exam results:', JSON.stringify(requestBody, null, 2));
-
-    const response = await fetchWithRetry(API_URL, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestBody)
-    });
-
-    console.log('Exam results submitted successfully:', response);
+    if (error) {
+      console.error('Supabase error:', error);
+      throw error;
+    }
+    console.log('Exam results submitted successfully:', data);
+    return data;
   } catch (error) {
     console.error('Error submitting exam results:', error);
-    if (error.response) {
-      const errorText = await error.response.text();
-      console.error('Error response:', errorText);
-    }
-    alert('An error occurred while submitting your exam results. Please contact your instructor.');
+    throw error;
   }
 }
 
@@ -147,39 +146,85 @@ async function fetchWithRetry(url, options, maxRetries = 3) {
   }
 }
 
-function createExam(examData, examId, studentId) {
-  const quizContainer = document.getElementById('exam-container');
-  createQuiz({
-    questions: examData.fields.Questions,
-    answers: examData.fields.Answers
-  }, "exam-container", function(score, answers) {
-    submitExamResults(studentId, examId, score, answers);
-    showExamResults(score, examData.fields.Questions.length);
-    // This line triggers the analysis
-    analyzeExamResults(examId).then(analysisData => displayAnalysis(analysisData));
+function createExam(supabaseClient, student) {
+  console.log('Creating exam for student:', student.name);
+  if (!student || !student.name) {
+    console.error('Invalid student object:', student);
+    alert('An error occurred while starting the exam. Please contact support.');
+    return;
+  }
+
+  // Store supabaseClient and student name in a closure
+  const submitExam = async (answers, score) => {
+    await submitExamResults(supabaseClient, student, score, answers);
+  };
+
+  if (typeof window.createQuiz !== 'function') {
+    console.error('createQuiz is not a function. quiz.js may not be loaded correctly.');
+    alert('There was an error loading the quiz. Please refresh the page and try again.');
+    return;
+  }
+  window.createQuiz({
+    questions: examQuestions,
+    answers: examAnswers
+  }, "exam-container", function(score, studentAnswers) {
+    submitExam(studentAnswers, score);
+    showExamResults(score, examQuestions.length);
+    document.getElementById('run-analysis-button').style.display = 'block';
   });
 }
 
-function showExamResults(score, total) {
-  const resultsContainer = document.getElementById('exam-results');
-  resultsContainer.style.display = 'block';
-  let message = '';
-  if (score === total) {
-    message = '💯 Perfect score! Excellent job!';
-  } else if (score > total / 2) {
-    message = '👍 Great work! You\'re doing well!';
-  } else {
-    message = '⛽️ Keep practicing, you\'ll improve!';
-  }
-  resultsContainer.innerHTML = `
-    <div class="result-quiz">
-      <div class="score">You scored ${score} out of ${total}!</div>
-      <div class="message">${message}</div>
-    </div>
+function showExamResults(score, totalQuestions) {
+  const resultsDiv = document.getElementById('exam-results');
+  resultsDiv.style.display = 'block';
+  resultsDiv.innerHTML = `
+    <h3>Quiz Results</h3>
+    <p>Your answers have been successfully submitted.</p>
+    <p>You scored ${score} out of ${totalQuestions}.</p>
+    ${getCustomMessage(score, totalQuestions)}
   `;
+  document.getElementById('exam-container').style.display = 'none';
 }
 
-const AIRTABLE_BASE_ID = 'appkIFRKGG6cHGW1K';
-const AIRTABLE_TABLE_NAME = 'ExamResults';
-const AIRTABLE_API_KEY = 'patIi26p44lAC1Pe6.eefdb4a277315ebcf280cfd2a82aef511257ab5fdd8850269fbcc83680de478b';
-const API_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`;
+function getCustomMessage(score, totalQuestions) {
+  const percentage = (score / totalQuestions) * 100;
+  
+  if (percentage === 100) {
+    return `
+      <p>🎉 Wow, a perfect score! 🏆</p>
+      <p>Keep up the amazing work – you're on your way to become a DH pro! 🌟</p>
+    `;
+  } else if (percentage > 90) {
+    return `
+      <p>🥇 Fantastic job! Your grasp of DH with R is really strong.</p>
+      <p>Just a tiny bit more, and you'll be at the top. You've got this! 💪</p>
+    `;
+  } else if (percentage > 80) {
+    return `
+      <p>🥈 Great work! You've got a solid understanding of DH with R.</p>
+      <p>Keep it up, and you'll be an expert in no time. 📚💻</p>
+    `;
+  } else if (percentage > 60) {
+    return `
+      <p>🥉 Nice one! You passed and you're getting the hang of DH with R.</p>
+      <p>Keep exploring and asking questions – you're making good progress! 🚀</p>
+    `;
+  } else {
+    return `
+      <p>😵‍💫 Looks like you are struggling... DH can be tricky at first.</p>
+      <p>Take some time to review, and don't hesitate to ask for help! You can do it! 💪🎓</p>
+    `;
+  }
+}
+
+// Make functions globally accessible
+window.createQuiz = createQuiz;
+window.submitQuiz = submitQuiz;
+window.fetchExamData = fetchExamData;
+window.submitExamResults = submitExamResults;
+window.fetchWithRetry = fetchWithRetry;
+window.createExam = createExam;
+window.showExamResults = showExamResults;
+window.getCustomMessage = getCustomMessage;
+
+console.log('quiz.js loaded, functions attached to window object');

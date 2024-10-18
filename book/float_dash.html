@@ -87,6 +87,7 @@
     </style>
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <div id="floating-dashboard">
         <div id="current-status">📊</div>
         <div id="content">
@@ -116,10 +117,8 @@
     </div>
 
     <script>
-        const AIRTABLE_BASE_ID = 'appkIFRKGG6cHGW1K';
-        const AIRTABLE_TABLE_NAME = 'Table 1';
-        const AIRTABLE_API_KEY = 'patIi26p44lAC1Pe6.eefdb4a277315ebcf280cfd2a82aef511257ab5fdd8850269fbcc83680de478b';
-        const API_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`;
+        const SUPABASE_URL = 'https://zvuouirzacmtxsmglspc.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2dW91aXJ6YWNtdHhzbWdsc3BjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkwODM2MDUsImV4cCI6MjA0NDY1OTYwNX0.BXSeXvqW558J4qHL9AmqXbJQs7rvBIuW_3L6_GsBkjM';
 
         let lastUpdateTimestamp = null;
 
@@ -129,7 +128,7 @@
             { day: 3, startHour: 13, startMinute: 30, endHour: 15, endMinute: 15 }  // Wednesday
         ];
 
-        const isTestingMode = false; // Set this to true when testing
+        const isTestingMode = true; // Set this to true when testing
 
         function isClassInSession() {
             if (isTestingMode) return true; // Always return true in testing mode
@@ -148,23 +147,38 @@
             );
         }
 
+        let supabase;
+
+        async function initializeSupabase() {
+            await new Promise(resolve => {
+                if (window.supabase) {
+                    resolve();
+                } else {
+                    window.addEventListener('load', resolve);
+                }
+            });
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        }
+
         async function fetchTodayData() {
             try {
-                const response = await fetch(API_URL, {
-                    headers: {
-                        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
+                const now = new Date();
+                // Adjust to GMT+8
+                const gmt8Time = new Date(now.getTime() + (8 * 60 * 60 * 1000));
+                const startOfDay = new Date(gmt8Time.getUTCFullYear(), gmt8Time.getUTCMonth(), gmt8Time.getUTCDate()).toISOString();
+                
+                const { data, error } = await supabase
+                    .from('status_updates')
+                    .select('*')
+                    .gte('created_at', startOfDay)
+                    .order('created_at', { ascending: false });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                if (error) {
+                    throw error;
                 }
 
-                const data = await response.json();
-                const records = data.records || [];
-                console.log('Fetched data:', records);
-                return records;
+                console.log('Fetched data:', data);
+                return data;
             } catch (error) {
                 console.error('Error fetching data:', error);
                 return [];
@@ -182,11 +196,11 @@
 
             // First, find the latest record for each user
             records.forEach(record => {
-                const userName = record.fields.Name;
-                const createdTime = new Date(record.fields.Created);
+                const userName = record.name;
+                const createdTime = new Date(record.created_at);
 
                 if (!userLatestRecords.has(userName) || createdTime > userLatestRecords.get(userName).createdTime) {
-                    userLatestRecords.set(userName, { status: record.fields.Status, createdTime });
+                    userLatestRecords.set(userName, { status: record.status, createdTime });
                 }
 
                 // Update the overall latest update time
@@ -278,15 +292,20 @@
             }
         }
 
-        // Initial update
-        updateDashboard();
+        // Initial setup
+        initializeSupabase().then(() => {
+            // Initial update
+            updateDashboard();
 
-        // Set interval for updates only during class time or testing mode
-        if (isClassInSession() || isTestingMode) {
-            setInterval(updateDashboard, 5 * 1000); // Update every 10 seconds
-        } else {
-            console.log('Not in class time or testing mode. Dashboard will not update automatically.');
-        }
+            // Set interval for updates only during class time or testing mode
+            setInterval(() => {
+                if (isClassInSession() || isTestingMode) {
+                    updateDashboard();
+                } else {
+                    console.log('Not in class time or testing mode. Dashboard will not update automatically.');
+                }
+            }, 5 * 1000); // Check every 5 seconds
+        });
     </script>
 </body>
 </html>

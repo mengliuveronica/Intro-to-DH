@@ -1,0 +1,189 @@
+---
+title: "Monthly Quiz"
+format: 
+  html:
+    css: custom.css
+---
+
+::: {#instructions .info-section}
+### Instructions for Students {.unnumbered}
+
+Welcome to the monthly quiz! 📝 Please read the following instructions carefully:
+
+- 📋 Enter your name exactly as it appears in the course registration system (请填写与数北选课系统一致的姓名).
+- 📅 Select your class day from the dropdown menu.
+- ⏱️ You cannot pause or restart the quiz once it has begun.
+- 🌐 Ensure you have a stable internet connection before starting.
+- 🆘 If you encounter any technical issues, please contact your instructor immediately.
+
+Good luck! 🍀
+:::
+
+
+::: {#student-info .info-section}
+### Student Information {.unnumbered}
+
+::: {.form-group}
+<label for="student-name">Name:
+  <br>
+  <small>Enter your name exactly as it appears in the course registration system (请填写与数北选课系统一致的姓名).</small>
+<input type="text" id="student-name" class="form-control" placeholder="Enter your name in Chinese">
+:::
+
+<button id="start-quiz-button" class="btn btn-primary">Start Quiz</button>
+:::
+
+<div id="exam-container" style="display: none;"></div>
+<div id="exam-results" class="info-section" style="display: none;"></div>
+<div id="exam-analysis" class="info-section" style="display: none;"></div>
+
+<button id="show-analysis-button" style="display: none;" class="btn btn-secondary">Show Analysis</button>
+
+
+<!-- Main script -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="book/quiz.js"></script>
+<script src="book/content-switch.js"></script>
+<script src="book/examAnalysis.js"></script>
+
+<script>
+console.log('exam.qmd script starting');
+
+let verifiedStudent = null;
+let quizSubmitted = false;
+
+// Sample questions for the exam
+const examQuestions = [
+  {
+    text: "Which dplyr function would you use to select specific columns from a dataset?",
+    options: [
+      "filter()",
+      "select()",
+      "mutate()",
+      "arrange()"
+    ]
+  },
+  // Add more questions here...
+];
+
+const examAnswers = [1, /* Add more answer indices here... */];
+
+window.addEventListener('load', function() {
+  console.log('Window loaded, initializing Supabase...');
+  
+  // Check if Supabase is loaded
+  if (typeof supabase === 'undefined') {
+    console.error('Error: Supabase library not loaded');
+    return;
+  }
+
+  // Initialize Supabase client
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_API_KEY);
+  console.log('Supabase client initialized:', supabaseClient);
+
+  // Initialize page
+  initializePage(supabaseClient);
+});
+
+function showAnalysis() {
+  const analysisContainer = document.getElementById('exam-analysis');
+  if (analysisContainer.style.display === 'none') {
+    analysisContainer.style.display = 'block';
+    document.getElementById('show-analysis-button').textContent = 'Hide Analysis';
+  } else {
+    analysisContainer.style.display = 'none';
+    document.getElementById('show-analysis-button').textContent = 'Show Analysis';
+  }
+}
+
+function initializePage(supabaseClient) {
+  console.log('Initializing page');
+  const startQuizButton = document.getElementById('start-quiz-button');
+  console.log('Start Quiz Button:', startQuizButton);
+  if (startQuizButton) {
+    startQuizButton.addEventListener('click', () => verifyStudent(supabaseClient));
+    console.log('Click event listener added to Start Quiz button');
+  } else {
+    console.error('Start Quiz button not found');
+  }
+  
+  const showAnalysisButton = document.getElementById('show-analysis-button');
+  if (showAnalysisButton) {
+    showAnalysisButton.addEventListener('click', showAnalysis);
+    console.log('Click event listener added to Show Analysis button');
+  } else {
+    console.error('Show Analysis button not found');
+  }
+}
+
+async function verifyStudent(supabaseClient) {
+  console.log('verifyStudent function called');
+  if (!supabaseClient) {
+    console.error('Supabase client not initialized');
+    alert('An error occurred. Please refresh the page and try again.');
+    return;
+  }
+  
+  const studentName = document.getElementById('student-name').value;
+  
+  console.log('Student Name:', studentName);
+
+  if (!studentName) {
+    alert('请输入你的姓名。');
+    return;
+  }
+  
+  try {
+    // Check if student exists in users table
+    const { data: user, error: userError } = await supabaseClient
+      .from('users')
+      .select()
+      .eq('name', studentName)
+      .single();
+
+    if (userError) throw userError;
+
+    if (!user) {
+      alert('未找到学生信息。请检查你输入的姓名是否正确。');
+      return;
+    }
+
+    // Check if student has already submitted the exam
+    const { data: examResult, error: examError } = await supabaseClient
+      .from('examresults')
+      .select()
+      .eq('name', studentName)
+      .maybeSingle();
+
+    if (examError) throw examError;
+
+    if (examResult) {
+      alert('你已经提交过本次考试的答案，不能再次参加考试。');
+      return;
+    }
+
+    // If both checks pass, proceed with the exam
+    verifiedStudent = user;
+    document.getElementById('student-info').style.display = 'none';
+    document.getElementById('exam-container').style.display = 'block';
+    
+    if (typeof createExam === 'function') {
+      console.log('Calling createExam');
+      createExam(supabaseClient, verifiedStudent);
+    } else {
+      console.error('createExam is not a function. Check quiz.js');
+      alert('An error occurred while starting the exam. Please contact support.');
+    }
+
+  } catch (error) {
+    console.error('Error verifying student:', error);
+    alert('未找到学生信息。请检查你输入的姓名是否正确。');
+  }
+}
+
+console.log('exam.qmd script finished loading');
+</script>
+
+<script src="book/quiz.js"></script>
+<script src="book/content-switch.js"></script>
+<script src="book/examAnalysis.js"></script>

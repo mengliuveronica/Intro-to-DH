@@ -104,6 +104,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./book/index.html"> 
 <span class="menu-text">Book</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./exam.html" aria-current="page"> 
+<span class="menu-text">Quiz</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -115,8 +119,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#information-about-the-quiz" id="toc-information-about-the-quiz" class="nav-link active" data-scroll-target="#information-about-the-quiz">Information about the Quiz</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -140,114 +150,235 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div id="student-info">
-<h2 class="anchored">
-Student Information
-</h2>
-<p><input type="text" id="student-name" placeholder="Enter your name in Chinese"> <button onclick="verifyStudent()">Verify</button></p>
+<div id="exam-content">
+<div id="instructions" class="info-section">
+<section id="instructions-for-students" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="instructions-for-students">Instructions for Students</h3>
+<p>Welcome to the monthly quiz! 📝</p>
+<p>Please read the following instructions carefully:</p>
+<ul>
+<li>📋 Enter your full name exactly as it appears in the course registration system (请使用与数北选课系统完全一致的姓名).</li>
+<li>⏱️ Important: After clicking ‘Submit’ at the end of the quiz, you cannot retake or resubmit the quiz.</li>
+<li>🌐 Ensure you have a stable internet connection before starting the quiz.</li>
+<li>🔒 Do not close the browser window during the quiz.</li>
+<li>🆘 If you encounter any technical issues, please contact Meng via WeChat.</li>
+</ul>
+<p>Good luck! 🍀</p>
+</section>
 </div>
-<div id="exam-container">
-
+<div id="student-info" class="info-section">
+<section id="student-information" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="student-information">Student Information</h3>
+<div class="form-group">
+<p><label for="student-name">Name: <br> <small>Enter your name exactly as it appears in the course registration system (请填写与数北选课系统一致的姓名).</small> <br> <input type="text" id="student-name" class="form-control" placeholder="Enter your name here"> <br></label></p>
 </div>
-<div id="exam-results">
-
-</div>
-<div id="exam-analysis">
-
-</div>
-<!-- Add this line to explicitly include the analysis button -->
-<button id="show-analysis-button" style="display: block; margin-top: 20px;">
-Show Analysis
+<button id="start-quiz-button" class="btn btn-primary">
+Start Quiz
 </button>
-<!-- Update the script src to point to the correct location -->
-<script src="examAnalysis.js"></script>
+</section>
+</div>
+<div id="exam-container" style="display: none;">
+
+</div>
+<div id="exam-results" class="info-section" style="display: none;">
+
+</div>
+<!-- Main script -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="book/examQuestions.js"></script>
 <script src="book/quiz.js"></script>
+<script src="book/content-switch.js"></script>
 <script>
-console.log('After loading examAnalysis.js:');
-console.log('analyzeExamResults function:', typeof window.analyzeExamResults);
-console.log('displayAnalysis function:', typeof window.displayAnalysis);
+console.log('exam.qmd script starting');
+
+// Set this to true for testing, false for normal operation
+const testMode = false;
 
 let verifiedStudent = null;
+let quizSubmitted = false;
 
-async function verifyStudent() {
-  console.log('verifyStudent function called');
-  const studentName = document.getElementById('student-name').value;
-  console.log('Student name:', studentName);
+window.addEventListener('load', function() {
+  console.log('Window loaded, initializing Supabase...');
   
+  // Check if Supabase is loaded
+  if (typeof supabase === 'undefined') {
+    console.error('Error: Supabase library not loaded');
+    return;
+  }
+
+  // Initialize Supabase client
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_API_KEY);
+  console.log('Supabase client initialized:', supabaseClient);
+
+  // Initialize page
+  initializePage(supabaseClient);
+});
+
+async function initializePage(supabaseClient) {
+  console.log('Initializing page');
+  
+  // Fetch exam settings
+  const { data, error } = await supabaseClient
+    .from('exam_settings')
+    .select('*')
+    .single();
+  
+  if (error) {
+    console.error('Error fetching exam settings:', error);
+    return;
+  }
+  
+  const examStartTime = new Date(data.exam_start_time);
+  const examEndTime = new Date(data.exam_end_time);
+  
+  // Get current time in GMT+8
+  const currentTimeGMT8 = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
+
+  const isExamPeriod = testMode || (currentTimeGMT8 >= examStartTime && currentTimeGMT8 <= examEndTime);
+
+  if (testMode) {
+    console.log('Test mode active: Exam period forced on');
+  }
+
+  switchContent(isExamPeriod, data);
+  
+  if (isExamPeriod) {
+    const startQuizButton = document.getElementById('start-quiz-button');
+    if (startQuizButton) {
+      startQuizButton.addEventListener('click', () => verifyStudent(supabaseClient));
+      console.log('Click event listener added to Start Quiz button');
+    } else {
+      console.error('Start Quiz button not found');
+    }
+  }
+}
+
+function switchContent(isExamPeriod, examData) {
+  const examContent = document.getElementById('exam-content');
+  const nonExamContent = document.getElementById('non-exam-content');
+  const examPeriodElement = document.getElementById('exam-period');
+  const contentCoverageElement = document.getElementById('content-coverage');
+  
+  if (isExamPeriod) {
+    examContent.style.display = 'block';
+    nonExamContent.style.display = 'none';
+  } else {
+    examContent.style.display = 'none';
+    nonExamContent.style.display = 'block';
+    if (examPeriodElement) {
+      examPeriodElement.textContent = `${formatDate(new Date(examData.exam_start_time))} to ${formatDate(new Date(examData.exam_end_time))}`;
+    }
+    if (contentCoverageElement) {
+      contentCoverageElement.textContent = examData.content_coverage;
+    }
+  }
+}
+
+function formatDate(date) {
+  return date.toLocaleString('en-US', { 
+    timeZone: 'Asia/Shanghai',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
+}
+
+async function verifyStudent(supabaseClient) {
+  console.log('verifyStudent function called');
+  if (!supabaseClient) {
+    console.error('Supabase client not initialized');
+    alert('An error occurred. Please refresh the page and try again.');
+    return;
+  }
+  
+  const studentName = document.getElementById('student-name').value;
+  
+  console.log('Student Name:', studentName);
+
   if (!studentName) {
-    alert('Please enter your name.');
+    alert('请输入你的姓名。');
     return;
   }
   
   try {
-    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Users?filterByFormula={Name}='${studentName}'`, {
-      headers: {
-        'Authorization': `Bearer ${AIRTABLE_API_KEY}`
-      }
-    });
-    const data = await response.json();
-    
-    if (data.records.length > 0) {
-      verifiedStudent = data.records[0];
-      document.getElementById('student-info').style.display = 'none';
-      document.getElementById('exam-container').style.display = 'block';
-      createExam(verifiedStudent);
-      // Show the analysis button after exam creation
-      document.getElementById('show-analysis-button').style.display = 'block';
-    } else {
-      alert('Student not found. Please check your name.');
+    // Check if student exists in users table
+    const { data: user, error: userError } = await supabaseClient
+      .from('users')
+      .select()
+      .eq('name', studentName)
+      .single();
+
+    if (userError) throw userError;
+
+    if (!user) {
+      alert('未找到学生信息。请检查你输入的姓名是否正确。');
+      return;
     }
+
+    // Check if student has already submitted the exam
+    const { data: examResult, error: examError } = await supabaseClient
+      .from('examresults')
+      .select()
+      .eq('name', studentName)
+      .maybeSingle();
+
+    if (examError) throw examError;
+
+    if (examResult) {
+      alert('你已经提交过本次考试的答案，不能再次参加考试。');
+      return;
+    }
+
+    // If both checks pass, proceed with the exam
+    verifiedStudent = user;
+    document.getElementById('student-info').style.display = 'none';
+    document.getElementById('exam-container').style.display = 'block';
+    
+    if (typeof createExam === 'function') {
+      console.log('Calling createExam');
+      createExam(supabaseClient, verifiedStudent);
+    } else {
+      console.error('createExam is not a function. Check quiz.js');
+      alert('An error occurred while starting the exam. Please contact support.');
+    }
+
   } catch (error) {
     console.error('Error verifying student:', error);
-    alert('An error occurred while verifying your information. Please try again.');
+    alert('未找到学生信息。请检查你输入的姓名是否正确。');
   }
 }
 
-function createExam(student) {
-  createQuiz({
-    questions: examQuestions,
-    answers: examAnswers
-  }, "exam-container", function(score, studentAnswers) {
-    submitExamResults(student, score, studentAnswers);
-    showExamResults(score, examQuestions.length);
-    analyzeExamResults().then(analysisData => displayAnalysis(analysisData));
-  });
-}
-
-// Sample questions for the exam
-const examQuestions = [
-  {
-    text: "Which dplyr function would you use to select specific columns from a dataset?",
-    options: [
-      "filter()",
-      "select()",
-      "mutate()",
-      "arrange()"
-    ]
-  },
-  // Add more questions here...
-];
-
-const examAnswers = [1, /* Add more answer indices here... */];
-
-// Initialize the exam when the document is ready
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Document ready, initializing exam');
-
-  document.getElementById('show-analysis-button').addEventListener('click', function() {
-    console.log('Analysis button clicked');
-    if (typeof window.analyzeExamResults === 'function') {
-      window.analyzeExamResults().then(analysisData => window.displayAnalysis(analysisData))
-        .catch(error => console.error('Error analyzing exam results:', error));
-    } else {
-      console.error('analyzeExamResults function is not defined');
-      alert('Analysis function is not available. Please check the console for more information.');
-    }
-  });
-});
-
-console.log('exam.qmd script loaded');
+console.log('exam.qmd script finished loading');
 </script>
+</div>
+<div id="non-exam-content" style="display: none;">
+<div id="instructions" class="info-section">
+<section id="information-about-the-quiz" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="information-about-the-quiz">Information about the Quiz</h3>
+<p>📝 <strong>Quiz Format</strong>:</p>
+<ul>
+<li>10 questions in total</li>
+<li>All questions are taken from the course textbook</li>
+<li>Multiple choice format</li>
+</ul>
+<p>⏰ <strong>Quiz Schedule</strong>:</p>
+<ul>
+<li>The quiz is currently closed</li>
+<li>It will be open from <strong><span id="exam-period"></span></strong></li>
+<li>You can submit any time during this period</li>
+<li>You can only submit the quiz once</li>
+</ul>
+<p>📚 <strong>Content Coverage</strong>:</p>
+<ul>
+<li><strong><span id="content-coverage"></span></strong></li>
+</ul>
+<p>Good luck and happy studying! 🍀📚</p>
+</section>
+</div>
+</div>
 
 
 

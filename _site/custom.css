@@ -1,8 +1,11 @@
 /* External Resources */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
+
+
 /* General Styles */
 body {
+  font-size: 16px; /* Base size */
   font-family: Arial, sans-serif;
   line-height: 1.6;
   color: #333;
@@ -19,51 +22,75 @@ a:hover {
 
 /* Typography */
 h1 {
-  font-size: 2.5em;
+  font-size: 2.2em;  /* Reduced from 2.5em */
   margin-bottom: 0.2em;
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 1.8em;  /* Reduced from 2em */
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
 
-/* Highlighter Styles */
-.highlight-yellow {
-  background: linear-gradient(104deg, rgba(255,255,224,0) 0.9%, rgba(255,255,224,1) 2.4%, rgba(255,255,224,0.5) 5.8%, rgba(255,255,224,0.1) 93%, rgba(255,255,224,0.7) 96%, rgba(255,255,224,0) 98%), linear-gradient(183deg, rgba(255,255,224,0) 0%, rgba(255,255,224,0.3) 7.9%, rgba(255,255,224,0) 15%);
-  padding: 0.1em 0.2em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+h3 {
+  font-size: 1.4em;  /* Reduced from 1.5em */
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
-.highlight-green {
-  background: linear-gradient(104deg, rgba(210,255,210,0) 0.9%, rgba(210,255,210,1) 2.4%, rgba(210,255,210,0.5) 5.8%, rgba(210,255,210,0.1) 93%, rgba(210,255,210,0.7) 96%, rgba(210,255,210,0) 98%), linear-gradient(183deg, rgba(210,255,210,0) 0%, rgba(210,255,210,0.3) 7.9%, rgba(210,255,210,0) 15%);
-  padding: 0.1em 0.2em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+h4 {
+  font-size: 1.2em;  /* Reduced from 1.25em */
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
-.highlight-blue {
-  background: linear-gradient(104deg, rgba(210,210,255,0) 0.9%, rgba(210,210,255,1) 2.4%, rgba(210,210,255,0.5) 5.8%, rgba(210,210,255,0.1) 93%, rgba(210,210,255,0.7) 96%, rgba(210,210,255,0) 98%), linear-gradient(183deg, rgba(210,210,255,0) 0%, rgba(210,210,255,0.3) 7.9%, rgba(210,210,255,0) 15%);
-  padding: 0.1em 0.2em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+h5 {
+  font-size: 0.95em;  /* Reduced from 1em */
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
-.highlight-pink {
-  background: linear-gradient(104deg, rgba(255,210,255,0) 0.9%, rgba(255,210,255,1) 2.4%, rgba(255,210,255,0.5) 5.8%, rgba(255,210,255,0.1) 93%, rgba(255,210,255,0.7) 96%, rgba(255,210,255,0) 98%), linear-gradient(183deg, rgba(255,210,255,0) 0%, rgba(255,210,255,0.3) 7.9%, rgba(255,210,255,0) 15%);
-  padding: 0.1em 0.2em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+h6 {
+  font-size: 0.85em;  /* Reduced from 0.875em */
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
-.highlight-orange {
-  background: linear-gradient(104deg, rgba(255,230,210,0) 0.9%, rgba(255,230,210,1) 2.4%, rgba(255,230,210,0.5) 5.8%, rgba(255,230,210,0.1) 93%, rgba(255,230,210,0.7) 96%, rgba(255,230,210,0) 98%), linear-gradient(183deg, rgba(255,230,210,0) 0%, rgba(255,230,210,0.3) 7.9%, rgba(255,230,210,0) 15%);
-  padding: 0.1em 0.2em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+button {
+  padding: 8px 16px;
+  margin: 0 8px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  font-weight: normal;
+  transition: all 0.3s ease;
 }
+
+button:hover {
+  background-color: #e0e0e0;
+  border-color: #c0c0c0;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+/* For primary actions, you can use a slightly different style */
+button.primary {
+  background-color: #0066cc;
+  color: white;
+  border-color: #0066cc;
+}
+
+button.primary:hover {
+  background-color: #004ea7;
+  border-color: #004ea7;
+}
+
 
 /* Image Styles */
 .image-wrap {
@@ -80,20 +107,17 @@ h2 {
 
 /* Layout Components */
 .info-section {
-  max-width: 100%;
-  width: 100%;
-  margin: 20px 0;
+  max-width: 600px;
+  margin: 10px auto;
   padding: 20px;
-  background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
-  font-size: 1.1em;
-  color: #333;
+  background-color: #ffffff;  /* Change this to white */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .info-section h3 {
-  font-size: 1.2em;
+  font-size: 1.2em;  /* Reduced from 1.2em to 1.1em */
   font-weight: bold;
   color: #0066cc;
   margin-top: 0;
@@ -102,7 +126,7 @@ h2 {
 
 .info-section p {
   margin-bottom: 10px;
-  line-height: 1.6;
+  line-height: 1.5;  /* Slightly reduced from 1.6 */
 }
 
 .info-section ul {
@@ -481,5 +505,253 @@ code:not(pre code),.quiz code {
   font-style: normal;
   color: #333;
 }
+
+
+
+/* Add these new styles at the end of your existing custom.css file */
+
+/* Styles for the student info form and quiz interface */
+#student-info {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+#student-info h3 {
+  color: #0066cc;
+  margin-bottom: 15px;
+}
+
+#student-info .form-group {
+  margin-bottom: 15px;
+}
+
+#student-info label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#student-info input[type="text"],
+#student-info select {
+  width: 100%;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#student-info button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#student-info button:hover {
+  background-color: #004ea7;
+}
+
+#exam-container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+#current-question h3 {
+  color: #0066cc;
+  margin-bottom: 10px;
+}
+
+#current-question label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.navigation-buttons button {
+  padding: 10px 20px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navigation-buttons button:hover {
+  background-color: #004ea7;
+}
+
+#exam-results {
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#exam-results h3 {
+  color: #0066cc;
+  margin-bottom: 15px;
+}
+
+#show-analysis-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+/* background-color: #6c757d;*/
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#show-analysis-button:hover {
+  background-color: #5a6268;
+}
+
+/* Exam Analysis Styles */
+#exam-analysis {
+  font-family: 'Arial', sans-serif;
+  color: #0066cc;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.analysis-title {
+  font-size: 1.5em;  /* Reduced from 1.8em */
+  color: #0066cc;  /* Changed to match other headings */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1.2em;  /* Reduced from 1.4em */
+  color: #0066cc;  /* Changed to match other headings */
+  margin-bottom: 15px;
+  border-bottom: 2px solid #0066cc;
+  padding-bottom: 5px;
+}
+
+.subsection-title {
+  font-size: 1.1em;  /* Reduced from 1.2em */
+  color: #0066cc;  /* Changed to match other headings */
+  margin-bottom: 10px;
+}
+
+.total-students {
+  font-size: 1em;  /* Reduced from 1.1em */
+  margin-bottom: 15px;
+}
+
+.bar-chart {
+  width: 100%;
+}
+
+.bar-container {
+  margin-bottom: 12px;
+}
+
+.bar-label {
+  margin-bottom: 3px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.bar-wrapper {
+  width: 100%;
+  background-color: #e0e0e0;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.bar.unanswered {
+  background: linear-gradient(to right, #FFA000, #FF6F00);
+}
+
+.question-section {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.question-text {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.correct-label {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.info-section label small {
+  color: #555555;  /* This is a dark grey color */
+}
+
+
+/* Highlighter Styles */
+.highlight-yellow {
+  background: linear-gradient(104deg, rgba(255,255,224,0) 0.9%, rgba(255,255,224,1) 2.4%, rgba(255,255,224,0.5) 5.8%, rgba(255,255,224,0.1) 93%, rgba(255,255,224,0.7) 96%, rgba(255,255,224,0) 98%), linear-gradient(183deg, rgba(255,255,224,0) 0%, rgba(255,255,224,0.3) 7.9%, rgba(255,255,224,0) 15%);
+  padding: 0.1em 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.highlight-green {
+  background: linear-gradient(104deg, rgba(210,255,210,0) 0.9%, rgba(210,255,210,1) 2.4%, rgba(210,255,210,0.5) 5.8%, rgba(210,255,210,0.1) 93%, rgba(210,255,210,0.7) 96%, rgba(210,255,210,0) 98%), linear-gradient(183deg, rgba(210,255,210,0) 0%, rgba(210,255,210,0.3) 7.9%, rgba(210,255,210,0) 15%);
+  padding: 0.1em 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.highlight-blue {
+  background: linear-gradient(104deg, rgba(210,210,255,0) 0.9%, rgba(210,210,255,1) 2.4%, rgba(210,210,255,0.5) 5.8%, rgba(210,210,255,0.1) 93%, rgba(210,210,255,0.7) 96%, rgba(210,210,255,0) 98%), linear-gradient(183deg, rgba(210,210,255,0) 0%, rgba(210,210,255,0.3) 7.9%, rgba(210,210,255,0) 15%);
+  padding: 0.1em 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.highlight-pink {
+  background: linear-gradient(104deg, rgba(255,210,255,0) 0.9%, rgba(255,210,255,1) 2.4%, rgba(255,210,255,0.5) 5.8%, rgba(255,210,255,0.1) 93%, rgba(255,210,255,0.7) 96%, rgba(255,210,255,0) 98%), linear-gradient(183deg, rgba(255,210,255,0) 0%, rgba(255,210,255,0.3) 7.9%, rgba(255,210,255,0) 15%);
+  padding: 0.1em 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.highlight-orange {
+  background: linear-gradient(104deg, rgba(255,230,210,0) 0.9%, rgba(255,230,210,1) 2.4%, rgba(255,230,210,0.5) 5.8%, rgba(255,230,210,0.1) 93%, rgba(255,230,210,0.7) 96%, rgba(255,230,210,0) 98%), linear-gradient(183deg, rgba(255,230,210,0) 0%, rgba(255,230,210,0.3) 7.9%, rgba(255,230,210,0) 15%);
+  padding: 0.1em 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+
+
+
 
 

@@ -104,6 +104,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./book/index.html"> 
 <span class="menu-text">Book</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./exam.html"> 
+<span class="menu-text">Quiz</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -127,6 +131,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#real-time-personal-status" id="toc-real-time-personal-status" class="nav-link" data-scroll-target="#real-time-personal-status">Real-Time Personal Status ✅⏳🆘</a></li>
   <li><a href="#real-time-class-status-overview" id="toc-real-time-class-status-overview" class="nav-link" data-scroll-target="#real-time-class-status-overview">Real-Time Class Status Overview 📊</a></li>
   </ul></li>
+  <li><a href="#quiz-analysis" id="toc-quiz-analysis" class="nav-link" data-scroll-target="#quiz-analysis">📊 Quiz Analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -201,9 +206,94 @@ ul.task-list li input[type="checkbox"] {
 </iframe>
 <iframe src="book/float_dash.html" width="200px" height="200px" style="border:none; position: fixed; bottom: 10px; left: 10px; z-index: 9999;" scrolling="no">
 </iframe>
-
-
 </section>
+</section>
+<section id="quiz-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="quiz-analysis">📊 Quiz Analysis</h2>
+<div id="analysis-login" class="info-section" style="display: block;">
+<h3 class="anchored">
+Quiz Analysis Login
+</h3>
+<p><input type="password" id="analysis-password" placeholder="Enter admin password"> <button id="login-button">Admin Login</button></p>
+</div>
+<div id="analysis-controls" class="info-section" style="display: none;">
+<h3 class="anchored">
+Quiz Analysis Controls
+</h3>
+<p><button id="run-analysis-button">Run Quiz Analysis</button> <button id="hide-analysis-button" style="display: none;">Hide Quiz Analysis</button> <button id="show-missing-takers-button">Show Missing Quiz Takers</button> <button id="hide-missing-takers-button" style="display: none;">Hide Missing Quiz Takers</button></p>
+</div>
+<div id="exam-analysis" class="info-section" style="display: none;">
+
+</div>
+<div id="missing-exam-takers" class="info-section" style="display: none;">
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="book/examQuestions.js"></script>
+<script src="book/quiz.js"></script>
+<script src="book/examAnalysis.js"></script>
+<script>
+console.log('Exam analysis script starting');
+
+// Initialize Supabase client
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_API_KEY);
+
+// Event listeners
+document.getElementById('login-button').addEventListener('click', verifyAnalysisPassword);
+document.getElementById('run-analysis-button').addEventListener('click', runAnalysis);
+document.getElementById('hide-analysis-button').addEventListener('click', hideAnalysis);
+document.getElementById('show-missing-takers-button').addEventListener('click', showMissingExamTakers);
+document.getElementById('hide-missing-takers-button').addEventListener('click', hideMissingExamTakers);
+
+function verifyAnalysisPassword() {
+  const password = document.getElementById('analysis-password').value;
+  if (password === '1234') {
+    document.getElementById('analysis-login').style.display = 'none';
+    document.getElementById('analysis-controls').style.display = 'block';
+  } else {
+    alert('Incorrect password. Please try again.');
+  }
+}
+
+async function runAnalysis() {
+  try {
+    const analysisData = await analyzeExamResults(supabaseClient);
+    displayAnalysis(analysisData);
+    document.getElementById('exam-analysis').style.display = 'block';
+    document.getElementById('hide-analysis-button').style.display = 'inline-block';
+    document.getElementById('run-analysis-button').style.display = 'none';
+  } catch (error) {
+    console.error('Error running exam analysis:', error);
+    alert('An error occurred while running the analysis. Please try again.');
+  }
+}
+
+function hideAnalysis() {
+  document.getElementById('exam-analysis').style.display = 'none';
+  document.getElementById('hide-analysis-button').style.display = 'none';
+  document.getElementById('run-analysis-button').style.display = 'inline-block';
+}
+
+async function showMissingExamTakers() {
+  try {
+    await displayMissingExamTakers(supabaseClient);
+    document.getElementById('missing-exam-takers').style.display = 'block';
+    document.getElementById('show-missing-takers-button').style.display = 'none';
+    document.getElementById('hide-missing-takers-button').style.display = 'inline-block';
+  } catch (error) {
+    console.error('Error showing missing exam takers:', error);
+    alert('An error occurred while fetching missing exam takers. Please try again.');
+  }
+}
+
+function hideMissingExamTakers() {
+  document.getElementById('missing-exam-takers').style.display = 'none';
+  document.getElementById('show-missing-takers-button').style.display = 'inline-block';
+  document.getElementById('hide-missing-takers-button').style.display = 'none';
+}
+</script>
+
+
 </section>
 
 </main> <!-- /main -->

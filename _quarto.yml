@@ -20,6 +20,9 @@ website:
         text: Toybox
       - text: Book
         href: book/index.qmd
+      - text: Quiz
+        href: exam.qmd
+        
 
 
   sidebar:

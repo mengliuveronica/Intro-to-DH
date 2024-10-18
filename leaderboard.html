@@ -99,18 +99,28 @@
             right: 10px;
         }
         button {
-            background-color: #5b5dcd;
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 8px;
             font-size: 14px;
-            margin: 2px;
             cursor: pointer;
-            border-radius: 3px;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-weight: normal;
+            transition: all 0.3s ease;
         }
+
+        button:hover {
+            background-color: #e0e0e0;
+            border-color: #c0c0c0;
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+        }
+
         input[type="text"], input[type="number"], input[type="password"] {
             width: 100%;
             padding: 8px 12px;
@@ -131,7 +141,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🏆 Class Champions Leaderboard 🏆</h1>
+        <h2 style="text-align: center;">🏆 Class Champions 🏆</h2>
         <p class="description">
             Speak up, score big! 🗣️✨<br>
             Answer a question → Draw from the 🃏 Poker Card Deck<br>
@@ -145,21 +155,21 @@
         <div id="searchSection">
             <h3>Search Student</h3>
             <input type="text" id="searchInput" placeholder="Enter Student Name">
-            <button id="searchButton">Search</button>
+            <button id="searchButton" class="primary">Search</button>
             <div id="searchResult"></div>
         </div>
 
         <div id="adminControls">
             <h3>Admin Controls</h3>
             <input type="password" id="adminPasswordInput" placeholder="Admin Password">
-            <button id="loginButton">Login</button>
+            <button id="loginButton" class="primary">Login</button>
         </div>
 
         <div id="addEntry" class="hidden">
             <h4>Add Score</h4>
             <input type="text" id="nameInput" placeholder="Name">
             <input type="number" id="scoreInput" placeholder="Score to add">
-            <button id="addButton">Add</button>
+            <button id="addButton" class="primary">Add</button>
         </div>
 
         <button id="toggleEditButton" class="hidden">Edit</button>
@@ -171,7 +181,7 @@
             <h2>Update Entry</h2>
             <input type="text" id="updateNameInput" placeholder="Name">
             <input type="number" id="updateScoreInput" placeholder="Score to add">
-            <button id="updateConfirmButton">Add</button>
+            <button id="updateConfirmButton" class="primary">Add</button>
         </div>
     </div>
 

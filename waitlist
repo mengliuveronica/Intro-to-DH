@@ -149,3 +149,216 @@ createToggleSection('reflection-insights-button', 'reflection-insights', 'Show I
 </script>
 
 Now, let's explore how computers "read" and prepare texts for analysis. This process, known as text preprocessing, is a crucial first step in quantitative text analysis.
+
+
+## Lowercasing
+
+Lowercasing converts all text to lowercase, which helps standardize the text and ensures that words like "The" and "the" are treated as the same word.
+
+```{r}
+# Lowercasing
+lowercased_text <- pride_and_prejudice %>%
+  mutate(text = tolower(text))
+
+# Display a few rows to see the effect
+lowercased_text %>%
+  slice_head(n = 5) %>%
+  select(text)
+```
+
+## Removing Punctuation
+
+Removing punctuation can help in word-based analyses by separating words that might be connected by punctuation.
+
+```{r}
+# Removing punctuation
+no_punctuation <- pride_and_prejudice %>%
+  mutate(text = str_replace_all(text, "[[:punct:]]", ""))
+
+# Display a few rows to see the effect
+no_punctuation %>%
+  slice_head(n = 20) %>%
+  select(text)
+```
+
+:::{.callout-tip}
+## `stringr` Functions and Regex
+
+`str_replace_all()` is a function from the `stringr` package (part of the tidyverse) that replaces all occurrences of a pattern in a string with another string. Common functions that are useful for working with text are:
+
+- Detecting text: `str_detect()`, `str_count()`
+- Extracting text: `str_extract()`, `str_extract_all()`
+- Replacing text: `str_replace()`, `str_replace_all()`
+- Removing text: `str_remove()`, `str_remove_all()`
+
+Regex (regular expressions) are powerful tools for pattern matching in strings. 
+
+Here's a breakdown of the regex used in the above example:
+
+- `"[[:punct:]]"`: This pattern matches any punctuation character.
+   - `[]` defines a character set. It matches any single character inside the brackets.
+   - `[:punct:]` is a POSIX character class representing all punctuation
+
+Using these patterns with `str_replace_all()`, we can effectively clean our text by removing punctuation, numbers, and special characters.
+
+You can check out [this blogpost](https://jfjelstul.github.io/regular-expressions-tutorial/) for a good variety of examples of how to use regular expressions to prepare text for analysis. Remember, the choice of regex patterns depends on your specific text cleaning needs.
+:::
+
+:::{.callout-tip}
+## What is POSIX?
+
+POSIX (Portable Operating System Interface) is a family of standards specified by the IEEE Computer Society for maintaining compatibility between operating systems. In the context of regular expressions:
+
+1. POSIX defines a standardized set of character classes that can be used across different programming languages and tools.
+
+2. These character classes provide a convenient way to match groups of characters without explicitly listing them all.
+
+3. Common POSIX character classes include:
+   - `[:alnum:]`: Alphanumeric characters (A-Z, a-z, 0-9)
+   - `[:alpha:]`: Alphabetic characters (A-Z, a-z)
+   - `[:digit:]`: Digits (0-9)
+   - `[:lower:]`: Lowercase letters (a-z)
+   - `[:upper:]`: Uppercase letters (A-Z)
+   - `[:punct:]`: Punctuation characters
+   - `[:space:]`: Whitespace characters (space, tab, newline, etc.)
+
+4. POSIX character classes are particularly useful in text processing and data cleaning tasks, as they provide a consistent way to match character groups across different systems and languages.
+
+5. In R and many other programming environments, these POSIX character classes can be used within square brackets in regular expressions, like `[[:alnum:]]` or `[[:space:]]`.Using POSIX character classes can make your regular expressions more readable and portable across different systems and programming languages.
+
+:::
+
+## Other Preprocessing Operations
+
+### Removing Numbers
+
+Removing numbers can be useful when focusing on textual content rather than numerical data. Below we use some made-up examples to more easily showcase these operations.
+
+```{r}
+# Example of removing numbers
+str_replace_all("Hello, world! 123", "\\d+", "")
+```
+
+
+:::{.callout-tip}
+## Regex Breakdown
+
+- `"\\d+"`: This pattern matches one or more digits.
+   - `\\d` represents any digit (equivalent to `[0-9]`)
+   - `+` means "one or more" of the preceding element
+
+:::
+
+### Removing Whitespace
+
+Sometimes the text may contain extra whitespace that is unwanted, which may impact the matching of patterns if not handled properly. Two functions are handy for removing whitespace: `str_trim()` and `str_squish()`. 
+Trimming removes leading and trailing whitespace, while squishing replaces multiple spaces with a single space.
+
+```{r}
+# Example of str_trim()
+str_trim("  Hello, world!  ")
+
+# Example of str_squish()
+str_squish("Hello,   world!  How   are  you?")
+
+# Combining str_trim() and str_squish()
+str_squish(str_trim("  Hello,   world!  How   are  you?  "))
+```
+
+### Removing Special Characters
+
+Removing special characters can help standardize text, especially when dealing with different character encodings. This may be particularly relevant when dealing with social media data. 
+
+:::{.callout-tip}
+## Character Encodings
+
+Character encoding is a method used to represent characters in digital form. It's crucial to understand character encodings when working with text data, especially in multilingual or international contexts:
+
+1. **Definition**: Character encoding assigns a unique number to every character in a writing system, allowing computers to store, process, and display text.
+
+2. **Common Encodings**:
+   - ASCII: Represents basic Latin characters and some control characters.
+   - UTF-8: A variable-width encoding that can represent all Unicode characters.
+   - ISO-8859-1 (Latin-1): Covers most Western European languages.
+
+3. **Unicode**: A universal character encoding standard that aims to represent all writing systems in the world.
+
+4. **Importance in Text Analysis**:
+   - Incorrect encoding can lead to garbled text or misinterpretation of characters.
+   - Different languages and scripts may require specific encodings.
+   - Consistent encoding is crucial for accurate text processing and analysis.
+
+5. **Handling in R**:
+   - R generally uses UTF-8 encoding by default.
+   - Functions like `Encoding()` and `iconv()` can help manage different encodings.
+
+6. **Best Practices**:
+   - Always specify the encoding when reading or writing text files.
+   - Use UTF-8 when possible for its universal compatibility.
+   - Be aware of potential encoding issues when working with text from diverse sources.
+
+Understanding character encodings is essential for ensuring accurate representation and analysis of text data, especially in multilingual or cross-cultural digital humanities projects.
+:::
+
+
+```{r}
+# Example of removing special characters
+str_replace_all("Hello, world! 123 @#$ ñ € ß", "[^[:alnum:][:space:]]", "")
+```
+
+:::{.callout-tip}
+## Regex Breakdown
+
+The regex pattern `[^[:alnum:][:space:]]` is used to match any character that is not alphanumeric or whitespace. Let's break it down:
+
+1. `[]`: Defines a character set. It matches any single character inside the brackets.
+
+2. `^`: When used as the first character inside `[]`, it negates the set. It means "match any character that is NOT in this set".
+
+3. `[:alnum:]`: POSIX character class for all alphanumeric characters.
+
+4. `[:space:]`: POSIX character class for all whitespace characters.
+
+So, `[^[:alnum:][:space:]]` means:
+- Match any character that is neither alphanumeric nor whitespace.
+
+This effectively matches all special characters, punctuation, and non-ASCII characters, which are then replaced with an empty string, removing them from the text.
+
+:::
+
+
+These preprocessing steps can be combined for a more comprehensive text cleaning:
+
+```{r}
+# Combining all preprocessing steps
+fully_preprocessed <- pride_and_prejudice %>%
+  mutate(
+    text = tolower(text),
+    text = str_replace_all(text, "[[:punct:]]", ""),
+    text = str_replace_all(text, "\\d+", ""),
+    text = str_trim(text),
+    text = str_squish(text),
+    text = str_replace_all(text, "[^[:alnum:][:space:]]", "")
+  )
+
+# Display a few rows to see the combined effect
+fully_preprocessed %>%
+  slice_head(n = 20) %>%
+  select(text)
+```
+
+Each of these preprocessing steps serves a specific purpose in preparing the text for analysis. The choice of which steps to apply depends on the specific goals of your analysis and the nature of your text data. 
+
+::: {.callout-tip}
+## Understanding the Implications of Preprocessing
+
+It's crucial to carefully consider and document each preprocessing step you apply to your text data. These decisions can significantly impact your analysis results:
+
+1. **Information Loss**: Some preprocessing steps (like removing punctuation or lowercasing) can remove potentially important information.
+2. **Analysis Bias**: Certain preprocessing choices might inadvertently introduce bias into your analysis.
+3. **Interpretability**: Your preprocessing decisions affect how you can interpret your results later.
+4. **Reproducibility**: Documenting your preprocessing steps is essential for others to reproduce or build upon your work.
+5. **Domain Specificity**: The appropriate preprocessing steps can vary depending on your field of study and the specific texts you're analyzing.
+
+*Always think critically about why you're applying each preprocessing step and how it might affect your analysis outcomes*. When in doubt, it's often helpful to try multiple preprocessing approaches and compare the results. 
+:::

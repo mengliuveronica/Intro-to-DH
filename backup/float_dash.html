@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Status Dashboard</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        #floating-dashboard {
+            position: fixed;
+            bottom: 0.5em;
+            left: 0.5em;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ccc;
+            border-radius: 0.5em;
+            box-shadow: 0 0.1em 0.5em rgba(0,0,0,0.1);
+            width: 2.5em;
+            height: 2.5em;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px; // Add this line to match float_traffic.html
+        }
+        #floating-dashboard:hover {
+            width: 12em;
+            height: auto;
+            padding: 0.5em;
+        }
+        #current-status {
+            font-size: 1.2em;
+        }
+        #content {
+            display: none;
+            width: 100%;
+        }
+        #floating-dashboard:hover #content {
+            display: block;
+        }
+        #floating-dashboard:hover #current-status {
+            display: none;
+        }
+        .status-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.3em;
+        }
+        .status-icon {
+            margin-right: 0.5em;
+            font-size: 1.2em;
+        }
+        .bar-container {
+            flex-grow: 1;
+            height: 1em;
+            background-color: #f0f0f0;
+            border-radius: 0.5em;
+            overflow: hidden;
+        }
+        .bar {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        #green-bar { background-color: #4CAF50; }
+        #yellow-bar { background-color: #FFC107; }
+        #red-bar { background-color: #F44336; }
+        #last-update {
+            font-size: 0.7em;
+            color: #666;
+            text-align: center;
+            margin-top: 0.3em;
+        }
+        .status-count {
+            margin-left: 0.5em;
+            font-size: 0.9em;
+            min-width: 3.5em; // Increased to accommodate percentage
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="floating-dashboard">
+        <div id="current-status">📊</div>
+        <div id="content">
+            <div class="status-bar">
+                <span class="status-icon">✅</span>
+                <div class="bar-container">
+                    <div id="green-bar" class="bar"></div>
+                </div>
+                <span id="green-count" class="status-count">0</span>
+            </div>
+            <div class="status-bar">
+                <span class="status-icon">⏳</span>
+                <div class="bar-container">
+                    <div id="yellow-bar" class="bar"></div>
+                </div>
+                <span id="yellow-count" class="status-count">0</span>
+            </div>
+            <div class="status-bar">
+                <span class="status-icon">🆘</span>
+                <div class="bar-container">
+                    <div id="red-bar" class="bar"></div>
+                </div>
+                <span id="red-count" class="status-count">0</span>
+            </div>
+            <div id="last-update"></div>
+        </div>
+    </div>
+
+    <script>
+        const AIRTABLE_BASE_ID = 'appkIFRKGG6cHGW1K';
+        const AIRTABLE_TABLE_NAME = 'Table 1';
+        const AIRTABLE_API_KEY = 'patIi26p44lAC1Pe6.eefdb4a277315ebcf280cfd2a82aef511257ab5fdd8850269fbcc83680de478b';
+        const API_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`;
+
+        let lastUpdateTimestamp = null;
+
+        // Define class schedule for Monday and Wednesday, 13:30-15:15 GMT+8
+        const classSchedule = [
+            { day: 1, startHour: 13, startMinute: 30, endHour: 15, endMinute: 15 }, // Monday
+            { day: 3, startHour: 13, startMinute: 30, endHour: 15, endMinute: 15 }  // Wednesday
+        ];
+
+        const isTestingMode = false; // Set this to true when testing
+
+        function isClassInSession() {
+            if (isTestingMode) return true; // Always return true in testing mode
+
+            const now = new Date();
+            // Adjust to GMT+8
+            const gmt8Time = new Date(now.getTime() + (8 * 60 * 60 * 1000));
+            const currentDay = gmt8Time.getUTCDay(); // 0 is Sunday, 1 is Monday, etc.
+            const currentHour = gmt8Time.getUTCHours();
+            const currentMinute = gmt8Time.getUTCMinutes();
+
+            return classSchedule.some(session => 
+                currentDay === session.day &&
+                (currentHour > session.startHour || (currentHour === session.startHour && currentMinute >= session.startMinute)) &&
+                (currentHour < session.endHour || (currentHour === session.endHour && currentMinute <= session.endMinute))
+            );
+        }
+
+        async function fetchTodayData() {
+            try {
+                const response = await fetch(API_URL, {
+                    headers: {
+                        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const records = data.records || [];
+                console.log('Fetched data:', records);
+                return records;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return [];
+            }
+        }
+
+        function processData(records) {
+            const statusCounts = {
+                green: 0,
+                yellow: 0,
+                red: 0
+            };
+            let latestUpdateTime = null;
+            const userLatestRecords = new Map();
+
+            // First, find the latest record for each user
+            records.forEach(record => {
+                const userName = record.fields.Name;
+                const createdTime = new Date(record.fields.Created);
+
+                if (!userLatestRecords.has(userName) || createdTime > userLatestRecords.get(userName).createdTime) {
+                    userLatestRecords.set(userName, { status: record.fields.Status, createdTime });
+                }
+
+                // Update the overall latest update time
+                if (!latestUpdateTime || createdTime > latestUpdateTime) {
+                    latestUpdateTime = createdTime;
+                }
+            });
+
+            // Now count the statuses from the latest records
+            for (const { status } of userLatestRecords.values()) {
+                if (status === 'Got it!') {
+                    statusCounts.green++;
+                } else if (status === 'Hold on...') {
+                    statusCounts.yellow++;
+                } else if (status === 'Stuck...Help!') {
+                    statusCounts.red++;
+                }
+            }
+
+            console.log('Processed data:', statusCounts, 'Latest update:', latestUpdateTime);
+            return { statusCounts, latestUpdateTime };
+        }
+
+        function updateBars(statusCounts) {
+            console.log('Updating bars with:', statusCounts);
+            const total = statusCounts.green + statusCounts.yellow + statusCounts.red;
+            
+            const greenBar = document.getElementById('green-bar');
+            const yellowBar = document.getElementById('yellow-bar');
+            const redBar = document.getElementById('red-bar');
+            
+            greenBar.style.width = `${(statusCounts.green / total) * 100}%`;
+            yellowBar.style.width = `${(statusCounts.yellow / total) * 100}%`;
+            redBar.style.width = `${(statusCounts.red / total) * 100}%`;
+            
+            // Update count displays with percentages
+            updateCountDisplay('green-count', statusCounts.green, total);
+            updateCountDisplay('yellow-count', statusCounts.yellow, total);
+            updateCountDisplay('red-count', statusCounts.red, total);
+            
+            console.log('Bar widths set to:', {
+                green: greenBar.style.width,
+                yellow: yellowBar.style.width,
+                red: redBar.style.width
+            });
+        }
+
+        function updateCountDisplay(elementId, count, total) {
+            const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
+            document.getElementById(elementId).textContent = `${count} (${percentage}%)`;
+        }
+
+        function updateLastUpdateTime(latestUpdateTime) {
+            const lastUpdateElement = document.getElementById('last-update');
+            if (latestUpdateTime) {
+                const formattedTime = latestUpdateTime.toLocaleString('en-US', { 
+                    timeZone: 'Asia/Hong_Kong',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true
+                });
+                lastUpdateElement.textContent = `Last updated: ${formattedTime}`;
+            } else {
+                lastUpdateElement.textContent = 'Last updated: N/A';
+            }
+        }
+
+        async function updateDashboard() {
+            if (isClassInSession() || isTestingMode) {
+                console.log('Updating dashboard...');
+                try {
+                    const records = await fetchTodayData();
+                    if (records.length > 0) {
+                        const { statusCounts, latestUpdateTime } = processData(records);
+                        if (statusCounts) {
+                            updateBars(statusCounts);
+                            updateLastUpdateTime(latestUpdateTime);
+                        } else {
+                            console.log('No valid status counts processed');
+                        }
+                    } else {
+                        console.log('No records fetched');
+                    }
+                } catch (error) {
+                    console.error('Error updating dashboard:', error);
+                }
+            } else {
+                console.log('Class not in session and not in testing mode, skipping update');
+            }
+        }
+
+        // Initial update
+        updateDashboard();
+
+        // Set interval for updates only during class time or testing mode
+        if (isClassInSession() || isTestingMode) {
+            setInterval(updateDashboard, 5 * 1000); // Update every 10 seconds
+        } else {
+            console.log('Not in class time or testing mode. Dashboard will not update automatically.');
+        }
+    </script>
+</body>
+</html>
