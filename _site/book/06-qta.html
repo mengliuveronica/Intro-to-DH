@@ -248,7 +248,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#stemming-vs.-lemmatization" id="toc-stemming-vs.-lemmatization" class="nav-link" data-scroll-target="#stemming-vs.-lemmatization"><span class="header-section-number">2.8.4</span> Stemming vs.&nbsp;Lemmatization</a></li>
   </ul>
 </li>
-  <li><a href="#hands-on-coding" id="toc-hands-on-coding" class="nav-link" data-scroll-target="#hands-on-coding"><span class="header-section-number">2.9</span> Hands-On Coding 💻</a></li>
+  <li>
+<a href="#hands-on-coding" id="toc-hands-on-coding" class="nav-link" data-scroll-target="#hands-on-coding"><span class="header-section-number">2.9</span> Hands-On Coding 💻</a>
+  <ul class="collapse">
+<li><a href="#exercise-1-planning-preprocessing-steps" id="toc-exercise-1-planning-preprocessing-steps" class="nav-link" data-scroll-target="#exercise-1-planning-preprocessing-steps"><span class="header-section-number">2.9.1</span> Exercise 1: Planning Preprocessing Steps</a></li>
+  <li><a href="#exercise-2-implementing-the-preprocessing-steps" id="toc-exercise-2-implementing-the-preprocessing-steps" class="nav-link" data-scroll-target="#exercise-2-implementing-the-preprocessing-steps"><span class="header-section-number">2.9.2</span> Exercise 2: Implementing the Preprocessing Steps</a></li>
+  </ul>
+</li>
   </ul>
 </li>
   <li>
@@ -1236,7 +1242,8 @@ chr (1): X1
 6 ai     </code></pre>
 </div>
 </div>
-<section id="exercise-1-planning-preprocessing-steps" class="level4"><h4 class="anchored" data-anchor-id="exercise-1-planning-preprocessing-steps">Exercise 1: Planning Preprocessing Steps</h4>
+<section id="exercise-1-planning-preprocessing-steps" class="level3" data-number="2.9.1"><h3 data-number="2.9.1" class="anchored" data-anchor-id="exercise-1-planning-preprocessing-steps">
+<span class="header-section-number">2.9.1</span> Exercise 1: Planning Preprocessing Steps</h3>
 <p>Before we start coding, let’s think about what steps we need to take to clean and standardize our DH keywords dataset, and in what order these steps should be performed.</p>
 <p>Look at the first few rows of our dataset:</p>
 <div class="cell">
@@ -1335,7 +1342,8 @@ createProgressiveHints('hint-plan', 2);
 </div>
 <script>
 createToggleSection('solution-button-plan', 'solution-plan', 'Show Possible Plan');
-</script></section><section id="exercise-2-implementing-the-preprocessing-steps" class="level4"><h4 class="anchored" data-anchor-id="exercise-2-implementing-the-preprocessing-steps">Exercise 2: Implementing the Preprocessing Steps</h4>
+</script></section><section id="exercise-2-implementing-the-preprocessing-steps" class="level3" data-number="2.9.2"><h3 data-number="2.9.2" class="anchored" data-anchor-id="exercise-2-implementing-the-preprocessing-steps">
+<span class="header-section-number">2.9.2</span> Exercise 2: Implementing the Preprocessing Steps</h3>
 <p>Now that we have a plan, let’s implement these preprocessing steps in R. Use the <code>tidyr</code>, <code>dplyr</code>, and <code>stringr</code> packages to clean the <code>dh_keywords</code> dataset according to your plan.</p>
 <div id="hint-implement-1" style="display: none;">
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1635,8 +1643,8 @@ Advantages and Limitations of BoW
 <span><span class="co"># Create a word cloud</span></span>
 <span><span class="fu">wordcloud2</span><span class="op">(</span>data <span class="op">=</span> <span class="va">word_frequencies</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-c6a91a1a4e385e75f57c" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-c6a91a1a4e385e75f57c">{"x":{"word":["data","ai","coding","analysis","technology","science","computer","programming","statistics","ethics","digital","research","social","chatgpt","code","human","humanities","text","tools","artificial","culture","disciplinary","innovative","interdisciplinary","programing","quantitative","society","complicated","corpus","creativity","difficult","humanity","intelligence","inter","linguistics","multimedia","network","processing","program","quantative","tech","video","abstract","advanced","analysing","analytical","applying","auxiliary","based","care"],"freq":[61,50,34,18,17,14,13,11,9,7,5,5,5,4,4,4,4,4,4,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":1.475409836065574,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-911327c2da6dcc4419e5" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-911327c2da6dcc4419e5">{"x":{"word":["data","ai","coding","analysis","technology","science","computer","programming","statistics","ethics","digital","research","social","chatgpt","code","human","humanities","text","tools","artificial","culture","disciplinary","innovative","interdisciplinary","programing","quantitative","society","complicated","corpus","creativity","difficult","humanity","intelligence","inter","linguistics","multimedia","network","processing","program","quantative","tech","video","abstract","advanced","analysing","analytical","applying","auxiliary","based","care"],"freq":[61,50,34,18,17,14,13,11,9,7,5,5,5,4,4,4,4,4,4,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":1.475409836065574,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
 </div>
 <p>Alternatively, you can also use the following code to tweak the style of the plot:</p>

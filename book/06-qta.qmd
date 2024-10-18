@@ -732,7 +732,7 @@ head(dh_keywords)
 ```
 
 
-#### Exercise 1: Planning Preprocessing Steps
+### Exercise 1: Planning Preprocessing Steps
 
 Before we start coding, let's think about what steps we need to take to clean and standardize our DH keywords dataset, and in what order these steps should be performed.
 
@@ -792,7 +792,7 @@ This order ensures that we first isolate individual keywords, then standardize t
 createToggleSection('solution-button-plan', 'solution-plan', 'Show Possible Plan');
 </script>
 
-#### Exercise 2: Implementing the Preprocessing Steps
+### Exercise 2: Implementing the Preprocessing Steps
 
 Now that we have a plan, let's implement these preprocessing steps in R. Use the `tidyr`, `dplyr`, and `stringr` packages to clean the `dh_keywords` dataset according to your plan.
 
